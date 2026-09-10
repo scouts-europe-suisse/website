@@ -72,11 +72,13 @@ personne sur l'ancien site. À réintégrer avec son auteur et sa source.
 parce que la carte n'est pas dans le texte : c'est un **iframe**. En regardant le site en ligne,
 c'est un **Google My Maps** que le mouvement tient à jour (`mid=zfTykSxVYwRo.kXJ56xQzar0I`).
 
-Elle est reprise telle quelle, avec **un changement assumé : elle ne se charge qu'au clic.**
-Un iframe Google embarqué d'office contacte Google dès l'ouverture de la page — adresse IP et
-entête de référence partent avant que le visiteur ait rien fait. Le cahier des charges demande de
-veiller à la protection des données, et le public visé, ce sont des parents. Un encart explique
-donc ce qui va se passer, et rien ne part tant que la personne n'a pas cliqué.
+Elle est reprise **telle quelle et chargée directement**, comme le faisait l'ancien site
+(décision de Perki, 2026-09-10).
+
+**Point noté, pas bloquant :** l'iframe contacte Google dès l'ouverture de la page, donc
+l'adresse IP du visiteur part avant qu'il ait rien fait. Le cahier des charges demande de veiller
+à la protection des données. Si le sujet revient — par exemple au moment de rédiger une page de
+confidentialité — un chargement au clic le règle sans rien changer à la carte.
 
 **À vérifier avec le mouvement :** qui tient cette carte à jour, et sous quel compte Google.
 Si le compte se perd, la carte disparaît du site sans prévenir.
