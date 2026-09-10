@@ -22,6 +22,8 @@ metadata:
   charte arrivera.
 - **Le fonctionnement à plusieurs** : une branche par personne, des plans dans `_plans/`, un
   rituel de démarrage de session.
+- **Le dépôt distant** : `scouts-europe-suisse/website` sur GitHub, en privé. `main` et
+  `work/perki` y sont poussées.
 
 ## Ce qui n'est pas en place — volontairement
 
@@ -35,7 +37,7 @@ metadata:
   version carrée du logo pour l'icône d'onglet, et l'image de partage.
 - **La mise en ligne.** Pas d'hébergeur choisi, donc pas de script de publication —
   [plan 01](../_plans/01-hebergement-et-mise-en-ligne/PLAN.md).
-- **Le dépôt distant.** Tout est local. Il n'y a pas de sauvegarde hors de cette machine.
+
 
 ## Ce qui est demandé mais pas encore commencé
 
@@ -56,5 +58,6 @@ metadata:
 | Couleurs prélevées dans le logo plutôt qu'approchées à l'œil | 2026-09-10 | [design-system.md](design-system.md) |
 | Les trois photos où des mineurs sont reconnaissables ne sont pas reprises sans vérification des autorisations | 2026-09-10 | [../_migrations/images/README.md](../_migrations/images/README.md) |
 | Une branche par personne, `_plans/` directement sur `main` | 2026-09-10 | [conventions.md](conventions.md) |
+| Dépôt distant privé sur le GitHub du mouvement | 2026-09-10 | [conventions.md](conventions.md) |
 
 Voir aussi [[cahier-des-charges]], [[source-site]].

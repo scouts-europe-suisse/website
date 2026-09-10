@@ -39,6 +39,7 @@ est entièrement à écrire — la version allemande actuelle n'existe pas, `/de
 française.
 
 **Le site n'est pas en ligne et ne peut pas l'être depuis ici** : l'hébergement n'est pas encore
-choisi. L'ancien site continue de tourner normalement.
+choisi. L'ancien site continue de tourner normalement. Le code est sauvegardé sur le GitHub privé
+du mouvement (`scouts-europe-suisse/website`) — être sur GitHub ne rend rien public.
 
 Détail complet : [`_memory/state.md`](_memory/state.md).

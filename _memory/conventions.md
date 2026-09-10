@@ -24,7 +24,7 @@ Le *site*, lui, est bilingue français / allemand — c'est autre chose, voir
 - `main` — la référence commune. Pas de commit direct.
 - `work/<identifiant>` — une branche par personne, nommée d'après son nom de session machine
   (`whoami`). Exemple : `work/perki`.
-- Pas encore de dépôt distant. Tout est local pour l'instant : voir « Dépôt distant » plus bas.
+- `origin` — le dépôt distant : `git@github.com:scouts-europe-suisse/website.git`, **privé**.
 
 ### Pourquoi une branche par personne
 
@@ -37,13 +37,17 @@ Les mettre d'office sur leur propre branche :
 
 ### Dépôt distant
 
-Il n'y en a pas encore. Conséquences pratiques :
+`git@github.com:scouts-europe-suisse/website.git`, sur le compte GitHub du mouvement, **en
+privé** (ajouté le 2026-09-10). Conséquences pratiques :
 
-- « à jour » veut dire « à jour par rapport au `main` local » ;
-- il n'y a **pas de sauvegarde hors de cette machine** — à dire à l'utilisateur si le travail
-  devient conséquent ;
-- le jour où un distant est ajouté (GitHub, GitLab, ou l'instance du mouvement), rien d'autre ne
-  change dans ces conventions : on ajoute juste `git push`.
+- le travail est sauvegardé ailleurs que sur la machine de la personne qui l'a fait ;
+- « à jour » veut dire « à jour par rapport à `origin/main` » : au démarrage de session, on fait
+  un `git fetch` avant de comparer ;
+- chaque branche `work/<identifiant>` est poussée, ce qui rend visible aux autres qui travaille
+  sur quoi — c'est ce qui fait fonctionner l'étape 3 du rituel de démarrage ;
+- **privé ne veut pas dire secret** : toute personne ajoutée au dépôt voit tout, y compris
+  l'historique. Ce qui entre dans un commit y reste, même supprimé ensuite. Ne jamais y mettre de
+  mot de passe, de clé, ni de donnée personnelle de membre.
 
 ## Organisation des dossiers
 

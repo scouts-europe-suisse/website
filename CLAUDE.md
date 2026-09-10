@@ -36,8 +36,9 @@ c. Vérifier si `work/<whoami>` est en retard sur `main`. Si oui, **la mettre à
    modifications de l'équipe dans ton travail. »
 d. En cas de conflit, s'arrêter et le montrer clairement. Ne jamais résoudre en silence.
 
-*(Tant qu'aucun dépôt distant n'est configuré, tout ceci reste local : voir
-[`_memory/conventions.md`](_memory/conventions.md).)*
+*(Le dépôt distant est `scouts-europe-suisse/website` sur GitHub, en privé. Faire un `git fetch`
+avant de comparer, et pousser la branche de la personne en fin de session pour que son travail
+soit sauvegardé. Voir [`_memory/conventions.md`](_memory/conventions.md).)*
 
 ### 3. Montrer sur quoi les autres travaillent
 
