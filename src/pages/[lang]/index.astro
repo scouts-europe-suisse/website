@@ -20,9 +20,17 @@ const entry = await getEntry('pages', `${lang}/home`);
 if (!entry) throw new Error(`Page d'accueil manquante : ${lang}/home`);
 const { Content } = await render(entry);
 
-// Les trois branches, avec leur écusson. Les libellés viennent du menu pour
-// ne pas les écrire deux fois.
-const branchNav = NAV[0].children ?? [];
+/**
+ * On retrouve les entrées du menu PAR CLÉ, jamais par position : les indices
+ * (NAV[0], NAV[2]) se sont cassés dès que l'ordre du menu a changé, et la
+ * page d'accueil s'est mise à afficher « Accueil » en titre de section et les
+ * clés brutes à la place des noms de branches.
+ */
+const entry_ = (key: string) => NAV.find((i) => i.key === key);
+const childOf = (parent: string, key: string) =>
+  entry_(parent)?.children?.find((c) => c.key === key);
+
+const branchNav = entry_('notre-scoutisme')?.children ?? [];
 const branches = (
   await Promise.all(
     [
@@ -38,8 +46,8 @@ const branches = (
 ).filter((b) => b.href);
 
 const joinHref = await pathFor('nous-rejoindre', lang);
-const joinLabel = NAV[2].label[lang];
-const scoutingLabel = NAV[0].label[lang];
+const joinLabel = entry_('nous-rejoindre')?.label[lang] ?? '';
+const scoutingLabel = entry_('notre-scoutisme')?.label[lang] ?? '';
 ---
 
 <BaseLayout

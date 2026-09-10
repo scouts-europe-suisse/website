@@ -104,8 +104,15 @@ const accent =
     noindex={entry.data.draft}
   >
     <article>
-      <div style={`width: 3rem; height: 4px; background: ${accent}`}></div>
-      <h1 class="mt-4" style="font-size: var(--text-h1)">{entry.data.title}</h1>
+      {/* Une page de branche garde un filet de sa couleur : c'est le seul
+          repère visuel qui distingue les trois branches. Les autres pages
+          n'en ont pas, comme sur le site actuel. */}
+      {entry.data.branche && (
+        <div style={`width: 3rem; height: 4px; background: ${accent}`}></div>
+      )}
+      <h1 class={entry.data.branche ? 'mt-4' : ''} style="font-size: var(--text-h1)">
+        {entry.data.title}
+      </h1>
       <div class="mt-6">
         <PageNotices
           lang={lang}

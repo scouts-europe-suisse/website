@@ -98,17 +98,21 @@ const alternates = [
     <meta name="twitter:card" content="summary_large_image" />
   </head>
 
-  <body class="flex min-h-screen flex-col">
+  <body>
     <a href="#contenu" class="ses-skip">
       {lang === 'fr' ? 'Aller au contenu' : 'Zum Inhalt springen'}
     </a>
 
-    <Header lang={lang} twin={twin} />
+    <!-- La colonne blanche posée sur le fond gris : c'est la mise en page de
+         l'ancien site, sa signature visuelle la plus reconnaissable. -->
+    <div class="ses-sheet">
+      <Header lang={lang} twin={twin} />
 
-    <main id="contenu" class={fullWidth ? '' : 'ses-col py-10'}>
-      <slot />
-    </main>
+      <main id="contenu" class={fullWidth ? '' : 'ses-col py-10'}>
+        <slot />
+      </main>
 
-    <Footer lang={lang} />
+      <Footer lang={lang} />
+    </div>
   </body>
 </html>

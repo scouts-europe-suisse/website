@@ -53,6 +53,10 @@ export interface NavItem {
  */
 export const NAV: NavItem[] = [
   {
+    route: { fr: '', de: '' },
+    label: { fr: 'Accueil', de: 'Startseite' },
+  },
+  {
     key: 'notre-scoutisme',
     label: { fr: 'Notre scoutisme', de: 'Unsere Pfadfinderschaft' },
     children: [
@@ -62,7 +66,6 @@ export const NAV: NavItem[] = [
       { key: 'branche-verte',        label: { fr: 'Éclaireurs et éclaireuses', de: 'Pfadfinder' } },
       { key: 'branche-rouge',        label: { fr: 'Routiers et guides-aînées', de: 'Rover und Ranger' } },
       { key: 'dimension-europeenne', label: { fr: 'La dimension européenne', de: 'Die europäische Dimension' } },
-      { key: 'mouvement-suisse',     label: { fr: 'Un mouvement suisse', de: 'Eine schweizerische Bewegung' } },
     ],
   },
   {
@@ -71,9 +74,13 @@ export const NAV: NavItem[] = [
     children: [
       { key: 'formation-des-chefs', label: { fr: 'Formation des chefs', de: 'Ausbildung der Leiter' } },
       { key: 'encadrement',         label: { fr: 'Encadrement', de: 'Betreuung' } },
+      { key: 'mouvement-suisse',    label: { fr: 'Un mouvement suisse', de: 'Eine schweizerische Bewegung' } },
       { key: 'espas',               label: { fr: 'ESPAS', de: 'ESPAS' } },
-      { key: 'economat-carrick',    label: { fr: 'Économat Carrick', de: 'Carrick' } },
     ],
+  },
+  {
+    route: { fr: 'actualites', de: 'aktuelles' },
+    label: { fr: 'Actualités', de: 'Aktuelles' },
   },
   {
     key: 'nous-rejoindre',
@@ -84,8 +91,8 @@ export const NAV: NavItem[] = [
     ],
   },
   {
-    route: { fr: 'actualites', de: 'aktuelles' },
-    label: { fr: 'Actualités', de: 'Aktuelles' },
+    key: 'economat-carrick',
+    label: { fr: 'Économat Carrick', de: 'Carrick' },
   },
   {
     key: 'contact',
@@ -120,6 +127,18 @@ export const UI = {
     de: 'Diese Seite wurde noch nicht von einem deutschsprachigen Mitglied gegengelesen.',
   },
 } as const;
+
+/**
+ * Les comptes du mouvement sur les réseaux. Relevés dans les réglages du
+ * thème actuel — ce sont les vrais, pas des exemples.
+ * Le cahier des charges SES25 les demande (partie 2, point 4).
+ */
+export const SOCIAL = [
+  { name: 'Facebook',  url: 'https://www.facebook.com/scouts.europe.suisse' },
+  { name: 'Instagram', url: 'https://www.instagram.com/scouts.europe.suisse' },
+  { name: 'YouTube',   url: 'https://www.youtube.com/@scouts.europe.suisse' },
+  { name: 'LinkedIn',  url: 'https://www.linkedin.com/company/scoutisme-europeen-suisse' },
+] as const;
 
 /** La base de la rubrique actualités, par langue. */
 export const NEWS_BASE: Record<Lang, string> = { fr: 'actualites', de: 'aktuelles' };

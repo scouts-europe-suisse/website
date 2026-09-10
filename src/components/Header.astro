@@ -6,7 +6,7 @@
  * Sur téléphone, il se replie derrière un bouton ; le pliage est fait avec
  * <details>, donc il fonctionne même sans JavaScript.
  */
-import { NAV, SITE, UI, path, type NavItem, type Lang } from '../data/site';
+import { NAV, SITE, SOCIAL, UI, path, type NavItem, type Lang } from '../data/site';
 import { pathFor } from '../lib/pages';
 import LangSwitcher from './LangSwitcher.astro';
 
@@ -33,9 +33,14 @@ async function resolve(item: NavItem) {
 }
 const nav = (await Promise.all(NAV.map(resolve))).filter((x) => x !== null);
 
-/** Une entrée est active si on est sur sa page ou sur une de ses sous-pages. */
+/**
+ * Une entrée est active sur sa page et ses sous-pages. L'accueil fait
+ * exception : son adresse est le préfixe de toutes les autres, donc on exige
+ * une correspondance exacte, sinon il resterait allumé partout.
+ */
+const home = path(lang);
 function isActive(href: string): boolean {
-  return here === href || here.startsWith(href);
+  return href === home ? here === home : here === href || here.startsWith(href);
 }
 ---
 
@@ -55,8 +60,30 @@ function isActive(href: string): boolean {
       />
     </a>
 
-    <div class="flex items-center gap-2">
-      <LangSwitcher lang={lang} twin={twin} />
+    <div class="flex items-center gap-4">
+      <div class="hidden sm:flex flex-col items-end leading-tight">
+        <LangSwitcher lang={lang} twin={twin} />
+      </div>
+
+      <!-- Les comptes du mouvement. Demandés par le cahier des charges
+           (partie 2, point 4). Simples liens : pas de widget embarqué, qui
+           ferait partir des données du visiteur chez le réseau concerné. -->
+      <ul class="hidden sm:flex items-center gap-2">
+        {SOCIAL.map((s) => (
+          <li>
+            <a
+              href={s.url}
+              target="_blank"
+              rel="noopener"
+              class="ses-social"
+              title={s.name}
+              aria-label={s.name}
+            >
+              {s.name.charAt(0)}
+            </a>
+          </li>
+        ))}
+      </ul>
 
       <!-- Menu replié sur téléphone, déplié à partir de la tablette. -->
       <details class="lg:hidden ses-mobile-nav">
@@ -91,16 +118,13 @@ function isActive(href: string): boolean {
   </div>
 
   <!-- Menu horizontal, à partir du grand écran. -->
-  <nav class="hidden lg:block border-t" style="border-color: var(--ses-border)" aria-label={UI.menu[lang]}>
+  <nav class="ses-navbar hidden lg:block" aria-label={UI.menu[lang]}>
     <ul class="ses-col flex flex-wrap items-stretch gap-1">
       {nav.map((item) => (
-        <li class="relative ses-nav-item">
+        <li class:list={['relative', 'ses-nav-item', isActive(item.href) && 'is-active']}>
           <a
             href={item.href}
-            class="inline-flex items-center px-3 py-3 font-semibold no-underline"
-            style={isActive(item.href)
-              ? 'color: var(--ses-primary-text); box-shadow: inset 0 -3px 0 var(--ses-primary)'
-              : 'color: var(--ses-fg)'}
+            class="inline-flex items-center px-4 py-3 font-semibold no-underline"
             aria-current={isActive(item.href) ? 'page' : undefined}
           >
             {item.label}
@@ -121,6 +145,24 @@ function isActive(href: string): boolean {
 </header>
 
 <style>
+  /* Pastilles des réseaux sociaux : une initiale dans un rond gris, comme
+     sur le site actuel, sans charger d'icônes depuis un service tiers. */
+  .ses-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 50%;
+    background: #c9c9c9;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: background-color 120ms ease;
+  }
+  .ses-social:hover { background: var(--ses-primary); color: #fff; }
+
   /* Le logo est fourni en 351×134. On le pose à une hauteur fixe et on
      laisse la largeur suivre, pour qu'il ne se déforme jamais. */
   .ses-logo {

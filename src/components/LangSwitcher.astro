@@ -1,13 +1,14 @@
 ---
 /**
- * Bascule entre le français et l'allemand.
+ * Les deux langues, écrites en toutes lettres, comme sur le site actuel :
+ * un germanophone qui tombe sur une page française doit voir « Deutsch », pas
+ * un code à deviner.
  *
- * L'adresse de la jumelle est calculée par le gabarit (via la clé de la page)
- * et transmise ici. Quand la page n'existe pas dans l'autre langue, le lien
- * mène à l'accueil de cette langue plutôt que vers une page inexistante, et
- * le dit à l'utilisateur.
+ * L'adresse de la jumelle est calculée par le gabarit (via la clé de la page).
+ * Quand la page n'existe pas dans l'autre langue, le lien mène à l'accueil de
+ * cette langue plutôt que vers une page inexistante, et le dit.
  */
-import { LANG_LABELS, path, type Lang } from '../data/site';
+import { LANGS, LANG_LABELS, path, type Lang } from '../data/site';
 
 interface Props {
   lang: Lang;
@@ -15,22 +16,27 @@ interface Props {
 }
 const { lang, twin } = Astro.props;
 const other: Lang = lang === 'fr' ? 'de' : 'fr';
-const href = twin ?? path(other);
-const missing = !twin;
 ---
 
-<a
-  href={href}
-  hreflang={other}
-  lang={other}
-  class="inline-flex items-center justify-center min-w-11 min-h-11 text-sm font-semibold uppercase tracking-wide"
-  style="color: var(--ses-muted)"
-  title={missing
-    ? other === 'de'
-      ? 'Diese Seite gibt es noch nicht auf Deutsch — zur Startseite'
-      : "Cette page n'existe pas encore en français — aller à l'accueil"
-    : LANG_LABELS[other]}
-  aria-label={LANG_LABELS[other]}
->
-  {other}
-</a>
+<ul class="flex flex-col items-end text-sm leading-tight">
+  {LANGS.map((l) => (
+    <li>
+      {l === lang ? (
+        <span style="color: var(--ses-muted)" aria-current="true">{LANG_LABELS[l]}</span>
+      ) : (
+        <a
+          href={twin ?? path(other)}
+          hreflang={l}
+          lang={l}
+          title={twin
+            ? LANG_LABELS[l]
+            : l === 'de'
+              ? 'Diese Seite gibt es noch nicht auf Deutsch — zur Startseite'
+              : "Cette page n'existe pas encore en français — aller à l'accueil"}
+        >
+          {LANG_LABELS[l]}
+        </a>
+      )}
+    </li>
+  ))}
+</ul>

@@ -34,8 +34,12 @@
      texte, il est illisible sur blanc (contraste inférieur à 1,3:1). */
   --ses-gold: #f8e900;
 
-  /* ── Fonds et textes, repris du site actuel ────────────────────────── */
-  --ses-bg: #f9f9f9;               /* fond de page                       */
+  /* ── Fonds et textes, repris du site actuel ──────────────────────────
+     Le site actuel pose une colonne blanche sur un fond gris clair. On
+     reprend cette mise en page : c'est sa signature visuelle la plus
+     reconnaissable, avant même les couleurs. */
+  --ses-page: #e8e8e8;             /* le gris autour de la colonne       */
+  --ses-bg: #ffffff;               /* la colonne de contenu, blanche     */
   --ses-surface: #ffffff;          /* cartes, encadrés, en-tête          */
   --ses-fg: #404040;               /* texte courant — 9,8:1 sur le fond  */
   --ses-muted: #6b6b6b;            /* texte secondaire, légendes         */
@@ -59,10 +63,13 @@
   /* Échelle de titres. clamp() = s'adapte du téléphone au grand écran.
      Le corps de texte est monté de 14 à 17px : le 14px du site actuel est
      en dessous de ce qui se lit confortablement sur un écran d'aujourd'hui. */
-  --text-hero: clamp(2.25rem, 5.5vw, 3.5rem);
-  --text-h1: clamp(1.875rem, 4.5vw, 2.75rem);
-  --text-h2: clamp(1.5rem, 3.2vw, 2rem);
-  --text-h3: 1.25rem;
+  /* Relevé sur le site actuel : titre de page 30 px en graisse NORMALE, et
+     titres de section à la taille du texte courant, en gras. C'est une
+     hiérarchie très plate — c'est la sienne, on la reprend. */
+  --text-hero: clamp(2rem, 4.5vw, 2.75rem);
+  --text-h1: clamp(1.625rem, 3.5vw, 1.875rem);   /* 30 px au maximum */
+  --text-h2: 1.0625rem;                          /* la taille du texte  */
+  --text-h3: 1rem;
   --text-body: 1.0625rem;
   --text-small: 0.875rem;
   --leading-body: 1.65;
@@ -76,7 +83,7 @@
   --space-6: 6rem;
 
   /* ── Largeurs ───────────────────────────────────────────────────── */
-  --content-col: 68rem;   /* la colonne du site (en-tête, grilles) */
+  --content-col: 71rem;   /* la colonne du site, proche des 1200 px de l'actuel */
   --prose-max: 44rem;     /* le texte courant ne dépasse jamais ~85 signes */
 }
 
@@ -91,7 +98,7 @@ html {
 }
 
 body {
-  background: var(--ses-bg);
+  background: var(--ses-page);
   color: var(--ses-fg);
   font-family: var(--ses-font-body);
   font-size: var(--text-body);
@@ -102,9 +109,15 @@ body {
 h1, h2, h3, h4 {
   font-family: var(--ses-font-heading);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.2;
   text-wrap: balance;
   color: var(--ses-fg);
+}
+
+/* Le titre de page du site actuel n'est pas gras : 30 px en graisse normale,
+   en Droid Sans. C'est ce qui donne son allure sobre à l'en-tête de page. */
+h1 {
+  font-weight: 400;
 }
 
 a {
@@ -133,19 +146,62 @@ a:hover { color: var(--ses-primary); }
   padding-inline: var(--space-3);
 }
 
+/* L'enveloppe blanche qui porte tout le site, posée sur le fond gris.
+   C'est la mise en page de l'ancien site : une colonne blanche centrée. */
+.ses-sheet {
+  width: 100%;
+  max-width: calc(var(--content-col) + 6rem);
+  margin-inline: auto;
+  background: var(--ses-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 12px rgb(0 0 0 / 0.10);
+}
+
+/* La barre de navigation noire, comme sur le site actuel : texte blanc,
+   et l'entrée courante en négatif (fond blanc, texte noir). */
+.ses-navbar {
+  background: #2b2b2b;
+}
+.ses-navbar a {
+  color: #ffffff;
+  text-decoration: none;
+}
+.ses-navbar a:hover {
+  background: #3d3d3d;
+  color: #ffffff;
+}
+.ses-navbar a[aria-current='page'],
+.ses-navbar .ses-nav-item.is-active > a {
+  background: var(--ses-bg);
+  color: var(--ses-fg);
+}
+
 /* Le texte courant d'une page de contenu. */
 .ses-prose {
   max-width: var(--prose-max);
 }
-.ses-prose > * + * { margin-top: var(--space-2); }
+/* Les titres de section sont, sur le site actuel, de simples paragraphes en
+   gras à la taille du texte. On garde de vrais <h2> — c'est ce qui permet à
+   un lecteur d'écran et aux moteurs de recherche de suivre le plan de la
+   page — mais on leur donne cette apparence-là. */
 .ses-prose h2 {
+  font-family: var(--ses-font-body);
   font-size: var(--text-h2);
-  margin-top: var(--space-4);
+  font-weight: 700;
+  margin-top: var(--space-3);
+  margin-bottom: 0;
 }
 .ses-prose h3 {
+  font-family: var(--ses-font-body);
   font-size: var(--text-h3);
-  margin-top: var(--space-3);
+  font-weight: 700;
+  margin-top: var(--space-2);
+  margin-bottom: 0;
 }
+.ses-prose > * + * { margin-top: var(--space-2); }
+
 .ses-prose ul, .ses-prose ol {
   padding-left: 1.4em;
   list-style: revert;
