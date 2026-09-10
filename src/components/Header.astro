@@ -21,7 +21,8 @@ function isActive(slug: string): boolean {
 }
 ---
 
-<header class="border-b" style="border-color: var(--ses-border); background: var(--ses-surface)">
+<!-- `relative` ancre le menu déplié du téléphone, qui est en position absolue. -->
+<header class="relative border-b" style="border-color: var(--ses-border); background: var(--ses-surface)">
   <div class="ses-col flex items-center justify-between gap-4 py-3">
     <a href={path(lang)} class="flex items-center gap-3 no-underline" style="color: var(--ses-fg)">
       <img

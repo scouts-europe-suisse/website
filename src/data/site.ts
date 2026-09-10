@@ -21,10 +21,14 @@ export const SITE = {
   shortName: 'SES',
   domain: 'https://www.scouts-europe.ch',
   email: 'info@scouts-europe.ch',
+  /**
+   * L'adresse du siège. La rue ne se traduit pas (c'est une adresse postale
+   * genevoise) ; la ville et le pays, si.
+   */
   address: {
     street: 'Rue Prévost-Martin 10',
-    city: '1205 Genève',
-    country: 'Suisse',
+    city: { fr: '1205 Genève', de: '1205 Genf' },
+    country: { fr: 'Suisse', de: 'Schweiz' },
   },
 } as const;
 

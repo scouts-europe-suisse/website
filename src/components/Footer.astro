@@ -22,8 +22,8 @@ const year = new Date().getFullYear();
       <p class="font-bold">{SITE.name}</p>
       <address class="not-italic" style="color: var(--ses-muted)">
         {SITE.address.street}<br />
-        {SITE.address.city}<br />
-        {SITE.address.country}
+        {SITE.address.city[lang]}<br />
+        {SITE.address.country[lang]}
       </address>
       <p class="mt-2">
         <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
