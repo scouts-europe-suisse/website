@@ -1,0 +1,18 @@
+<!DOCTYPE html><html lang="fr"> <head><meta charset="utf-8"><title>Scoutisme Européen Suisse</title><meta name="robots" content="noindex"><link rel="canonical" href="https://www.scouts-europe.ch/website/fr/"><script>(function(){const fr = "/website/fr/";
+const de = "/website/de/";
+
+      (function () {
+        try {
+          var langs =
+            navigator.languages && navigator.languages.length
+              ? Array.from(navigator.languages)
+              : [navigator.language || 'fr'];
+          var isDe = langs.some(function (l) {
+            return l.toLowerCase().indexOf('de') === 0;
+          });
+          location.replace(isDe ? de : fr);
+        } catch (_) {
+          location.replace(fr);
+        }
+      })();
+    })();</script><meta http-equiv="refresh" content="0;url=/website/fr/"></head> <body> <a href="/website/fr/">Français</a> · <a href="/website/de/">Deutsch</a> </body></html>

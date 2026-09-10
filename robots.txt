@@ -1,0 +1,7 @@
+# Le site n'est pas encore en ligne (voir _plans/01-hebergement-et-mise-en-ligne/).
+# Cette version autorise l'indexation : à vérifier au moment de la bascule,
+# et à passer en interdiction si le site est publié quelque part en préparation.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.scouts-europe.ch/sitemap-index.xml
