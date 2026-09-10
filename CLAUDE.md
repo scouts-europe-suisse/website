@@ -122,19 +122,22 @@ npm run dev        # http://localhost:4321
 
 ---
 
-## Mise en ligne — pas encore décidée
+## Mise en ligne
 
-**L'hébergement du nouveau site n'est pas choisi.** Il n'y a donc, volontairement, ni script de
-publication, ni fichier `CNAME`, ni branche de déploiement dans ce dépôt.
+Le site est publié en **aperçu public** sur GitHub Pages :
+**https://scouts-europe-suisse.github.io/website/**
 
-Si un utilisateur demande à publier ou à mettre en ligne : **ne pas improviser un déploiement.**
-Explique que l'hébergement doit d'abord être décidé, et propose d'ouvrir un plan pour ça.
-Le contexte de la décision est dans [`_memory/local-dev-and-deploy.md`](_memory/local-dev-and-deploy.md).
+```bash
+npm run deploy
+```
 
-Le site actuel (WordPress chez son hébergeur) continue de tourner pendant ce temps : rien de ce
-qui est fait ici ne l'affecte.
+**Le site officiel du mouvement n'est pas touché.** `www.scouts-europe.ch` tourne toujours sous
+WordPress. L'aperçu sert à montrer le travail et à le faire relire. Quand quelqu'un demande à
+publier, le lui dire dans ces termes.
 
----
+**Avant chaque publication**, la règle de fond du chantier s'applique telle quelle : aucune photo
+où un mineur est reconnaissable, et rien de personnel dans le dépôt, qui est public. Le détail
+est dans [`_memory/feedback_publication.md`](_memory/feedback_publication.md).
 
 ## Contenu : bilingue français / allemand
 

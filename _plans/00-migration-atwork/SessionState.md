@@ -30,6 +30,17 @@ Relancer les scripts écraserait le travail de relecture.
 sur plan gratuit, historique contenant des photos de mineurs, et service en sous-dossier qui
 demanderait de préfixer toutes les adresses. Détail dans le plan 01.
 
+## En ligne depuis le 2026-09-10
+
+Aperçu public : **https://scouts-europe-suisse.github.io/website/** (`npm run deploy`).
+`www.scouts-europe.ch` n'est pas touché.
+
+**L'historique a été purgé** des images d'origine, et la purge est vérifiée sur un clone frais
+(0 blob, dépôt passé de 15 à 3,9 Mo). **Mais GitHub sert encore ces objets par leur empreinte à
+toute requête authentifiée** — vérifié, pas supposé. Pour fermer complètement : supprimer et
+recréer le dépôt, ou demander à GitHub de purger. Sauvegarde d'avant purge :
+`/tmp/ses-avant-purge.bundle`.
+
 ## À reprendre ensuite, dans cet ordre
 
 1. **Demander à l'ETN Photo** les autorisations parentales : une réponse décide de 48

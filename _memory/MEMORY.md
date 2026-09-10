@@ -10,8 +10,9 @@ WordPress actuel de [www.scouts-europe.ch](https://www.scouts-europe.ch/fr/).
   `work/<whoami>`. Jamais de commit direct sur `main`, sauf `_plans/`.
 - [feedback_rituel_demarrage.md](feedback_rituel_demarrage.md) — synchroniser la branche et
   faire le tour du travail des autres avant toute tâche.
-- [feedback_pas_de_publication.md](feedback_pas_de_publication.md) — **aucune mise en ligne
-  tant que l'hébergement n'est pas décidé** (plan 01). Ne pas improviser un déploiement.
+- [feedback_publication.md](feedback_publication.md) — le site est publié en **aperçu public**
+  sur GitHub Pages ; `www.scouts-europe.ch` n'est pas touché. Ce qu'il faut vérifier avant
+  chaque publication.
 - [feedback_faits_du_mouvement.md](feedback_faits_du_mouvement.md) — **ne jamais inventer un
   fait sur le SES** (date, effectif, nom, adresse, montant) ni valider une traduction allemande.
 
