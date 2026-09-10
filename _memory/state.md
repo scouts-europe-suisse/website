@@ -32,19 +32,30 @@ metadata:
   actuel ne le servait pas. Chaque page a son adresse dans sa langue
   (`/fr/branche-jaune/` ↔ `/de/woelflingsstufe/`), les deux étant reliées par une clé.
 
-## Ce qui n'est pas en place — volontairement
+## En ligne
 
-- **La page d'accueil** reste à écrire : l'ancienne était un assemblage de widgets, il n'y avait
-  pas de texte à reprendre.
-- **Les images du corps des pages.** Trois seulement sont publiées, celles où personne n'est
-  identifiable. Les 18 autres attendent la vérification des autorisations parentales : voir
-  [`../_migrations/images/README.md`](../_migrations/images/README.md).
-- **L'habillage définitif.** L'identité actuelle est en place, mais elle est justement ce que
-  la charte doit revoir — [plan 02](../_plans/02-charte-graphique/PLAN.md). Manquent aussi une
-  version carrée du logo pour l'icône d'onglet, et l'image de partage.
-- **La mise en ligne.** Pas d'hébergeur choisi, donc pas de script de publication —
-  [plan 01](../_plans/01-hebergement-et-mise-en-ligne/PLAN.md).
+**Aperçu public :** https://scouts-europe-suisse.github.io/website/ — `npm run deploy`.
+Ce n'est **pas** le site officiel : `www.scouts-europe.ch` tourne toujours sous WordPress.
+Le site sait être servi à la racine d'un domaine comme depuis un sous-dossier ; la bascule du
+vrai domaine reste à décider ([plan 01](../_plans/01-hebergement-et-mise-en-ligne-later/PLAN.md)).
 
+**Le dépôt est public.** Rien de personnel n'y entre, et l'historique garde ce qu'on y met même
+après suppression.
+
+## Ce qui n'est pas en place
+
+- **L'allemand est incomplet** : deux pages françaises sans jumelle (guides-aînées, Fribourg),
+  quelques titres de section restés en français dans les pages allemandes, aucune actualité
+  traduite.
+- **Personne du mouvement n'a relu** les pages. La conversion était automatique.
+- **La carte des implantations** est à construire : la page est vide sur l'ancien site, il n'y
+  avait rien à migrer.
+- **L'habillage définitif.** L'identité actuelle est en place — logo, couleurs prélevées dans le
+  logo, polices du site actuel — mais c'est justement ce que la charte doit revoir
+  ([plan 02](../_plans/02-charte-graphique-later/PLAN.md)). Manque l'image de partage
+  (`og-image.png`).
+- **Deux détails de contenu** : le visuel ESPAS est un PDF, qui ne peut pas s'afficher dans une
+  page ; et le texte cité de la page européenne attend l'identification de son auteur.
 
 ## Ce qui est demandé mais pas encore commencé
 
