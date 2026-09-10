@@ -1,10 +1,16 @@
 # Plan 04 — Finir le contenu : images, accueil, allemand, relecture
 
-**Session:** perkim5 /Users/perki/code/scouts/website
 **Responsable :** Perki
 **Date :** 2026-09-10
 **Demandé par :** Perki
 **Portée :** `src/content/`, `public/images/`, la carte des implantations
+
+> **Mis en pause le 2026-09-10, décision de Perki : « on fera ça plus tard ».**
+>
+> Ce qui reste ne demande plus de technique mais des personnes — un germanophone du mouvement,
+> un relecteur, et quelqu'un qui retrouve l'auteur d'un texte. Le report est écrit ici pour
+> qu'il compte comme une décision et non comme un oubli : c'est ce que demandait le critère de
+> clôture sur l'allemand.
 
 ## De quoi il s'agit
 
