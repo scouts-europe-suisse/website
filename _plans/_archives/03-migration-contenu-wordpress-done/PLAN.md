@@ -1,6 +1,17 @@
 # Plan 03 — Reprendre le contenu du site WordPress actuel
 
-**Statut :** ouvert
+> **Terminé et archivé le 2026-09-10 — repris par le [plan 00](../../00-migration-atwork/PLAN.md).**
+>
+> Le gros du travail décrit ici est fait : 19 pages FR, 17 pages DE et 19 actualités reprises
+> depuis l'export de la base, 78 anciennes adresses cartographiées et redirigées.
+>
+> **Ce que ce plan prévoyait et qui n'est pas fait** est repris tel quel dans le plan 00, pour ne
+> rien perdre : les images en attente d'autorisation parentale, les 42 images d'actualités non
+> récupérées, le texte de la page d'accueil, les jumelles allemandes manquantes, et la relecture.
+>
+> **Ce que ce plan se trompait à prévoir :** il annonçait que l'allemand était entièrement à
+> écrire. Il existait déjà, rédigé à la main ; c'est le site actuel qui ne le servait pas.
+
 **Responsable :** à définir
 **Date :** 2026-09-10
 

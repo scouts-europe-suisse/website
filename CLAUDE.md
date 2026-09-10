@@ -53,31 +53,35 @@ d. S'il en choisit un, demander ensuite : *« Tu veux reprendre ces changements 
 
 ### 4. Regarder les plans
 
-Les règles des plans — les quatre états, la ligne `Qui :`, comment un plan se ferme — sont dans
+Les règles — les états, la ligne `Session:`, comment un plan se ferme — sont dans
 **[`_plans/README.md`](_plans/README.md)**. Lis-le. Ci-dessous, uniquement ce qu'il faut *faire*
 au démarrage.
 
-**Lis toujours l'état réel dans les dossiers et les en-têtes de [`_plans/`](_plans/), jamais dans
-une liste recopiée ici.** Une liste écrite en dur dans ce fichier devient fausse dès que
-quelqu'un ajoute un plan.
+**Lis toujours l'état réel dans les noms de dossiers de [`_plans/`](_plans/), jamais dans une
+liste recopiée ici.** Une liste écrite en dur dans ce fichier devient fausse dès que quelqu'un
+ajoute un plan.
 
-a. **Lister ce qui est vivant.** Tout dossier de `_plans/` qui n'est pas `_archives/`. Un dossier
-   qui finit par `-encours` est en cours ; `-plustard` est mis en pause ; le reste est ouvert.
-b. **En attente de cet utilisateur ?** Pour chaque plan ouvert, lire la ligne `**Responsable :**`.
-   Si elle nomme l'utilisateur, lui expliquer en une ou deux phrases simples de quoi il s'agit
-   (lis l'intro, ne le renvoie pas au fichier), puis demander : *« Tu veux t'en occuper
-   maintenant, ou plus tard ? Je peux te guider pas à pas. »*
-c. **Qui est occupé ?** Pour chaque plan `-encours`, rapporter la ligne `**Qui :**` — prénom,
-   branche, depuis quand — pour que l'utilisateur ne démarre pas un travail déjà entamé. Si une
-   ligne `Qui :` a plus d'un mois, le signaler.
-d. **Terminé mais toujours ouvert ?** Si les critères de la section « Ce que "terminé" veut dire »
-   semblent remplis, **le dire et demander** s'il faut fermer le plan. Ne jamais fermer seul.
-e. **Ne jamais marquer un plan comme terminé de ta propre initiative** — c'est le responsable qui
-   décide.
-f. Quand l'utilisateur décide de démarrer, mettre en pause ou fermer un plan, fais la mécanique
-   pour lui (renommer le dossier, ajouter/retirer la ligne `Qui :`, écrire la note de résultat,
-   déplacer vers `_archives/`) et commite directement sur `main` — voir l'exception `_plans/`
-   dans [`_plans/README.md`](_plans/README.md).
+a. **Calcule l'étiquette de cette session** : `scutil --get LocalHostName` suivi du chemin absolu
+   du dossier qui contient ce `CLAUDE.md`. Exemple : `perkim5 /Users/perki/code/scouts/website`.
+   **Jamais `hostname`** : sous VPN, macOS le remplace par un nom DHCP, et l'étiquette ne
+   correspond plus à rien.
+b. **Liste ce qui est vivant.** Tout dossier de `_plans/` qui n'est pas `_archives/`. Le suffixe
+   dit l'état : `-atwork` en cours, `-paused` arrêté en route, `-later` parqué, `-study` à
+   l'étude. Un `XX-` en tête veut dire « en réserve, sans rang ».
+c. **Reprends le plan de cette session.** Si un plan `-atwork` porte l'étiquette calculée en (a),
+   propose de le continuer, en lisant d'abord son `SessionState.md` s'il en a un. Il est à nous,
+   même s'il vient d'une session précédente qui s'est arrêtée.
+d. **Préviens si un plan est tenu par une autre session.** Ne le reprends pas sans confirmation
+   explicite : quelqu'un est peut-être en plein dedans.
+e. **En attente de cet utilisateur ?** Pour chaque plan sans `Session:`, lis la ligne
+   `**Responsable :**`. Si elle nomme l'utilisateur, explique-lui en une ou deux phrases simples
+   de quoi il s'agit, puis demande s'il veut s'en occuper maintenant ou plus tard.
+f. **Terminé mais toujours ouvert ?** Si les critères de « Ce que "terminé" veut dire » semblent
+   remplis, **dis-le et demande**. Ne ferme jamais seul.
+g. Quand l'utilisateur décide de démarrer, mettre en pause ou fermer un plan, fais la mécanique
+   pour lui — renommer le dossier, poser ou retirer la ligne `Session:`, écrire la note de
+   résultat, déplacer vers `_archives/` — puis **commite et pousse tout de suite**. C'est une
+   exception assumée à « on ne commite pas sans demander », limitée aux fichiers du plan.
 
 ### 5. Seulement ensuite — la demande de l'utilisateur
 
@@ -86,9 +90,9 @@ f. Quand l'utilisateur décide de démarrer, mettre en pause ou fermer un plan, 
 ## Sauf demande explicite contraire
 
 - **Toujours travailler sur `work/<whoami>`.** Ne jamais commiter directement sur `main`.
-  **Une seule exception :** un changement qui ne touche **que** des fichiers de `_plans/` (renommage
-  de dossier, ligne `Qui :`, note de résultat, archivage) va directement sur `main`, sinon
-  personne d'autre ne voit qui travaille sur quoi.
+  **Une seule exception :** un changement qui ne touche **que** des fichiers de `_plans/`
+  (renommage de dossier, ligne `Session:`, note de résultat, archivage) va directement sur `main`
+  et se pousse aussitôt, sinon personne d'autre ne voit qui travaille sur quoi.
 - **Ne jamais réécrire l'historique de `main`** (pas de force-push, pas de rebase).
 - **Ne jamais modifier la branche `work/...` de quelqu'un d'autre.**
 
@@ -178,7 +182,7 @@ image où les visages ne sont pas identifiables, et poser la question à l'utili
 | [`_plans/`](_plans/) | Les plans — les vivants à la racine, les terminés dans [`_plans/_archives/`](_plans/_archives/). **Fonctionnement : [`_plans/README.md`](_plans/README.md).** Ne les liste pas ici, le dossier fait foi. |
 | [`_memory/`](_memory/) | Règles, conventions, état du chantier. **Lis [`_memory/MEMORY.md`](_memory/MEMORY.md) tôt dans chaque session.** |
 | [`_references/`](_references/) | Documents de référence reçus du SES — dont le cahier des charges SES25. |
-| [`_migrations/`](_migrations/) | Ce qu'on récupère du site WordPress actuel : contenu, images, inventaire des URL. |
+| [`_migrations/`](_migrations/) | La **carte** de l'ancien site : la table des adresses ([`url-map.md`](_migrations/url-map.md)) et l'inventaire des images. **Pas les fichiers d'origine** : seul ce qui sert au nouveau site entre dans le dépôt. |
 | `src/` | Le site lui-même (Astro 5 + Tailwind v4). |
 | `public/` | Fichiers servis tels quels : favicon, robots.txt, images. |
 

@@ -20,5 +20,19 @@ Thumbs.db
 *.swp
 .astro/
 
+# Sources d'origine de l'ancien site : jamais commitées.
+# Seul ce qui sert au nouveau site entre dans le dépôt (public/images/).
+# Ce qui reste de l'ancien site ici, c'est la CARTE, pas les fichiers :
+#   _migrations/url-map.md        les adresses, pour les redirections
+#   _migrations/images/README.md  l'inventaire des images et leur statut
+_migrations/images/*.jpg
+_migrations/images/*.jpeg
+_migrations/images/*.png
+_migrations/images/contenu/
+_migrations/contenu/
+_migrations/_brut/
+*.sql
+*.sql.gz
+
 # Working files
 *.bak
