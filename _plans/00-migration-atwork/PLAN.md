@@ -102,8 +102,15 @@ attribué sur l'ancien site. Il doit revenir avec son auteur et sa source.
 
 ## Ce que « terminé » veut dire
 
-- Chaque page du menu a un contenu réel, relu par une personne du mouvement.
-- Chaque adresse publique de l'ancien site mène quelque part sur le nouveau (table vérifiée
-  après la mise en ligne, avant de couper l'ancien site).
-- Le sort de chaque image est tranché : publiée, ou écartée avec son motif.
-- Ce qui manque en allemand est soit écrit et relu, soit reporté par une décision écrite.
+Relevé au 2026-09-10 :
+
+| Critère | État |
+|---|---|
+| Chaque page du menu a un contenu réel, **relu par une personne du mouvement** | ✗ La page d'accueil n'a pas de texte, et personne du mouvement n'a encore relu quoi que ce soit. |
+| Chaque adresse publique de l'ancien site mène quelque part **(table vérifiée en ligne)** | ✓ 162 adresses testées sur l'aperçu — 50 redirections, 112 pages, 0 échec. **À refaire sur le vrai domaine** avant de couper WordPress. |
+| Le sort de chaque image est tranché : publiée, ou écartée avec son motif | ~ Chacune a un motif écrit, mais 52 emplacements sont *en attente* d'une question qui n'a pas encore été posée à l'ETN Photo. |
+| Ce qui manque en allemand est écrit et relu, **ou reporté par une décision écrite** | ✗ Deux pages françaises sans jumelle, aucune actualité traduite, et aucun report écrit. |
+
+**Le plan n'est donc pas terminé.** Ce qui reste ne dépend plus de la technique : il faut une
+réponse de l'ETN Photo, un texte d'accueil de l'ETN Communication, une relecture, et une décision
+sur l'allemand. Le responsable décide de la clôture, pas Claude.
