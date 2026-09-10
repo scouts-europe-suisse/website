@@ -66,6 +66,19 @@ website/
 
 Le préfixe `_` marque les dossiers de chantier : ils restent pendant toute la vie du projet.
 
+## Les identifiants ne sont jamais dans le dépôt
+
+Le dépôt est **public**. Mots de passe, clés, exports de base : rien de tout cela n'y entre, et
+l'historique garde ce qu'on y met même après suppression.
+
+- `_temp/` est ignoré par git. C'est là que vivent les accès (par exemple ceux du serveur de
+  l'ancien site). Ne jamais déplacer un de ces fichiers ailleurs.
+- L'export de la base de l'ancien site reste dans le dossier de téléchargement de la personne
+  qui l'a reçu, jamais ici : il contient des messages et des fiches de contact de personnes
+  réelles.
+- L'accès au serveur de l'ancien site se fait **par clé SSH**, pas par mot de passe. La clé est
+  posée ; il n'y a rien à retaper.
+
 ## Style de communication
 
 - Français courant d'abord ; commandes et code seulement quand c'est nécessaire.

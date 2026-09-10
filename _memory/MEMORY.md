@@ -18,6 +18,9 @@ WordPress actuel de [www.scouts-europe.ch](https://www.scouts-europe.ch/fr/).
 
 ## Conventions et procédures
 
+- [ecrire-une-page.md](ecrire-une-page.md) — **comment écrire ou modifier une page**, les champs
+  d'en-tête, l'appariement français/allemand, les images. À lire par qui reprend le contenu.
+
 - [conventions.md](conventions.md) — modèle de branches, organisation des dossiers, public,
   style de communication.
 - [local-dev-and-deploy.md](local-dev-and-deploy.md) — faire tourner le site en local

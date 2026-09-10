@@ -51,6 +51,21 @@ profil de lui-même au bon endroit selon le système
 Ne pas y remettre de chemin en dur. Si un profil jetable est un jour nécessaire, l'option
 portable est `--isolated`, qui crée un dossier temporaire et le nettoie à la fermeture.
 
+### Le cache de contenu peut mentir
+
+Astro garde en cache le rendu du markdown, dans `.astro/`. **Ce cache ne se rend pas compte
+qu'un greffon a changé.** On modifie le traitement des images, on reconstruit, la sortie est
+identique, et on conclut que le code ne marche pas — alors qu'il n'a simplement pas été rejoué.
+
+C'est arrivé une fois, sur l'ajout du chargement différé : le code était juste, la page
+inchangée. Le réflexe à avoir :
+
+```bash
+rm -rf .astro node_modules/.astro _build && npm run build
+```
+
+À faire dès qu'on touche à `astro.config.mjs`, aux greffons markdown, ou au schéma du contenu.
+
 ### Le port
 
 Par défaut `4321`. Le serveur respecte la variable `PORT` si un outil lui en impose un autre.
