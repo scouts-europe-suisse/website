@@ -1,0 +1,14 @@
+# Fins de ligne normalisées.
+#
+# Sans ça, git sous Windows convertit les fins de ligne à l'aller et au
+# retour : chaque fichier touché sur un poste Windows ressort modifié en
+# entier dans l'historique, même sans y avoir changé un mot.
+* text=auto eol=lf
+
+# Fichiers binaires : ne jamais y toucher.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.woff2 binary
+*.pdf binary

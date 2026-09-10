@@ -10,7 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "bash scripts/publish.sh"
+    "deploy": "node scripts/publish.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",

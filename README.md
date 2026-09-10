@@ -8,6 +8,8 @@ Le nouveau site public du SES, appelé à remplacer le WordPress actuel de
 **Si vous venez d'arriver ici : ouvrez Claude Code dans ce dossier et dites-lui ce que vous
 voulez faire, en français.** Tout ce qui suit, il le fera pour vous.
 
+**Rien d'installé encore ?** → [`DEMARRER.md`](DEMARRER.md), vingt minutes, une seule fois.
+
 ---
 
 ## ⚠ Ce dépôt est public
