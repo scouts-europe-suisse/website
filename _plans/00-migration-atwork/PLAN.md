@@ -15,10 +15,19 @@ dans les moteurs de recherche sont perdus.
 
 Ce plan remplace le plan 03, dont il reprend le contenu et les acquis.
 
-## Ce qui est fait
+## La reprise est terminée — `src/content/` fait foi
 
-**La source.** Tout part de l'export de la base fourni par l'hébergeur, pas des pages affichées.
-C'est ce qui a permis de trouver ce qui suit.
+**Directive, 2026-09-10 : on ne relance plus de reprise depuis la base.** Le texte du site vit
+désormais dans `src/content/`, et c'est lui la référence. Toute correction se fait là, à la main.
+Relancer les scripts écraserait ce que des humains auront relu et corrigé.
+
+Les scripts de reprise restent dans `_migrations/outils/` à titre de trace, plus d'outil de
+travail — sauf `comparer-contenu.py`, qui sert au contrôle avant la bascule.
+
+## Comment ça a été fait
+
+**La source.** Tout est parti de l'export de la base fourni par l'hébergeur, pas des pages
+affichées. C'est ce qui a permis de trouver ce qui suit.
 
 **L'allemand existait déjà.** Le site actuel sert la page française sur `/de/`, à l'octet près :
 en le regardant, on conclut que l'allemand n'a jamais été écrit. C'est faux. La base contient

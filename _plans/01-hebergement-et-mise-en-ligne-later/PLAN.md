@@ -17,6 +17,32 @@ Tant que ce n'est pas décidé, ce dépôt ne contient volontairement **aucun** 
 publication, aucun fichier `CNAME`, aucune branche de déploiement. Personne ne peut donc
 publier par accident — et le site WordPress actuel continue de tourner sans être touché.
 
+## GitHub Pages : étudié le 2026-09-10, écarté pour l'instant
+
+Piste envisagée, puis mise de côté. Ce qu'on a appris, pour ne pas refaire le tour :
+
+**1. Le dépôt est privé, l'organisation est en plan gratuit.** GitHub Pages ne sert un dépôt
+privé qu'avec un plan payant. Il faudrait donc soit passer à un plan payant, soit rendre le
+dépôt public.
+
+**2. Rendre le dépôt public n'est pas anodin aujourd'hui.** L'historique contient encore
+**30 fichiers d'images d'origine** — dont des photos où des mineurs sont reconnaissables. Elles
+ont été retirées du dossier de travail, mais un commit antérieur les garde : rendre le dépôt
+public les rendrait accessibles à tous, définitivement. **Il faudrait d'abord réécrire
+l'historique**, ce qui suppose un `push --force` et l'accord explicite de l'équipe.
+
+**3. Une adresse GitHub Pages de projet vit dans un sous-dossier**
+(`https://<organisation>.github.io/website/`). Le site doit alors connaître ce préfixe : c'est
+l'option `base` d'Astro. Ce n'est pas qu'une ligne de configuration — **chaque adresse écrite en
+dur** (le logo, les images dans le texte des pages, les liens du menu, le fond du bandeau
+d'accueil) doit passer par un utilitaire qui ajoute le préfixe, sinon le site se sert mais toutes
+les images et la moitié des liens tombent en 404. Un vrai nom de domaine évite complètement ce
+problème.
+
+**4. Une autre voie existe**, si on veut un aperçu en ligne sans ouvrir les sources : publier
+dans un **second dépôt public** ne contenant que le site construit. Pas de sources, pas
+d'historique gênant, et l'aperçu reste hors du dépôt de travail.
+
 ## Ce qu'il faut décider
 
 1. **Où le site est hébergé.** Quelques options courantes, de la moins à la plus autonome :
@@ -34,6 +60,8 @@ publier par accident — et le site WordPress actuel continue de tourner sans ê
 ## Ce que « terminé » veut dire
 
 - L'hébergeur est choisi et l'accès est aux mains d'au moins deux personnes du mouvement.
+- Si la solution retenue sert le site depuis un sous-dossier, le préfixe est géré partout
+  (voir le point 3 ci-dessus) et vérifié page par page.
 - Une commande unique publie le site, et elle est décrite dans
   [`../../_memory/local-dev-and-deploy.md`](../../_memory/local-dev-and-deploy.md).
 - La règle de confirmation avant publication est écrite dans `CLAUDE.md`.

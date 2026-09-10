@@ -21,6 +21,15 @@
 - Sommaires automatiques sur les pages de rubrique.
 - `.mcp.json` rendu portable (Windows).
 
+## Règle acquise
+
+**Plus de reprise automatique.** `src/content/` est la référence : on corrige à la main.
+Relancer les scripts écraserait le travail de relecture.
+
+**Publication : en attente.** GitHub Pages a été étudié puis écarté pour l'instant — dépôt privé
+sur plan gratuit, historique contenant des photos de mineurs, et service en sous-dossier qui
+demanderait de préfixer toutes les adresses. Détail dans le plan 01.
+
 ## À reprendre ensuite, dans cet ordre
 
 1. **Demander à l'ETN Photo** les autorisations parentales : une réponse décide de 48
