@@ -31,5 +31,7 @@ WordPress actuel de [www.scouts-europe.ch](https://www.scouts-europe.ch/fr/).
 - [state.md](state.md) — état du chantier. À lire juste après `CLAUDE.md`.
 - [source-site.md](source-site.md) — ce que contient le site WordPress actuel : arborescence,
   adresses des pages, état réel de l'allemand.
+- [croix-suisse-et-armoiries.md](croix-suisse-et-armoiries.md) — ce que dit la loi sur la croix
+  suisse dans le logo : **un carré oui, un écu non**. Réponse au point de vigilance du SES25.
 - [cahier-des-charges.md](cahier-des-charges.md) — ce que demande le document SES25 de
   janvier 2025, en résumé, et ce qui en découle pour ce dépôt.

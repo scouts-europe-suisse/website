@@ -31,9 +31,12 @@ rouge) : elles appartiennent au mouvement, pas à la charte.
 
 ## Points ouverts
 
-- **Le drapeau suisse dans le logo** : le cahier des charges demande d'en vérifier la légalité
-  (loi et ordonnance sur la protection des armoiries). À trancher avant toute mise en ligne, pas
-  après.
+- ~~**Le drapeau suisse dans le logo**~~ — **étudié le 2026-09-10, a priori sans obstacle.**
+  La loi sépare l'écu (réservé à la Confédération, art. 8) et le carré (permis, art. 10). Le logo
+  du SES porte un **carré**, donc le régime permissif. La règle à retenir pour la nouvelle
+  charte : **un carré, jamais un écu.** Lecture complète et réserves :
+  [`../../_memory/croix-suisse-et-armoiries.md`](../../_memory/croix-suisse-et-armoiries.md).
+  À faire confirmer par l'IPI si le mouvement veut une certitude juridique.
 - L'AGSE a mené un travail récent dont le SES peut s'inspirer, voire reprendre des éléments.
 
 ## Ce que « terminé » veut dire
