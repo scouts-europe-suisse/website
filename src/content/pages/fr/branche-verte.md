@@ -1,16 +1,15 @@
 ---
-title: "Éclaireurs et éclaireuses"
-description: "La branche verte."
-draft: true
+title: "Eclaireurs et éclaireuses — 12-17 ans"
+urlPath: branche-verte
+key: branche-verte
 branche: verte
+sourceModified: 2025-12-09
 ---
 
-<!--
-  Ébauche. Le contenu de cette page est à reprendre du site actuel
-  (https://www.scouts-europe.ch/fr/) — voir _plans/03-migration-contenu-wordpress/.
+## L'aventure passionnément en étant toujours prêt !
 
-  Ne rien inventer ici : ni date, ni effectif, ni nom de responsable.
-  Voir _memory/feedback_faits_du_mouvement.md.
--->
+Au sein d'une petite bande de copains, se voir confier de vraies responsabilités ! Camper dans les bois, construire des installations, partir en exploration, vivre de vraies aventures, se rassembler autour de feux de camp pour des veillées, le tout aux côtés de Jésus, dans la joie et l'amitié fraternelle. Retrouver dans le silence de la nature le chant de la Création. Deviens alors un jeune responsable sur qui la cité compte déjà !
 
-Contenu à reprendre du site actuel.
+## Concrètement ?
+
+Une à deux fois par mois, en petit groupe autonome de 6 à 8 (la patrouille), tu partiras te lancer de nouveaux défis et monter des projets. Sur des week-ends, tu prépareras le grand camp d'été de 15 jours qui sera ton chef-d'œuvre.

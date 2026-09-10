@@ -1,15 +1,9 @@
 ---
 title: "Notre scoutisme"
-description: "Le scoutisme tel que le vit le Scoutisme Européen Suisse."
+urlPath: notre-scoutisme
+key: notre-scoutisme
 draft: true
+sourceModified: 2025-12-09
 ---
 
-<!--
-  Ébauche. Le contenu de cette page est à reprendre du site actuel
-  (https://www.scouts-europe.ch/fr/) — voir _plans/03-migration-contenu-wordpress/.
 
-  Ne rien inventer ici : ni date, ni effectif, ni nom de responsable.
-  Voir _memory/feedback_faits_du_mouvement.md.
--->
-
-Contenu à reprendre du site actuel.

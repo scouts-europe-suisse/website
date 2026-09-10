@@ -8,7 +8,8 @@
  */
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE, LANGS, type Lang } from '../data/site';
+import { SITE, type Lang } from '../data/site';
+import { twinOf } from '../lib/pages';
 import '../styles/global.css';
 
 interface Props {
@@ -25,9 +26,16 @@ interface Props {
    * elle y reste des semaines après avoir été corrigée.
    */
   noindex?: boolean;
+  /**
+   * La clé de la page, qui permet de retrouver sa jumelle dans l'autre
+   * langue. Sans elle, le sélecteur de langue renvoie vers l'accueil : c'est
+   * le cas des pages qui n'ont pas d'équivalent (une actualité non traduite).
+   */
+  pageKey?: string;
 }
 
-const { title, description, lang, fullWidth = false, ogType = 'website', noindex = false } = Astro.props;
+const { title, description, lang, fullWidth = false, ogType = 'website', noindex = false, pageKey } =
+  Astro.props;
 
 const siteUrl = (Astro.site ?? new URL(SITE.domain)).origin;
 const canonical = new URL(Astro.url.pathname, siteUrl).href;
@@ -43,13 +51,16 @@ const defaultDescription: Record<Lang, string> = {
   de: `${SITE.name} — europäisches Pfadfindertum in der Schweiz.`,
 };
 
-// Les jumelles partagent leur slug : la page équivalente dans l'autre langue
-// s'obtient en échangeant le préfixe. Sert aux balises hreflang, qui évitent
-// que les deux versions soient prises pour du contenu dupliqué.
-const alternates = LANGS.map((l) => ({
-  lang: l,
-  href: new URL(Astro.url.pathname.replace(/^\/(fr|de)(\/|$)/, `/${l}$2`), siteUrl).href,
-}));
+// La page équivalente dans l'autre langue. Les deux adresses n'ayant rien en
+// commun (/fr/branche-jaune/ ↔ /de/woelflingsstufe/), on passe par la clé.
+// Sert au sélecteur de langue et aux balises hreflang, qui évitent que les
+// deux versions soient prises pour du contenu dupliqué.
+const twin = pageKey ? await twinOf(pageKey, lang) : null;
+const otherLang: Lang = lang === 'fr' ? 'de' : 'fr';
+const alternates = [
+  { lang, href: new URL(Astro.url.pathname, siteUrl).href },
+  ...(twin ? [{ lang: otherLang, href: new URL(twin, siteUrl).href }] : []),
+];
 ---
 
 <!doctype html>
@@ -63,7 +74,11 @@ const alternates = LANGS.map((l) => ({
     {noindex && <meta name="robots" content="noindex" />}
 
     {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
-    <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={(alternates.find((a) => a.lang === 'fr') ?? alternates[0]).href}
+    />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -82,7 +97,7 @@ const alternates = LANGS.map((l) => ({
       {lang === 'fr' ? 'Aller au contenu' : 'Zum Inhalt springen'}
     </a>
 
-    <Header lang={lang} />
+    <Header lang={lang} twin={twin} />
 
     <main id="contenu" class={fullWidth ? '' : 'ses-col py-10'}>
       <slot />

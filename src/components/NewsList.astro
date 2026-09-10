@@ -1,0 +1,43 @@
+---
+/** La liste des actualités d'une langue, de la plus récente à la plus ancienne. */
+import { getCollection } from 'astro:content';
+import { NEWS_BASE, UI, type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+  limit?: number;
+  heading?: boolean;
+}
+const { lang, limit, heading = true } = Astro.props;
+
+const all = (await getCollection('news', (e) => e.id.startsWith(`${lang}/`) && !e.data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const articles = limit ? all.slice(0, limit) : all;
+const fmt = (d: Date) =>
+  d.toLocaleDateString(lang === 'fr' ? 'fr-CH' : 'de-CH', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+---
+
+{heading && <h1 style="font-size: var(--text-h1)">{UI.news[lang]}</h1>}
+
+{articles.length === 0 ? (
+  <p class="mt-6" style="color: var(--ses-muted)">{UI.noNews[lang]}</p>
+) : (
+  <ul class="mt-8 grid gap-6">
+    {articles.map((a) => (
+      <li class="border-b pb-6" style="border-color: var(--ses-border)">
+        <p style="color: var(--ses-muted); font-size: var(--text-small)">
+          <time datetime={a.data.date.toISOString()}>{fmt(a.data.date)}</time>
+        </p>
+        <h2 class="mt-1" style="font-size: var(--text-h3)">
+          <a href={`/${lang}/${NEWS_BASE[lang]}/${a.id.split('/')[1]}/`}>{a.data.title}</a>
+        </h2>
+        {a.data.summary && <p class="mt-2 ses-prose">{a.data.summary}</p>}
+      </li>
+    ))}
+  </ul>
+)}

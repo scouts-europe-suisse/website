@@ -1,13 +1,14 @@
 ---
 /**
- * La page d'accueil, dans chaque langue. Son contenu vient de
- * src/content/pages/<langue>/home.md ; la mise en page (le bandeau, les
- * trois branches, les dernières actualités) est ici.
+ * La page d'accueil, dans chaque langue. Son texte vient de
+ * src/content/pages/<langue>/home.md ; la mise en page est ici.
  */
-import { getCollection, getEntry, render } from 'astro:content';
+import { getEntry, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageNotices from '../../components/PageNotices.astro';
-import { LANGS, UI, NAV, path, type Lang } from '../../data/site';
+import NewsList from '../../components/NewsList.astro';
+import { pathFor } from '../../lib/pages';
+import { LANGS, NAV, NEWS_BASE, UI, type Lang } from '../../data/site';
 
 export function getStaticPaths() {
   return LANGS.map((lang) => ({ params: { lang } }));
@@ -19,19 +20,26 @@ const entry = await getEntry('pages', `${lang}/home`);
 if (!entry) throw new Error(`Page d'accueil manquante : ${lang}/home`);
 const { Content } = await render(entry);
 
-// Les trois branches, reprises du menu pour ne pas dupliquer leurs libellés.
-const branches = [
-  { slug: 'branche-jaune', couleur: 'var(--ses-branche-jaune)', ecusson: '/images/branche-jaune.png' },
-  { slug: 'branche-verte', couleur: 'var(--ses-branche-verte)', ecusson: '/images/branche-verte.png' },
-  { slug: 'branche-rouge', couleur: 'var(--ses-branche-rouge)', ecusson: '/images/branche-rouge.png' },
-].map((b) => {
-  const item = NAV[0].children?.find((c) => c.slug === b.slug);
-  return { ...b, label: item?.label[lang] ?? b.slug };
-});
+// Les trois branches, avec leur écusson. Les libellés viennent du menu pour
+// ne pas les écrire deux fois.
+const branchNav = NAV[0].children ?? [];
+const branches = (
+  await Promise.all(
+    [
+      { key: 'branche-jaune', couleur: 'var(--ses-branche-jaune)', ecusson: '/images/branche-jaune.png' },
+      { key: 'branche-verte', couleur: 'var(--ses-branche-verte)', ecusson: '/images/branche-verte.png' },
+      { key: 'branche-rouge', couleur: 'var(--ses-branche-rouge)', ecusson: '/images/branche-rouge.png' },
+    ].map(async (b) => ({
+      ...b,
+      href: await pathFor(b.key, lang),
+      label: branchNav.find((c) => c.key === b.key)?.label[lang] ?? b.key,
+    })),
+  )
+).filter((b) => b.href);
 
-const derniers = (await getCollection('news', (e) => e.id.startsWith(`${lang}/`) && !e.data.draft))
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 3);
+const joinHref = await pathFor('nous-rejoindre', lang);
+const joinLabel = NAV[2].label[lang];
+const scoutingLabel = NAV[0].label[lang];
 ---
 
 <BaseLayout
@@ -39,27 +47,29 @@ const derniers = (await getCollection('news', (e) => e.id.startsWith(`${lang}/`)
   description={entry.data.description}
   lang={lang}
   fullWidth
+  pageKey="home"
   noindex={entry.data.draft}
 >
   <!-- Photo de fond : les drapeaux du mouvement. Choisie parce qu'elle ne
        montre personne — voir _migrations/images/README.md sur les photos où
-       des mineurs sont reconnaissables. Le voile rouge par-dessus garantit
-       que le texte reste lisible quelle que soit la zone de l'image. -->
+       des mineurs sont reconnaissables. -->
   <section class="ses-hero">
     <div class="ses-col py-20 text-center">
       <h1 style="font-size: var(--text-hero); color: inherit">{entry.data.title}</h1>
       {entry.data.description && (
         <p class="mx-auto mt-4 max-w-2xl text-lg" style="opacity: .92">{entry.data.description}</p>
       )}
-      <p class="mt-8">
-        <a
-          href={path(lang, 'nous-rejoindre')}
-          class="ses-btn"
-          style="background: var(--ses-primary-contrast); color: var(--ses-primary)"
-        >
-          {NAV[2].label[lang]}
-        </a>
-      </p>
+      {joinHref && (
+        <p class="mt-8">
+          <a
+            href={joinHref}
+            class="ses-btn"
+            style="background: var(--ses-primary-contrast); color: var(--ses-primary-text)"
+          >
+            {joinLabel}
+          </a>
+        </p>
+      )}
     </div>
   </section>
 
@@ -70,7 +80,7 @@ const derniers = (await getCollection('news', (e) => e.id.startsWith(`${lang}/`)
       <Content />
     </div>
 
-    <h2 class="mt-12" style="font-size: var(--text-h2)">{NAV[0].label[lang]}</h2>
+    <h2 class="mt-12" style="font-size: var(--text-h2)">{scoutingLabel}</h2>
     <ul class="mt-4 grid gap-4 sm:grid-cols-3">
       {branches.map((b) => (
         <li
@@ -78,38 +88,15 @@ const derniers = (await getCollection('news', (e) => e.id.startsWith(`${lang}/`)
           style={`border-color: var(--ses-border); background: var(--ses-surface); border-top: 4px solid ${b.couleur}`}
         >
           <img src={b.ecusson} alt="" width="104" height="104" class="mx-auto mb-3" style="width: 5rem; height: auto" />
-          <a href={path(lang, b.slug)} class="font-semibold no-underline" style="color: var(--ses-fg)">
-            {b.label}
-          </a>
+          <a href={b.href} class="font-semibold no-underline" style="color: var(--ses-fg)">{b.label}</a>
         </li>
       ))}
     </ul>
 
     <h2 class="mt-12" style="font-size: var(--text-h2)">{UI.news[lang]}</h2>
-    {derniers.length === 0 ? (
-      <p style="color: var(--ses-muted)">{UI.noNews[lang]}</p>
-    ) : (
-      <ul class="mt-4 grid gap-4 sm:grid-cols-3">
-        {derniers.map((n) => (
-          <li class="border p-5" style="border-color: var(--ses-border); background: var(--ses-surface)">
-            <p style="color: var(--ses-muted); font-size: var(--text-small)">
-              <time datetime={n.data.date.toISOString()}>
-                {n.data.date.toLocaleDateString(lang === 'fr' ? 'fr-CH' : 'de-CH')}
-              </time>
-            </p>
-            <a
-              href={`${path(lang, 'actualites')}${n.id.split('/')[1]}/`}
-              class="font-semibold no-underline"
-              style="color: var(--ses-fg)"
-            >
-              {n.data.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    )}
+    <NewsList lang={lang} limit={3} heading={false} />
     <p class="mt-4">
-      <a href={path(lang, 'actualites')}>{UI.allNews[lang]}</a>
+      <a href={`/${lang}/${NEWS_BASE[lang]}/`}>{UI.allNews[lang]}</a>
     </p>
   </div>
 </BaseLayout>

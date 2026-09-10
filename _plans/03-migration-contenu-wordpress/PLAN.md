@@ -3,6 +3,18 @@
 **Statut :** ouvert
 **Responsable :** à définir
 **Date :** 2026-09-10
+
+> **2026-09-10 — le gros du texte est repris.** L'export de la base du WordPress a servi de
+> source, plutôt que les pages affichées : 19 pages françaises, 17 pages allemandes et
+> 19 actualités sont en place, sans rien réécrire.
+>
+> **Ce que ça a changé au plan :** l'allemand n'était pas à écrire. Il existait déjà, rédigé à la
+> main, mais le site actuel ne le servait pas — `/de/` renvoie la page française. Le point 4
+> ci-dessous tombe donc en grande partie.
+>
+> **Ce qui reste :** la page d'accueil (aucun texte à reprendre, l'ancienne était un assemblage
+> de widgets), les images du corps des pages (18 en attente d'autorisation parentale), les
+> jumelles allemandes manquantes, et la table des redirections.
 **Demandé par :** ouverture du chantier
 **Portée :** `_migrations/`, `src/content/`, la table des redirections dans `astro.config.mjs`
 
@@ -25,12 +37,18 @@ Deux choses à ne pas rater en chemin :
 
 ## Ce qu'il faut faire
 
-1. Récupérer le contenu des pages actuelles dans `_migrations/`, ainsi que les images.
+1. ~~Récupérer le contenu des pages actuelles~~ — **fait**, depuis l'export de la base.
+   Attention : cet export contient des messages et des fiches de contact de personnes réelles,
+   ainsi que les bases d'autres sites. Il ne doit pas entrer dans le dépôt — voir
+   [`../../_migrations/README.md`](../../_migrations/README.md).
 2. Pour chaque image reprise : savoir qui l'a prise, et si des mineurs y sont reconnaissables
    (voir la règle photos dans [`../../CLAUDE.md`](../../CLAUDE.md)).
-3. Réécrire ou reporter le texte dans `src/content/pages/fr/`.
-4. Rédiger les jumelles allemandes, marquées `translated: false` tant qu'elles ne sont pas
-   relues.
+3. ~~Reporter le texte dans `src/content/pages/fr/`~~ — **fait**. À relire par une personne du
+   mouvement : la conversion est automatique, elle peut avoir raté des mises en forme.
+4. ~~Rédiger les jumelles allemandes~~ — **fait pour l'essentiel** : elles existaient déjà dans
+   la base. Restent trois pages françaises sans jumelle (guides-aînées, Fribourg, l'accueil),
+   quelques titres de section restés en français dans les pages allemandes, et les actualités,
+   dont aucune n'est traduite.
 5. Compléter la table des redirections pour toute adresse qui change.
 
 ## Ce que « terminé » veut dire

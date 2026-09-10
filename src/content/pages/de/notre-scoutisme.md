@@ -1,14 +1,9 @@
 ---
-title: "Unser Pfadfindertum"
+title: "Unsere Pfadfinderschaft"
+urlPath: unsere-pfadfinderschaft
+key: notre-scoutisme
 draft: true
-translated: false
+sourceModified: 2025-12-09
 ---
 
-<!--
-  Entwurf. Die deutsche Fassung existiert auf der heutigen Website nicht:
-  /de/ liefert dort die französische Seite. Alles ist neu zu schreiben und
-  von einem deutschsprachigen Mitglied gegenzulesen.
-  Siehe _memory/source-site.md.
--->
 
-Inhalt folgt.

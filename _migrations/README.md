@@ -4,17 +4,31 @@ Ce dossier accueille le contenu repris du WordPress de
 [www.scouts-europe.ch](https://www.scouts-europe.ch/fr/) : le texte des pages, les images, et
 l'inventaire de ce qui existe.
 
-**Il est vide pour l'instant.** La récupération est l'objet du
-[plan 03](../_plans/03-migration-contenu-wordpress/PLAN.md).
-
-Organisation prévue :
+La reprise du texte est faite (2026-09-10) : elle est partie de l'**export de la base de
+données** de l'hébergeur, pas du site affiché. C'est ce qui a permis de retrouver les pages
+allemandes, invisibles sur le site. Voir [`../_memory/source-site.md`](../_memory/source-site.md).
 
 ```
 _migrations/
-├── contenu/     le texte de chaque page actuelle, en markdown, une page par fichier
-├── images/      les images reprises, avec leur auteur et leur licence notés
-└── _brut/       ce qui sort tel quel du site (export WordPress, listes d'URL…)
+└── images/      les images du site actuel, allégées, avec leur inventaire
+    └── contenu/ celles qui apparaissent dans le corps des pages
 ```
+
+## ⚠ L'export de la base ne doit pas entrer dans ce dépôt
+
+L'export fourni par l'hébergeur (`utk_myd_infomaniak_com.sql`, 121 Mo) est resté **en dehors du
+dépôt**, et doit y rester. Ce n'est pas une précaution de principe :
+
+- il contient **368 messages reçus par le formulaire de contact** et **286 fiches de contact** —
+  des noms, des adresses e-mail et des messages de personnes réelles, souvent des parents ;
+- il contient **les bases d'autres sites et d'autres applications** hébergés sur le même compte,
+  dont des tables qui ressemblent à des annuaires de membres ;
+- ce qui entre dans l'historique de git y reste, même supprimé ensuite.
+
+Seuls le **texte des pages publiques** et les **images** en ont été tirés. Rien d'autre.
+
+Si quelqu'un a besoin de refaire une extraction, il travaille sur le fichier là où il est, dans
+son dossier de téléchargement, et n'en copie ici que le résultat.
 
 Deux règles pour ce dossier :
 

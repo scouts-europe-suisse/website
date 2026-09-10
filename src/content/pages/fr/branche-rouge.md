@@ -1,16 +1,15 @@
 ---
-title: "Routiers et guides-aînées"
-description: "La branche rouge, celle des aînés."
-draft: true
+title: "Routiers et guides-aînées — 17-19 ans"
+urlPath: branche-rouge
+key: branche-rouge
 branche: rouge
+sourceModified: 2025-12-09
 ---
 
-<!--
-  Ébauche. Le contenu de cette page est à reprendre du site actuel
-  (https://www.scouts-europe.ch/fr/) — voir _plans/03-migration-contenu-wordpress/.
+Avance au large en servant tes frères et soeurs !
 
-  Ne rien inventer ici : ni date, ni effectif, ni nom de responsable.
-  Voir _memory/feedback_faits_du_mouvement.md.
--->
+Pratiquer des activités toniques et techniques, devenir acteur de sa vie, développer son sens des responsabilités au service de solidarités nouvelles. La liberté, l'amitié, la joie, les rencontres, des services et des chantiers où ta jeunesse est une chance et notre formation un atout ! À l'âge des choix importants, découvre et approfondis ta foi et engage-toi pour bâtir ta vie d'adulte.
 
-Contenu à reprendre du site actuel.
+## Concrètement ?
+
+Tout est possible ! Les activités n'ont de limites que celles que tu fixeras avec ton équipe !

@@ -1,26 +1,36 @@
 ---
 /**
- * Bascule entre le français et l'allemand en gardant la page courante.
- * Les jumelles partagent leur slug, donc il suffit d'échanger le préfixe.
+ * Bascule entre le français et l'allemand.
+ *
+ * L'adresse de la jumelle est calculée par le gabarit (via la clé de la page)
+ * et transmise ici. Quand la page n'existe pas dans l'autre langue, le lien
+ * mène à l'accueil de cette langue plutôt que vers une page inexistante, et
+ * le dit à l'utilisateur.
  */
-import { LANG_LABELS, type Lang } from '../data/site';
+import { LANG_LABELS, path, type Lang } from '../data/site';
 
 interface Props {
   lang: Lang;
+  twin?: string | null;
 }
-const { lang } = Astro.props;
+const { lang, twin } = Astro.props;
 const other: Lang = lang === 'fr' ? 'de' : 'fr';
-
-const swapped = Astro.url.pathname.replace(/^\/(fr|de)(\/|$)/, `/${other}$2`);
+const href = twin ?? path(other);
+const missing = !twin;
 ---
 
 <a
-  href={swapped}
+  href={href}
   hreflang={other}
   lang={other}
   class="inline-flex items-center justify-center min-w-11 min-h-11 text-sm font-semibold uppercase tracking-wide"
   style="color: var(--ses-muted)"
-  aria-label={`${LANG_LABELS[other]}`}
+  title={missing
+    ? other === 'de'
+      ? 'Diese Seite gibt es noch nicht auf Deutsch — zur Startseite'
+      : "Cette page n'existe pas encore en français — aller à l'accueil"
+    : LANG_LABELS[other]}
+  aria-label={LANG_LABELS[other]}
 >
   {other}
 </a>

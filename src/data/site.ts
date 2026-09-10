@@ -32,94 +32,63 @@ export const SITE = {
   },
 } as const;
 
-/** Un item de menu. `slug` est l'adresse sous /<langue>/. */
+/**
+ * Un item de menu. `key` est l'identifiant neutre de la page ; son adresse
+ * réelle dépend de la langue et se résout au moment du rendu (voir
+ * src/lib/pages.ts). `route` sert aux entrées qui ne sont pas des pages de
+ * contenu mais des routes du site, comme la liste des actualités.
+ */
 export interface NavItem {
-  slug: string;
+  key?: string;
+  route?: Record<Lang, string>;
   label: Record<Lang, string>;
   children?: NavItem[];
 }
 
 /**
- * Le menu. Il reprend l'arborescence du site actuel, elle-même proche de
- * celle proposée par le cahier des charges SES25.
+ * Le menu principal. Il reprend l'arborescence du site actuel, elle-même
+ * proche de celle proposée par le cahier des charges SES25.
  *
- * Les adresses (`slug`) sont celles du site actuel : les changer casse les
- * liens existants et le référencement. Voir _memory/source-site.md.
+ * Les libellés sont ceux du menu, plus courts que les titres de page.
  */
 export const NAV: NavItem[] = [
   {
-    slug: 'notre-scoutisme',
-    label: { fr: 'Notre scoutisme', de: 'Unser Pfadfindertum' },
+    key: 'notre-scoutisme',
+    label: { fr: 'Notre scoutisme', de: 'Unsere Pfadfinderschaft' },
     children: [
-      {
-        slug: 'notre-scoutisme/qui-sommes-nous',
-        label: { fr: 'Qui sommes-nous ?', de: 'Wer wir sind' },
-      },
-      {
-        slug: 'notre-scoutisme/scoutisme',
-        label: { fr: 'Que faisons-nous ?', de: 'Was wir tun' },
-      },
-      {
-        slug: 'branche-jaune',
-        label: { fr: 'Louveteaux et louvettes', de: 'Wölflinge' },
-      },
-      {
-        slug: 'branche-verte',
-        label: { fr: 'Éclaireurs et éclaireuses', de: 'Pfadfinder' },
-      },
-      {
-        slug: 'branche-rouge',
-        label: { fr: 'Routiers et guides-aînées', de: 'Rover und Ranger' },
-      },
-      {
-        slug: 'notre-scoutisme/europeen',
-        label: { fr: 'La dimension européenne', de: 'Die europäische Dimension' },
-      },
-      {
-        slug: 'notre-scoutisme/suisse',
-        label: { fr: 'Un mouvement suisse', de: 'Eine Schweizer Bewegung' },
-      },
+      { key: 'qui-sommes-nous',      label: { fr: 'Qui sommes-nous ?', de: 'Wer sind wir?' } },
+      { key: 'que-faisons-nous',     label: { fr: 'Que faisons-nous ?', de: 'Was machen wir?' } },
+      { key: 'branche-jaune',        label: { fr: 'Louveteaux et louvettes', de: 'Wölflinge' } },
+      { key: 'branche-verte',        label: { fr: 'Éclaireurs et éclaireuses', de: 'Pfadfinder' } },
+      { key: 'branche-rouge',        label: { fr: 'Routiers et guides-aînées', de: 'Rover und Ranger' } },
+      { key: 'dimension-europeenne', label: { fr: 'La dimension européenne', de: 'Die europäische Dimension' } },
+      { key: 'mouvement-suisse',     label: { fr: 'Un mouvement suisse', de: 'Eine schweizerische Bewegung' } },
     ],
   },
   {
-    slug: 'mouvement',
+    key: 'mouvement',
     label: { fr: 'Le mouvement', de: 'Die Bewegung' },
     children: [
-      {
-        slug: 'mouvement/formation-des-chefs',
-        label: { fr: 'Formation des chefs', de: 'Ausbildung der Leiter' },
-      },
-      {
-        slug: 'mouvement/encadrement',
-        label: { fr: 'Encadrement', de: 'Betreuung' },
-      },
-      { slug: 'espas', label: { fr: 'ESPAS', de: 'ESPAS' } },
-      {
-        slug: 'economat-carrick',
-        label: { fr: 'Économat Carrick', de: 'Carrick Shop' },
-      },
+      { key: 'formation-des-chefs', label: { fr: 'Formation des chefs', de: 'Ausbildung der Leiter' } },
+      { key: 'encadrement',         label: { fr: 'Encadrement', de: 'Betreuung' } },
+      { key: 'espas',               label: { fr: 'ESPAS', de: 'ESPAS' } },
+      { key: 'economat-carrick',    label: { fr: 'Économat Carrick', de: 'Carrick' } },
     ],
   },
   {
-    slug: 'nous-rejoindre',
-    label: { fr: 'Nous rejoindre', de: 'Mitmachen' },
+    key: 'nous-rejoindre',
+    label: { fr: 'Nous rejoindre', de: 'Uns beitreten' },
     children: [
-      {
-        slug: 'nous-rejoindre/nos-implantations',
-        label: { fr: 'Nos implantations et contacts locaux', de: 'Unsere Gruppen vor Ort' },
-      },
-      {
-        slug: 'nous-rejoindre/devenir-chef',
-        label: { fr: 'Devenir chef', de: 'Leiter werden' },
-      },
+      { key: 'nos-implantations', label: { fr: 'Nos implantations', de: 'Unsere Standorte' } },
+      { key: 'devenir-chef',      label: { fr: 'Devenir chef', de: 'Leiter werden' } },
     ],
   },
   {
-    slug: 'actualites',
+    route: { fr: 'actualites', de: 'aktuelles' },
     label: { fr: 'Actualités', de: 'Aktuelles' },
   },
   {
-    slug: 'contact',
+    key: 'contact',
     label: { fr: 'Contact', de: 'Kontakt' },
   },
 ];
@@ -151,6 +120,9 @@ export const UI = {
     de: 'Diese Seite wurde noch nicht von einem deutschsprachigen Mitglied gegengelesen.',
   },
 } as const;
+
+/** La base de la rubrique actualités, par langue. */
+export const NEWS_BASE: Record<Lang, string> = { fr: 'actualites', de: 'aktuelles' };
 
 /** Le chemin d'une page, dans une langue donnée. */
 export function path(lang: Lang, slug = ''): string {

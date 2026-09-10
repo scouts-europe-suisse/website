@@ -25,13 +25,20 @@ metadata:
 - **Le dépôt distant** : `scouts-europe-suisse/website` sur GitHub, en privé. `main` et
   `work/perki` y sont poussées.
 
+- **Le contenu est repris** (2026-09-10) : 19 pages françaises, 17 pages allemandes et
+  19 actualités, tirées de l'export de la base du WordPress actuel. Aucun texte n'a été
+  réécrit ni traduit automatiquement.
+- **Le bilinguisme fonctionne vraiment** : l'allemand existait, écrit à la main, mais le site
+  actuel ne le servait pas. Chaque page a son adresse dans sa langue
+  (`/fr/branche-jaune/` ↔ `/de/woelflingsstufe/`), les deux étant reliées par une clé.
+
 ## Ce qui n'est pas en place — volontairement
 
-- **Le contenu.** Les pages sont des ébauches, marquées `draft: true`. Aucun texte n'a été
-  inventé : reprendre celui du site actuel est l'objet du
-  [plan 03](../_plans/03-migration-contenu-wordpress/PLAN.md).
-- **L'allemand.** Les pages `de/` existent pour que le squelette bilingue tienne debout, mais
-  elles sont vides et marquées `translated: false`.
+- **La page d'accueil** reste à écrire : l'ancienne était un assemblage de widgets, il n'y avait
+  pas de texte à reprendre.
+- **Les images du corps des pages.** Trois seulement sont publiées, celles où personne n'est
+  identifiable. Les 18 autres attendent la vérification des autorisations parentales : voir
+  [`../_migrations/images/README.md`](../_migrations/images/README.md).
 - **L'habillage définitif.** L'identité actuelle est en place, mais elle est justement ce que
   la charte doit revoir — [plan 02](../_plans/02-charte-graphique/PLAN.md). Manquent aussi une
   version carrée du logo pour l'icône d'onglet, et l'image de partage.
@@ -58,6 +65,8 @@ metadata:
 | Couleurs prélevées dans le logo plutôt qu'approchées à l'œil | 2026-09-10 | [design-system.md](design-system.md) |
 | Les trois photos où des mineurs sont reconnaissables ne sont pas reprises sans vérification des autorisations | 2026-09-10 | [../_migrations/images/README.md](../_migrations/images/README.md) |
 | Une branche par personne, `_plans/` directement sur `main` | 2026-09-10 | [conventions.md](conventions.md) |
+| Adresses françaises conservées, adresses allemandes en allemand | 2026-09-10 | [source-site.md](source-site.md) |
+| L'export de la base reste hors du dépôt (données personnelles) | 2026-09-10 | [../_migrations/README.md](../_migrations/README.md) |
 | Dépôt distant privé sur le GitHub du mouvement | 2026-09-10 | [conventions.md](conventions.md) |
 
 Voir aussi [[cahier-des-charges]], [[source-site]].

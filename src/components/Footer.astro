@@ -6,14 +6,23 @@
  * (partie 2, point 4). Les adresses exactes des comptes ne sont pas encore
  * renseignées : à compléter avec l'ETN Communication, ne pas les deviner.
  */
-import { NAV, SITE, type Lang } from '../data/site';
-import { path } from '../data/site';
+import { NAV, SITE, path, type Lang } from '../data/site';
+import { pathFor } from '../lib/pages';
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
 const year = new Date().getFullYear();
+
+const links = (
+  await Promise.all(
+    NAV.map(async (item) => {
+      const href = item.route ? path(lang, item.route[lang]) : await pathFor(item.key!, lang);
+      return href ? { label: item.label[lang], href } : null;
+    }),
+  )
+).filter((x) => x !== null);
 ---
 
 <footer class="mt-auto border-t" style="border-color: var(--ses-border); background: var(--ses-surface)">
@@ -32,10 +41,10 @@ const year = new Date().getFullYear();
 
     <nav class="md:col-span-2" aria-label={lang === 'fr' ? 'Plan du site' : 'Sitemap'}>
       <ul class="grid gap-2 sm:grid-cols-2">
-        {NAV.map((item) => (
+        {links.map((item) => (
           <li>
-            <a href={path(lang, item.slug)} style="color: var(--ses-fg)">
-              {item.label[lang]}
+            <a href={item.href} style="color: var(--ses-fg)">
+              {item.label}
             </a>
           </li>
         ))}

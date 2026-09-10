@@ -1,4 +1,6 @@
 ---
+urlPath: ""
+key: home
 title: "Scoutisme Européen Suisse"
 description: "Le scoutisme européen en Suisse : une proposition éducative pour les enfants et les jeunes, portée par des chefs bénévoles."
 draft: true

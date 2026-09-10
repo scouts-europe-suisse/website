@@ -1,0 +1,44 @@
+---
+/**
+ * Le formulaire de contact.
+ *
+ * L'ancien site utilisait Contact Form 7, une extension WordPress : elle
+ * recevait le message côté serveur et l'envoyait par e-mail. Un site statique
+ * n'a pas de serveur, donc pas d'équivalent direct.
+ *
+ * En attendant que le point soit tranché (avec l'hébergement, plan 01), le
+ * formulaire est remplacé par un lien e-mail : ça marche partout, ça ne
+ * dépend d'aucun service tiers, et ça ne collecte aucune donnée au passage.
+ *
+ * Si un vrai formulaire est voulu plus tard, il faudra un service qui reçoive
+ * les envois. Point de vigilance : les messages contiennent des données
+ * personnelles de parents, le service doit donc être conforme à la LPD.
+ */
+import { SITE, type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+const { lang = 'fr' } = Astro.props;
+
+const T = {
+  fr: {
+    intro: 'Pour écrire au Scoutisme Européen Suisse, une seule adresse :',
+    hint: 'Merci de préciser votre région dans votre message : cela nous permet de vous orienter vers le groupe le plus proche.',
+    cta: 'Nous écrire',
+  },
+  de: {
+    intro: 'Um der Schweizerischen Pfadfinderschaft Europas zu schreiben:',
+    hint: 'Bitte geben Sie Ihre Region an, damit wir Sie an die nächstgelegene Gruppe verweisen können.',
+    cta: 'Schreiben Sie uns',
+  },
+}[lang];
+---
+
+<div class="not-prose my-6 border p-5" style="border-color: var(--ses-border); background: var(--ses-surface)">
+  <p>{T.intro}</p>
+  <p class="mt-3">
+    <a href={`mailto:${SITE.email}`} class="ses-btn">{T.cta}</a>
+  </p>
+  <p class="mt-3" style="color: var(--ses-muted); font-size: var(--text-small)">{T.hint}</p>
+</div>

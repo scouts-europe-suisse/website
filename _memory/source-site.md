@@ -13,15 +13,32 @@ metadata:
 - **Langues :** `/fr/` et `/de/` — mais voir plus bas, l'allemand n'est pas traduit.
 - **Contact institutionnel :** Rue Prévost-Martin 10, 1205 Genève — `info@scouts-europe.ch`.
 
-## L'allemand n'existe pas
+## L'allemand existe — mais le site ne le sert pas
 
-`https://www.scouts-europe.ch/de/` renvoie **exactement la même page que `/fr/`** : mêmes menus
-en français, même contenu, même taille d'octets. Le sélecteur de langue existe, la traduction
-non.
+**Corrigé le 2026-09-10, après lecture de la base de données.**
 
-Conséquence pour le chantier : il n'y a **rien à reprendre** côté allemand. Tout est à rédiger,
-puis à faire relire par un germanophone du mouvement. Voir
-[feedback_faits_du_mouvement.md](feedback_faits_du_mouvement.md).
+En regardant le site, on conclut que l'allemand n'existe pas :
+`https://www.scouts-europe.ch/de/` renvoie **exactement la même page que `/fr/`**, à l'octet
+près, sur toutes les pages testées.
+
+C'est faux. La base contient **19 pages allemandes, écrites à la main**, dont la dernière
+modification date de décembre 2025. Elles sont simplement **inaccessibles** : le mécanisme de
+langue du WordPress est cassé ou mal configuré, et sert le français quelle que soit l'adresse
+demandée. Personne ne peut donc lire l'allemand du SES aujourd'hui, alors qu'il a été rédigé.
+
+C'est la meilleure nouvelle du chantier : le site bilingue n'est pas à écrire, il est à
+**remettre en service**. Ces 19 pages sont reprises telles quelles dans `src/content/pages/de/`.
+
+**Ce qui manque encore côté allemand** (à faire relire par un germanophone, sans rien inventer) :
+
+- **Trois pages françaises n'ont pas de jumelle** : `branche-rouge/guides-ainees`,
+  `nous-rejoindre/nos-implantations/fribourg`, et la page d'accueil.
+- **Quelques titres de section sont restés en français** dans les pages allemandes — par exemple
+  « Le louvetisme » au milieu de la page des Wölflinge. C'est dans la source, ce n'est pas une
+  erreur de reprise.
+- **Aucune actualité n'est traduite.** Les trois qui portaient un titre allemand
+  (Leitertag 2015, Nationales Treffen 2013, Nationales Wölflingstreffen 2015) sont des coquilles
+  vides dans la base : titre seul, aucun texte.
 
 ## Le menu actuel
 
@@ -63,10 +80,28 @@ Chaque changement d'adresse doit recevoir une **redirection** dans `astro.config
 les anciens liens continuent de fonctionner. C'est l'objet du
 [plan 03](../_plans/03-migration-contenu-wordpress/PLAN.md).
 
+## Les adresses allemandes
+
+Les pages allemandes n'ayant jamais été accessibles, **aucune adresse allemande n'est à
+préserver** : rien n'y pointe, rien n'est indexé. Le nouveau site leur donne donc de vraies
+adresses allemandes (`/de/woelflingsstufe/` et non `/de/branche-jaune/`), là où les adresses
+françaises, elles, sont reprises à l'identique.
+
+## Deux autres sites dans la même base
+
+La base de l'hébergeur contient plusieurs installations WordPress. Deux pièges :
+
+- Un **WordPress plus ancien** contient un tout autre site : communauté d'aînés, Heure Route /
+  Moment Lumière, fiches de formation, Eurojam 2014, Fatima. C'est vraisemblablement le « site
+  des aînés » que le cahier des charges cite parmi les tentatives précédentes. **Il n'a rien à
+  voir avec le site public** et n'est pas repris. Beaucoup de ses pages sont d'ailleurs en accès
+  privé.
+- Une **sauvegarde de 2016** du site public. Ne pas la confondre avec le site vivant : c'est la
+  date de dernière modification qui les départage.
+
 ## Ce qui n'est pas encore relevé
 
-- L'inventaire des images du site actuel, et leurs auteurs.
-- Le contenu texte des pages (à récupérer dans `_migrations/`).
-- Les pages qui n'apparaissent pas dans le menu (il y en a presque toujours).
+- Les auteurs des images (voir [`../_migrations/images/README.md`](../_migrations/images/README.md)).
+- Les pages d'événements anciens (Eurojam 2014, JMJ 2016, Fatima) : reprises ou non, à décider.
 
 Voir aussi [[cahier-des-charges]], [[state]].

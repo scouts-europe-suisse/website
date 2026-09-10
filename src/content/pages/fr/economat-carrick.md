@@ -1,15 +1,15 @@
 ---
-title: "Économat Carrick"
-description: "L'économat du mouvement : uniformes et matériel."
-draft: true
+title: "Economat Carrick"
+urlPath: economat-carrick
+key: economat-carrick
+sourceModified: 2025-12-09
 ---
 
-<!--
-  Ébauche. Le contenu de cette page est à reprendre du site actuel
-  (https://www.scouts-europe.ch/fr/) — voir _plans/03-migration-contenu-wordpress/.
+Pour acheter ou compléter l'uniforme de vos enfants, commander par téléphone ou email à Carrick Suisse ou bien acheter par Internet sur la [plateforme Carrick de l'association française des Scouts d'Europe](https://www.carrick.fr/).
 
-  Ne rien inventer ici : ni date, ni effectif, ni nom de responsable.
-  Voir _memory/feedback_faits_du_mouvement.md.
--->
+## Secrétariat :**[carrick@scouts-europe.ch](mailto:carrick@scouts-europe.ch)
 
-Contenu à reprendre du site actuel.
+**Magasin Carrick de Genève :**
+Le magasin Carrick a fermé en mai 2024. Une solution est en cours de recherche.
+
+**Vente par correspondance:**Par téléphone au **+41 79 611 29 28** ou par mail à l’adresse [carrick@scouts-europe.ch](mailto:carrick@scouts-europe.ch)

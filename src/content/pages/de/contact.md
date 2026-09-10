@@ -1,11 +1,9 @@
 ---
 title: "Kontakt"
-draft: true
-translated: false
+urlPath: kontakt
+key: contact
+contactForm: true
+sourceModified: 2025-12-09
 ---
 
-**Europäische Pfadfinder der Schweiz**
-Rue Prévost-Martin 10
-1205 Genf, Schweiz
 
-<info@scouts-europe.ch>

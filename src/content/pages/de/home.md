@@ -1,4 +1,6 @@
 ---
+urlPath: ""
+key: home
 title: "Europäische Pfadfinder der Schweiz"
 draft: true
 translated: false

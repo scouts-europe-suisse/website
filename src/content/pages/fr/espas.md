@@ -1,15 +1,8 @@
 ---
-title: "ESPAS"
-description: "ESPAS."
-draft: true
+title: "ESPAS - pour des contacts adéquats"
+urlPath: espas
+key: espas
+sourceModified: 2025-12-09
 ---
 
-<!--
-  Ébauche. Le contenu de cette page est à reprendre du site actuel
-  (https://www.scouts-europe.ch/fr/) — voir _plans/03-migration-contenu-wordpress/.
-
-  Ne rien inventer ici : ni date, ni effectif, ni nom de responsable.
-  Voir _memory/feedback_faits_du_mouvement.md.
--->
-
-Contenu à reprendre du site actuel.
+Le Scoutisme Européen Suisse est partenaire depuis 2018 de l’association [ESPAS](https://www.espas.info) - Soutien et Prévention - Abus sexuels. L'association bénéficie ainsi de son accompagnement personnalisé et de son expertise en matière de prévention des abus pour mettre en place un cadre garantissant le respect de l'intégrité physique et affective de tous ses membres, particulièrement les mineurs. Les chefs et cadres de l'association ont accès à des formations et sensibilisations spécifiques, afin d'être tous acteurs et tous responsables de la protection contre les abus.

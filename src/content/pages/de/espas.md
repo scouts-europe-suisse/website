@@ -1,14 +1,8 @@
 ---
-title: "ESPAS"
-draft: true
-translated: false
+title: "ESPAS - für den richtigen Kontakt"
+urlPath: espas
+key: espas
+sourceModified: 2025-12-09
 ---
 
-<!--
-  Entwurf. Die deutsche Fassung existiert auf der heutigen Website nicht:
-  /de/ liefert dort die französische Seite. Alles ist neu zu schreiben und
-  von einem deutschsprachigen Mitglied gegenzulesen.
-  Siehe _memory/source-site.md.
--->
-
-Inhalt folgt.
+Die Schweizerische Pfadfinderschaft Europas arbeitet seit 2018 mit dem Vereins [ESPAS](https://www.espas.info) – Soutien et Prévention – Abus sexuels (Unterstützung und Prävention – Sexueller Missbrauch) zusammen. Der Verein profitiert somit von dessen persönlichen Unterstützung und Expertise in der Missbrauchsprävention, um einen Rahmen zu schaffen, der die Achtung der körperlichen und seelischen Unversehrtheit aller seiner Mitglieder, insbesondere Minderjähriger, gewährleistet. Die Leiter und Führungskräfte des Vereins haben Zugang zu spezifischen Schulungen und Sensibilisierungsmaßnahmen, um gemeinsam für den Schutz vor Missbrauch verantwortlich zu sein.
