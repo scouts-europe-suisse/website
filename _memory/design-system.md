@@ -87,11 +87,19 @@ Quand le logo définitif sera prêt (croix à huit pointes conservée, texte ada
 **Ce qui est en place :** le logo long du mouvement (`public/images/logo-ses.png`, repris du
 site actuel) est dans l'en-tête, et les trois écussons de branche sont sur la page d'accueil.
 
-**Ce qui manque :** une version **carrée** du logo pour l'icône d'onglet. Il n'en existe pas sur
-le site actuel, et le logo long est illisible à 32 px. `public/favicon.svg` est donc un
-substitut : une croix scoute simplifiée, aux vraies couleurs du logo. À remplacer dès que
-l'ETN Multimédia fournit une version carrée. Manquent aussi le `.ico`, les PNG et l'image de
-partage `og-image.png`.
+**Les icônes d'onglet sont les vraies.** J'avais noté ici qu'il n'existait pas de version carrée
+du logo : c'était faux. WordPress en enregistrait une (`cropped-logo-SES.png`, 512 px), un
+médaillon rond avec la croix, la fleur de lys, le nom en cercle et la croix suisse. Elle a été
+reprise et déclinée en `favicon.ico` (16/32/48), `favicon-32x32.png`, `favicon-192x192.png`,
+`favicon-512x512.png` et `apple-touch-icon.png` (180 px).
+
+**Limite connue :** à 32 px, le nom écrit en cercle n'est plus lisible — c'est inhérent au
+dessin, et le site actuel a exactement le même défaut. Si la nouvelle charte veut une icône
+lisible en tout petit, il faudra une version simplifiée (la croix seule), à demander à
+l'ETN Multimédia. Ne pas la fabriquer soi-même : c'est un élément d'identité.
+
+**Manque encore :** l'image de partage `og-image.png` (1200×630), affichée quand un lien du site
+est partagé sur les réseaux.
 
 **Point ouvert :** le cahier des charges demande de vérifier la légalité de l'usage du drapeau
 suisse dans le logo (loi et ordonnance sur la protection des armoiries). À trancher avant toute

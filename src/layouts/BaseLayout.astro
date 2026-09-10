@@ -80,7 +80,13 @@ const alternates = [
       href={(alternates.find((a) => a.lang === 'fr') ?? alternates[0]).href}
     />
 
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- Icônes : le vrai emblème carré du mouvement, repris du site actuel.
+         Le .ico (16/32/48) reste utile aux navigateurs anciens et aux
+         agrégateurs de flux, qui ne lisent que celui-là. -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-192x192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <meta property="og:type" content={ogType} />

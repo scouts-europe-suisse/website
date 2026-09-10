@@ -14,3 +14,5 @@ En 1956, 50 jeunes allemands et français, catholiques, orthodoxes et protestant
 L’Union Internationale des Guides et Scouts d’Europe vise à rassembler dans une même communauté de foi, de prière et d’action, les diverses associations des pays. Notre but est de former des jeunes, par la pratique du scoutisme traditionnel de Baden-Powell, sur les bases chrétiennes qui sont le fondement de notre commune civilisation européenne.
 
 Par delà les frontières, l’Union veut créer une véritable communauté de vie des jeunes des divers pays d’Europe. Des eurocamps rassemblent des unités de plusieurs pays le temps d'un camp, et font vivre, de manière plus concrète, la fraternité européenne, aussi bien dans les unités que dans les patrouilles. D'autres événements tels que le [ScoutEurop'Tour](/fr/actualites/scouteuroptour/) ou les [Eurojams](/fr/actualites/eurojam/) sont organisés pour faire vivre cette dimension européenne.
+
+<!-- texte cité à replacer une fois son auteur et sa source identifiés (il n’était pas attribué sur l’ancien site) : début (Pourquoi je suis Scout d’Europe ;*…) -->
