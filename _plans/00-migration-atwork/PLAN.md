@@ -41,21 +41,23 @@ actuel hébergées sur place.
 
 ### 1. Les images du corps des pages
 
-**18 images en attente** d'une vérification des autorisations parentales : elles montrent des
-mineurs de face. Trois seulement sont publiées, celles où personne n'est identifiable.
-Chaque page porte un commentaire à l'endroit exact où l'image doit revenir — chercher
-`image à replacer` dans `src/content/`.
+**48 emplacements en attente** d'une vérification des autorisations parentales : ces images
+montrent des mineurs reconnaissables. Chaque page porte un commentaire à l'endroit exact où
+l'image doit revenir — chercher `image à replacer` dans `src/content/` (27 fichiers).
 
-**42 images d'actualités n'ont pas été récupérées** du tout : ce sont celles des articles
-d'événements (pèlerinages, week-ends, Woodbadge). Le serveur a fini par refuser les
-téléchargements en série. À reprendre plus doucement, ou directement depuis la médiathèque.
+C'est **la seule chose qui débloque le plus de pages d'un coup** : une réponse de l'ETN Photo
+suffit à décider de 48 emplacements.
 
-**Même question d'autorisation pour elles.** Voir
-[`../../_migrations/images/README.md`](../../_migrations/images/README.md).
+**Toutes les images sont désormais récupérées**, par SSH depuis le serveur. **Neuf sont
+publiées** : celles où aucun visage n'est identifiable, ou qui ne montrent personne. Le tri s'est
+fait sur des recadrages à 100 %, parce qu'une silhouette minuscule en vignette redevient un
+visage reconnaissable à pleine résolution.
+
+Voir [`../../_migrations/images/README.md`](../../_migrations/images/README.md).
 
 ### 2. Deux documents
 
-La médiathèque contient deux fichiers non-images, qu'aucune page ne cite aujourd'hui :
+Récupérés, publiés ni l'un ni l'autre : **aucune page du site actuel ne les cite.**
 
 - `SES16_Fiche-LAS-Liaison-Autorisation-Sante-Aout-2016.xls` — fiche santé, version de 2016 ;
   probablement périmée, à confirmer avant de la republier.

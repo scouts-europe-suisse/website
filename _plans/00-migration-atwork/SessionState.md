@@ -12,13 +12,20 @@
 - Sources d'origine sorties du dépôt : seules les cartes restent (`url-map.md`,
   `images/README.md`).
 
+## Fait depuis (2026-09-10, suite)
+
+- Toutes les images récupérées **par SSH** (clé installée sur `utk_perki@utk.ftp.infomaniak.com`).
+  Neuf publiées après tri sur recadrages à 100 %.
+- Redirections circulaires réparées : 27 pages françaises avaient disparu, remplacées par des
+  pages « Redirecting to » vers elles-mêmes.
+- Sommaires automatiques sur les pages de rubrique.
+- `.mcp.json` rendu portable (Windows).
+
 ## À reprendre ensuite, dans cet ordre
 
-1. **Demander à l'ETN Photo** si les autorisations parentales existent pour les photos où des
-   mineurs sont reconnaissables. C'est ce qui débloque le plus de choses d'un coup.
-2. **Récupérer les 42 images d'actualités** — doucement, le serveur coupe au-delà d'une
-   vingtaine de téléchargements rapprochés. Ne pas les commiter : seules celles publiées entrent
-   dans `public/images/`.
+1. **Demander à l'ETN Photo** les autorisations parentales : une réponse décide de 48
+   emplacements d'images d'un coup. C'est de loin le plus rentable.
+2. **Demander si les deux documents servent encore** (fiche santé 2016, visuel ESPAS).
 3. **Écrire le texte de la page d'accueil** avec l'ETN Communication.
 4. **Faire relire les pages** par une personne du mouvement.
 
@@ -37,5 +44,10 @@
 - **Il y a trois WordPress dans cet export.** Le site vivant est celui dont les pages ont été
   modifiées en 2025-2026 ; les deux autres sont une sauvegarde de 2016 et l'ancien « site des
   aînés ».
+- **Une redirection d'une adresse vers elle-même détruit la page.** Astro génère une page
+  « Redirecting to », qui écrase la vraie. Comme les adresses françaises sont conservées, c'est
+  le piège central de cette migration : le filtre est dans `urlmap.py`.
+- **Le nettoyage de balises avale les commentaires HTML** (`<[^>]+>` prend un commentaire qui ne
+  contient pas de `>`). Les repères d'images passent donc par un jeton reconverti à la fin.
 - **`slug` est un nom réservé** dans le frontmatter : le chargeur de contenu s'en sert pour
   fabriquer l'identifiant des entrées. D'où `urlPath`.
