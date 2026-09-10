@@ -68,6 +68,41 @@ npm run preview   # sert ./_build/ comme le ferait un hébergeur
 déposera chez l'hébergeur le jour venu — et c'est aussi ce qu'on peut envoyer à quelqu'un, zippé,
 pour qu'il regarde sans rien installer.
 
+## Servir le site à la racine, ou dans un sous-dossier
+
+Le site sait tourner aux deux endroits **sans changer une ligne de code**, via deux variables :
+
+| Cible | Commande |
+|---|---|
+| Racine d'un domaine (`www.scouts-europe.ch/fr/…`) | `npm run build` |
+| Sous-dossier, type GitHub Pages (`…github.io/website/fr/…`) | `SITE_URL=https://<org>.github.io BASE_PATH=/website npm run build` |
+
+**Pourquoi ça compte :** GitHub Pages sert un dépôt de projet depuis
+`/<nom-du-depot>/`. Le jour où le site prend le domaine du mouvement, il suffit de retirer les
+deux variables : rien d'autre ne bouge.
+
+**La règle à ne pas enfreindre :** toute adresse absolue écrite en dur passe par `withBase()`
+(`src/data/site.ts`). Une seule oubliée et c'est une image ou un lien mort dès qu'on déplace le
+site — et ça ne se voit pas dans le build à la racine, où tout marche.
+
+Trois pièges déjà traités, à ne pas réintroduire :
+
+1. **Les images écrites dans le markdown** (`/images/…`) : Astro applique `base` à ses propres
+   liens, pas au contenu rédigé à la main. Un greffon (`rehypeBaseUrls`, dans
+   `astro.config.mjs`) s'en charge.
+2. **Les destinations de redirection** : Astro ne leur applique pas `base` non plus. La table est
+   préfixée à la main dans `astro.config.mjs`.
+3. **Le script d'aiguillage de la racine** : les adresses `/fr/` et `/de/` lui sont injectées,
+   elles ne peuvent pas être écrites en dur.
+
+**Vérification** après toute modification d'adresse :
+
+```bash
+SITE_URL=https://exemple.github.io BASE_PATH=/website npm run build
+# puis : aucune adresse ne doit commencer par «/» sans le préfixe
+grep -rhoE '(src|href)="/[a-zA-Z][^"]*"' _build --include='*.html' | grep -v '^.*"/website' | sort -u
+```
+
 ## La mise en ligne — pas encore décidée
 
 **Il n'y a volontairement ni script de publication, ni fichier `CNAME`, ni branche de déploiement

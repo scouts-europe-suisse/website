@@ -6,7 +6,7 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
-import { LANGS, NEWS_BASE, SITE, UI, type Lang } from '../../data/site';
+import { LANGS, NEWS_BASE, SITE, UI, withBase, type Lang } from '../../data/site';
 
 export function getStaticPaths() {
   return LANGS.map((lang) => ({ params: { lang } }));
@@ -27,7 +27,7 @@ export async function GET(context: APIContext) {
       title: a.data.title,
       pubDate: a.data.date,
       description: a.data.summary,
-      link: `/${lang}/${NEWS_BASE[lang]}/${a.id.split('/')[1]}/`,
+      link: withBase(`/${lang}/${NEWS_BASE[lang]}/${a.id.split('/')[1]}/`),
     })),
   });
 }

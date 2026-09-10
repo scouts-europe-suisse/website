@@ -7,7 +7,7 @@
  * est la clé `key`, portée par les deux fichiers.
  */
 import { getCollection } from 'astro:content';
-import type { Lang } from '../data/site';
+import { withBase, type Lang } from '../data/site';
 
 export interface PageRef {
   key: string;
@@ -36,7 +36,7 @@ async function all(): Promise<PageRef[]> {
  */
 export async function pathFor(key: string, lang: Lang): Promise<string | null> {
   const p = (await all()).find((x) => x.key === key && x.lang === lang);
-  return p ? `/${lang}/${p.slug}/` : null;
+  return p ? withBase(`/${lang}/${p.slug}/`) : null;
 }
 
 /** La page jumelle, à partir de la clé et de la langue courante. */

@@ -6,7 +6,7 @@
  * Sur téléphone, il se replie derrière un bouton ; le pliage est fait avec
  * <details>, donc il fonctionne même sans JavaScript.
  */
-import { NAV, SITE, SOCIAL, UI, path, type NavItem, type Lang } from '../data/site';
+import { NAV, SITE, SOCIAL, UI, path, withBase, type NavItem, type Lang } from '../data/site';
 import { pathFor } from '../lib/pages';
 import LangSwitcher from './LangSwitcher.astro';
 
@@ -52,7 +52,7 @@ function isActive(href: string): boolean {
          lieu de nom. -->
     <a href={path(lang)} class="inline-flex items-center no-underline">
       <img
-        src="/images/logo-ses.png"
+        src={withBase("/images/logo-ses.png")}
         alt={SITE.name}
         width="351"
         height="134"

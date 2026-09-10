@@ -1,7 +1,7 @@
 ---
 /** Une actualité : titre, date, image de couverture créditée, puis le texte. */
 import PageNotices from './PageNotices.astro';
-import { NEWS_BASE, UI, type Lang } from '../data/site';
+import { NEWS_BASE, UI, withBase, type Lang } from '../data/site';
 
 interface Props {
   entry: any;
@@ -13,7 +13,7 @@ const d = entry.data;
 
 <article>
   <p style="color: var(--ses-muted); font-size: var(--text-small)">
-    <a href={`/${lang}/${NEWS_BASE[lang]}/`}>{UI.news[lang]}</a>
+    <a href={withBase(`/${lang}/${NEWS_BASE[lang]}/`)}>{UI.news[lang]}</a>
   </p>
   <h1 class="mt-2" style="font-size: var(--text-h1)">{d.title}</h1>
   <p class="mt-2" style="color: var(--ses-muted); font-size: var(--text-small)">

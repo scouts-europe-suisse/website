@@ -9,7 +9,7 @@
  * leur écrive une introduction.
  */
 import type { PageRef } from '../lib/pages';
-import type { Lang } from '../data/site';
+import { withBase, type Lang } from '../data/site';
 
 interface Props {
   lang: Lang;
@@ -25,7 +25,7 @@ const { lang, children } = Astro.props;
         class="border p-4"
         style="border-color: var(--ses-border); background: var(--ses-surface); border-left: 4px solid var(--ses-primary)"
       >
-        <a href={`/${lang}/${c.slug}/`} class="font-semibold no-underline" style="color: var(--ses-fg)">
+        <a href={withBase(`/${lang}/${c.slug}/`)} class="font-semibold no-underline" style="color: var(--ses-fg)">
           {c.title}
         </a>
       </li>

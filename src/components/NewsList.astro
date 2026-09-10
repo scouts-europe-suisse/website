@@ -1,7 +1,7 @@
 ---
 /** La liste des actualités d'une langue, de la plus récente à la plus ancienne. */
 import { getCollection } from 'astro:content';
-import { NEWS_BASE, UI, type Lang } from '../data/site';
+import { NEWS_BASE, UI, withBase, type Lang } from '../data/site';
 
 interface Props {
   lang: Lang;
@@ -34,7 +34,7 @@ const fmt = (d: Date) =>
           <time datetime={a.data.date.toISOString()}>{fmt(a.data.date)}</time>
         </p>
         <h2 class="mt-1" style="font-size: var(--text-h3)">
-          <a href={`/${lang}/${NEWS_BASE[lang]}/${a.id.split('/')[1]}/`}>{a.data.title}</a>
+          <a href={withBase(`/${lang}/${NEWS_BASE[lang]}/${a.id.split('/')[1]}/`)}>{a.data.title}</a>
         </h2>
         {a.data.summary && <p class="mt-2 ses-prose">{a.data.summary}</p>}
       </li>

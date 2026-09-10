@@ -143,7 +143,25 @@ export const SOCIAL = [
 /** La base de la rubrique actualités, par langue. */
 export const NEWS_BASE: Record<Lang, string> = { fr: 'actualites', de: 'aktuelles' };
 
+/**
+ * Préfixe une adresse absolue du site par le sous-dossier de service.
+ *
+ * Le site doit tourner à deux endroits sans changer de code : à la racine
+ * d'un domaine (`/fr/…`) et dans un sous-dossier, comme sur GitHub Pages
+ * (`/website/fr/…`). Toute adresse écrite en dur DOIT passer par ici — une
+ * seule oubliée et c'est une image ou un lien mort dès qu'on déplace le site.
+ *
+ * `import.meta.env.BASE_URL` vaut «/» par défaut et le sous-dossier sinon ;
+ * Astro le renseigne à partir de `base` dans astro.config.mjs.
+ */
+export function withBase(p: string): string {
+  const base = import.meta.env.BASE_URL || '/';
+  if (!p.startsWith('/')) return p;
+  const prefix = base.replace(/\/$/, '');
+  return p.startsWith(prefix + '/') ? p : prefix + p;
+}
+
 /** Le chemin d'une page, dans une langue donnée. */
 export function path(lang: Lang, slug = ''): string {
-  return slug ? `/${lang}/${slug}/` : `/${lang}/`;
+  return withBase(slug ? `/${lang}/${slug}/` : `/${lang}/`);
 }

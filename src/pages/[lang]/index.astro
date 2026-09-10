@@ -8,7 +8,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageNotices from '../../components/PageNotices.astro';
 import NewsList from '../../components/NewsList.astro';
 import { pathFor } from '../../lib/pages';
-import { LANGS, NAV, NEWS_BASE, UI, type Lang } from '../../data/site';
+import { LANGS, NAV, NEWS_BASE, UI, withBase, type Lang } from '../../data/site';
 
 export function getStaticPaths() {
   return LANGS.map((lang) => ({ params: { lang } }));
@@ -95,7 +95,7 @@ const scoutingLabel = entry_('notre-scoutisme')?.label[lang] ?? '';
           class="border p-5 text-center"
           style={`border-color: var(--ses-border); background: var(--ses-surface); border-top: 4px solid ${b.couleur}`}
         >
-          <img src={b.ecusson} alt="" width="104" height="104" class="mx-auto mb-3" style="width: 5rem; height: auto" />
+          <img src={withBase(b.ecusson)} alt="" width="104" height="104" class="mx-auto mb-3" style="width: 5rem; height: auto" />
           <a href={b.href} class="font-semibold no-underline" style="color: var(--ses-fg)">{b.label}</a>
         </li>
       ))}
@@ -104,7 +104,7 @@ const scoutingLabel = entry_('notre-scoutisme')?.label[lang] ?? '';
     <h2 class="mt-12" style="font-size: var(--text-h2)">{UI.news[lang]}</h2>
     <NewsList lang={lang} limit={3} heading={false} />
     <p class="mt-4">
-      <a href={`/${lang}/${NEWS_BASE[lang]}/`}>{UI.allNews[lang]}</a>
+      <a href={withBase(`/${lang}/${NEWS_BASE[lang]}/`)}>{UI.allNews[lang]}</a>
     </p>
   </div>
 </BaseLayout>

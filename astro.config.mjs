@@ -1,62 +1,42 @@
 import { defineConfig } from 'astro/config';
+import { visit } from 'unist-util-visit';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import pagefind from 'astro-pagefind';
 
-export default defineConfig({
-  // The domain the site will eventually be served from. Used for canonical
-  // URLs, the sitemap and hreflang. The host itself is not decided yet
-  // (see _memory/local-dev-and-deploy.md) — only the domain is known.
-  site: 'https://www.scouts-europe.ch',
+const BASE = (process.env.BASE_PATH ?? '/').replace(/\/*$/, '/');
 
-  // Plain http://localhost — no HTTPS proxy in front of the dev server, so the
-  // Chrome preview and any teammate can open the URL directly.
-  // PORT is honoured when a harness assigns one.
-  server: {
-    port: process.env.PORT ? Number(process.env.PORT) : 4321,
-    host: false,
-  },
+/**
+ * Préfixe les adresses absolues écrites dans le markdown (`/images/…`).
+ * Astro applique `base` à ses propres liens, mais pas à ce qui est écrit à la
+ * main dans le contenu : sans ce passage, toutes les images des pages
+ * tombent en 404 dès que le site est servi depuis un sous-dossier.
+ */
+function rehypeBaseUrls() {
+  return (tree) => {
+    visit(tree, 'element', (node) => {
+      for (const attr of ['src', 'href']) {
+        const v = node.properties?.[attr];
+        if (typeof v === 'string' && v.startsWith('/') && !v.startsWith('//') && !v.startsWith(BASE)) {
+          node.properties[attr] = BASE.replace(/\/$/, '') + v;
+        }
+      }
+    });
+  };
+}
 
-  integrations: [
-    sitemap({
-      // `/` is a noindex language-detection shim that forwards to /fr/ or /de/.
-      // Keep it out of the sitemap rather than advertise a URL we ask search
-      // engines not to index.
-      filter: (page) => page !== 'https://www.scouts-europe.ch/',
-      // Emit <xhtml:link rel="alternate" hreflang="…"> for the FR/DE page pairs.
-      i18n: {
-        defaultLocale: 'fr',
-        locales: { fr: 'fr', de: 'de' },
-      },
-    }),
-    pagefind(),
-  ],
 
-  // Build output. Kept separate from any future publish directory — see
-  // _memory/local-dev-and-deploy.md ("build output ≠ publish directory").
-  outDir: './_build',
-
-  i18n: {
-    locales: ['fr', 'de'],
-    defaultLocale: 'fr',
-    routing: {
-      // The current WordPress site already serves /fr/ and /de/. Keeping the
-      // prefix on the default locale means existing URLs and bookmarks map
-      // one-to-one onto the new site.
-      prefixDefaultLocale: true,
-      redirectToDefaultLocale: false,
-    },
-  },
-
-  // Adresses de l'ancien site WordPress vers leur nouvelle place.
-  //
-  // Une adresse qui disparaît sans redirection, c'est un lien mort : dans un
-  // dépliant, sur la page d'un groupe local, dans les favoris d'un parent, et
-  // surtout dans l'index de Google, où la page perd sa place.
-  //
-  // La table complète, avec le motif de chaque ligne, est dans
-  // _migrations/url-map.md — c'est elle qui fait foi, pas ce bloc.
-  redirects: {
+/**
+ * Les anciennes adresses vers leur nouvelle place.
+ *
+ * Astro n'applique PAS `base` à la destination d'une redirection : sans le
+ * préfixe ajouté ici, chaque redirection renverrait à la racine du domaine et
+ * tomberait en 404 dès que le site est servi depuis un sous-dossier.
+ *
+ * La table complète, avec le motif de chaque ligne, est dans
+ * _migrations/url-map.md — c'est elle qui fait foi.
+ */
+const RAW_REDIRECTS = {
     '/de/carrick-2': '/de/carrick/',
     '/de/category/actualites': '/de/aktuelles/',
     '/de/die-beweguni': '/de/die-bewegung/',
@@ -107,6 +87,67 @@ export default defineConfig({
     '/fr/week-end-national-feu-octobre-2022': '/fr/actualites/week-end-national-feu-octobre-2022/',
     '/fr/weekend-intermaitrises-mars-2022': '/fr/actualites/weekend-intermaitrises-mars-2022/',
     '/fr/woodbadge-days-2023-en-suisse': '/fr/actualites/woodbadge-days-2023-en-suisse/',
+};
+const REDIRECTS = Object.fromEntries(
+  Object.entries(RAW_REDIRECTS).map(([from, to]) => [from, BASE.replace(/\/$/, '') + to]),
+);
+
+export default defineConfig({
+  // The domain the site will eventually be served from. Used for canonical
+  // URLs, the sitemap and hreflang. The host itself is not decided yet
+  // (see _memory/local-dev-and-deploy.md) — only the domain is known.
+  // Où le site est servi. Deux cas, et le même code doit marcher pour les deux :
+  //   - à la racine d'un domaine  : SITE_URL=https://www.scouts-europe.ch, BASE_PATH=/
+  //   - dans un sous-dossier      : SITE_URL=https://<org>.github.io, BASE_PATH=/website
+  // GitHub Pages sert un dépôt de projet sous /<nom-du-depot>/, d'où le
+  // sous-dossier ; le jour où le site prend le domaine du mouvement, il suffit
+  // de repasser BASE_PATH à «/» et rien d'autre ne bouge.
+  site: process.env.SITE_URL ?? 'https://www.scouts-europe.ch',
+  base: process.env.BASE_PATH ?? '/',
+
+  // Plain http://localhost — no HTTPS proxy in front of the dev server, so the
+  // Chrome preview and any teammate can open the URL directly.
+  // PORT is honoured when a harness assigns one.
+  server: {
+    port: process.env.PORT ? Number(process.env.PORT) : 4321,
+    host: false,
+  },
+
+  integrations: [
+    sitemap({
+      // `/` is a noindex language-detection shim that forwards to /fr/ or /de/.
+      // Keep it out of the sitemap rather than advertise a URL we ask search
+      // engines not to index.
+      filter: (page) => new URL(page).pathname.replace(/\/+$/, '/') !== BASE,
+      // Emit <xhtml:link rel="alternate" hreflang="…"> for the FR/DE page pairs.
+      i18n: {
+        defaultLocale: 'fr',
+        locales: { fr: 'fr', de: 'de' },
+      },
+    }),
+    pagefind(),
+  ],
+
+  // Build output. Kept separate from any future publish directory — see
+  // _memory/local-dev-and-deploy.md ("build output ≠ publish directory").
+  outDir: './_build',
+
+  i18n: {
+    locales: ['fr', 'de'],
+    defaultLocale: 'fr',
+    routing: {
+      // The current WordPress site already serves /fr/ and /de/. Keeping the
+      // prefix on the default locale means existing URLs and bookmarks map
+      // one-to-one onto the new site.
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: false,
+    },
+  },
+
+  redirects: REDIRECTS,
+
+  markdown: {
+    rehypePlugins: [rehypeBaseUrls],
   },
 
   vite: {
