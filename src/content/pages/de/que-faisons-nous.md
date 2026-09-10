@@ -17,6 +17,8 @@ Die Pfadfindermethode gliedert sich in drei verschiedenen Altersstufen, die jewe
 
 Der Pfadfinder baut und erschafft weit weg vom Virtuellen. Neben der schulischen, intellektuellen und theoretischen Ausbildung legt das Pfadfindertum Wert auf die Entwicklung von Kreativität, handwerklichen Fähigkeiten, praktischem Geist, Realismus in Bezug auf Distanz, Zeit und individuelle Fähigkeiten.
 
+<!-- Bild einzufügen, sobald die Einwilligungen geklärt sind : 2016/01/Image_me_ZH (Louveteaux lors de la préparation du repas) -->
+
 ## Die Gesundheit und die körperliche Entwicklung
 
 Das Pfadfinderleben findet in der freien Natur statt und ermöglicht Kindern und Jugendlichen, ein Gleichgewicht in Harmonie mit der Natur und ihrem Körper zu finden. Es ist eine wunderbare Schule, welche Dynamik, Ausdauer, Flexibilität und die Aneignung grundlegender Hygieneregeln fordert. Es ermöglicht jungen Menschen, ihren Körper zu kontrollieren und zu respektieren, insbesondere durch die Bekämpfung aller Formen von Sucht (Tabak, Alkohol, Drogen, Videospiele usw.).
@@ -27,15 +29,21 @@ Das Pfadfinderleben findet in der freien Natur statt und ermöglicht Kindern und
 
 Das Pfadfindertum entwickelt durch das Gemeinschaftsleben in der Natur die Qualitäten, die für den Aufbau einer soliden Persönlichkeit notwendig sind: Wille, Mut und Ausdauer, um sich selbst zu übertreffen. Es führt dazu, dass jedes Kind nach und nach an Selbstvertrauen gewinnt. Es vermittelt Lebensfreude und lädt alle zu ansteckender, guter Laune ein. Es versucht auch, überinformierten jungen Menschen ein gutes Urteilsvermögen beizubringen. In der Beratungspädagogik entwickeln junge Menschen Urteilsvermögen, kritisches Denken, Besonnenheit, Klarheit und Zuhörfähigkeit.
 
+<!-- Bild einzufügen, sobald die Einwilligungen geklärt sind : 2016/05/Conseil (Rocher du conseil) -->
+
 ## Der Sinn des Dienstes
 
 Das Pfadfindertum ist eine Schule des gegenseitigen Dienstes, Respekts und Vertrauens. Es zielt darauf ab, sich anderen zuzuwenden, die Fähigkeiten junger Menschen zur Großzügigkeit zu entwickeln und in Taten umzusetzen. Es offenbart nach und nach, dass wahres Glück darin liegt, sich selbst hinzugeben und zu dienen.
 
 Das Pfadfinderleben ist nur dann sinnvoll, wenn es dazu führt, Anderen zu dienen. In diesem Sinne wurde das Pfadfindertum als „ziviles Engagement in der Schule des Waldes“ definiert. „Allzeit bereit“ ist das Motto aller Pfadfinder weltweit. Es drückt diesen Wunsch aus, gut zu dienen.
 
+<!-- Bild einzufügen, sobald die Einwilligungen geklärt sind : 2016/05/DSC_7866 (Service de bois pour préparer la veillée) -->
+
 ## Der Sinn Gottes
 
 Das Pfadfindertum ist für jeden jungen Menschen eine Gelegenheit, die Gegenwart Gottes in seinem Leben zu entdecken; in sich selbst und in anderen, ihn besser kennenzulernen, sein Leben im Licht des Evangeliums zu erleuchten. Das Pfadfindertum möchte jedem jungen Menschen helfen, den Sinn seines Lebens zu finden.
+
+<!-- Bild einzufügen, sobald die Einwilligungen geklärt sind : 2016/02/IMG_4776 (Messe en camp de louvettes) -->
 
 ## Die Komplementarität des Reichtums
 

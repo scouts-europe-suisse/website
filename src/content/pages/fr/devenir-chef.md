@@ -9,6 +9,8 @@ La méthode scoute choisit de confier à des jeunes de 18 à 30 ans la responsa
 
 Être chef, c'est une expérience unique ! C'est avoir la charge de faire grandir une vingtaine d'enfants sur une ou plusieurs années, grâce aux activités de septembre à juin et au camp d'été. Mais c'est aussi une école de vie où l'on apprend le travail en équipe, la gestion de projet, la réactivité et l'adaptabilité.
 
+<!-- image à replacer une fois les autorisations vérifiées : 2016/05/Devenir-chef (Deux louvettes attentives à leur cheftaine) -->
+
 Le chef d'unité est aidé dans sa tâche de plusieurs assistants à qui il confie des missions particulières : intendant, secouriste, responsable jeu, responsable veillée...
 
 Le mouvement s'engage à soutenir et former les chefs qui décident de servir dans une unité :

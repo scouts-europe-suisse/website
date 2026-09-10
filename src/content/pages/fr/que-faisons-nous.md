@@ -17,6 +17,8 @@ La méthode scoute se décline en trois pédagogies adaptée à chaque tranche d
 
 Loin du virtuel, le scout crée et construit. En complément de la formation scolaire, intellectuelle et théorique, le scoutisme insiste sur le développement de la créativité, l'habileté manuelle, l'esprit pratique, le réalisme face aux distance, au temps et aux capacités de chacun.
 
+<!-- image à replacer une fois les autorisations vérifiées : 2016/01/Image_me_ZH (Louveteaux lors de la préparation du repas) -->
+
 ## La santé et le développement physique
 
 Le scoutisme se vit au grand air et permet aux enfants et aux adolescents de trouver un équilibre de vie en harmonie avec la nature et leur corps. Elle est une merveilleuse école qui développe dynamisme, endurance et souplesse, et réclame de s'approprier les règles d'hygiène fondamentales. Elle permet aux jeunes de maîtriser leur corps, et de le respecter notamment en luttant contre toute forme d'addiction (tabac, alcool, drogue, jeux vidéos...).
@@ -27,15 +29,21 @@ Le scoutisme se vit au grand air et permet aux enfants et aux adolescents de tro
 
 Par la vie communautaire, à l'école de la nature, le scoutisme développe les qualités nécessaires à la construction d'une personnalité solide : la volonté, le courage, la persévérance, le dépassement de soi. Il conduit chaque enfant à prendre progressivement confiance en lui. Il enseigne la joie de vivre et invite chacun à une bonne humeur contagieuse. Il cherche aussi à apprendre à des jeunes surinformés à faire preuve de discernement. Dans la pédagogie des conseils, le jeune développe son jugement, son sens critique, sa prudence, sa lucidité et sa capacité d'écoute.
 
+<!-- image à replacer une fois les autorisations vérifiées : 2016/05/Conseil (Rocher du conseil) -->
+
 ## Le sens du service
 
 Le scoutisme est une école de service, de respect, de confiance en l'autre. Il vise à se tourner vers les autres, à développer et à traduire en actes les capacités de générosité des jeunes. Il fait progressivement découvrir que le véritable bonheur se trouve dans le don de soi et le service.
 
 La vie scoute n'a de sens que si elle débouche sur le service aux autres. C'est en ce sens qu'on a pu définir le scoutisme comme "le civisme à l'école des bois". "Toujours prêt" : c'est la devise de tous les scouts du monde. Elle exprime bien cette volonté de servir.
 
+<!-- image à replacer une fois les autorisations vérifiées : 2016/05/DSC_7866 (Service de bois pour préparer la veillée) -->
+
 ## Le sens de Dieu
 
 Le scoutisme est une occasion pour chaque jeune de découvrir la présence de Dieu dans sa vie : en lui et dans les autres, de mieux le connaître, d'éclairer sa vie à la lumière de l'Evangile. Le scoutisme veut aider chaque jeune à trouver le sens de sa vie.
+
+<!-- image à replacer une fois les autorisations vérifiées : 2016/02/IMG_4776 (Messe en camp de louvettes) -->
 
 ## La complémentarité des richesses
 

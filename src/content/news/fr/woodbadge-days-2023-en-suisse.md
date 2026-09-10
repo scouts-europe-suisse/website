@@ -12,3 +12,5 @@ Partant du constat de la nécessité de la formation, l'Union Internationale des
 Cette année, c'est à Arzier, en terres vaudoises, que notre association suisse a eu l'honneur d'accueillir cette rencontre. Plus de 70 personnes de 13 pays ont pris part à ce weekend axé autour du thème de la croissance spirituelle des membres du mouvement. Grâce à l'équipe logistique composée de membres du SES, nos hôtes ont pu découvrir les charmes de la Suisse, de la fondue au cor des Alpes en passant par les branches Cailler qui ont mis les participants dans de bonnes dispositions pour travailler à identifier les éléments de la méthode scoute sur lesquels s'appuyer pour vaincre les obstacles de notre temps qui se dressent sur le chemin de la croissance spirituelle de nos membres. Les équipes nationales se réjouissent d'avoir accueilli ces Woodbadge Days et formulent le vœu que les initiatives nées de cette rencontre pourront rejaillir au plus vite sur toutes les unités !
 
 Théophane, ACNL
+
+<!-- image à replacer une fois les autorisations vérifiées : 2023/07/Copie-de-WBD-2023-237-061A9624-1 (*Les membres de l'UIGSE réunis en Suisse pour cette édition 2023*) -->

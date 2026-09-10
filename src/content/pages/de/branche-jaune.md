@@ -10,9 +10,13 @@ sourceModified: 2025-12-09
 
 Spielen, mit den Händen erschaffen, Geschichten erzählen und mimen, singen, zelten, die Welt entdecken. Öffne mit dem Heiligen Franziskus deine Augen und Ohren für die Wunder der Natur. Lebe auf den Spuren von Mowgli die Geschichten des Dschungelbuchs, um flink, geschickt und nützlich zu werden
 
+<!-- Bild einzufügen, sobald die Einwilligungen geklärt sind : 2016/05/img_7322 (Louveteaux en veillée de fin de journée) -->
+
 ## Konkret
 
 Wenn du ein- oder zweimal im Monat am Samstag oder Sonntag hinaus gehst, wirst du tausend Abenteuer erleben. Ein- bis zweimal im Jahr entdeckst du mit den anderen Wölfen ein ganzes Wochenende lang die Geheimnisse der Natur! Schliesslich kommt die Zeit des Sommerlagers, in dem du mit der gesamten Einheit eine Woche lang zelten wirst!
+
+<!-- Bild einzufügen, sobald die Einwilligungen geklärt sind : 2016/05/DSC_8147 (En fin de week-end, les louvettes plient la tente) -->
 
 ## Le louvetisme
 
@@ -35,6 +39,8 @@ Akteure
 Das Wölflingsversprechen ist eine erste Verpflichtung auf der Ebene des Kindes. Nachdem er seine Eltern um Erlaubnis gebeten hat und vom ganzen Rudel akzeptiert wurde, sagt die „zarte Pfote“:
 
 > *“ Ich verspreche, mein Bestes zu tun, um Gott, meinen Eltern, meinem Land und den Gesetzen des Rudels treu zu sein und jeden Tag jemandem einen Dienst zu erweisen.* “
+
+<!-- Bild einzufügen, sobald die Einwilligungen geklärt sind : 2016/01/DSC_2687 (Louveteaux lors d'une promesse sous la neige) -->
 
 Die Werkzeuge des kleinen guten Wolfes
 

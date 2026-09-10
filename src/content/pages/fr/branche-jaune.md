@@ -10,9 +10,13 @@ sourceModified: 2025-12-09
 
 Jouer, créer avec ses mains, raconter et mimer des histoires, chanter, camper, découvrir le monde. Avec saint François, ouvrir ses yeux et ses oreilles aux merveilles de la nature. Sur les traces de Mowgli, vivre les histoires du Livre de la Jungle, pour devenir agile, habile, utile.
 
+<!-- image à replacer une fois les autorisations vérifiées : 2016/05/img_7322 (Louveteaux en veillée de fin de journée) -->
+
 ## Concrètement ?
 
 En sortie le samedi ou le dimanche une à deux fois par mois, tu vivras mille aventures. Une à deux fois dans l'année, tu partiras découvrir les mystères de la nature avec les autres loups durant un week-end entier ! Viendra enfin le temps du camp d'été où tu camperas une semaine avec toute l'unité !
+
+<!-- image à replacer une fois les autorisations vérifiées : 2016/05/DSC_8147 (En fin de week-end, les louvettes plient la tente) -->
 
 ## Le louvetisme
 
@@ -31,6 +35,8 @@ Grâce aux jeux, le louvetisme cherche à intéresser les enfants à leur propre
 La promesse louveteau ou louvette est un premier engagement, à hauteur de l'enfant. Après avoir demandé la permission à ses parents et été accepté par toute la meute, la "patte tendre" dit :
 
 > Je promets de faire de mon mieux pour être fidèle à Dieu, à mes parents, à ma patrie, à la loi de la meute, et pour rendre chaque jour un service à quelqu'un."
+
+<!-- image à replacer une fois les autorisations vérifiées : 2016/01/DSC_2687 (Louveteaux lors d'une promesse sous la neige) -->
 
 Les outils du bon petit loup
 

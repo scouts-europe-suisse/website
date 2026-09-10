@@ -20,6 +20,8 @@ La cérémonie s’achève par un temps de recueillement. Nous prions pour tous 
 Par Marc C., Chef de Groupe Saint Dominique Savio, Responsable du Scouteurop’Tour pour la Suisse
 et Jean-Yves B., Commissaire du District Saint Nicolas de Flüe
 
+<!-- image à replacer une fois les autorisations vérifiées : 2016/05/12321597_10206775254034708_6383653440950626216_n (La flamme du ScoutEurop'Tour lors de son passage au week-end intermaîtrise de Lausanne) -->
+
 ## Vous avez dit ScoutEurop'Tour ?
 
 Le Scouteurop’Tour est un projet scout européen ayant vocation à célébrer le 60ème anniversaire de l’Union Internationale des Guides et Scouts d’Europe. Véritable balade à travers l’Europe, le Scouteurop’Tour propose de faire tourner une flamme européenne jusqu’au Canada et aux États-Unis pour symboliser le passage de la fraternité européenne au-delà des frontières.

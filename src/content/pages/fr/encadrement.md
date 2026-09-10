@@ -7,6 +7,8 @@ sourceModified: 2025-12-09
 
 Au service des chefs, les cadres du mouvement ont pour mission de leur fournir les ressources et outils pour mener à bien les activités scoutes.
 
+<!-- image à replacer une fois les autorisations vérifiées : 2016/02/A-56 (Cadres du mouvement lors d'une réunion de début d'année) -->
+
 ## Le premier soutien et référent local : le chef du groupe
 
 Le référent local du mouvement est le chef de groupe : interlocuteur privilégié des parents, il est le soutien direct, de proximité, des chefs d'unité. Une formation dédiée leur permet d'être d'être garant de la méthode scoute et de la pédagogie des Scouts d'Europe, et de s'assurer que les principes de réglementation sont suivis dans nos activités.
@@ -20,6 +22,8 @@ Les différents groupes locaux sont coordonnés, à l'échelle du canton, par le
 Garante de la pédagogie, l'équipe nationale est responsable de la formation des chefs et de leur suivi pédagogique pendant l'année.
 
 Elus par l'ensemble des chefs formés lors de l'assemblée générale, le conseil d'administration et le bureau assurent les tâches administratives qui incombent à une association : assurances,  trésorerie, réglementation...
+
+<!-- image à replacer une fois les autorisations vérifiées : 2016/05/DSC_0854 (Assemblée générale 2015) -->
 
 ## Les équipes techniques spécialisées
 
