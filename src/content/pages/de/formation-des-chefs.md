@@ -7,7 +7,7 @@ sourceModified: 2025-12-09
 
 Um jungen Menschen qualitativ hochwertiges Pfadfindertum anzubieten, hat sich die Bewegung entschieden die Ausbildung der Leiter in den Vordergrund zu stellen.
 
-<!-- Bild einzufügen, sobald die Einwilligungen geklärt sind : 2017/10/WEKraalSESOct2017-56 (Chefs louveteau et louvette en session de formation théorique à Monteret (Saint-Cergue, Vaud)) -->
+![Wölflingsleiter in einer theoretischen Ausbildungseinheit in Monteret (Saint-Cergue, Waadt)](/images/wekraalsesoct2017-56.jpg)
 
 In Schulungslagern werden Führungskräfte durch theoretischem Unterricht, technische Workshops und Simulationen geschult:
 

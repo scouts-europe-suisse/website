@@ -5,7 +5,7 @@ summary: "Un pèlerinage pour environ 70 chefs de notre association depuis la Su
 updated: 2025-12-09
 ---
 
-<!-- image à replacer une fois les autorisations vérifiées : 2017/10/WEKraalSESOct2017-56 (Chefs et cheftaines en formation pédagogique - Monteret, octobre 2017) -->
+![Chefs et cheftaines en formation pédagogique - Monteret, octobre 2017](/images/wekraalsesoct2017-56.jpg)
 
 Quel est notre projet ?
 
@@ -24,7 +24,7 @@ Pourquoi avons-nous besoin de vous ?
 
 Notre projet est ambitieux car nous devons maintenir un planning serré pour ces jeunes, souvent partagés entre leurs études, un travail, une famille, et qui donnent également du temps pour encadrer des camps scouts.
 
-<!-- image à replacer une fois les autorisations vérifiées : 2018/04/1490801_10152127350384800_324137207_o (Route en Terre Sainte - 2014) -->
+![Route en Terre Sainte - 2014](/images/1490801-10152127350384800-324137207-o.jpg)
 
 Afin de ne pas transformer ce pèlerinage en "voyage en car", nous avons choisi ce modèle de vie en équipe qui correspond à notre pédagogie et permettra une vraie démarche de pèlerinage.
 
@@ -32,7 +32,7 @@ Le coût estimé de notre projet est de 84000 CHF dont 20000 CHF de location de 
 
 70 jeunes se sont déjà inscrits et engagés mais certains savent déjà qu'il leur sera difficile de faire face à cette dépense.
 
-<!-- image à replacer une fois les autorisations vérifiées : 2018/04/1519884_10202988665505860_164616941_o (Route en Terre Sainte - 2014) -->
+![Route en Terre Sainte - 2014](/images/1519884-10202988665505860-164616941-o.jpg)
 
 Comment nous aider ?
 

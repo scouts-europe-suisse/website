@@ -13,4 +13,4 @@ Cette année, c'est à Arzier, en terres vaudoises, que notre association suisse
 
 Théophane, ACNL
 
-<!-- image à replacer une fois les autorisations vérifiées : 2023/07/Copie-de-WBD-2023-237-061A9624-1 (*Les membres de l'UIGSE réunis en Suisse pour cette édition 2023*) -->
+![*Les membres de l'UIGSE réunis en Suisse pour cette édition 2023*](/images/copie-de-wbd-2023-237-061a9624-1.jpg)

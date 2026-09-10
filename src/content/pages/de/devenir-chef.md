@@ -9,7 +9,7 @@ Die Pfadfindermethode entscheidet sich dafür, junge Menschen im Alter von 18 bi
 
 Leiter zu sein ist eine einzigartige Erfahrung! Es bedeutet, dank der Aktivitäten von September bis Juni und des Sommerlagers die Verantwortung für die Erziehung von rund zwanzig Kindern über ein oder mehrere Jahre zu tragen. Aber es ist auch eine Lebensschule, in der man Teamarbeit, Projektmanagement, Reaktionsfähigkeit und Anpassungsfähigkeit lernt.
 
-<!-- Bild einzufügen, sobald die Einwilligungen geklärt sind : 2016/05/Devenir-chef (Deux louvettes attentives à leur cheftaine) -->
+![Deux louvettes attentives à leur cheftaine](/images/devenir-chef.jpg)
 
 Der Einheitsleiter wird bei seiner Aufgabe von mehreren Assistenten unterstützt, denen er bestimmte Aufgaben anvertraut: Ersthelfer, Spielleiter, Abendrundenleiter usw.
 

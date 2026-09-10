@@ -7,7 +7,7 @@ updated: 2025-12-09
 
 Les week-ends de feu sont toujours l’assurance de passer des moments privilégiés, que ce soit avec Jésus, dans l’intimité de nos cœurs, mais également au contact de nos sœurs guides aînées, avec leur présence amicale et leur générosité bienveillante. L’édition du 15-16 octobre dernier n’a pas dérogé à la règle de cette précieuse tradition comme l’illustre le récit.
 
-<!-- image à replacer une fois les autorisations vérifiées : 2023/07/07b52f64-a954-4291-b9eb-c2b9badf6dcf-2-edited (sans légende) -->
+![](/images/07b52f64-a954-4291-b9eb-c2b9badf6dcf-2-edited.jpg)
 
 Ceinturon bouclé, sac à dos sanglé sur le dos et quatre bosses vissé sur la tête, nous voilà prêtes à marcher sur les pas de Sainte Marguerite Bays ! C’est avec beaucoup d’entrain, et sous le lumineux soleil fribourgeois, que nous avons donc commencé à cheminer, portées par un thème plein d’entrain nous incitant à « aller de l’avant, avec l’aide de Dieu » !
 

@@ -2,14 +2,14 @@
 urlPath: ""
 key: home
 title: "Scoutisme Européen Suisse"
-description: "Le scoutisme européen en Suisse : une proposition éducative pour les enfants et les jeunes, portée par des chefs bénévoles."
-draft: true
+description: "L'association du Scoutisme Européen Suisse est un mouvement d'éducation par la méthode scoute, complémentaire de la famille et de l'école."
 ---
 
 <!--
-  Ébauche. Le texte d'accueil est à écrire avec l'ETN Communication.
-  Le cahier des charges SES25 nomme le public visé : les parents, d'enfants
-  déjà inscrits ou de futurs scouts. Voir _memory/cahier-des-charges.md.
--->
+  L'ancienne page d'accueil n'avait pas de texte propre : c'était un
+  assemblage de widgets — bandeau défilant, trois cartes de branche, un lien
+  vers « Qui sommes-nous ? ». On reprend cette structure telle quelle.
 
-Texte de présentation à rédiger.
+  La phrase d'accroche n'est pas inventée : c'est la première phrase de la
+  page « Qui sommes-nous ? », donc les mots du mouvement.
+-->

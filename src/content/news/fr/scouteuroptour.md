@@ -20,7 +20,7 @@ La cérémonie s’achève par un temps de recueillement. Nous prions pour tous 
 Par Marc C., Chef de Groupe Saint Dominique Savio, Responsable du Scouteurop’Tour pour la Suisse
 et Jean-Yves B., Commissaire du District Saint Nicolas de Flüe
 
-<!-- image à replacer une fois les autorisations vérifiées : 2016/05/12321597_10206775254034708_6383653440950626216_n (La flamme du ScoutEurop'Tour lors de son passage au week-end intermaîtrise de Lausanne) -->
+![La flamme du ScoutEurop'Tour lors de son passage au week-end intermaîtrise de Lausanne](/images/12321597-10206775254034708-6383653440950626216-n.jpg)
 
 ## Vous avez dit ScoutEurop'Tour ?
 

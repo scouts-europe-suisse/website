@@ -7,7 +7,7 @@ sourceModified: 2025-12-09
 
 Die Kader der Bewegung haben die Aufgabe, den Leitern die Mittel zur Verfügung zu stellen, die sie für Pfadfinderaktivitäten benötigen.
 
-<!-- Bild einzufügen, sobald die Einwilligungen geklärt sind : 2016/02/A-56 (Cadres du mouvement lors d'une réunion de début d'année) -->
+![Cadres du mouvement lors d'une réunion de début d'année](/images/a-56.jpg)
 
 ## Erste Stütze und Ansprechperson vor Ort: der Abteilungsleiter
 
@@ -23,7 +23,7 @@ Als Garant der Pädagogik ist die Vereinsleitung für die Ausbildung der Leiter 
 
 Der Vorstand und die Vereinsleitung werden von den während der Mitgliederversammlung anwesenden, ausgebildeten Leiter gewählt und erledigen die einem Verein obliegenden Verwaltungsaufgaben: Versicherungen, Kasse, Reglemente usw.
 
-<!-- Bild einzufügen, sobald die Einwilligungen geklärt sind : 2016/05/DSC_0854 (Assemblée générale 2015) -->
+![Assemblée générale 2015](/images/dsc-0854.jpg)
 
 ## Spezialisierte Technikgruppen
 

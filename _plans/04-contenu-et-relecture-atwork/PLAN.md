@@ -22,13 +22,27 @@ publiées sur `www.scouts-europe.ch`**. Une photo qui n'a jamais été en ligne 
 dans la médiathèque sans page qui l'affiche, une photo apportée plus tard — n'est pas couverte et
 demande sa propre vérification.
 
-À faire : replacer les images à leur emplacement, repéré dans les pages par `image à replacer`,
-et les images à la une repérées par `image à la une à replacer`.
+**Fait le 2026-09-10 :** 71 emplacements remplis, 50 images publiées. Il ne reste que deux cas,
+qui ne sont pas des questions d'autorisation :
 
-## 2. Le texte de la page d'accueil
+- `LABEL_CONTACT_ESPAS_VECTOR` est un **PDF**, pas une image : il ne peut pas s'afficher dans le
+  corps d'une page. À décider — lien de téléchargement, ou abandon.
+- Le **texte cité** de la page sur la dimension européenne reste retenu. La confirmation porte
+  sur les photos ; ce texte n'est attribué à personne sur l'ancien site, et c'est son auteur qui
+  manque, pas une autorisation.
 
-Rien à reprendre : l'ancienne page d'accueil était un assemblage de widgets, sans texte propre.
-À écrire avec l'ETN Communication. Le cahier des charges nomme le public visé : les parents.
+## 2. Le texte de la page d'accueil — traité
+
+**Fait le 2026-09-10.** En regardant la page d'accueil actuelle de près, elle n'a **aucun texte
+propre** : un bandeau défilant, trois cartes de branche avec leur tranche d'âge, un lien vers
+« Qui sommes-nous ? ». Il n'y avait donc rien à écrire, seulement cette structure à reprendre —
+ce qui est fait, tranches d'âge comprises.
+
+La phrase d'accroche est la **première phrase de « Qui sommes-nous ? »** : les mots du mouvement,
+pas une invention. Le bandeau « ébauche » a disparu.
+
+**Reste possible, si le mouvement le souhaite :** un vrai texte d'accueil, qui n'a jamais existé.
+C'est alors une amélioration, plus une reprise — à voir avec l'ETN Communication.
 
 ## 3. L'allemand
 

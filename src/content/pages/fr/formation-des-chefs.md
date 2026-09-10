@@ -7,7 +7,7 @@ sourceModified: 2025-12-09
 
 Afin d'offrir un scoutisme de qualité aux jeunes, le mouvement a choisi de mettre l'accent sur la formation des chefs qui les encadrent.
 
-<!-- image à replacer une fois les autorisations vérifiées : 2017/10/WEKraalSESOct2017-56 (Chefs louveteau et louvette en session de formation théorique à Monteret (Saint-Cergue, Vaud)) -->
+![Chefs louveteau et louvette en session de formation théorique à Monteret (Saint-Cergue, Vaud)](/images/wekraalsesoct2017-56.jpg)
 
 Dans des camps-écoles, les chefs sont formés grâce à des sessions théoriques, des ateliers techniques et des mises en situation :
 

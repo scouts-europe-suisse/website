@@ -9,4 +9,4 @@ Rencontrer les chefs de toute la Suisse autour d'un banquet festif, remercier le
 
 Sur le thème du Moyen-Âge, pas moins de 80 chefs venus des quatre cantons où nous sommes implantés se sont retrouvés près de Fribourg pour un week-end.
 
-<!-- image à replacer une fois les autorisations vérifiées : 2015/05/IMG_4192 ( ) -->
+![](/images/img-4192.jpg)

@@ -8,7 +8,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageNotices from '../../components/PageNotices.astro';
 import NewsList from '../../components/NewsList.astro';
 import Slider from '../../components/Slider.astro';
-import { pathFor } from '../../lib/pages';
+import { pathFor, pagesIn } from '../../lib/pages';
 import { LANGS, NAV, NEWS_BASE, UI, withBase, type Lang } from '../../data/site';
 
 export function getStaticPaths() {
@@ -28,6 +28,9 @@ const { Content } = await render(entry);
  * clés brutes à la place des noms de branches.
  */
 const entry_ = (key: string) => NAV.find((i) => i.key === key);
+async function pageTitle(key: string, l: Lang) {
+  return (await pagesIn(l)).find((p) => p.key === key)?.title;
+}
 const childOf = (parent: string, key: string) =>
   entry_(parent)?.children?.find((c) => c.key === key);
 
@@ -41,7 +44,10 @@ const branches = (
     ].map(async (b) => ({
       ...b,
       href: await pathFor(b.key, lang),
-      label: branchNav.find((c) => c.key === b.key)?.label[lang] ?? b.key,
+      // Le titre de la page porte la tranche d'âge (« … — 8-12 ans »), que
+      // le site actuel affiche sur ses cartes. Le libellé du menu, lui, est
+      // volontairement court.
+      label: (await pageTitle(b.key, lang)) ?? branchNav.find((c) => c.key === b.key)?.label[lang] ?? b.key,
     })),
   )
 ).filter((b) => b.href);
@@ -49,6 +55,9 @@ const branches = (
 const joinHref = await pathFor('nous-rejoindre', lang);
 const joinLabel = entry_('nous-rejoindre')?.label[lang] ?? '';
 const scoutingLabel = entry_('notre-scoutisme')?.label[lang] ?? '';
+const aboutHref = await pathFor('qui-sommes-nous', lang);
+const aboutLabel =
+  entry_('notre-scoutisme')?.children?.find((c) => c.key === 'qui-sommes-nous')?.label[lang] ?? '';
 ---
 
 <BaseLayout
@@ -88,6 +97,12 @@ const scoutingLabel = entry_('notre-scoutisme')?.label[lang] ?? '';
         </li>
       ))}
     </ul>
+
+    {aboutHref && (
+      <p class="mt-6">
+        <a href={aboutHref}>{aboutLabel} →</a>
+      </p>
+    )}
 
     <h2 class="mt-12" style="font-size: var(--text-h2)">{UI.news[lang]}</h2>
     <NewsList lang={lang} limit={3} heading={false} />

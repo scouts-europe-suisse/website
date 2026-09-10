@@ -7,7 +7,7 @@ sourceModified: 2025-12-09
 
 Au service des chefs, les cadres du mouvement ont pour mission de leur fournir les ressources et outils pour mener à bien les activités scoutes.
 
-<!-- image à replacer une fois les autorisations vérifiées : 2016/02/A-56 (Cadres du mouvement lors d'une réunion de début d'année) -->
+![Cadres du mouvement lors d'une réunion de début d'année](/images/a-56.jpg)
 
 ## Le premier soutien et référent local : le chef du groupe
 
@@ -23,7 +23,7 @@ Garante de la pédagogie, l'équipe nationale est responsable de la formation d
 
 Elus par l'ensemble des chefs formés lors de l'assemblée générale, le conseil d'administration et le bureau assurent les tâches administratives qui incombent à une association : assurances,  trésorerie, réglementation...
 
-<!-- image à replacer une fois les autorisations vérifiées : 2016/05/DSC_0854 (Assemblée générale 2015) -->
+![Assemblée générale 2015](/images/dsc-0854.jpg)
 
 ## Les équipes techniques spécialisées
 

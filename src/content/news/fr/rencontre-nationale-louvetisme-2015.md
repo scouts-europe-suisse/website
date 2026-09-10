@@ -9,7 +9,7 @@ Venus de Genève, de Lausanne, de Fribourg et de Zurich, 200 louveteaux et louve
 
 Le bilan est unanime : à quand la prochaine ?
 
-<!-- image à replacer une fois les autorisations vérifiées : 2016/05/DSC_8045 (Clairière 2ème Fribourg) -->
+![Clairière 2ème Fribourg](/images/dsc-8045.jpg)
 
 > Nous sommes parties à Fribourg rejoindre tous les louveteaux et louvettes de Suisse.
 >
@@ -21,7 +21,7 @@ Le bilan est unanime : à quand la prochaine ?
 >
 >
 >
-> <!-- image à replacer une fois les autorisations vérifiées : 2016/05/DSC_8355 (Louvettes lors du tournoi de scoutball) -->
+> ![Louvettes lors du tournoi de scoutball](/images/dsc-8355.jpg)
 >
 >
 >

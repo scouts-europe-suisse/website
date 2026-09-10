@@ -9,7 +9,7 @@ sourceModified: 2025-12-09
 
 L'association du Scoutisme Européen Suisse est un mouvement d'éducation par la méthode scoute, complémentaire de la famille et de l'école. Elle vise l'épanouissement des enfants, des adolescents et des jeunes adultes par le jeu ou l'aventure dans la nature, et la prise de responsabilité adaptée à chaque âge.
 
-<!-- image à replacer une fois les autorisations vérifiées : 2016/04/P1140040 (Louvettes lors d'un camp d'été) -->
+![Louvettes lors d'un camp d'été](/images/p1140040.jpg)
 
 ## Un mouvement de formation des jeunes
 
@@ -25,7 +25,7 @@ L'association est une association catholique, membre de l'Union internationale 
 
 Notre association est attachée à la dimension chrétienne de la pédagogie, qui s'imprègne de l'Evangile et se base sur la vocation de tout chrétien à la sainteté.
 
-<!-- image à replacer une fois les autorisations vérifiées : 2016/04/0044 (0044) -->
+![0044](/images/0044.jpg)
 
 ## Un mouvement engagé dans la société
 
