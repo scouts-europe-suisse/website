@@ -1,0 +1,110 @@
+---
+/**
+ * La page d'accueil, dans chaque langue. Son contenu vient de
+ * src/content/pages/<langue>/home.md ; la mise en page (le bandeau, les
+ * trois branches, les dernières actualités) est ici.
+ */
+import { getCollection, getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageNotices from '../../components/PageNotices.astro';
+import { LANGS, UI, NAV, path, type Lang } from '../../data/site';
+
+export function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+
+const entry = await getEntry('pages', `${lang}/home`);
+if (!entry) throw new Error(`Page d'accueil manquante : ${lang}/home`);
+const { Content } = await render(entry);
+
+// Les trois branches, reprises du menu pour ne pas dupliquer leurs libellés.
+const branches = [
+  { slug: 'branche-jaune', couleur: 'var(--ses-branche-jaune)' },
+  { slug: 'branche-verte', couleur: 'var(--ses-branche-verte)' },
+  { slug: 'branche-rouge', couleur: 'var(--ses-branche-rouge)' },
+].map((b) => {
+  const item = NAV[0].children?.find((c) => c.slug === b.slug);
+  return { ...b, label: item?.label[lang] ?? b.slug };
+});
+
+const derniers = (await getCollection('news', (e) => e.id.startsWith(`${lang}/`) && !e.data.draft))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  lang={lang}
+  fullWidth
+  noindex={entry.data.draft}
+>
+  <section style="background: var(--ses-primary); color: var(--ses-primary-contrast)">
+    <div class="ses-col py-16 text-center">
+      <h1 style="font-size: var(--text-hero); color: inherit">{entry.data.title}</h1>
+      {entry.data.description && (
+        <p class="mx-auto mt-4 max-w-2xl text-lg" style="opacity: .92">{entry.data.description}</p>
+      )}
+      <p class="mt-8">
+        <a
+          href={path(lang, 'nous-rejoindre')}
+          class="ses-btn"
+          style="background: var(--ses-primary-contrast); color: var(--ses-primary)"
+        >
+          {NAV[2].label[lang]}
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <div class="ses-col py-10">
+    <PageNotices lang={lang} draft={entry.data.draft} translated={entry.data.translated} />
+
+    <div class="ses-prose">
+      <Content />
+    </div>
+
+    <h2 class="mt-12" style="font-size: var(--text-h2)">{NAV[0].label[lang]}</h2>
+    <ul class="mt-4 grid gap-4 sm:grid-cols-3">
+      {branches.map((b) => (
+        <li
+          class="border p-5"
+          style={`border-color: var(--ses-border); background: var(--ses-surface); border-top: 4px solid ${b.couleur}`}
+        >
+          <a href={path(lang, b.slug)} class="font-semibold no-underline" style="color: var(--ses-fg)">
+            {b.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <h2 class="mt-12" style="font-size: var(--text-h2)">{UI.news[lang]}</h2>
+    {derniers.length === 0 ? (
+      <p style="color: var(--ses-muted)">{UI.noNews[lang]}</p>
+    ) : (
+      <ul class="mt-4 grid gap-4 sm:grid-cols-3">
+        {derniers.map((n) => (
+          <li class="border p-5" style="border-color: var(--ses-border); background: var(--ses-surface)">
+            <p style="color: var(--ses-muted); font-size: var(--text-small)">
+              <time datetime={n.data.date.toISOString()}>
+                {n.data.date.toLocaleDateString(lang === 'fr' ? 'fr-CH' : 'de-CH')}
+              </time>
+            </p>
+            <a
+              href={`${path(lang, 'actualites')}${n.id.split('/')[1]}/`}
+              class="font-semibold no-underline"
+              style="color: var(--ses-fg)"
+            >
+              {n.data.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+    <p class="mt-4">
+      <a href={path(lang, 'actualites')}>{UI.allNews[lang]}</a>
+    </p>
+  </div>
+</BaseLayout>

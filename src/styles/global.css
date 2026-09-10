@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════════════════
+   Habillage du site — PROVISOIRE.
+
+   La charte graphique du SES n'est pas finalisée (cahier des charges
+   SES25, partie 1). Toutes les valeurs de ce bloc sont des substituts,
+   à remplacer quand la charte arrivera — voir _plans/02-charte-graphique/.
+
+   Règle : aucune couleur, aucune taille de police en dur dans une page
+   ou un composant. Tout passe par ces variables, pour que la bascule
+   sur la charte définitive se fasse ici et nulle part ailleurs.
+   Détails : _memory/design-system.md
+   ══════════════════════════════════════════════════════════════════ */
+:root {
+  /* ── Couleurs institutionnelles — PROVISOIRES ──────────────────── */
+  --ses-primary: #7a1f1f;          /* rouge profond, en écho à la croix scoute */
+  --ses-primary-hover: #601818;
+  --ses-primary-contrast: #ffffff; /* texte posé sur --ses-primary */
+  --ses-accent: #c8a02c;           /* doré, pour les détails */
+
+  /* ── Fonds et textes ───────────────────────────────────────────── */
+  --ses-bg: #fbfaf7;               /* fond de page, blanc légèrement chaud */
+  --ses-surface: #ffffff;          /* cartes, encadrés */
+  --ses-fg: #1c1a17;               /* texte courant */
+  --ses-muted: #5d574e;            /* texte secondaire, légendes */
+  --ses-border: #e3ded4;
+
+  /* ── Couleurs des branches — NON provisoires ───────────────────────
+     Elles appartiennent au mouvement, pas à la charte. Les codes exacts
+     restent à caler sur les référentiels ; les rôles, eux, sont fixés. */
+  --ses-branche-jaune: #e8b53c;    /* Louveteaux et louvettes      */
+  --ses-branche-verte: #2f6b3a;    /* Éclaireurs et éclaireuses    */
+  --ses-branche-rouge: #a32020;    /* Routiers et guides-aînées    */
+
+  /* ── Typographie ───────────────────────────────────────────────────
+     Polices système : rien à charger, rien qui parte chez un tiers.
+     Si la charte impose des polices, les héberger dans public/fonts/. */
+  --ses-font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+                   Roboto, "Helvetica Neue", Arial, sans-serif;
+  --ses-font-heading: var(--ses-font-body);
+
+  /* Échelle de titres. clamp() = s'adapte du téléphone au grand écran. */
+  --text-hero: clamp(2.25rem, 5.5vw, 3.5rem);
+  --text-h1: clamp(1.875rem, 4.5vw, 2.75rem);
+  --text-h2: clamp(1.5rem, 3.2vw, 2rem);
+  --text-h3: 1.25rem;
+  --text-body: 1.0625rem;
+  --text-small: 0.875rem;
+  --leading-body: 1.65;
+
+  /* ── Espacements. Choisir dans l'échelle, jamais entre deux pas. ── */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+
+  /* ── Largeurs ───────────────────────────────────────────────────── */
+  --content-col: 68rem;   /* la colonne du site (en-tête, grilles) */
+  --prose-max: 44rem;     /* le texte courant ne dépasse jamais ~85 signes */
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Base
+   ══════════════════════════════════════════════════════════════════ */
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background: var(--ses-bg);
+  color: var(--ses-fg);
+  font-family: var(--ses-font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--ses-font-heading);
+  font-weight: 700;
+  line-height: 1.15;
+  text-wrap: balance;
+  color: var(--ses-fg);
+}
+
+a {
+  color: var(--ses-primary);
+  text-underline-offset: 0.2em;
+}
+a:hover { color: var(--ses-primary-hover); }
+
+/* Le focus clavier reste visible partout : c'est la seule façon de
+   naviguer pour une partie des visiteurs. Ne pas le retirer. */
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid var(--ses-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Éléments réutilisables
+   ══════════════════════════════════════════════════════════════════ */
+
+/* La colonne du site. Une seule, partout, pour que tout s'aligne. */
+.ses-col {
+  width: 100%;
+  max-width: var(--content-col);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+/* Le texte courant d'une page de contenu. */
+.ses-prose {
+  max-width: var(--prose-max);
+}
+.ses-prose > * + * { margin-top: var(--space-2); }
+.ses-prose h2 {
+  font-size: var(--text-h2);
+  margin-top: var(--space-4);
+}
+.ses-prose h3 {
+  font-size: var(--text-h3);
+  margin-top: var(--space-3);
+}
+.ses-prose ul, .ses-prose ol {
+  padding-left: 1.4em;
+  list-style: revert;
+}
+.ses-prose li + li { margin-top: 0.35em; }
+.ses-prose img {
+  max-width: 100%;
+  height: auto;
+}
+.ses-prose blockquote {
+  border-left: 4px solid var(--ses-accent);
+  padding-left: var(--space-2);
+  color: var(--ses-muted);
+  font-style: italic;
+}
+
+/* Bouton principal */
+.ses-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;          /* cible tactile confortable */
+  padding: 0.5rem 1.25rem;
+  background: var(--ses-primary);
+  color: var(--ses-primary-contrast);
+  font-weight: 600;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: background-color 120ms ease;
+}
+.ses-btn:hover {
+  background: var(--ses-primary-hover);
+  color: var(--ses-primary-contrast);
+}
+
+/* Bandeau d'ébauche — visible tant qu'une page n'a pas de vrai contenu.
+   Il disparaît tout seul dès que `draft: true` est retiré de la page. */
+.ses-draft {
+  border: 1px dashed var(--ses-accent);
+  background: color-mix(in srgb, var(--ses-accent) 8%, transparent);
+  color: var(--ses-muted);
+  padding: var(--space-2);
+  font-size: var(--text-small);
+  border-radius: 3px;
+  margin-bottom: var(--space-3);
+}
+
+/* Lien d'évitement : premier élément au clavier, invisible à la souris. */
+.ses-skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--ses-surface);
+  padding: var(--space-1) var(--space-2);
+  z-index: 100;
+}
+.ses-skip:focus {
+  left: var(--space-2);
+  top: var(--space-2);
+}

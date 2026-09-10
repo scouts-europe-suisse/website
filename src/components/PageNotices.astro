@@ -1,0 +1,19 @@
+---
+/**
+ * Les bandeaux d'avertissement d'une page : « ébauche » et « traduction non
+ * relue ». Ils disparaissent d'eux-mêmes dès que `draft` / `translated` sont
+ * corrigés dans l'en-tête du fichier markdown — rien à retirer à la main.
+ */
+import { UI, type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+  draft?: boolean;
+  translated?: boolean;
+}
+const { lang, draft = false, translated } = Astro.props;
+const untranslated = lang === 'de' && translated === false;
+---
+
+{draft && <p class="ses-draft">{UI.draftNotice[lang]}</p>}
+{untranslated && <p class="ses-draft">{UI.untranslatedNotice[lang]}</p>}

@@ -1,0 +1,24 @@
+# Build output (configured via outDir in astro.config.mjs)
+_build/
+
+# Publish staging — a git worktree, created only once a host is chosen
+dist/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+.astro/
+
+# Working files
+*.bak

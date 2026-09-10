@@ -1,0 +1,93 @@
+---
+/**
+ * Le gabarit commun à toutes les pages : <head>, en-tête, pied de page.
+ *
+ * Toute page passe par ici. Ce qui est propre à une page (titre, résumé)
+ * arrive en propriété ; ce qui est commun (langue, jumelle dans l'autre
+ * langue, données pour les moteurs de recherche) est calculé ici une fois.
+ */
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, LANGS, type Lang } from '../data/site';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang: Lang;
+  /** true = pas de bandeau ni de colonne autour du contenu (page d'accueil). */
+  fullWidth?: boolean;
+  ogType?: 'website' | 'article';
+  /**
+   * true = demander aux moteurs de recherche d'ignorer la page.
+   * Mis d'office sur les ébauches : une page dont le contenu reste à écrire
+   * n'a rien à faire dans les résultats de recherche, et une fois indexée
+   * elle y reste des semaines après avoir été corrigée.
+   */
+  noindex?: boolean;
+}
+
+const { title, description, lang, fullWidth = false, ogType = 'website', noindex = false } = Astro.props;
+
+const siteUrl = (Astro.site ?? new URL(SITE.domain)).origin;
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+
+// Le titre d'onglet se termine toujours par le nom du mouvement, sans le
+// répéter quand la page le contient déjà.
+const fullTitle = title.includes(SITE.shortName) || title.includes(SITE.name)
+  ? title
+  : `${title} · ${SITE.name}`;
+
+const defaultDescription: Record<Lang, string> = {
+  fr: `${SITE.name} — le scoutisme européen en Suisse : nos branches, notre projet éducatif, et comment nous rejoindre.`,
+  de: `${SITE.name} — europäisches Pfadfindertum in der Schweiz.`,
+};
+
+// Les jumelles partagent leur slug : la page équivalente dans l'autre langue
+// s'obtient en échangeant le préfixe. Sert aux balises hreflang, qui évitent
+// que les deux versions soient prises pour du contenu dupliqué.
+const alternates = LANGS.map((l) => ({
+  lang: l,
+  href: new URL(Astro.url.pathname.replace(/^\/(fr|de)(\/|$)/, `/${l}$2`), siteUrl).href,
+}));
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description ?? defaultDescription[lang]} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+    <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description ?? defaultDescription[lang]} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={lang === 'fr' ? 'fr_CH' : 'de_CH'} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+
+  <body class="flex min-h-screen flex-col">
+    <a href="#contenu" class="ses-skip">
+      {lang === 'fr' ? 'Aller au contenu' : 'Zum Inhalt springen'}
+    </a>
+
+    <Header lang={lang} />
+
+    <main id="contenu" class={fullWidth ? '' : 'ses-col py-10'}>
+      <slot />
+    </main>
+
+    <Footer lang={lang} />
+  </body>
+</html>

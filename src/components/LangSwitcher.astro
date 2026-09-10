@@ -1,0 +1,26 @@
+---
+/**
+ * Bascule entre le français et l'allemand en gardant la page courante.
+ * Les jumelles partagent leur slug, donc il suffit d'échanger le préfixe.
+ */
+import { LANG_LABELS, type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const other: Lang = lang === 'fr' ? 'de' : 'fr';
+
+const swapped = Astro.url.pathname.replace(/^\/(fr|de)(\/|$)/, `/${other}$2`);
+---
+
+<a
+  href={swapped}
+  hreflang={other}
+  lang={other}
+  class="inline-flex items-center justify-center min-w-11 min-h-11 text-sm font-semibold uppercase tracking-wide"
+  style="color: var(--ses-muted)"
+  aria-label={`${LANG_LABELS[other]}`}
+>
+  {other}
+</a>

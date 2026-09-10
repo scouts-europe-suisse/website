@@ -1,0 +1,84 @@
+---
+name: conventions
+description: Conventions de travail du dépôt — une branche par personne, organisation des dossiers, public visé. Référencé depuis CLAUDE.md.
+metadata:
+  type: project
+---
+
+# Conventions du dépôt
+
+## Public
+
+Ce dépôt est utilisé par **plusieurs membres du SES, dont la plupart ne sont pas
+développeurs.** Chaque échange doit être lisible par une personne non technique. Le jargon n'est
+acceptable que si c'est l'utilisateur qui l'a introduit.
+
+## Langue
+
+Le chantier travaille **en français** : conversations, commits, plans, notes de `_memory/`.
+Le *site*, lui, est bilingue français / allemand — c'est autre chose, voir
+[source-site.md](source-site.md).
+
+## Branches
+
+- `main` — la référence commune. Pas de commit direct.
+- `work/<identifiant>` — une branche par personne, nommée d'après son nom de session machine
+  (`whoami`). Exemple : `work/perki`.
+- Pas encore de dépôt distant. Tout est local pour l'instant : voir « Dépôt distant » plus bas.
+
+### Pourquoi une branche par personne
+
+La plupart des utilisateurs ne penseront pas à créer une branche avant de modifier quelque chose.
+Les mettre d'office sur leur propre branche :
+
+- évite que deux personnes se marchent dessus ;
+- rend « qui a changé quoi » lisible depuis `git log work/<personne>` ;
+- donne une unité naturelle pour « reprends le travail d'untel » (fusionner sa branche).
+
+### Dépôt distant
+
+Il n'y en a pas encore. Conséquences pratiques :
+
+- « à jour » veut dire « à jour par rapport au `main` local » ;
+- il n'y a **pas de sauvegarde hors de cette machine** — à dire à l'utilisateur si le travail
+  devient conséquent ;
+- le jour où un distant est ajouté (GitHub, GitLab, ou l'instance du mouvement), rien d'autre ne
+  change dans ces conventions : on ajoute juste `git push`.
+
+## Organisation des dossiers
+
+```
+website/
+├── CLAUDE.md            Point d'entrée (lu en premier par Claude)
+├── README.md            Lisez-moi humain
+├── _plans/              Plans numérotés (voir _plans/README.md)
+├── _memory/             Règles, conventions, état (ce dossier)
+├── _references/         Documents reçus du SES (cahier des charges…)
+├── _migrations/         Ce qu'on récupère du WordPress actuel
+├── public/              Servi tel quel : favicon, robots.txt, images
+├── src/                 Le site (Astro 5 + Tailwind v4)
+└── _build/              Résultat de la construction (ignoré par git)
+```
+
+Le préfixe `_` marque les dossiers de chantier : ils restent pendant toute la vie du projet.
+
+## Style de communication
+
+- Français courant d'abord ; commandes et code seulement quand c'est nécessaire.
+- « Je récupère les dernières modifications » : oui. « Je rebase sur main » : non.
+- Une question à la fois quand il y a un vrai choix.
+- Exposer les compromis honnêtement.
+
+## Ce que Claude fait toujours automatiquement
+
+- Le rituel de démarrage ([feedback_rituel_demarrage.md](feedback_rituel_demarrage.md)).
+- Garder `work/<identifiant>` à jour par rapport à `main`.
+- Lancer le serveur local en tâche de fond et ouvrir le navigateur, quand on lui demande à voir
+  le site.
+
+## Ce que Claude ne fait jamais sans demande explicite
+
+- Commiter sur `main` (sauf un changement qui ne touche que `_plans/`).
+- Réécrire l'historique de `main`.
+- Modifier la branche `work/...` de quelqu'un d'autre.
+- Mettre le site en ligne — voir [feedback_pas_de_publication.md](feedback_pas_de_publication.md).

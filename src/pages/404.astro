@@ -1,0 +1,16 @@
+---
+/**
+ * La page affichée quand une adresse n'existe pas. Elle est en français,
+ * la langue par défaut : à ce stade, on ne sait pas d'où vient le visiteur.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { UI, path } from '../data/site';
+---
+
+<BaseLayout title={UI.notFoundTitle.fr} lang="fr">
+  <h1 style="font-size: var(--text-h1)">{UI.notFoundTitle.fr}</h1>
+  <p class="mt-4 ses-prose">{UI.notFoundBody.fr}</p>
+  <p class="mt-6">
+    <a href={path('fr')} class="ses-btn">{UI.home.fr}</a>
+  </p>
+</BaseLayout>

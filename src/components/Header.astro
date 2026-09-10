@@ -1,0 +1,162 @@
+---
+/**
+ * En-tête du site : logo, menu principal à deux niveaux, sélecteur de langue.
+ *
+ * Le menu est lu depuis src/data/site.ts — ne pas recopier d'items ici.
+ * Sur téléphone, il se replie derrière un bouton ; le pliage est fait avec
+ * <details>, donc il fonctionne même sans JavaScript.
+ */
+import { NAV, UI, path, SITE, type Lang } from '../data/site';
+import LangSwitcher from './LangSwitcher.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const here = Astro.url.pathname;
+
+/** Une entrée est active si on est sur sa page ou sur une de ses sous-pages. */
+function isActive(slug: string): boolean {
+  return here === path(lang, slug) || here.startsWith(path(lang, slug));
+}
+---
+
+<header class="border-b" style="border-color: var(--ses-border); background: var(--ses-surface)">
+  <div class="ses-col flex items-center justify-between gap-4 py-3">
+    <a href={path(lang)} class="flex items-center gap-3 no-underline" style="color: var(--ses-fg)">
+      <img
+        src="/images/logo-ses.svg"
+        alt=""
+        width="40"
+        height="40"
+        aria-hidden="true"
+        class="shrink-0"
+      />
+      <span class="font-bold leading-tight">
+        <span class="block text-base">{SITE.name}</span>
+      </span>
+    </a>
+
+    <div class="flex items-center gap-2">
+      <LangSwitcher lang={lang} />
+
+      <!-- Menu replié sur téléphone, déplié à partir de la tablette. -->
+      <details class="lg:hidden ses-mobile-nav">
+        <summary
+          class="list-none cursor-pointer inline-flex items-center justify-center min-w-11 min-h-11 font-semibold"
+          aria-label={UI.menu[lang]}
+        >
+          {UI.menu[lang]}
+        </summary>
+        <nav class="ses-mobile-panel" aria-label={UI.menu[lang]}>
+          <ul>
+            {NAV.map((item) => (
+              <li>
+                <a href={path(lang, item.slug)} aria-current={isActive(item.slug) ? 'page' : undefined}>
+                  {item.label[lang]}
+                </a>
+                {item.children && (
+                  <ul>
+                    {item.children.map((child) => (
+                      <li>
+                        <a href={path(lang, child.slug)}>{child.label[lang]}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </details>
+    </div>
+  </div>
+
+  <!-- Menu horizontal, à partir du grand écran. -->
+  <nav class="hidden lg:block border-t" style="border-color: var(--ses-border)" aria-label={UI.menu[lang]}>
+    <ul class="ses-col flex flex-wrap items-stretch gap-1">
+      {NAV.map((item) => (
+        <li class="relative ses-nav-item">
+          <a
+            href={path(lang, item.slug)}
+            class="inline-flex items-center px-3 py-3 font-semibold no-underline"
+            style={isActive(item.slug)
+              ? 'color: var(--ses-primary); box-shadow: inset 0 -3px 0 var(--ses-primary)'
+              : 'color: var(--ses-fg)'}
+            aria-current={isActive(item.slug) ? 'page' : undefined}
+          >
+            {item.label[lang]}
+          </a>
+          {item.children && (
+            <ul class="ses-submenu">
+              {item.children.map((child) => (
+                <li>
+                  <a href={path(lang, child.slug)}>{child.label[lang]}</a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  /* Le triangle par défaut du <details> : retiré, le mot « Menu » suffit. */
+  .ses-mobile-nav summary::-webkit-details-marker { display: none; }
+
+  .ses-mobile-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: var(--ses-surface);
+    border-bottom: 1px solid var(--ses-border);
+    padding: var(--space-2) var(--space-3);
+    max-height: 75vh;
+    overflow-y: auto;
+  }
+  .ses-mobile-panel a {
+    display: block;
+    padding: 0.6rem 0;
+    text-decoration: none;
+    color: var(--ses-fg);
+  }
+  .ses-mobile-panel ul ul a {
+    padding-left: var(--space-2);
+    color: var(--ses-muted);
+    font-size: var(--text-small);
+  }
+
+  /* Sous-menu du grand écran : ouvert au survol et au focus clavier, pour
+     qu'il soit atteignable autrement qu'à la souris. */
+  .ses-submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 15rem;
+    background: var(--ses-surface);
+    border: 1px solid var(--ses-border);
+    border-top: 3px solid var(--ses-primary);
+    padding: var(--space-1) 0;
+    z-index: 40;
+    box-shadow: 0 6px 18px rgb(0 0 0 / 0.08);
+  }
+  .ses-nav-item:hover > .ses-submenu,
+  .ses-nav-item:focus-within > .ses-submenu {
+    display: block;
+  }
+  .ses-submenu a {
+    display: block;
+    padding: 0.45rem var(--space-2);
+    text-decoration: none;
+    color: var(--ses-fg);
+    font-size: var(--text-small);
+  }
+  .ses-submenu a:hover {
+    background: color-mix(in srgb, var(--ses-primary) 8%, transparent);
+    color: var(--ses-primary);
+  }
+</style>

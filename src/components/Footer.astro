@@ -1,0 +1,51 @@
+---
+/**
+ * Pied de page : coordonnées du mouvement, rappel du menu, réseaux sociaux.
+ *
+ * Les liens vers les réseaux sociaux sont demandés par le cahier des charges
+ * (partie 2, point 4). Les adresses exactes des comptes ne sont pas encore
+ * renseignées : à compléter avec l'ETN Communication, ne pas les deviner.
+ */
+import { NAV, SITE, type Lang } from '../data/site';
+import { path } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-auto border-t" style="border-color: var(--ses-border); background: var(--ses-surface)">
+  <div class="ses-col grid gap-8 py-10 md:grid-cols-3">
+    <div>
+      <p class="font-bold">{SITE.name}</p>
+      <address class="not-italic" style="color: var(--ses-muted)">
+        {SITE.address.street}<br />
+        {SITE.address.city}<br />
+        {SITE.address.country}
+      </address>
+      <p class="mt-2">
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      </p>
+    </div>
+
+    <nav class="md:col-span-2" aria-label={lang === 'fr' ? 'Plan du site' : 'Sitemap'}>
+      <ul class="grid gap-2 sm:grid-cols-2">
+        {NAV.map((item) => (
+          <li>
+            <a href={path(lang, item.slug)} style="color: var(--ses-fg)">
+              {item.label[lang]}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+
+  <div class="border-t" style="border-color: var(--ses-border)">
+    <p class="ses-col py-4 text-center" style="color: var(--ses-muted); font-size: var(--text-small)">
+      © 1973–{year} {SITE.name}
+    </p>
+  </div>
+</footer>

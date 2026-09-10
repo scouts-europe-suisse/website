@@ -1,0 +1,42 @@
+---
+/**
+ * La racine du site. Elle ne montre rien : elle envoie le visiteur vers
+ * /fr/ ou /de/ selon la langue de son navigateur, en lisant toute sa liste
+ * de préférences (pas seulement la première). Sans JavaScript, le
+ * <meta refresh> l'emmène vers le français.
+ *
+ * Cette page est volontairement `noindex` : c'est un aiguillage, pas un
+ * contenu. Elle est aussi exclue du sitemap (voir astro.config.mjs).
+ */
+export const prerender = true;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Scoutisme Européen Suisse</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://www.scouts-europe.ch/fr/" />
+    <script is:inline>
+      (function () {
+        try {
+          var langs =
+            navigator.languages && navigator.languages.length
+              ? Array.from(navigator.languages)
+              : [navigator.language || 'fr'];
+          var isDe = langs.some(function (l) {
+            return l.toLowerCase().indexOf('de') === 0;
+          });
+          location.replace(isDe ? '/de/' : '/fr/');
+        } catch (_) {
+          location.replace('/fr/');
+        }
+      })();
+    </script>
+    <meta http-equiv="refresh" content="0;url=/fr/" />
+  </head>
+  <body>
+    <a href="/fr/">Français</a> · <a href="/de/">Deutsch</a>
+  </body>
+</html>
