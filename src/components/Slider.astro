@@ -18,29 +18,35 @@
  * ici. Voir _migrations/images/README.md.
  */
 import { withBase, type Lang } from '../data/site';
+import { pathFor } from '../lib/pages';
 
 interface Props {
   lang: Lang;
 }
 const { lang } = Astro.props;
 
+// Les six vues du bandeau de l'ancien site, dans son ordre, avec le lien que
+// chacune portait vers sa rubrique. Relevées sur le site en ligne le
+// 2026-09-10 ; les autorisations sont confirmées (voir le plan 04).
 const SLIDES = [
-  { img: '/images/drapeaux.jpg',
-    fr: 'Les drapeaux du mouvement et des pays d’Europe',
-    de: 'Die Fahnen der Bewegung und der europäischen Länder' },
-  { img: '/images/crete-montagne.jpg',
-    fr: 'En marche sur une crête, en fin de journée',
-    de: 'Unterwegs auf einem Grat am Abend' },
-  { img: '/images/chapelle-montagne.jpg',
-    fr: 'Une chapelle au sommet, en Suisse',
-    de: 'Eine Kapelle auf dem Gipfel, in der Schweiz' },
-  { img: '/images/pionnierage.jpg',
-    fr: 'Une installation de pionniérage montée en camp',
-    de: 'Ein im Lager gebautes Pionierbauwerk' },
-  { img: '/images/procession-flambeaux.jpg',
-    fr: 'Procession aux flambeaux, le soir',
-    de: 'Fackelprozession am Abend' },
+  { img: '/images/chapelle-montagne.jpg',  key: 'mouvement',
+    fr: 'Le mouvement',                de: 'Die Bewegung' },
+  { img: '/images/devenir-chef.jpg',       key: 'notre-scoutisme',
+    fr: 'Notre scoutisme',             de: 'Unsere Pfadfinderschaft' },
+  { img: '/images/0047.jpg',               key: 'branche-jaune',
+    fr: 'Louveteaux et louvettes',     de: 'Wölflinge' },
+  { img: '/images/dscn0566.jpg',           key: 'branche-verte',
+    fr: 'Éclaireurs et éclaireuses',   de: 'Pfadfinder' },
+  { img: '/images/montee-silhouettes.jpg', key: 'branche-rouge',
+    fr: 'Routiers et guides-aînées',   de: 'Rover und Ranger' },
+  { img: '/images/drapeaux.jpg',           key: 'dimension-europeenne',
+    fr: 'La dimension européenne',     de: 'Die europäische Dimension' },
 ];
+
+// Chaque vue mène à sa rubrique, comme sur l'ancien site.
+const slides = await Promise.all(
+  SLIDES.map(async (s) => ({ ...s, href: await pathFor(s.key, lang) })),
+);
 
 const label = lang === 'fr' ? 'Images du mouvement' : 'Bilder der Bewegung';
 const prev = lang === 'fr' ? 'Image précédente' : 'Vorheriges Bild';
@@ -50,15 +56,23 @@ const goto = lang === 'fr' ? 'Aller à l’image' : 'Zum Bild';
 
 <section class="ses-slider" aria-roledescription="carrousel" aria-label={label}>
   <div class="ses-slides" id="ses-slides">
-    {SLIDES.map((s, i) => (
+    {slides.map((s, i) => (
       <figure
         class="ses-slide"
         id={`slide-${i}`}
         aria-roledescription="diapositive"
-        aria-label={`${i + 1} / ${SLIDES.length}`}
+        aria-label={`${i + 1} / ${slides.length}`}
       >
-        <img src={withBase(s.img)} alt={lang === 'fr' ? s.fr : s.de} loading={i === 0 ? 'eager' : 'lazy'} />
-        <figcaption>{lang === 'fr' ? s.fr : s.de}</figcaption>
+        <a href={s.href ?? '#'}>
+          <img
+            src={withBase(s.img)}
+            alt={lang === 'fr' ? s.fr : s.de}
+            width="1200"
+            height="514"
+            loading={i === 0 ? 'eager' : 'lazy'}
+          />
+          <figcaption>{lang === 'fr' ? s.fr : s.de}</figcaption>
+        </a>
       </figure>
     ))}
   </div>
@@ -67,7 +81,7 @@ const goto = lang === 'fr' ? 'Aller à l’image' : 'Zum Bild';
   <button class="ses-slider-nav ses-next" type="button" aria-label={next} hidden>›</button>
 
   <div class="ses-dots" role="tablist" aria-label={label} hidden>
-    {SLIDES.map((_, i) => (
+    {slides.map((_, i) => (
       <button type="button" role="tab" aria-label={`${goto} ${i + 1}`} data-i={i}
               aria-selected={i === 0 ? 'true' : 'false'}></button>
     ))}
@@ -145,6 +159,7 @@ const goto = lang === 'fr' ? 'Aller à l’image' : 'Zum Bild';
     height: clamp(14rem, 34vw, 26rem);
     object-fit: cover;
   }
+  .ses-slide a { display: block; color: inherit; text-decoration: none; }
   .ses-slide figcaption {
     position: absolute;
     left: 50%;

@@ -1,10 +1,43 @@
 import { defineConfig } from 'astro/config';
 import { visit } from 'unist-util-visit';
+import fs from 'node:fs';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import pagefind from 'astro-pagefind';
 
 const BASE = (process.env.BASE_PATH ?? '/').replace(/\/*$/, '/');
+
+/**
+ * Dimensions réelles d'une image, lues dans son en-tête.
+ *
+ * Sans `width`/`height`, le navigateur ne sait pas quelle place réserver :
+ * la page saute quand chaque photo arrive, sous le doigt du lecteur. Une
+ * vingtaine de lignes évitent ça, sans dépendance supplémentaire.
+ */
+function imageSize(file) {
+  try {
+    const b = fs.readFileSync(file);
+    // PNG : largeur et hauteur en clair dans le bloc IHDR
+    if (b.length > 24 && b.readUInt32BE(0) === 0x89504e47) {
+      return { w: b.readUInt32BE(16), h: b.readUInt32BE(20) };
+    }
+    // JPEG : parcourir les segments jusqu'au SOF, qui porte les dimensions
+    if (b[0] === 0xff && b[1] === 0xd8) {
+      let i = 2;
+      while (i < b.length - 9) {
+        if (b[i] !== 0xff) { i++; continue; }
+        const marker = b[i + 1];
+        const len = b.readUInt16BE(i + 2);
+        // SOF0..SOF15, en excluant les marqueurs qui n'en sont pas
+        if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+          return { h: b.readUInt16BE(i + 5), w: b.readUInt16BE(i + 7) };
+        }
+        i += 2 + len;
+      }
+    }
+  } catch {}
+  return null;
+}
 
 /**
  * Préfixe les adresses absolues écrites dans le markdown (`/images/…`).
@@ -14,12 +47,29 @@ const BASE = (process.env.BASE_PATH ?? '/').replace(/\/*$/, '/');
  */
 function rehypeBaseUrls() {
   return (tree) => {
+    let seen = 0;
     visit(tree, 'element', (node) => {
       for (const attr of ['src', 'href']) {
         const v = node.properties?.[attr];
         if (typeof v === 'string' && v.startsWith('/') && !v.startsWith('//') && !v.startsWith(BASE)) {
           node.properties[attr] = BASE.replace(/\/$/, '') + v;
         }
+      }
+      if (node.tagName !== 'img') return;
+
+      // Les photos du corps des pages : seule la première est chargée tout de
+      // suite. Les autres attendent qu'on descende — une actualité qui portait
+      // 2 Mo d'images n'en charge plus qu'une au premier écran.
+      seen += 1;
+      node.properties.loading = seen === 1 ? 'eager' : 'lazy';
+      node.properties.decoding = 'async';
+
+      const src = String(node.properties.src || '');
+      const rel = src.replace(BASE, '/').replace(/^\/+/, '');
+      const size = imageSize(new URL(rel, new URL('public/', import.meta.url)));
+      if (size) {
+        node.properties.width = size.w;
+        node.properties.height = size.h;
       }
     });
   };

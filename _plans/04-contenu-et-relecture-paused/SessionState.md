@@ -31,6 +31,6 @@
   travail de relecture.
 - **Le dépôt est public.** Rien de personnel n'y entre, et l'historique garde ce qu'on y met même
   après suppression.
-- **Reste ouvert :** GitHub sert encore, sur requête authentifiée, les images purgées de
-  l'historique. Fermer complètement demande de supprimer et recréer le dépôt. Sauvegarde d'avant
-  purge : `/tmp/ses-avant-purge.bundle` (à déplacer ailleurs, `/tmp` se vide au redémarrage).
+- **Historique : clos.** Purgé et vérifié ; le résidu côté GitHub est assumé (décision de Perki,
+  2026-09-10). Ne pas rouvrir le sujet. La règle qui reste : le dépôt est public, rien de
+  personnel n'y entre.

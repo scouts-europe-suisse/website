@@ -38,6 +38,16 @@ Le site officiel du mouvement n'est pas touché. »
    Ne pas contourner ce garde-fou : il attrape exactement le genre d'erreur qui ne se voit pas en
    local, où tout marche.
 
+## L'historique du dépôt — clos
+
+L'historique a été purgé des images d'origine le 2026-09-10, et la purge vérifiée sur un clone
+frais. Reste que GitHub sert encore ces objets, par leur empreinte, à une requête authentifiée :
+seule la suppression-recréation du dépôt l'effacerait côté serveur.
+
+**Décision de Perki, 2026-09-10 : on en reste là.** Le sujet est clos, il n'y a pas à le
+rouvrir. Ce qui compte pour la suite est plus simple : **ce dépôt est public, donc rien de
+personnel n'y entre**, et ce qui y entre une fois y reste.
+
 ## Le sous-dossier
 
 GitHub Pages sert un dépôt de projet depuis `/<nom-du-depot>/`, d'où `/website/` dans l'adresse.
