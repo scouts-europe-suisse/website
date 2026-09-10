@@ -7,6 +7,7 @@ import { getEntry, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageNotices from '../../components/PageNotices.astro';
 import NewsList from '../../components/NewsList.astro';
+import Slider from '../../components/Slider.astro';
 import { pathFor } from '../../lib/pages';
 import { LANGS, NAV, NEWS_BASE, UI, withBase, type Lang } from '../../data/site';
 
@@ -58,30 +59,17 @@ const scoutingLabel = entry_('notre-scoutisme')?.label[lang] ?? '';
   pageKey="home"
   noindex={entry.data.draft}
 >
-  <!-- Photo de fond : les drapeaux du mouvement. Choisie parce qu'elle ne
-       montre personne — voir _migrations/images/README.md sur les photos où
-       des mineurs sont reconnaissables. -->
-  <section class="ses-hero">
-    <div class="ses-col py-20 text-center">
-      <h1 style="font-size: var(--text-hero); color: inherit">{entry.data.title}</h1>
-      {entry.data.description && (
-        <p class="mx-auto mt-4 max-w-2xl text-lg" style="opacity: .92">{entry.data.description}</p>
-      )}
-      {joinHref && (
-        <p class="mt-8">
-          <a
-            href={joinHref}
-            class="ses-btn"
-            style="background: var(--ses-primary-contrast); color: var(--ses-primary-text)"
-          >
-            {joinLabel}
-          </a>
-        </p>
-      )}
-    </div>
-  </section>
+  <!-- Le bandeau défilant, directement sous le menu, comme sur le site
+       actuel. Il remplace le bandeau rouge que j'avais dessiné. -->
+  <Slider lang={lang} />
+
 
   <div class="ses-col py-10">
+    <h1 style="font-size: var(--text-h1)">{entry.data.title}</h1>
+    {entry.data.description && (
+      <p class="mt-2 ses-prose" style="color: var(--ses-muted)">{entry.data.description}</p>
+    )}
+
     <PageNotices lang={lang} draft={entry.data.draft} translated={entry.data.translated} />
 
     <div class="ses-prose">
@@ -109,21 +97,3 @@ const scoutingLabel = entry_('notre-scoutisme')?.label[lang] ?? '';
   </div>
 </BaseLayout>
 
-<style>
-  .ses-hero {
-    position: relative;
-    color: var(--ses-primary-contrast);
-    /* Le voile utilise le rouge SOMBRE, pas le rouge vif du logo. Avec le
-       rouge vif il fallait monter à 82 % d'opacité pour que le sous-titre
-       reste lisible, et à ce niveau la photo ne se voyait plus — pour un
-       contraste qui restait sous le seuil (4,4:1) dans les zones de ciel.
-       Le rouge sombre à 80 % donne 5,7:1 ET laisse la photo transparaître. */
-    background-image:
-      linear-gradient(color-mix(in srgb, var(--ses-primary-hover) 80%, transparent),
-                      color-mix(in srgb, var(--ses-primary-hover) 80%, transparent)),
-      url('/images/drapeaux.jpg');
-    background-size: cover;
-    background-position: center;
-  }
-  .ses-hero :global(h1) { color: inherit; }
-</style>
