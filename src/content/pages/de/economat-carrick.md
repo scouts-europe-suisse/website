@@ -32,7 +32,7 @@ Adresse :
 Zugang mit öffentlichen Verkehrsmittel :
 Tram 13/14 oder Bus 1 - Haltestelle "Pont-Arve"
 
-## Zugang im Auto :** Parkplätze sind vor dem Geschäft verfügbar
+**Zugang im Auto :** Parkplätze sind vor dem Geschäft verfügbar
 
 **Carrickgeschäft Genf :** Das Geschäft ist seit Mai 2024 geschlossen. Bestellungen werden entweder per Telefon (+41 79 611 29 28) oder per E-Mail gemacht.
 // ' );

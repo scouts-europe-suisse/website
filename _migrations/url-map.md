@@ -9,7 +9,7 @@ part le jour de la bascule.
 
 Les redirections sont déclarées dans [`../astro.config.mjs`](../astro.config.mjs).
 
-**77 adresses redirigées, 1 volontairement abandonnées.**
+**50 adresses redirigées, 1 volontairement abandonnées.**
 
 | Ancienne adresse | Nouvelle | Pourquoi |
 |---|---|---|
@@ -22,36 +22,21 @@ Les redirections sont déclarées dans [`../astro.config.mjs`](../astro.config.m
 | `/de/espas-2/` | `/de/espas/` | page |
 | `/de/feed/` | `/de/rss.xml` | flux RSS |
 | `/de/grune-stufe/` | `/de/gruene-stufe/` | page |
-| `/de/kontakt/` | `/de/kontakt/` | page |
-| `/de/rote-stufe/` | `/de/rote-stufe/` | page |
 | `/de/stufen/` | `/de/unsere-pfadfinderschaft/` | page vide, redirigée vers la page utile |
-| `/de/uns-beitreten/` | `/de/uns-beitreten/` | page |
-| `/de/uns-beitreten/leiter-werden/` | `/de/uns-beitreten/leiter-werden/` | page |
 | `/de/uns-beitreten/nationale-netzwerke/` | `/de/uns-beitreten/` | page vide, redirigée vers la page utile |
-| `/de/uns-beitreten/standorte/` | `/de/uns-beitreten/standorte/` | page |
-| `/de/unsere-pfadfinderschaft/` | `/de/unsere-pfadfinderschaft/` | page |
-| `/de/unsere-pfadfinderschaft/europa/` | `/de/unsere-pfadfinderschaft/europa/` | page |
 | `/de/unsere-pfadfinderschaft/pfadfinderschaft/` | `/de/unsere-pfadfinderschaft/was-machen-wir/` | page |
 | `/de/unsere-pfadfinderschaft/schweizerische/` | `/de/unsere-pfadfinderschaft/schweizerische-bewegung/` | page |
-| `/de/unsere-pfadfinderschaft/wer-sind-wir/` | `/de/unsere-pfadfinderschaft/wer-sind-wir/` | page |
 | `/de/wolflingsstufe/` | `/de/woelflingsstufe/` | page |
 | `/fr/14-15-octobre-2017-quand-le-we-kraal-accueille-le-conseil-federal/` | `/fr/actualites/14-15-octobre-2017-quand-le-we-kraal-accueille-le-conseil-federal/` | actualité |
 | `/fr/acceuil/` | `/fr/` | page vide, redirigée vers la page utile |
 | `/fr/author/redacteurses/` | `/fr/actualites/` | page auteur WordPress |
-| `/fr/branche-jaune/` | `/fr/branche-jaune/` | page |
-| `/fr/branche-rouge/` | `/fr/branche-rouge/` | page |
-| `/fr/branche-rouge/guides-ainees/` | `/fr/branche-rouge/guides-ainees/` | page |
-| `/fr/branche-verte/` | `/fr/branche-verte/` | page |
 | `/fr/branches/branche-jaune/` | `/fr/branche-jaune/` | ancienne adresse encore citée dans le contenu |
 | `/fr/branches/branche-rouge/` | `/fr/branche-rouge/` | ancienne adresse encore citée dans le contenu |
 | `/fr/branches/branche-verte/` | `/fr/branche-verte/` | ancienne adresse encore citée dans le contenu |
 | `/fr/category/actualites/` | `/fr/actualites/` | catégorie WordPress |
 | `/fr/comments/feed/` | — (abandonnée) | flux des commentaires : pas de commentaires sur le nouveau site |
-| `/fr/contact/` | `/fr/contact/` | page |
 | `/fr/dimension-europeenne/` | `/fr/notre-scoutisme/europeen/` | page vide, redirigée vers la page utile |
 | `/fr/eclaireurs-et-eclaireuses/` | `/fr/branche-verte/` | page vide, redirigée vers la page utile |
-| `/fr/economat-carrick/` | `/fr/economat-carrick/` | page |
-| `/fr/espas/` | `/fr/espas/` | page |
 | `/fr/eurojam-2/` | `/fr/actualites/` | actualité vide sur l’ancien site |
 | `/fr/eurojam-2027/` | `/fr/actualites/eurojam-2027/` | actualité |
 | `/fr/eurojam/` | `/fr/actualites/eurojam/` | actualité |
@@ -59,21 +44,9 @@ Les redirections sont déclarées dans [`../astro.config.mjs`](../astro.config.m
 | `/fr/journee-des-chefs-2015/` | `/fr/actualites/journee-des-chefs-2015/` | actualité |
 | `/fr/leitertag-2015/` | `/fr/actualites/` | actualité vide sur l’ancien site |
 | `/fr/louveteaux-et-louvettes/` | `/fr/branche-jaune/` | page vide, redirigée vers la page utile |
-| `/fr/mouvement/` | `/fr/mouvement/` | page |
-| `/fr/mouvement/encadrement/` | `/fr/mouvement/encadrement/` | page |
-| `/fr/mouvement/formation-des-chefs/` | `/fr/mouvement/formation-des-chefs/` | page |
 | `/fr/mouvement/formation-des-chefs/route-vers-fatima-dons/` | `/fr/actualites/route-vers-fatima-dons/` | appel aux dons de 2018, gardé comme actualité |
 | `/fr/nationales-treffen-2013/` | `/fr/actualites/` | actualité vide sur l’ancien site |
 | `/fr/nationales-wolflingstreffen-2015/` | `/fr/actualites/` | actualité vide sur l’ancien site |
-| `/fr/notre-scoutisme/` | `/fr/notre-scoutisme/` | page |
-| `/fr/notre-scoutisme/europeen/` | `/fr/notre-scoutisme/europeen/` | page |
-| `/fr/notre-scoutisme/qui-sommes-nous/` | `/fr/notre-scoutisme/qui-sommes-nous/` | page |
-| `/fr/notre-scoutisme/scoutisme/` | `/fr/notre-scoutisme/scoutisme/` | page |
-| `/fr/notre-scoutisme/suisse/` | `/fr/notre-scoutisme/suisse/` | page |
-| `/fr/nous-rejoindre/` | `/fr/nous-rejoindre/` | page |
-| `/fr/nous-rejoindre/devenir-chef/` | `/fr/nous-rejoindre/devenir-chef/` | page |
-| `/fr/nous-rejoindre/nos-implantations/` | `/fr/nous-rejoindre/nos-implantations/` | page |
-| `/fr/nous-rejoindre/nos-implantations/fribourg/` | `/fr/nous-rejoindre/nos-implantations/fribourg/` | page |
 | `/fr/pelerinage-2024/` | `/fr/actualites/pelerinage-2024/` | actualité |
 | `/fr/pelerinage-2026/` | `/fr/actualites/pelerinage-2026/` | actualité |
 | `/fr/pelerinage-des-aines-du-scoutisme-europeen-suisse-a-fatima/` | `/fr/actualites/pelerinage-des-aines-du-scoutisme-europeen-suisse-a-fatima/` | actualité |
@@ -91,6 +64,44 @@ Les redirections sont déclarées dans [`../astro.config.mjs`](../astro.config.m
 | `/fr/week-end-national-feu-octobre-2022/` | `/fr/actualites/week-end-national-feu-octobre-2022/` | actualité |
 | `/fr/weekend-intermaitrises-mars-2022/` | `/fr/actualites/weekend-intermaitrises-mars-2022/` | actualité |
 | `/fr/woodbadge-days-2023-en-suisse/` | `/fr/actualites/woodbadge-days-2023-en-suisse/` | actualité |
+
+## Les adresses inchangées
+
+**27 adresses ne bougent pas** : la page vit à la même adresse qu'avant. Elles ne
+sont pas redirigées — une adresse qui se redirigerait vers elle-même produirait une boucle,
+et la page de redirection remplacerait la vraie page. Elles sont listées ici parce qu'une
+carte de migration doit dire *aussi* ce qui ne change pas : c'est ce qui garantit que les
+liens et le référencement existants sont préservés.
+
+| Adresse conservée |
+|---|
+| `/de/kontakt/` |
+| `/de/rote-stufe/` |
+| `/de/uns-beitreten/` |
+| `/de/uns-beitreten/leiter-werden/` |
+| `/de/uns-beitreten/standorte/` |
+| `/de/unsere-pfadfinderschaft/` |
+| `/de/unsere-pfadfinderschaft/europa/` |
+| `/de/unsere-pfadfinderschaft/wer-sind-wir/` |
+| `/fr/branche-jaune/` |
+| `/fr/branche-rouge/` |
+| `/fr/branche-rouge/guides-ainees/` |
+| `/fr/branche-verte/` |
+| `/fr/contact/` |
+| `/fr/economat-carrick/` |
+| `/fr/espas/` |
+| `/fr/mouvement/` |
+| `/fr/mouvement/encadrement/` |
+| `/fr/mouvement/formation-des-chefs/` |
+| `/fr/notre-scoutisme/` |
+| `/fr/notre-scoutisme/europeen/` |
+| `/fr/notre-scoutisme/qui-sommes-nous/` |
+| `/fr/notre-scoutisme/scoutisme/` |
+| `/fr/notre-scoutisme/suisse/` |
+| `/fr/nous-rejoindre/` |
+| `/fr/nous-rejoindre/devenir-chef/` |
+| `/fr/nous-rejoindre/nos-implantations/` |
+| `/fr/nous-rejoindre/nos-implantations/fribourg/` |
 
 ## Ce qui n’est pas dans cette table
 

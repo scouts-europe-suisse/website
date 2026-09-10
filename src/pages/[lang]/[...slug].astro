@@ -16,6 +16,8 @@ import PageNotices from '../../components/PageNotices.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import NewsList from '../../components/NewsList.astro';
 import NewsArticle from '../../components/NewsArticle.astro';
+import SectionIndex from '../../components/SectionIndex.astro';
+import { childrenOf } from '../../lib/pages';
 import { LANGS, NEWS_BASE, UI, type Lang } from '../../data/site';
 
 export async function getStaticPaths() {
@@ -51,6 +53,21 @@ const { lang } = Astro.params as { lang: Lang };
 
 const rendered = kind === 'page' || kind === 'news' ? await render(entry) : null;
 const Content = rendered?.Content;
+
+// Une page de rubrique sans texte propre affiche le sommaire de ses filles
+// plutôt qu'une page blanche.
+// `body` peut être absent selon le chargeur : on ne suppose pas qu'il existe.
+const emptyBody =
+  kind === 'page' &&
+  !entry.data.contactForm &&
+  (entry.body ?? '').replace(/<!--[\s\S]*?-->/g, '').trim() === '';
+
+// Une rubrique qui affiche le sommaire de ses filles n'est pas une page
+// blanche : elle rend service telle quelle. Le bandeau « ébauche » ne
+// s'affiche donc que si elle n'a vraiment rien à montrer.
+const sectionChildren =
+  emptyBody ? await childrenOf(entry.data.key, lang) : [];
+const showsIndex = sectionChildren.length > 0;
 
 const accent =
   kind === 'page' && entry.data.branche
@@ -90,10 +107,15 @@ const accent =
       <div style={`width: 3rem; height: 4px; background: ${accent}`}></div>
       <h1 class="mt-4" style="font-size: var(--text-h1)">{entry.data.title}</h1>
       <div class="mt-6">
-        <PageNotices lang={lang} draft={entry.data.draft} translated={entry.data.translated} />
+        <PageNotices
+          lang={lang}
+          draft={entry.data.draft && !showsIndex}
+          translated={entry.data.translated}
+        />
         <div class="ses-prose">
           <Content />
         </div>
+        {showsIndex && <SectionIndex lang={lang} children={sectionChildren} />}
         {entry.data.contactForm && <ContactForm lang={lang} />}
       </div>
     </article>

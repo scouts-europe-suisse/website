@@ -36,3 +36,4 @@ _migrations/_brut/
 
 # Working files
 *.bak
+_temp

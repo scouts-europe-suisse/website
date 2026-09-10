@@ -38,6 +38,19 @@ l'utilisateur.
 
 Si un jour ça devient nécessaire, c'est une décision à écrire ici, pas à improviser.
 
+### Le navigateur piloté (`.mcp.json`)
+
+`.mcp.json` déclare `chrome-devtools-mcp`, qui permet à Claude d'ouvrir le site et de le montrer.
+
+**Aucun chemin de profil n'y est écrit, volontairement.** Il y avait au départ
+`--userDataDir /tmp/chrome-mcp-scouts-website` : ce chemin n'existe pas sous Windows, et le
+serveur ne démarrait pas pour un membre de l'équipe sous Windows. Sans l'option, l'outil place le
+profil de lui-même au bon endroit selon le système
+(`$HOME/.cache/chrome-devtools-mcp/…`, résolu correctement sur macOS, Linux et Windows).
+
+Ne pas y remettre de chemin en dur. Si un profil jetable est un jour nécessaire, l'option
+portable est `--isolated`, qui crée un dossier temporaire et le nettoie à la fermeture.
+
 ### Le port
 
 Par défaut `4321`. Le serveur respecte la variable `PORT` si un outil lui en impose un autre.

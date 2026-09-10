@@ -1,0 +1,34 @@
+---
+/**
+ * La liste des sous-pages d'une rubrique.
+ *
+ * Les pages de rubrique (« Notre scoutisme », « Le mouvement », « Nous
+ * rejoindre ») n'ont pas de texte propre : sur l'ancien site, WordPress y
+ * affichait le contenu d'une de leurs filles, ce qui donnait deux adresses
+ * pour la même page. Ici elles servent de sommaire, jusqu'à ce que quelqu'un
+ * leur écrive une introduction.
+ */
+import type { PageRef } from '../lib/pages';
+import type { Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+  children: PageRef[];
+}
+const { lang, children } = Astro.props;
+---
+
+{children.length > 0 && (
+  <ul class="not-prose mt-2 grid gap-3 sm:grid-cols-2">
+    {children.map((c) => (
+      <li
+        class="border p-4"
+        style="border-color: var(--ses-border); background: var(--ses-surface); border-left: 4px solid var(--ses-primary)"
+      >
+        <a href={`/${lang}/${c.slug}/`} class="font-semibold no-underline" style="color: var(--ses-fg)">
+          {c.title}
+        </a>
+      </li>
+    ))}
+  </ul>
+)}
