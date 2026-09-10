@@ -4,8 +4,15 @@
 /* ══════════════════════════════════════════════════════════════════
    Habillage du site.
 
-   Les couleurs et les polices sont celles de l'identité actuelle du SES,
-   relevées le 2026-09-10 :
+   PROPOSITION DE CHARTE (2026-09-10) — première version, faite pour être
+   discutée et changée. Elle est décrite et justifiée dans
+   _plans/02-charte-graphique-later/PROPOSITION.md.
+
+   Ce qui NE bouge pas, parce que c'est l'identité du mouvement et non un
+   choix graphique : le rouge de la croix, le jaune de la fleur de lys, et les
+   trois couleurs de branche. Tout le reste est discutable.
+
+   Les couleurs de l'identité sont prélevées dans le logo :
      - les couleurs sont prélevées directement dans le fichier du logo
        (_migrations/images/logo-SES-long-2.png), pas approchées à l'œil ;
      - les polices sont celles du site actuel, Open Sans et Droid Sans.
@@ -38,12 +45,16 @@
      Le site actuel pose une colonne blanche sur un fond gris clair. On
      reprend cette mise en page : c'est sa signature visuelle la plus
      reconnaissable, avant même les couleurs. */
-  --ses-page: #e8e8e8;             /* le gris autour de la colonne       */
+  --ses-page: #efece5;             /* papier chaud autour de la colonne  */
   --ses-bg: #ffffff;               /* la colonne de contenu, blanche     */
   --ses-surface: #ffffff;          /* cartes, encadrés, en-tête          */
-  --ses-fg: #404040;               /* texte courant — 9,8:1 sur le fond  */
-  --ses-muted: #6b6b6b;            /* texte secondaire, légendes         */
-  --ses-border: #dcdcdc;
+  --ses-fg: #2a2724;               /* encre chaude — 14,9:1 sur blanc    */
+  --ses-muted: #6b6459;            /* texte secondaire — 5,9:1           */
+  --ses-border: #ddd8ce;
+
+  /* « Naturel », l'une des quatre valeurs nommées par le cahier des charges.
+     Filets de section, seconds accents. 7,6:1 sur blanc dans les deux sens. */
+  --ses-nature: #2f5d3a;
 
   /* ── Couleurs des branches — prélevées dans leurs écussons ───────────
      Elles appartiennent au mouvement, pas à la charte : elles ne changeront
@@ -55,9 +66,9 @@
   /* ── Typographie — celle du site actuel ─────────────────────────────
      Open Sans pour le texte, Droid Sans pour les titres. Hébergées ici,
      pas chargées depuis Google : voir src/styles/fonts.css. */
-  --ses-font-body: 'Open Sans', ui-sans-serif, system-ui, -apple-system,
+  --ses-font-body: 'Source Sans 3', ui-sans-serif, system-ui, -apple-system,
                    'Segoe UI', Roboto, Arial, sans-serif;
-  --ses-font-heading: 'Droid Sans', 'Open Sans', ui-sans-serif, system-ui,
+  --ses-font-heading: 'Cabin', 'Source Sans 3', ui-sans-serif, system-ui,
                       -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
 
   /* Échelle de titres. clamp() = s'adapte du téléphone au grand écran.

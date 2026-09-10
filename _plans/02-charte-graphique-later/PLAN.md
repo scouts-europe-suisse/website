@@ -20,6 +20,17 @@ valeurs — couleurs, polices, échelles — sans toucher aux pages.
 Les couleurs qui ne sont **pas** provisoires sont celles des trois branches (jaune, verte,
 rouge) : elles appartiennent au mouvement, pas à la charte.
 
+## Une première proposition est appliquée
+
+**2026-09-10.** À la demande de Perki, une première proposition de palette et de typographie est
+**appliquée au site**, pour qu'on la voie plutôt que de l'imaginer. Elle est décrite et
+justifiée dans [`PROPOSITION.md`](PROPOSITION.md), et se défait en remettant une vingtaine de
+variables à leur valeur précédente.
+
+**Ce n'est pas la charte.** Le plan reste ouvert : la charte demande la réflexion de fond du
+cahier des charges, le contact avec l'AGSE, le logo définitif, les documents types et le guide
+de style — tout cela reste à l'ETN Multimédia.
+
 ## Ce qu'il faut faire, une fois la charte reçue
 
 1. Reporter la palette et les typographies dans les variables de `global.css`.
