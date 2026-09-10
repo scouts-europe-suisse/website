@@ -21,9 +21,9 @@ const { Content } = await render(entry);
 
 // Les trois branches, reprises du menu pour ne pas dupliquer leurs libellés.
 const branches = [
-  { slug: 'branche-jaune', couleur: 'var(--ses-branche-jaune)' },
-  { slug: 'branche-verte', couleur: 'var(--ses-branche-verte)' },
-  { slug: 'branche-rouge', couleur: 'var(--ses-branche-rouge)' },
+  { slug: 'branche-jaune', couleur: 'var(--ses-branche-jaune)', ecusson: '/images/branche-jaune.png' },
+  { slug: 'branche-verte', couleur: 'var(--ses-branche-verte)', ecusson: '/images/branche-verte.png' },
+  { slug: 'branche-rouge', couleur: 'var(--ses-branche-rouge)', ecusson: '/images/branche-rouge.png' },
 ].map((b) => {
   const item = NAV[0].children?.find((c) => c.slug === b.slug);
   return { ...b, label: item?.label[lang] ?? b.slug };
@@ -41,8 +41,12 @@ const derniers = (await getCollection('news', (e) => e.id.startsWith(`${lang}/`)
   fullWidth
   noindex={entry.data.draft}
 >
-  <section style="background: var(--ses-primary); color: var(--ses-primary-contrast)">
-    <div class="ses-col py-16 text-center">
+  <!-- Photo de fond : les drapeaux du mouvement. Choisie parce qu'elle ne
+       montre personne — voir _migrations/images/README.md sur les photos où
+       des mineurs sont reconnaissables. Le voile rouge par-dessus garantit
+       que le texte reste lisible quelle que soit la zone de l'image. -->
+  <section class="ses-hero">
+    <div class="ses-col py-20 text-center">
       <h1 style="font-size: var(--text-hero); color: inherit">{entry.data.title}</h1>
       {entry.data.description && (
         <p class="mx-auto mt-4 max-w-2xl text-lg" style="opacity: .92">{entry.data.description}</p>
@@ -70,9 +74,10 @@ const derniers = (await getCollection('news', (e) => e.id.startsWith(`${lang}/`)
     <ul class="mt-4 grid gap-4 sm:grid-cols-3">
       {branches.map((b) => (
         <li
-          class="border p-5"
+          class="border p-5 text-center"
           style={`border-color: var(--ses-border); background: var(--ses-surface); border-top: 4px solid ${b.couleur}`}
         >
+          <img src={b.ecusson} alt="" width="104" height="104" class="mx-auto mb-3" style="width: 5rem; height: auto" />
           <a href={path(lang, b.slug)} class="font-semibold no-underline" style="color: var(--ses-fg)">
             {b.label}
           </a>
@@ -108,3 +113,22 @@ const derniers = (await getCollection('news', (e) => e.id.startsWith(`${lang}/`)
     </p>
   </div>
 </BaseLayout>
+
+<style>
+  .ses-hero {
+    position: relative;
+    color: var(--ses-primary-contrast);
+    /* Le voile utilise le rouge SOMBRE, pas le rouge vif du logo. Avec le
+       rouge vif il fallait monter à 82 % d'opacité pour que le sous-titre
+       reste lisible, et à ce niveau la photo ne se voyait plus — pour un
+       contraste qui restait sous le seuil (4,4:1) dans les zones de ciel.
+       Le rouge sombre à 80 % donne 5,7:1 ET laisse la photo transparaître. */
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--ses-primary-hover) 80%, transparent),
+                      color-mix(in srgb, var(--ses-primary-hover) 80%, transparent)),
+      url('/images/drapeaux.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .ses-hero :global(h1) { color: inherit; }
+</style>

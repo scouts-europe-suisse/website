@@ -16,8 +16,10 @@ metadata:
 - **L'arborescence** reprend celle du site actuel, elle-même proche de celle proposée par le
   cahier des charges. Les adresses des pages sont conservées à l'identique, sauf les artefacts
   WordPress (voir [source-site.md](source-site.md)).
-- **Les variables d'habillage** sont rassemblées dans `src/styles/global.css`, en attendant la
-  charte graphique.
+- **L'habillage reprend l'identité actuelle** : logo et écussons de branche du site WordPress,
+  couleurs prélevées dans le logo, polices Open Sans et Droid Sans hébergées sur place.
+  Tout est en variables dans `src/styles/global.css`, remplaçable en un fichier quand la
+  charte arrivera.
 - **Le fonctionnement à plusieurs** : une branche par personne, des plans dans `_plans/`, un
   rituel de démarrage de session.
 
@@ -28,8 +30,9 @@ metadata:
   [plan 03](../_plans/03-migration-contenu-wordpress/PLAN.md).
 - **L'allemand.** Les pages `de/` existent pour que le squelette bilingue tienne debout, mais
   elles sont vides et marquées `translated: false`.
-- **L'habillage définitif.** En attente de la charte —
-  [plan 02](../_plans/02-charte-graphique/PLAN.md).
+- **L'habillage définitif.** L'identité actuelle est en place, mais elle est justement ce que
+  la charte doit revoir — [plan 02](../_plans/02-charte-graphique/PLAN.md). Manquent aussi une
+  version carrée du logo pour l'icône d'onglet, et l'image de partage.
 - **La mise en ligne.** Pas d'hébergeur choisi, donc pas de script de publication —
   [plan 01](../_plans/01-hebergement-et-mise-en-ligne/PLAN.md).
 - **Le dépôt distant.** Tout est local. Il n'y a pas de sauvegarde hors de cette machine.
@@ -49,7 +52,9 @@ metadata:
 | Site statique (Astro) plutôt qu'un CMS type WordPress | 2026-09-10 | [cahier-des-charges.md](cahier-des-charges.md) |
 | Français par défaut, allemand en seconde langue, préfixe `/fr/` conservé | 2026-09-10 | [source-site.md](source-site.md) |
 | Pas de `backloop.dev` en local — `http://localhost` simple | 2026-09-10 | [local-dev-and-deploy.md](local-dev-and-deploy.md) |
-| Polices système, pas de Google Fonts | 2026-09-10 | [design-system.md](design-system.md) |
+| Polices du site actuel (Open Sans, Droid Sans), hébergées sur place plutôt que chez Google | 2026-09-10 | [design-system.md](design-system.md) |
+| Couleurs prélevées dans le logo plutôt qu'approchées à l'œil | 2026-09-10 | [design-system.md](design-system.md) |
+| Les trois photos où des mineurs sont reconnaissables ne sont pas reprises sans vérification des autorisations | 2026-09-10 | [../_migrations/images/README.md](../_migrations/images/README.md) |
 | Une branche par personne, `_plans/` directement sur `main` | 2026-09-10 | [conventions.md](conventions.md) |
 
 Voir aussi [[cahier-des-charges]], [[source-site]].

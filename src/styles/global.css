@@ -1,46 +1,64 @@
 @import "tailwindcss";
+@import "./fonts.css";
 
 /* ══════════════════════════════════════════════════════════════════
-   Habillage du site — PROVISOIRE.
+   Habillage du site.
 
-   La charte graphique du SES n'est pas finalisée (cahier des charges
-   SES25, partie 1). Toutes les valeurs de ce bloc sont des substituts,
-   à remplacer quand la charte arrivera — voir _plans/02-charte-graphique/.
+   Les couleurs et les polices sont celles de l'identité actuelle du SES,
+   relevées le 2026-09-10 :
+     - les couleurs sont prélevées directement dans le fichier du logo
+       (_migrations/images/logo-SES-long-2.png), pas approchées à l'œil ;
+     - les polices sont celles du site actuel, Open Sans et Droid Sans.
 
-   Règle : aucune couleur, aucune taille de police en dur dans une page
-   ou un composant. Tout passe par ces variables, pour que la bascule
-   sur la charte définitive se fasse ici et nulle part ailleurs.
-   Détails : _memory/design-system.md
+   Elles restent PROVISOIRES : le cahier des charges SES25 prévoit une
+   nouvelle charte graphique, dont le site devra découler. Le jour où elle
+   arrive, on remplace les valeurs de ce bloc et rien d'autre.
+   Voir _plans/02-charte-graphique/ et _memory/design-system.md.
+
+   Règle : aucune couleur, aucune taille de police en dur dans une page ou
+   un composant. Tout passe par ces variables.
    ══════════════════════════════════════════════════════════════════ */
 :root {
-  /* ── Couleurs institutionnelles — PROVISOIRES ──────────────────── */
-  --ses-primary: #7a1f1f;          /* rouge profond, en écho à la croix scoute */
-  --ses-primary-hover: #601818;
-  --ses-primary-contrast: #ffffff; /* texte posé sur --ses-primary */
-  --ses-accent: #c8a02c;           /* doré, pour les détails */
+  /* ── Couleurs de l'identité, prélevées dans le logo ────────────────
+     Le rouge de la croix et le jaune de la fleur de lys. */
+  --ses-primary: #e3051a;          /* le rouge de la croix scoute        */
+  --ses-primary-hover: #b30414;
+  --ses-primary-contrast: #ffffff; /* texte posé sur --ses-primary       */
 
-  /* ── Fonds et textes ───────────────────────────────────────────── */
-  --ses-bg: #fbfaf7;               /* fond de page, blanc légèrement chaud */
-  --ses-surface: #ffffff;          /* cartes, encadrés */
-  --ses-fg: #1c1a17;               /* texte courant */
-  --ses-muted: #5d574e;            /* texte secondaire, légendes */
-  --ses-border: #e3ded4;
+  /* Le même rouge, assombri, pour le texte et les liens sur fond clair.
+     Le rouge du logo sur fond clair donne un contraste de 4,6:1 — tout
+     juste au seuil ; celui-ci monte à 6,8:1 et reste lisible pour tous. */
+  --ses-primary-text: #b30414;
 
-  /* ── Couleurs des branches — NON provisoires ───────────────────────
-     Elles appartiennent au mouvement, pas à la charte. Les codes exacts
-     restent à caler sur les référentiels ; les rôles, eux, sont fixés. */
-  --ses-branche-jaune: #e8b53c;    /* Louveteaux et louvettes      */
-  --ses-branche-verte: #2f6b3a;    /* Éclaireurs et éclaireuses    */
-  --ses-branche-rouge: #a32020;    /* Routiers et guides-aînées    */
+  /* Le jaune de la fleur de lys. Filets, puces, soulignements : jamais du
+     texte, il est illisible sur blanc (contraste inférieur à 1,3:1). */
+  --ses-gold: #f8e900;
 
-  /* ── Typographie ───────────────────────────────────────────────────
-     Polices système : rien à charger, rien qui parte chez un tiers.
-     Si la charte impose des polices, les héberger dans public/fonts/. */
-  --ses-font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-                   Roboto, "Helvetica Neue", Arial, sans-serif;
-  --ses-font-heading: var(--ses-font-body);
+  /* ── Fonds et textes, repris du site actuel ────────────────────────── */
+  --ses-bg: #f9f9f9;               /* fond de page                       */
+  --ses-surface: #ffffff;          /* cartes, encadrés, en-tête          */
+  --ses-fg: #404040;               /* texte courant — 9,8:1 sur le fond  */
+  --ses-muted: #6b6b6b;            /* texte secondaire, légendes         */
+  --ses-border: #dcdcdc;
 
-  /* Échelle de titres. clamp() = s'adapte du téléphone au grand écran. */
+  /* ── Couleurs des branches — prélevées dans leurs écussons ───────────
+     Elles appartiennent au mouvement, pas à la charte : elles ne changeront
+     pas avec elle. Sources : Logo-BJ.png, Logo-BV.png, Logo-BR.png. */
+  --ses-branche-jaune: #ead728;    /* Louveteaux et louvettes            */
+  --ses-branche-verte: #2c8d1b;    /* Éclaireurs et éclaireuses          */
+  --ses-branche-rouge: #ba1b1b;    /* Routiers et guides-aînées          */
+
+  /* ── Typographie — celle du site actuel ─────────────────────────────
+     Open Sans pour le texte, Droid Sans pour les titres. Hébergées ici,
+     pas chargées depuis Google : voir src/styles/fonts.css. */
+  --ses-font-body: 'Open Sans', ui-sans-serif, system-ui, -apple-system,
+                   'Segoe UI', Roboto, Arial, sans-serif;
+  --ses-font-heading: 'Droid Sans', 'Open Sans', ui-sans-serif, system-ui,
+                      -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+  /* Échelle de titres. clamp() = s'adapte du téléphone au grand écran.
+     Le corps de texte est monté de 14 à 17px : le 14px du site actuel est
+     en dessous de ce qui se lit confortablement sur un écran d'aujourd'hui. */
   --text-hero: clamp(2.25rem, 5.5vw, 3.5rem);
   --text-h1: clamp(1.875rem, 4.5vw, 2.75rem);
   --text-h2: clamp(1.5rem, 3.2vw, 2rem);
@@ -90,15 +108,15 @@ h1, h2, h3, h4 {
 }
 
 a {
-  color: var(--ses-primary);
+  color: var(--ses-primary-text);
   text-underline-offset: 0.2em;
 }
-a:hover { color: var(--ses-primary-hover); }
+a:hover { color: var(--ses-primary); }
 
 /* Le focus clavier reste visible partout : c'est la seule façon de
    naviguer pour une partie des visiteurs. Ne pas le retirer. */
 :where(a, button, input, select, textarea, summary):focus-visible {
-  outline: 3px solid var(--ses-accent);
+  outline: 3px solid var(--ses-primary-text);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -138,7 +156,7 @@ a:hover { color: var(--ses-primary-hover); }
   height: auto;
 }
 .ses-prose blockquote {
-  border-left: 4px solid var(--ses-accent);
+  border-left: 4px solid var(--ses-gold);
   padding-left: var(--space-2);
   color: var(--ses-muted);
   font-style: italic;
@@ -166,8 +184,8 @@ a:hover { color: var(--ses-primary-hover); }
 /* Bandeau d'ébauche — visible tant qu'une page n'a pas de vrai contenu.
    Il disparaît tout seul dès que `draft: true` est retiré de la page. */
 .ses-draft {
-  border: 1px dashed var(--ses-accent);
-  background: color-mix(in srgb, var(--ses-accent) 8%, transparent);
+  border: 1px dashed var(--ses-primary);
+  background: color-mix(in srgb, var(--ses-gold) 22%, transparent);
   color: var(--ses-muted);
   padding: var(--space-2);
   font-size: var(--text-small);

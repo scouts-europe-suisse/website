@@ -1,6 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Scoutisme Européen Suisse">
-  <!-- SUBSTITUT PROVISOIRE — logo définitif attendu (plan 02). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img">
+  <!--
+    SUBSTITUT. Croix scoute simplifiée, aux couleurs prélevées dans le logo
+    du mouvement (#e3051a, #f8e900). Ce n'est PAS le logo : il n'en existe
+    pas de version carrée sur le site actuel, et une icône d'onglet de 32px
+    ne peut de toute façon pas porter le logo long.
+    À remplacer quand l'ETN Multimédia fournira le logo définitif — voir
+    _memory/design-system.md.
+  -->
   <title>Scoutisme Européen Suisse</title>
-  <path fill="#7a1f1f" d="M32 2 39 16 53 9 46 23 62 32 46 41 53 55 39 48 32 62 25 48 11 55 18 41 2 32 18 23 11 9 25 16Z"/>
-  <circle cx="32" cy="32" r="7" fill="#fbfaf7"/>
+  <path fill="#e3051a" d="M32 2 39 16 53 9 46 23 62 32 46 41 53 55 39 48 32 62 25 48 11 55 18 41 2 32 18 23 11 9 25 16Z"/>
+  <circle cx="32" cy="32" r="7.5" fill="#f8e900"/>
 </svg>

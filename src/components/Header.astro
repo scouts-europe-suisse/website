@@ -24,18 +24,17 @@ function isActive(slug: string): boolean {
 <!-- `relative` ancre le menu déplié du téléphone, qui est en position absolue. -->
 <header class="relative border-b" style="border-color: var(--ses-border); background: var(--ses-surface)">
   <div class="ses-col flex items-center justify-between gap-4 py-3">
-    <a href={path(lang)} class="flex items-center gap-3 no-underline" style="color: var(--ses-fg)">
+    <!-- Le logo porte déjà le nom du mouvement : pas de texte à côté, qui
+         ferait doublon à l'écran comme pour un lecteur d'écran. L'alt tient
+         lieu de nom. -->
+    <a href={path(lang)} class="inline-flex items-center no-underline">
       <img
-        src="/images/logo-ses.svg"
-        alt=""
-        width="40"
-        height="40"
-        aria-hidden="true"
-        class="shrink-0"
+        src="/images/logo-ses.png"
+        alt={SITE.name}
+        width="351"
+        height="134"
+        class="ses-logo"
       />
-      <span class="font-bold leading-tight">
-        <span class="block text-base">{SITE.name}</span>
-      </span>
     </a>
 
     <div class="flex items-center gap-2">
@@ -104,6 +103,16 @@ function isActive(slug: string): boolean {
 </header>
 
 <style>
+  /* Le logo est fourni en 351×134. On le pose à une hauteur fixe et on
+     laisse la largeur suivre, pour qu'il ne se déforme jamais. */
+  .ses-logo {
+    height: 3.25rem;
+    width: auto;
+  }
+  @media (max-width: 26rem) {
+    .ses-logo { height: 2.5rem; }
+  }
+
   /* Le triangle par défaut du <details> : retiré, le mot « Menu » suffit. */
   .ses-mobile-nav summary::-webkit-details-marker { display: none; }
 
