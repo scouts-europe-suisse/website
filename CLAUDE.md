@@ -71,7 +71,30 @@ Le nom de session de la machine est l'identité de l'utilisateur (`whoami`). Uti
 comme suffixe de branche, sans transformation ni recherche d'adresse e-mail.
 Exemple : `perki` → branche `work/perki`.
 
-### 2. S'assurer que sa branche est à jour
+### 2. Ouvrir le site, tout de suite
+
+**Avant de faire le ménage, montre le site.** C'est ce que la personne est venue voir, et ça lui
+donne un repère pendant que tu fais le reste. Ne remets pas ça à la fin.
+
+a. **Le lancer s'il ne tourne pas** : `npm run dev` en tâche de fond (http://localhost:4321).
+   Si le port est déjà pris, c'est qu'il tourne déjà : ne pas en relancer un second.
+b. **L'ouvrir dans un navigateur piloté** — celui de `.mcp.json` — pour pouvoir ensuite le
+   regarder toi-même, y vérifier une page, prendre une capture.
+c. **Si aucun navigateur piloté n'est disponible** (serveur MCP absent, en panne, ou pas encore
+   chargé), **ouvre-le dans le navigateur ordinaire du poste.** Mieux vaut la personne qui voit
+   son site que la perfection technique :
+
+   | Système | Commande |
+   |---|---|
+   | macOS | `open http://localhost:4321/fr/` |
+   | Windows | `start "" http://localhost:4321/fr/` |
+   | Linux | `xdg-open http://localhost:4321/fr/` |
+
+   Dans ce cas, dis-le : tu ne pourras pas regarder les pages toi-même tant que le navigateur
+   piloté n'est pas rétabli — voir [`_memory/navigateur-mcp.md`](_memory/navigateur-mcp.md).
+d. **Une phrase, pas un rapport** : « Le site tourne, je te l'ai ouvert. »
+
+### 3. S'assurer que sa branche est à jour
 
 a. Déterminer la branche attendue : `work/<whoami>` (la créer depuis `main` si elle n'existe pas).
 b. Basculer dessus si ce n'est pas déjà le cas.
@@ -84,7 +107,7 @@ d. En cas de conflit, s'arrêter et le montrer clairement. Ne jamais résoudre e
 avant de comparer, et pousser la branche de la personne en fin de session pour que son travail
 soit sauvegardé. Voir [`_memory/conventions.md`](_memory/conventions.md).)*
 
-### 3. Montrer sur quoi les autres travaillent
+### 4. Montrer sur quoi les autres travaillent
 
 a. Lister les branches `work/*` et l'état de `main`.
 b. Pour chaque branche en avance sur `main`, indiquer : de qui il s'agit, la date du dernier
@@ -95,7 +118,7 @@ c. Demander : *« Tu veux voir le détail de l'un de ces travaux ? Je peux te mo
 d. S'il en choisit un, demander ensuite : *« Tu veux reprendre ces changements dans ton
    travail ? »* Si oui, fusionner cette branche dans la sienne.
 
-### 4. Regarder les plans
+### 5. Regarder les plans
 
 Les règles — les états, la ligne `Session:`, comment un plan se ferme — sont dans
 **[`_plans/README.md`](_plans/README.md)**. Lis-le. Ci-dessous, uniquement ce qu'il faut *faire*
@@ -127,7 +150,7 @@ g. Quand l'utilisateur décide de démarrer, mettre en pause ou fermer un plan, 
    résultat, déplacer vers `_archives/` — puis **commite et pousse tout de suite**. C'est une
    exception assumée à « on ne commite pas sans demander », limitée aux fichiers du plan.
 
-### 5. Seulement ensuite — la demande de l'utilisateur
+### 6. Seulement ensuite — la demande de l'utilisateur
 
 ---
 

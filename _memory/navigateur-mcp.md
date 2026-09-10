@@ -49,6 +49,13 @@ La variante Windows, à n'appliquer que si le serveur refuse de démarrer :
 pour les autres. Si un poste Windows en a besoin durablement, c'est le signe qu'il faut une
 configuration par poste, pas un fichier partagé modifié pour tout le monde.
 
+## S'il n'est pas disponible, ouvrir quand même le site
+
+Le navigateur piloté sert à Claude, pas à la personne. S'il manque, **le site s'ouvre quand même**
+dans le navigateur ordinaire du poste (`open` / `start` / `xdg-open` selon le système). La
+personne voit son site ; c'est Claude qui perd la capacité de le regarder, et il doit le dire
+plutôt que de faire comme si de rien n'était.
+
 ## Le premier démarrage est lent
 
 `npx -y` télécharge le paquet la première fois : le serveur peut mettre une minute à répondre.
