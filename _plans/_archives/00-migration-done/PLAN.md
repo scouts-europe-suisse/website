@@ -1,6 +1,30 @@
 # Plan 00 — Reprendre le site actuel : contenu, images, adresses
 
-**Session:** perkim5 /Users/perki/code/scouts/website
+> **Terminé et archivé le 2026-09-10.**
+>
+> **Ce qui a été fait.** Le contenu de l'ancien WordPress est repris : 19 pages françaises,
+> 17 allemandes, 19 actualités, à partir de l'export de la base et non des pages affichées.
+> 61 images utilisées par l'ancien site sont toutes tracées. 162 adresses sont vérifiées en
+> ligne — 50 redirections, 112 pages, zéro échec. L'habillage reprend l'identité réelle du
+> mouvement, et le site est visible en aperçu public.
+>
+> **La découverte qui a changé le plan :** l'allemand existait déjà, écrit à la main et modifié
+> jusqu'en décembre 2025, mais le site actuel ne le servait pas — `/de/` renvoie la page
+> française à l'octet près. Le bilingue n'était pas à écrire, il était à remettre en service.
+>
+> **Ce que ce plan prévoyait et qui n'est PAS fait**, repris tel quel par le
+> [plan 04](../04-contenu-et-relecture-paused/PLAN.md) pour ne rien perdre :
+>
+> - **52 emplacements d'images** attendent la vérification des autorisations parentales auprès de
+>   l'ETN Photo. Chaque page porte un repère à l'endroit exact où l'image doit revenir.
+> - **Le texte de la page d'accueil** reste à écrire : l'ancienne était un assemblage de widgets,
+>   il n'y avait rien à reprendre.
+> - **Aucune page n'a été relue** par une personne du mouvement. La conversion est automatique.
+> - **L'allemand est incomplet** : deux pages françaises sans jumelle, quelques titres de section
+>   restés en français, aucune actualité traduite.
+> - **La carte des implantations** est à construire : la page correspondante est vide sur
+>   l'ancien site, il n'y avait rien à migrer.
+
 **Responsable :** Perki
 **Date :** 2026-09-10
 **Demandé par :** Perki
