@@ -4,6 +4,8 @@ urlPath: rote-stufe
 key: branche-rouge
 branche: rouge
 sourceModified: 2025-12-09
+cover: "/images/branche-rouge.png"
+coverAlt: "Abzeichen der roten Stufe"
 ---
 
 Schreite fort in der Weite und diene deinen Schwestern und Brüdern!

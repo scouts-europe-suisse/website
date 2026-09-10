@@ -113,6 +113,12 @@ export const UI = {
   },
   readMore: { fr: 'Lire la suite', de: 'Weiterlesen' },
   contactUs: { fr: 'Nous écrire', de: 'Schreiben Sie uns' },
+  search: { fr: 'Recherche', de: 'Suche' },
+  searchPlaceholder: { fr: 'Recherche…', de: 'Suche…' },
+  searchIntro: {
+    fr: 'Tapez un mot pour chercher dans tout le site.',
+    de: 'Geben Sie ein Wort ein, um die ganze Website zu durchsuchen.',
+  },
   notFoundTitle: { fr: 'Page introuvable', de: 'Seite nicht gefunden' },
   notFoundBody: {
     fr: "Cette page n'existe pas, ou plus. Le menu ci-dessus devrait vous remettre sur la bonne voie.",
@@ -134,14 +140,17 @@ export const UI = {
  * Le cahier des charges SES25 les demande (partie 2, point 4).
  */
 export const SOCIAL = [
-  { name: 'Facebook',  url: 'https://www.facebook.com/scouts.europe.suisse' },
-  { name: 'Instagram', url: 'https://www.instagram.com/scouts.europe.suisse' },
-  { name: 'YouTube',   url: 'https://www.youtube.com/@scouts.europe.suisse' },
-  { name: 'LinkedIn',  url: 'https://www.linkedin.com/company/scoutisme-europeen-suisse' },
+  { name: 'Facebook',  url: 'https://www.facebook.com/scouts.europe.suisse',  icon: 'facebook' },
+  { name: 'LinkedIn',  url: 'https://www.linkedin.com/company/scoutisme-europeen-suisse', icon: 'linkedin' },
+  { name: 'YouTube',   url: 'https://www.youtube.com/@scouts.europe.suisse',   icon: 'youtube' },
+  { name: 'Instagram', url: 'https://www.instagram.com/scouts.europe.suisse',  icon: 'instagram' },
 ] as const;
 
 /** La base de la rubrique actualités, par langue. */
 export const NEWS_BASE: Record<Lang, string> = { fr: 'actualites', de: 'aktuelles' };
+
+/** L'adresse de la page de recherche, par langue. */
+export const SEARCH_BASE: Record<Lang, string> = { fr: 'recherche', de: 'suche' };
 
 /**
  * Préfixe une adresse absolue du site par le sous-dossier de service.

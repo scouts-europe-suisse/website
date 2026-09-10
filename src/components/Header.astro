@@ -6,9 +6,10 @@
  * Sur téléphone, il se replie derrière un bouton ; le pliage est fait avec
  * <details>, donc il fonctionne même sans JavaScript.
  */
-import { NAV, SITE, SOCIAL, UI, path, withBase, type NavItem, type Lang } from '../data/site';
+import { NAV, SEARCH_BASE, SITE, SOCIAL, UI, path, withBase, type NavItem, type Lang } from '../data/site';
 import { pathFor } from '../lib/pages';
 import LangSwitcher from './LangSwitcher.astro';
+import SocialIcon from './SocialIcon.astro';
 
 interface Props {
   lang: Lang;
@@ -65,6 +66,19 @@ function isActive(href: string): boolean {
         <LangSwitcher lang={lang} twin={twin} />
       </div>
 
+      <!-- La recherche. Un simple formulaire GET vers la page de recherche :
+           il fonctionne même sans JavaScript. -->
+      <form class="hidden md:block" action={path(lang, SEARCH_BASE[lang])} role="search">
+        <label class="sr-only" for="q">{UI.search[lang]}</label>
+        <input
+          id="q"
+          type="search"
+          name="q"
+          placeholder={UI.searchPlaceholder[lang]}
+          class="ses-search"
+        />
+      </form>
+
       <!-- Les comptes du mouvement. Demandés par le cahier des charges
            (partie 2, point 4). Simples liens : pas de widget embarqué, qui
            ferait partir des données du visiteur chez le réseau concerné. -->
@@ -79,7 +93,7 @@ function isActive(href: string): boolean {
               title={s.name}
               aria-label={s.name}
             >
-              {s.name.charAt(0)}
+              <SocialIcon icon={s.icon} />
             </a>
           </li>
         ))}

@@ -3,6 +3,8 @@ title: "Economat Carrick"
 urlPath: economat-carrick
 key: economat-carrick
 sourceModified: 2025-12-09
+cover: "/images/carrick-logo.jpg"
+coverAlt: "Logo de l’économat Carrick"
 ---
 
 Pour acheter ou compléter l'uniforme de vos enfants, commander par téléphone ou email à Carrick Suisse ou bien acheter par Internet sur la [plateforme Carrick de l'association française des Scouts d'Europe](https://www.carrick.fr/).

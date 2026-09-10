@@ -1,0 +1,42 @@
+---
+/**
+ * La recherche, servie par Pagefind.
+ *
+ * Pagefind construit son index au moment du `npm run build`, à partir des
+ * pages produites : rien n'est envoyé à un service extérieur, et la recherche
+ * marche sans serveur. Conséquence à connaître : **elle ne fonctionne pas
+ * avec `npm run dev`**, où l'index n'existe pas encore. Pour l'essayer,
+ * faire `npm run build && npm run preview`.
+ */
+import { UI, withBase, type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const bundle = withBase('/pagefind/');
+---
+
+<link rel="stylesheet" href={withBase('/pagefind/pagefind-ui.css')} />
+<div id="recherche" class="not-prose"></div>
+
+<script is:inline define:vars={{ bundle, lang }}>
+  (function () {
+    var s = document.createElement('script');
+    s.src = bundle + 'pagefind-ui.js';
+    s.onload = function () {
+      var ui = new PagefindUI({
+        element: '#recherche',
+        bundlePath: bundle,
+        showImages: false,
+        translations: lang === 'de'
+          ? { placeholder: 'Suche…', zero_results: 'Nichts gefunden für [SEARCH_TERM]' }
+          : { placeholder: 'Recherche…', zero_results: 'Aucun résultat pour [SEARCH_TERM]' },
+      });
+      // La recherche lancée depuis l'en-tête arrive en ?q=
+      var q = new URLSearchParams(location.search).get('q');
+      if (q) ui.triggerSearch(q);
+    };
+    document.head.appendChild(s);
+  })();
+</script>

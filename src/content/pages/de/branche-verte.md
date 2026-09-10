@@ -4,6 +4,8 @@ urlPath: gruene-stufe
 key: branche-verte
 branche: verte
 sourceModified: 2025-12-09
+cover: "/images/branche-verte.png"
+coverAlt: "Abzeichen der grünen Stufe"
 ---
 
 ## Ein leidenschaftliches Abenteuer, indem man immer bereit ist!

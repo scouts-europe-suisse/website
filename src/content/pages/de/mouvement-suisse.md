@@ -3,6 +3,8 @@ title: "Eine schweizerische Bewegung"
 urlPath: unsere-pfadfinderschaft/schweizerische-bewegung
 key: mouvement-suisse
 sourceModified: 2025-12-09
+cover: "/images/chapelle-montagne.jpg"
+coverAlt: "Kapelle auf einem Grat"
 ---
 
 ## Die Anfänge der Pfadfinder Europas in der Schweiz

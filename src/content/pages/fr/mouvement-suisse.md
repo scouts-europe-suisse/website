@@ -3,6 +3,8 @@ title: "Un mouvement suisse"
 urlPath: notre-scoutisme/suisse
 key: mouvement-suisse
 sourceModified: 2025-12-09
+cover: "/images/chapelle-montagne.jpg"
+coverAlt: "Chapelle sur une crête"
 ---
 
 ## Les débuts des Scouts d'Europe en Suisse

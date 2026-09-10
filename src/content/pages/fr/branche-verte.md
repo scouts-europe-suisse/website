@@ -4,6 +4,8 @@ urlPath: branche-verte
 key: branche-verte
 branche: verte
 sourceModified: 2025-12-09
+cover: "/images/branche-verte.png"
+coverAlt: "Écusson de la branche verte"
 ---
 
 ## L'aventure passionnément en étant toujours prêt !

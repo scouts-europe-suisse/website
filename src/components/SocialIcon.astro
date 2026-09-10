@@ -1,0 +1,39 @@
+---
+/**
+ * Les pictogrammes des réseaux, dessinés ici en SVG.
+ *
+ * Rien n'est chargé depuis un service extérieur : ni police d'icônes, ni
+ * script de réseau social. Un widget embarqué ferait partir l'adresse IP du
+ * visiteur chez le réseau concerné avant même qu'il ait cliqué, ce que le
+ * cahier des charges demande d'éviter.
+ */
+interface Props {
+  icon: string;
+}
+const { icon } = Astro.props;
+---
+
+<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false" fill="currentColor">
+  {icon === 'facebook' && (
+    <path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.25-1.5 1.55-1.5h1.65V4.6C16.4 4.55 15.5 4.5 14.45 4.5c-2.2 0-3.7 1.35-3.7 3.8v2.6H8v3.1h2.75v8z" />
+  )}
+  {icon === 'linkedin' && (
+    <g>
+      <path d="M6.94 8.5H4.2V20h2.74zM5.57 4a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2z" />
+      <path d="M14.6 8.28c-1.44 0-2.32.77-2.7 1.5h-.05V8.5H9.2V20h2.75v-5.7c0-1.5.28-2.95 2.14-2.95 1.83 0 1.86 1.71 1.86 3.05V20h2.75v-6.15c0-3.1-.67-5.57-4.1-5.57z" />
+    </g>
+  )}
+  {icon === 'youtube' && (
+    <g>
+      <path d="M22.2 8.1a2.7 2.7 0 0 0-1.9-1.9C18.6 5.75 12 5.75 12 5.75s-6.6 0-8.3.45A2.7 2.7 0 0 0 1.8 8.1 28 28 0 0 0 1.35 12a28 28 0 0 0 .45 3.9 2.7 2.7 0 0 0 1.9 1.9c1.7.45 8.3.45 8.3.45s6.6 0 8.3-.45a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22.65 12a28 28 0 0 0-.45-3.9z" />
+      <path d="M10.1 15.15 15.5 12l-5.4-3.15z" fill="#fff" />
+    </g>
+  )}
+  {icon === 'instagram' && (
+    <g>
+      <path d="M16.5 3h-9A4.5 4.5 0 0 0 3 7.5v9A4.5 4.5 0 0 0 7.5 21h9a4.5 4.5 0 0 0 4.5-4.5v-9A4.5 4.5 0 0 0 16.5 3zm2.7 13.5a2.7 2.7 0 0 1-2.7 2.7h-9a2.7 2.7 0 0 1-2.7-2.7v-9a2.7 2.7 0 0 1 2.7-2.7h9a2.7 2.7 0 0 1 2.7 2.7z" />
+      <path d="M12 7.4a4.6 4.6 0 1 0 0 9.2 4.6 4.6 0 0 0 0-9.2zm0 7.4a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6z" />
+      <circle cx="17.05" cy="6.95" r="1.05" />
+    </g>
+  )}
+</svg>

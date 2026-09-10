@@ -4,6 +4,8 @@ urlPath: branche-jaune
 key: branche-jaune
 branche: jaune
 sourceModified: 2025-12-09
+cover: "/images/branche-jaune.png"
+coverAlt: "Écusson de la branche jaune"
 ---
 
 ## Croque la vie à pleine dents en faisant de ton mieux !

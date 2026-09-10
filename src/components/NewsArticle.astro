@@ -29,7 +29,7 @@ const d = entry.data;
 
   {d.cover && (
     <figure class="mt-6">
-      <img src={d.cover} alt="" style="max-width: 100%; height: auto" />
+      <img src={withBase(d.cover)} alt="" style="max-width: 100%; height: auto" />
       {/* Le crédit n'est jamais facultatif dès qu'il y a une image. */}
       {d.coverCredit && (
         <figcaption style="color: var(--ses-muted); font-size: var(--text-small)">

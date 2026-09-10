@@ -57,6 +57,13 @@ const pages = defineCollection({
      * Voir _memory/feedback_faits_du_mouvement.md.
      */
     translated: z.boolean().optional(),
+    /**
+     * L'image à la une, affichée en tête de page. L'ancien site en avait une
+     * sur 37 pages : c'est une donnée WordPress (`_thumbnail_id`) rangée à
+     * part du contenu, ce qui explique qu'elle ait été manquée à la reprise.
+     */
+    cover: z.string().optional(),
+    coverAlt: z.string().optional(),
     /** Accent de couleur d'une page de branche. */
     branche: z.enum(['jaune', 'verte', 'rouge']).optional(),
   }),

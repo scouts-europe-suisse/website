@@ -7,7 +7,7 @@
  * est la clé `key`, portée par les deux fichiers.
  */
 import { getCollection } from 'astro:content';
-import { withBase, type Lang } from '../data/site';
+import { NAV, withBase, type Lang } from '../data/site';
 
 export interface PageRef {
   key: string;
@@ -45,17 +45,29 @@ export async function twinOf(key: string, current: Lang): Promise<string | null>
 }
 
 /**
- * Les sous-pages directes d'une page, dans la même langue.
+ * Les sous-pages d'une rubrique, dans la même langue.
  *
- * Déduites de l'adresse : `notre-scoutisme/qui-sommes-nous` est fille de
- * `notre-scoutisme`. C'est plus sûr que de lire le menu, qui ne contient que
- * ce qu'on a choisi d'y montrer — la page de Fribourg, par exemple, est fille
- * des implantations sans figurer au menu.
+ * On suit d'abord LE MENU : c'est lui qui dit ce qui appartient à une
+ * rubrique. « Un mouvement suisse » et « ESPAS » sont sous « Le mouvement »
+ * dans le menu, alors que leurs adresses sont ailleurs dans l'arborescence —
+ * en se fiant aux adresses, la rubrique n'en montrait que la moitié.
+ *
+ * À défaut d'entrée de menu, on retombe sur les adresses, ce qui rattrape les
+ * pages hors menu (la page de Fribourg, fille des implantations).
  */
 export async function childrenOf(key: string, lang: Lang): Promise<PageRef[]> {
   const list = await all();
   const me = list.find((x) => x.key === key && x.lang === lang);
-  if (!me || !me.slug) return [];
+  if (!me) return [];
+
+  const fromMenu = NAV.find((i) => i.key === key)?.children ?? [];
+  if (fromMenu.length) {
+    return fromMenu
+      .map((c) => list.find((x) => x.key === c.key && x.lang === lang))
+      .filter((x): x is PageRef => Boolean(x));
+  }
+
+  if (!me.slug) return [];
   const prefix = me.slug + '/';
   return list
     .filter((x) => x.lang === lang && x.slug.startsWith(prefix))

@@ -3,6 +3,8 @@ title: "Carrick"
 urlPath: carrick
 key: economat-carrick
 sourceModified: 2025-12-09
+cover: "/images/carrick-logo.jpg"
+coverAlt: "Logo des Carrick-Shops"
 ---
 
 Um das Uniform Ihrer Kinder zu kaufen oder zu vervollständigen können Carrick über E-mail Telefon erreichen, oder auf der Carrick-webseite der französischen Pfadfinderschaft Europas einkaufen.

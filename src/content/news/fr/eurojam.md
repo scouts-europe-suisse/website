@@ -3,6 +3,8 @@ title: "Eurojam"
 date: 2014-08-10
 summary: "L’Eurojam 2014 s'est déroulé à Saint-Evroult-Notre-Dame-du-Bois, en Normandie, du 3 au 10 août 2014."
 updated: 2025-12-09
+cover: "/images/logo-eurojam.png"
+coverCredit: "Logo de l’Eurojam 2014"
 ---
 
 L’Eurojam 2014 s'est déroulé à Saint-Evroult-Notre-Dame-du-Bois, en Normandie, du 3 au 10 août 2014.

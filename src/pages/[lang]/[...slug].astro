@@ -18,7 +18,9 @@ import NewsList from '../../components/NewsList.astro';
 import NewsArticle from '../../components/NewsArticle.astro';
 import SectionIndex from '../../components/SectionIndex.astro';
 import { childrenOf } from '../../lib/pages';
-import { LANGS, NEWS_BASE, UI, type Lang } from '../../data/site';
+import { withBase } from '../../data/site';
+import Search from '../../components/Search.astro';
+import { LANGS, NEWS_BASE, SEARCH_BASE, UI, type Lang } from '../../data/site';
 
 export async function getStaticPaths() {
   const out: any[] = [];
@@ -34,6 +36,7 @@ export async function getStaticPaths() {
 
   for (const lang of LANGS) {
     out.push({ params: { lang, slug: NEWS_BASE[lang] }, props: { kind: 'news-index' } });
+    out.push({ params: { lang, slug: SEARCH_BASE[lang] }, props: { kind: 'search' } });
   }
 
   const news = await getCollection('news');
@@ -75,6 +78,14 @@ const accent =
     : 'var(--ses-primary)';
 ---
 
+{kind === 'search' && (
+  <BaseLayout title={UI.search[lang]} lang={lang} noindex>
+    <h1 style="font-size: var(--text-h1)">{UI.search[lang]}</h1>
+    <p class="mt-2" style="color: var(--ses-muted)">{UI.searchIntro[lang]}</p>
+    <div class="mt-6"><Search lang={lang} /></div>
+  </BaseLayout>
+)}
+
 {kind === 'news-index' && (
   <BaseLayout title={UI.news[lang]} lang={lang} pageKey="news-index">
     <NewsList lang={lang} />
@@ -104,6 +115,16 @@ const accent =
     noindex={entry.data.draft}
   >
     <article>
+      {/* L'image à la une, au-dessus du titre, comme sur le site actuel. */}
+      {entry.data.cover && (
+        <img
+          src={withBase(entry.data.cover)}
+          alt={entry.data.coverAlt ?? ''}
+          class="ses-cover"
+          loading="eager"
+        />
+      )}
+
       {/* Une page de branche garde un filet de sa couleur : c'est le seul
           repère visuel qui distingue les trois branches. Les autres pages
           n'en ont pas, comme sur le site actuel. */}

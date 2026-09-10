@@ -3,6 +3,8 @@ title: "Europa"
 urlPath: unsere-pfadfinderschaft/europa
 key: dimension-europeenne
 sourceModified: 2025-12-09
+cover: "/images/drapeaux.jpg"
+coverAlt: "Fahnen europäischer Länder und der Bewegung"
 ---
 
 ## Ein bisschen Geschichte…

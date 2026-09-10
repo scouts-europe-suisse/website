@@ -3,6 +3,8 @@ title: "La dimension européenne"
 urlPath: notre-scoutisme/europeen
 key: dimension-europeenne
 sourceModified: 2025-12-09
+cover: "/images/drapeaux.jpg"
+coverAlt: "Drapeaux des pays d’Europe et du mouvement"
 ---
 
 ## Un peu d'histoire...
