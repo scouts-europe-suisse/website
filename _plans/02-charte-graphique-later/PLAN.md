@@ -48,7 +48,10 @@ de style — tout cela reste à l'ETN Multimédia.
   charte : **un carré, jamais un écu.** Lecture complète et réserves :
   [`../../_memory/croix-suisse-et-armoiries.md`](../../_memory/croix-suisse-et-armoiries.md).
   À faire confirmer par l'IPI si le mouvement veut une certitude juridique.
-- L'AGSE a mené un travail récent dont le SES peut s'inspirer, voire reprendre des éléments.
+- **L'AGSE est une association sœur**, pas un tiers : le SES et elle relèvent de la même
+  fédération, l'Union internationale des Guides et Scouts d'Europe. Reprendre ou adapter son
+  travail récent, comme le recommande le cahier des charges, est donc la voie la plus naturelle —
+  et probablement la moins coûteuse. **À explorer avant de faire dessiner une charte à neuf.**
 
 ## Ce que « terminé » veut dire
 

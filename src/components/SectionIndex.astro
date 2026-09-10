@@ -23,7 +23,7 @@ const { lang, children } = Astro.props;
     {children.map((c) => (
       <li
         class="border p-4"
-        style="border-color: var(--ses-border); background: var(--ses-surface); border-left: 4px solid var(--ses-primary)"
+        style="border-color: var(--ses-border); background: var(--ses-surface); border-left: 4px solid var(--ses-nature)"
       >
         <a href={withBase(`/${lang}/${c.slug}/`)} class="font-semibold no-underline" style="color: var(--ses-fg)">
           {c.title}

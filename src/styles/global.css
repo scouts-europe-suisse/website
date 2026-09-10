@@ -54,7 +54,7 @@
 
   /* « Naturel », l'une des quatre valeurs nommées par le cahier des charges.
      Filets de section, seconds accents. 7,6:1 sur blanc dans les deux sens. */
-  --ses-nature: #2f5d3a;
+  --ses-nature: #2f5d3a;   /* utilisée par les sommaires de rubrique */
 
   /* ── Couleurs des branches — prélevées dans leurs écussons ───────────
      Elles appartiennent au mouvement, pas à la charte : elles ne changeront

@@ -8,8 +8,13 @@
 > vingtaine de variables en haut de [`../../src/styles/global.css`](../../src/styles/global.css).
 >
 > La charte, elle, reste à établir par l'ETN Multimédia, avec la réflexion de fond que demande le
-> cahier des charges — et après avoir contacté l'AGSE, ce qui est une conversation entre
-> associations, pas quelque chose qui se déduit d'un site web.
+> cahier des charges — et après avoir contacté l'AGSE.
+>
+> **Et cette piste-là est sans doute la bonne.** Le SES et l'AGSE sont deux associations de la
+> même fédération, l'Union internationale des Guides et Scouts d'Europe. Reprendre ou adapter le
+> travail récent de l'AGSE, comme le suggère le cahier des charges, se fait donc entre maisons
+> d'une même famille — ce n'est pas emprunter à un tiers. Si cette voie est retenue, la présente
+> proposition n'a plus lieu d'être : elle n'existe que pour éviter d'attendre les bras ballants.
 
 ## Ce qui n'est pas discutable
 

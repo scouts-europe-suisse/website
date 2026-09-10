@@ -25,6 +25,11 @@ signatures d'e-mail, présentations), et un guide de style.
 Deux recommandations explicites : mener une réflexion de fond plutôt qu'un simple
 rafraîchissement, et contacter l'AGSE, dont le travail récent pourrait inspirer voire être repris.
 
+**À savoir pour bien lire cette seconde recommandation :** l'AGSE n'est pas un tiers. Le SES en
+est l'homologue française au sein de la même fédération, l'Union internationale des Guides et
+Scouts d'Europe, dont le site dit lui-même que l'association est membre. Reprendre son travail
+est donc une affaire de famille, pas un emprunt.
+
 **Point de vigilance :** vérifier la légalité de l'usage du drapeau suisse dans le logo (loi et
 ordonnance sur la protection des armoiries).
 
