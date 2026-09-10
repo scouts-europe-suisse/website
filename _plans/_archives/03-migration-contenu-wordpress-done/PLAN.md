@@ -1,6 +1,6 @@
 # Plan 03 — Reprendre le contenu du site WordPress actuel
 
-> **Terminé et archivé le 2026-09-10 — repris par le [plan 00](../../00-migration-atwork/PLAN.md).**
+> **Terminé et archivé le 2026-09-10 — repris par le [plan 00](../../_archives/00-migration-done/PLAN.md).**
 >
 > Le gros du travail décrit ici est fait : 19 pages FR, 17 pages DE et 19 actualités reprises
 > depuis l'export de la base, 78 anciennes adresses cartographiées et redirigées.
@@ -41,7 +41,7 @@ Deux choses à ne pas rater en chemin :
    et casse tous les liens existants (dépliants, réseaux sociaux, sites de groupes locaux). On
    garde donc les adresses actuelles quand c'est possible, et on met une redirection quand ça ne
    l'est pas. L'inventaire des adresses actuelles est dans
-   [`../../_memory/source-site.md`](../../_memory/source-site.md).
+   [`../../_memory/source-site.md`](../../../_memory/source-site.md).
 2. **L'allemand n'existe pas.** `www.scouts-europe.ch/de/` sert aujourd'hui la page française à
    l'identique. Il n'y a donc rien à reprendre côté allemand : il faut le **rédiger**, et le
    faire relire par un germanophone du mouvement.
@@ -51,9 +51,9 @@ Deux choses à ne pas rater en chemin :
 1. ~~Récupérer le contenu des pages actuelles~~ — **fait**, depuis l'export de la base.
    Attention : cet export contient des messages et des fiches de contact de personnes réelles,
    ainsi que les bases d'autres sites. Il ne doit pas entrer dans le dépôt — voir
-   [`../../_migrations/README.md`](../../_migrations/README.md).
+   [`../../_migrations/README.md`](../../../_migrations/README.md).
 2. Pour chaque image reprise : savoir qui l'a prise, et si des mineurs y sont reconnaissables
-   (voir la règle photos dans [`../../CLAUDE.md`](../../CLAUDE.md)).
+   (voir la règle photos dans [`../../CLAUDE.md`](../../../CLAUDE.md)).
 3. ~~Reporter le texte dans `src/content/pages/fr/`~~ — **fait**. À relire par une personne du
    mouvement : la conversion est automatique, elle peut avoir raté des mises en forme.
 4. ~~Rédiger les jumelles allemandes~~ — **fait pour l'essentiel** : elles existaient déjà dans

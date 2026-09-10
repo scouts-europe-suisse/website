@@ -19,7 +19,7 @@ WordPress. Tout est rassemblé en variables CSS **en haut de
 passe par ces variables. C'est ce qui permettra de basculer sur la charte définitive en changeant
 un seul fichier, sans relire les pages une par une.
 
-C'est l'objet du [plan 02](../_plans/02-charte-graphique/PLAN.md).
+C'est l'objet du [plan 02](../_plans/02-charte-graphique-later/PLAN.md).
 
 ## Les couleurs
 

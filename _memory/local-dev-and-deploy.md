@@ -107,10 +107,10 @@ grep -rhoE '(src|href)="/[a-zA-Z][^"]*"' _build --include='*.html' | grep -v '^.
 
 **Il n'y a volontairement ni script de publication, ni fichier `CNAME`, ni branche de déploiement
 dans ce dépôt.** L'hébergement n'est pas choisi : c'est l'objet du
-[plan 01](../_plans/01-hebergement-et-mise-en-ligne/PLAN.md).
+[plan 01](../_plans/01-domaine-et-bascule-later/PLAN.md).
 
 Si un utilisateur demande à publier : ne pas improviser. La règle est dans
-[feedback_pas_de_publication.md](feedback_pas_de_publication.md).
+[feedback_pas_de_publication.md](feedback_publication.md).
 
 Le site actuel (WordPress) continue de tourner chez son hébergeur pendant tout le chantier.
 Rien de ce qui est fait ici ne l'affecte.

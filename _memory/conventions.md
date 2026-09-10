@@ -85,4 +85,4 @@ Le préfixe `_` marque les dossiers de chantier : ils restent pendant toute la v
 - Commiter sur `main` (sauf un changement qui ne touche que `_plans/`).
 - Réécrire l'historique de `main`.
 - Modifier la branche `work/...` de quelqu'un d'autre.
-- Mettre le site en ligne — voir [feedback_pas_de_publication.md](feedback_pas_de_publication.md).
+- Mettre le site en ligne — voir [feedback_pas_de_publication.md](feedback_publication.md).

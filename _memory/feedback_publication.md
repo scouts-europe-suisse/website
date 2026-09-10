@@ -19,7 +19,7 @@ npm run deploy
 `www.scouts-europe.ch` continue de tourner sous WordPress et n'est pas touché. L'adresse
 ci-dessus est un **aperçu public** : elle sert à montrer le travail au mouvement et à le relire
 en conditions réelles. La bascule du vrai domaine reste à décider —
-[plan 01](../_plans/01-hebergement-et-mise-en-ligne-later/PLAN.md).
+[plan 01](../_plans/01-domaine-et-bascule-later/PLAN.md).
 
 **Conséquence à dire à l'utilisateur** quand il demande à publier : « Je mets à jour l'aperçu.
 Le site officiel du mouvement n'est pas touché. »

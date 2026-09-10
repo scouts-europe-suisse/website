@@ -93,7 +93,7 @@ service.
 **Ce qui reste** est du contenu et des décisions, plus de la technique : compléter l'allemand
 (deux pages sans jumelle, aucune actualité traduite), faire relire les pages par une personne du
 mouvement, et construire la carte des implantations. C'est le
-[plan 04](_plans/04-contenu-et-relecture-atwork/PLAN.md).
+[plan 04](_plans/04-contenu-et-relecture-paused/PLAN.md).
 
 **La charte graphique** reste à venir : le site reprend pour l'instant l'identité actuelle du
 mouvement — [plan 02](_plans/02-charte-graphique-later/PLAN.md).

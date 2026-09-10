@@ -52,9 +52,9 @@ recréer le dépôt, ou demander à GitHub de purger. Sauvegarde d'avant purge :
 ## Fichiers à rouvrir pour reprendre le fil
 
 - [`PLAN.md`](PLAN.md) — ce qui reste, en détail.
-- [`../../_migrations/url-map.md`](../../_migrations/url-map.md) — la table des adresses.
-- [`../../_migrations/images/README.md`](../../_migrations/images/README.md) — l'état de chaque image.
-- [`../../_memory/source-site.md`](../../_memory/source-site.md) — ce que contient l'ancien site.
+- [`../../_migrations/url-map.md`](../../../_migrations/url-map.md) — la table des adresses.
+- [`../../_migrations/images/README.md`](../../../_migrations/images/README.md) — l'état de chaque image.
+- [`../../_memory/source-site.md`](../../../_memory/source-site.md) — ce que contient l'ancien site.
 
 ## Points à ne pas réapprendre à la dure
 

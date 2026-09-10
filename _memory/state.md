@@ -37,7 +37,7 @@ metadata:
 **Aperçu public :** https://scouts-europe-suisse.github.io/website/ — `npm run deploy`.
 Ce n'est **pas** le site officiel : `www.scouts-europe.ch` tourne toujours sous WordPress.
 Le site sait être servi à la racine d'un domaine comme depuis un sous-dossier ; la bascule du
-vrai domaine reste à décider ([plan 01](../_plans/01-hebergement-et-mise-en-ligne-later/PLAN.md)).
+vrai domaine reste à décider ([plan 01](../_plans/01-domaine-et-bascule-later/PLAN.md)).
 
 **Le dépôt est public.** Rien de personnel n'y entre, et l'historique garde ce qu'on y met même
 après suppression.

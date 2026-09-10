@@ -13,7 +13,7 @@
 > française à l'octet près. Le bilingue n'était pas à écrire, il était à remettre en service.
 >
 > **Ce que ce plan prévoyait et qui n'est PAS fait**, repris tel quel par le
-> [plan 04](../04-contenu-et-relecture-paused/PLAN.md) pour ne rien perdre :
+> [plan 04](../../04-contenu-et-relecture-paused/PLAN.md) pour ne rien perdre :
 >
 > - **52 emplacements d'images** attendent la vérification des autorisations parentales auprès de
 >   l'ETN Photo. Chaque page porte un repère à l'endroit exact où l'image doit revenir.
@@ -64,7 +64,7 @@ automatiquement.
 **Les adresses.** Les adresses françaises sont conservées à l'identique. Les allemandes
 deviennent de vraies adresses allemandes (`/de/woelflingsstufe/`), puisque les anciennes n'ont
 jamais été accessibles et que rien ne pointe dessus. **78 anciennes adresses sont cartographiées**
-dans [`../../_migrations/url-map.md`](../../_migrations/url-map.md) et redirigées depuis
+dans [`../../_migrations/url-map.md`](../../../_migrations/url-map.md) et redirigées depuis
 `astro.config.mjs`.
 
 **L'habillage.** Logo, écussons de branche, couleurs prélevées dans le logo, polices du site
@@ -86,7 +86,7 @@ publiées** : celles où aucun visage n'est identifiable, ou qui ne montrent per
 fait sur des recadrages à 100 %, parce qu'une silhouette minuscule en vignette redevient un
 visage reconnaissable à pleine résolution.
 
-Voir [`../../_migrations/images/README.md`](../../_migrations/images/README.md).
+Voir [`../../_migrations/images/README.md`](../../../_migrations/images/README.md).
 
 ### 2. Deux documents
 

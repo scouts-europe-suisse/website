@@ -78,7 +78,7 @@ Le flux RSS des actualités est conservé, à `/fr/actualites/rss.xml`.
 
 Chaque changement d'adresse doit recevoir une **redirection** dans `astro.config.mjs`, pour que
 les anciens liens continuent de fonctionner. C'est l'objet du
-[plan 03](../_plans/03-migration-contenu-wordpress/PLAN.md).
+[plan 03](../_plans/_archives/03-migration-contenu-wordpress-done/PLAN.md).
 
 ## Les adresses allemandes
 
