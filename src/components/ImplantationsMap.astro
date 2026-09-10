@@ -1,0 +1,77 @@
+---
+/**
+ * La carte des implantations.
+ *
+ * C'est la carte du mouvement elle-même : un « Google My Maps » que le SES
+ * tient à jour, déjà embarqué sur l'ancien site. On reprend la même.
+ *
+ * **Mais elle ne se charge qu'au clic.** Un iframe Google embarqué d'office
+ * contacte Google dès l'ouverture de la page : adresse IP, entête de
+ * référence, cookies éventuels partent avant même que le visiteur ait fait
+ * quoi que ce soit. Le cahier des charges SES25 demande explicitement de
+ * veiller à la protection des données ; le public visé, ce sont des parents.
+ * D'où le chargement au clic : rien ne part tant que la personne n'a pas
+ * choisi d'afficher la carte.
+ */
+import type { Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+// Identifiant de la carte du mouvement, repris de l'ancien site.
+const MAP_ID = 'zfTykSxVYwRo.kXJ56xQzar0I';
+const SRC = `https://www.google.com/maps/d/embed?mid=${MAP_ID}`;
+
+const T = {
+  fr: {
+    titre: 'Carte de nos implantations',
+    avis: 'La carte est hébergée par Google. En l’affichant, vous vous connectez aux serveurs de Google, qui recevront votre adresse IP.',
+    bouton: 'Afficher la carte',
+    lien: 'Ouvrir la carte chez Google',
+  },
+  de: {
+    titre: 'Karte unserer Standorte',
+    avis: 'Die Karte wird von Google gehostet. Beim Anzeigen verbinden Sie sich mit Google-Servern, die Ihre IP-Adresse erhalten.',
+    bouton: 'Karte anzeigen',
+    lien: 'Karte bei Google öffnen',
+  },
+}[lang];
+---
+
+<div class="ses-map not-prose" data-src={SRC}>
+  <div class="ses-map-ask">
+    <p class="font-semibold">{T.titre}</p>
+    <p class="mt-2" style="color: var(--ses-muted); font-size: var(--text-small)">{T.avis}</p>
+    <p class="mt-3">
+      <button type="button" class="ses-btn">{T.bouton}</button>
+    </p>
+    <p class="mt-2" style="font-size: var(--text-small)">
+      <a href={SRC.replace('/embed?', '/viewer?')} target="_blank" rel="noopener">{T.lien}</a>
+    </p>
+  </div>
+</div>
+
+<script is:inline>
+  document.querySelectorAll('.ses-map').forEach(function (box) {
+    var btn = box.querySelector('button');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = box.dataset.src;
+      f.title = box.querySelector('p').textContent;
+      f.loading = 'lazy';
+      f.setAttribute('referrerpolicy', 'no-referrer');
+      f.width = '100%';
+      f.height = '480';
+      f.style.border = '0';
+      box.replaceChildren(f);
+    });
+  });
+</script>
+
+<style>
+  .ses-map { border: 1px solid var(--ses-border); background: var(--ses-surface); }
+  .ses-map-ask { padding: var(--space-3); }
+</style>

@@ -25,11 +25,15 @@ demande sa propre vérification.
 **Fait le 2026-09-10 :** 71 emplacements remplis, 50 images publiées. Il ne reste que deux cas,
 qui ne sont pas des questions d'autorisation :
 
-- `LABEL_CONTACT_ESPAS_VECTOR` est un **PDF**, pas une image : il ne peut pas s'afficher dans le
-  corps d'une page. À décider — lien de téléchargement, ou abandon.
-- Le **texte cité** de la page sur la dimension européenne reste retenu. La confirmation porte
-  sur les photos ; ce texte n'est attribué à personne sur l'ancien site, et c'est son auteur qui
-  manque, pas une autorisation.
+**Les deux cas restants ont été tranchés en regardant le site en ligne (2026-09-10) :**
+
+- `LABEL_CONTACT_ESPAS_VECTOR` : **abandonné**. C'est un PDF, et la page ESPAS du site en ligne
+  ne contient **aucune image** — il n'était défini que comme image à la une, jamais affiché.
+  Rien à reprendre.
+- Le **texte cité** de la page européenne : **rétabli**. Il est bien sur le site en ligne, en
+  entier, et il s'y termine sans la moindre attribution : il n'y a donc rien à récupérer de
+  l'ancien site. Le texte est en place, avec un repère `à attribuer` juste au-dessus.
+  **À faire : retrouver l'auteur et la source**, et les ajouter.
 
 ## 2. Le texte de la page d'accueil — traité
 
@@ -62,11 +66,20 @@ l'écran, en français et en allemand.
 Un texte cité sur la page de la dimension européenne **n'a pas été repris** : il n'est attribué à
 personne sur l'ancien site. À réintégrer avec son auteur et sa source.
 
-## 5. La carte des implantations
+## 5. La carte des implantations — en place
 
-Demandée par le cahier des charges (partie 2, point 3). La page est **vide** sur l'ancien site :
-rien à migrer, tout à construire. Question ouverte : quel fond de carte, et à quelles conditions
-de protection des données.
+**Je m'étais trompé** en écrivant qu'il n'y avait rien à migrer. La page paraît vide dans la base
+parce que la carte n'est pas dans le texte : c'est un **iframe**. En regardant le site en ligne,
+c'est un **Google My Maps** que le mouvement tient à jour (`mid=zfTykSxVYwRo.kXJ56xQzar0I`).
+
+Elle est reprise telle quelle, avec **un changement assumé : elle ne se charge qu'au clic.**
+Un iframe Google embarqué d'office contacte Google dès l'ouverture de la page — adresse IP et
+entête de référence partent avant que le visiteur ait rien fait. Le cahier des charges demande de
+veiller à la protection des données, et le public visé, ce sont des parents. Un encart explique
+donc ce qui va se passer, et rien ne part tant que la personne n'a pas cliqué.
+
+**À vérifier avec le mouvement :** qui tient cette carte à jour, et sous quel compte Google.
+Si le compte se perd, la carte disparaît du site sans prévenir.
 
 ## Ce que « terminé » veut dire
 

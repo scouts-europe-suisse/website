@@ -14,6 +14,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageNotices from '../../components/PageNotices.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import ImplantationsMap from '../../components/ImplantationsMap.astro';
 import NewsList from '../../components/NewsList.astro';
 import NewsArticle from '../../components/NewsArticle.astro';
 import SectionIndex from '../../components/SectionIndex.astro';
@@ -144,6 +145,7 @@ const accent =
           <Content />
         </div>
         {showsIndex && <SectionIndex lang={lang} children={sectionChildren} />}
+        {entry.data.map && <ImplantationsMap lang={lang} />}
         {entry.data.contactForm && <ContactForm lang={lang} />}
       </div>
     </article>

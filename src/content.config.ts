@@ -64,6 +64,8 @@ const pages = defineCollection({
      */
     cover: z.string().optional(),
     coverAlt: z.string().optional(),
+    /** true = la page affiche la carte des implantations du mouvement. */
+    map: z.boolean().default(false),
     /** Accent de couleur d'une page de branche. */
     branche: z.enum(['jaune', 'verte', 'rouge']).optional(),
   }),
