@@ -23,6 +23,9 @@ WordPress actuel de [www.scouts-europe.ch](https://www.scouts-europe.ch/fr/).
 
 - [conventions.md](conventions.md) — modèle de branches, organisation des dossiers, public,
   style de communication.
+- [navigateur-mcp.md](navigateur-mcp.md) — le navigateur piloté : ce qu'il faut vérifier selon
+  le système, la variante Windows, et **le redémarrage de session obligatoire après toute
+  modification de `.mcp.json`**.
 - [local-dev-and-deploy.md](local-dev-and-deploy.md) — faire tourner le site en local
   (`npm run dev`, http://localhost:4321, **sans backloop.dev**), et où en est la question de
   la mise en ligne.

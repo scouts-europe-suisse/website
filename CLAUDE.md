@@ -42,9 +42,17 @@ Ensuite :
 3. **L'identité git** — si `git config user.name` est vide, demande-lui son nom et son e-mail et
    pose-les. Sans ça, ses modifications n'ont pas d'auteur.
 4. **Préparer** — `npm install`.
-5. **Montrer** — `npm run dev` en tâche de fond, puis ouvre http://localhost:4321 dans le
+5. **Le navigateur piloté** — vérifie que le serveur MCP déclaré dans `.mcp.json` démarre bien
+   sur ce système ; c'est lui qui te permet de montrer le site. Le premier lancement télécharge
+   le paquet et peut prendre une minute : ce n'est pas une panne. **Sous Windows uniquement**, si
+   le serveur refuse de démarrer, `npx` doit être enveloppé dans `cmd /c` — la variante exacte
+   est dans [`_memory/navigateur-mcp.md`](_memory/navigateur-mcp.md).
+   **Si tu modifies `.mcp.json`, dis-lui de fermer Claude et de le rouvrir** : les serveurs MCP
+   ne sont chargés qu'au démarrage, donc la correction reste sans effet tant que la session n'a
+   pas été relancée.
+6. **Montrer** — `npm run dev` en tâche de fond, puis ouvre http://localhost:4321 dans le
    navigateur. C'est le moment où elle voit que ça marche : ne le saute pas.
-6. **Puis seulement**, faire le rituel de démarrage ci-dessous.
+7. **Puis seulement**, faire le rituel de démarrage ci-dessous.
 
 Si `brew` manque sous macOS, propose l'installation depuis brew.sh, ou les programmes
 d'installation de nodejs.org et git-scm.com — au choix, sans en faire une affaire.
