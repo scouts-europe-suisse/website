@@ -1,89 +1,65 @@
-# Démarrer — installation, une seule fois
+# Démarrer
 
-Ce guide s'adresse à quelqu'un qui reprend le site et **n'est pas développeur**. Il ne couvre que
-l'installation. Ensuite, tout se fait en parlant à Claude, en français.
+Ce guide s'adresse à quelqu'un qui reprend le site et **n'est pas développeur**.
 
-Comptez vingt minutes, une seule fois.
+Vous n'avez que **deux choses à faire vous-même**. Le reste, Claude s'en charge : vous n'aurez
+pas à taper de commandes ni à comprendre ce qui se passe.
 
 ---
 
-## 1. Installer trois choses
+## 1. Installer Claude Code
 
-Il en faut trois : **Node** (qui fabrique le site), **Git** (qui garde l'historique) et
-**Claude Code** (à qui vous parlerez).
+C'est le seul programme à installer à la main.
 
-### Sous Windows
-
-Ouvrir **PowerShell** (menu Démarrer, taper `powershell`) et coller :
+**Windows** — ouvrir **PowerShell** (menu Démarrer, taper `powershell`) et coller :
 
 ```powershell
-winget install OpenJS.NodeJS.LTS
-winget install Git.Git
-npm install -g @anthropic-ai/claude-code
+irm https://claude.ai/install.ps1 | iex
 ```
 
-**Fermer PowerShell et le rouvrir** après ces commandes, sinon il ne connaît pas encore les
-nouveaux programmes.
-
-### Sous macOS
-
-Ouvrir **Terminal** (⌘ + espace, taper `terminal`) et coller :
+**macOS** — ouvrir **Terminal** (⌘ + espace, taper `terminal`) et coller :
 
 ```bash
-brew install node git
-npm install -g @anthropic-ai/claude-code
+curl -fsSL https://claude.ai/install.sh | bash
 ```
 
-Si `brew` n'existe pas, l'installer d'abord depuis [brew.sh](https://brew.sh), ou télécharger
-Node depuis [nodejs.org](https://nodejs.org) (version **LTS**) et Git depuis
-[git-scm.com](https://git-scm.com).
+Puis **fermer la fenêtre et la rouvrir**, sinon elle ne connaît pas encore le nouveau programme.
 
-### Vérifier
+## 2. Avoir un compte GitHub avec accès au dépôt
 
-```bash
-node --version    # doit afficher v20 ou plus
-git --version
-```
+Le site est rangé sur GitHub, dans l'organisation `scouts-europe-suisse`. Il faut y être invité,
+avec le droit d'écrire. Si ce n'est pas fait, demandez-le avant d'aller plus loin.
 
 ---
 
-## 2. Récupérer le site
+## 3. Ensuite, demandez à Claude
 
-Choisir un dossier où le ranger, puis :
+Ouvrir une fenêtre de commande (PowerShell ou Terminal), aller dans le dossier où vous voulez
+ranger le site — le Bureau fait très bien l'affaire — et lancer :
 
-```bash
-git clone https://github.com/scouts-europe-suisse/website.git
-cd website
-npm install
 ```
-
-`npm install` prend une minute et affiche beaucoup de lignes : c'est normal.
-
-> Il faut être membre de l'organisation `scouts-europe-suisse` sur GitHub. Si la commande demande
-> un mot de passe et le refuse, c'est qu'il manque l'accès : demandez-le.
-
----
-
-## 3. Voir le site
-
-```bash
-npm run dev
-```
-
-Puis ouvrir **http://localhost:4321** dans un navigateur. La page se met à jour toute seule à
-chaque modification. Pour arrêter : `Ctrl + C` dans la fenêtre.
-
----
-
-## 4. Et ensuite, parler à Claude
-
-Dans le dossier `website`, lancer :
-
-```bash
 claude
 ```
 
-Puis écrire ce que vous voulez faire, **en français, en langage ordinaire**. Par exemple :
+Puis écrire, **en français, en langage ordinaire** :
+
+> **Installe ce qu'il faut et récupère le site du Scoutisme Européen Suisse :**
+> **https://github.com/scouts-europe-suisse/website**
+
+L'adresse compte : à ce moment-là, Claude ne connaît pas encore le projet, il découvre tout en
+arrivant. Une fois le site récupéré, il lit ses instructions dedans et sait quoi faire.
+
+Claude va vérifier ce qui manque sur votre machine, l'installer, récupérer le site, le préparer,
+puis vous l'ouvrir dans le navigateur. Il vous dira où il en est au fur et à mesure, et vous
+demandera si une décision se présente.
+
+Cela prend une dizaine de minutes la première fois. Ensuite, c'est immédiat.
+
+---
+
+## Et après
+
+Vous parlez à Claude en français. Quelques exemples :
 
 - « Montre-moi le site. »
 - « Corrige la faute dans le deuxième paragraphe de la page Contact. »
@@ -91,13 +67,12 @@ Puis écrire ce que vous voulez faire, **en français, en langage ordinaire**. P
 - « Mets l'aperçu à jour. »
 - « Où en est-on ? »
 
-Claude connaît ce dossier : il a ses instructions dans `CLAUDE.md`, les règles dans `_memory/`
-et les travaux en cours dans `_plans/`. Il fait les manipulations techniques et rend compte en
-français. **Vous n'avez pas besoin d'apprendre git.**
+Claude connaît ce dossier : ses instructions sont dans `CLAUDE.md`, les règles dans `_memory/`,
+les travaux en cours dans `_plans/`. **Vous n'avez pas besoin d'apprendre git.**
 
 ---
 
-## Trois choses à savoir avant de commencer
+## Trois choses à savoir
 
 **1. Ce dépôt est public.** Tout ce qui y entre est visible de tous, et l'historique garde ce
 qu'on y met même après suppression. Donc jamais de mot de passe, de liste de membres, ni
@@ -106,20 +81,18 @@ d'adresses privées. En cas de doute, demandez à Claude avant d'enregistrer.
 **2. Les photos.** Aucune photo ne va en ligne sans autorisation, en particulier dès qu'un enfant
 est reconnaissable. Celles de l'ancien site sont couvertes ; une photo nouvelle ne l'est pas.
 
-**3. Ce qui est en ligne est un aperçu**, à l'adresse
-https://scouts-europe-suisse.github.io/website/ — **pas** le site officiel.
-`www.scouts-europe.ch` tourne toujours de son côté et n'est pas touché.
+**3. Ce qui est en ligne est un aperçu** — https://scouts-europe-suisse.github.io/website/ — et
+**pas** le site officiel. `www.scouts-europe.ch` tourne toujours de son côté, sans être touché.
 
 ---
 
-## Si quelque chose ne marche pas
+## Si ça coince
 
-Dites-le à Claude tel quel : collez le message d'erreur, il saura quoi en faire. Les deux
-incidents les plus courants :
+Dites-le à Claude tel quel : collez le message d'erreur, il saura quoi en faire.
 
 | Ce que vous voyez | Ce que c'est |
 |---|---|
-| `command not found` après l'installation | La fenêtre n'a pas été rouverte. Fermez-la et rouvrez-la. |
+| `claude` : commande inconnue | La fenêtre n'a pas été rouverte après l'installation. Fermez-la, rouvrez-la. |
 | Le site refuse de démarrer après une modification | Un champ d'en-tête manquant dans une page. Le message nomme le fichier. |
 
 Pour écrire ou modifier une page : [`_memory/ecrire-une-page.md`](_memory/ecrire-une-page.md).

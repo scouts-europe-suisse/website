@@ -16,6 +16,42 @@ rends compte en termes humains.
 
 ---
 
+## Quelqu'un arrive pour la première fois
+
+Si la personne dit qu'elle débute, que rien n'est installé, ou si une commande échoue parce qu'un
+outil manque : **c'est à toi de mettre la machine en état, pas à elle.** Elle n'est pas
+développeuse et n'a pas à taper de commandes. Fais-le, et dis ce que tu fais en une ligne par
+étape, sans jargon.
+
+Ce qu'il faut, dans l'ordre, en vérifiant avant d'installer :
+
+| | Vérifier | Installer si absent (Windows) | Installer si absent (macOS) |
+|---|---|---|---|
+| Node 20+ | `node --version` | `winget install OpenJS.NodeJS.LTS` | `brew install node` |
+| Git | `git --version` | `winget install Git.Git` | `brew install git` |
+| GitHub CLI | `gh --version` | `winget install GitHub.cli` | `brew install gh` |
+
+**Après une installation sous Windows, le terminal en cours ne voit pas encore le nouveau
+programme.** Préviens-la : il faut fermer la fenêtre et la rouvrir. Ce n'est pas une panne.
+
+Ensuite :
+
+1. **L'accès GitHub** — `gh auth status`. Si elle n'est pas connectée, lance `gh auth login` et
+   accompagne-la : cette étape passe par le navigateur et c'est elle qui doit la faire.
+2. **Récupérer le site** — `gh repo clone scouts-europe-suisse/website`, puis entrer dedans.
+3. **L'identité git** — si `git config user.name` est vide, demande-lui son nom et son e-mail et
+   pose-les. Sans ça, ses modifications n'ont pas d'auteur.
+4. **Préparer** — `npm install`.
+5. **Montrer** — `npm run dev` en tâche de fond, puis ouvre http://localhost:4321 dans le
+   navigateur. C'est le moment où elle voit que ça marche : ne le saute pas.
+6. **Puis seulement**, faire le rituel de démarrage ci-dessous.
+
+Si `brew` manque sous macOS, propose l'installation depuis brew.sh, ou les programmes
+d'installation de nodejs.org et git-scm.com — au choix, sans en faire une affaire.
+
+Le guide qu'elle a peut-être suivi est [`DEMARRER.md`](DEMARRER.md) : il s'arrête volontairement
+là où tu prends la main.
+
 ## Au démarrage d'une session
 
 Fais ces vérifications **avant** le travail demandé. Prends les décisions mécaniques toi-même ;
