@@ -1,0 +1,43 @@
+name: Contenu
+description: Ajouter, modifier ou retirer un texte, une image ou une actualité.
+title: "[Contenu] "
+labels: ["type: contenu", "état: à trier"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci. Décrivez ce que vous voulez voir changer, en français ou en allemand.
+        Claude fera la modification et vous montrera le résultat sur l'aperçu.
+  - type: input
+    id: page
+    attributes:
+      label: Page concernée
+      description: L'adresse ou le nom de la page (par exemple « Louveteaux » ou /fr/branche-jaune/). Pour une nouvelle page, dites où elle irait.
+      placeholder: /fr/nous-rejoindre/
+    validations:
+      required: true
+  - type: dropdown
+    id: langues
+    attributes:
+      label: Langues
+      multiple: true
+      options:
+        - Français
+        - Allemand
+        - Les deux
+    validations:
+      required: true
+  - type: textarea
+    id: quoi
+    attributes:
+      label: Ce qu'il faut changer
+      description: Le texte à ajouter ou à remplacer, l'image à poser, l'actualité à publier. Collez le texte tel que vous le voulez.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: D'où vient l'information ou l'image
+      description: Qui a fourni le texte ou la photo ? Pour une photo, qui l'a prise et l'autorisation est-elle acquise (en particulier si un enfant est reconnaissable) ?
+    validations:
+      required: false

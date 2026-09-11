@@ -10,9 +10,15 @@ pas développeurs.** Quand tu (Claude) leur parles, parle français, en langage 
 fais pas apprendre git, les branches ou les outils de build : fais ce travail à leur place et
 rends compte en termes humains.
 
+**Il n'y a pas de CMS, et il n'y en aura pas : c'est toi le CMS.** Chaque contributeur a un
+accès GitHub et Claude. Tout ce qui change sur le site (un texte, une image, une page, un bug,
+un choix) passe par **une issue GitHub**, puis par une branche, une pull request et une
+publication. Le fonctionnement est décrit plus bas, dans « Travailler par issues ». Il vient du
+plan 05 ([`_plans/`](_plans/)), décidé le 2026-09-11.
+
 > **Langue :** ce dépôt travaille en français. Les échanges avec l'utilisateur, les commits, les
-> plans et les notes de `_memory/` sont en français, sauf si l'utilisateur écrit en allemand ou
-> en anglais — dans ce cas, réponds dans sa langue.
+> issues, les plans et les notes de `_memory/` sont en français, sauf si l'utilisateur écrit en
+> allemand ou en anglais — dans ce cas, réponds dans sa langue.
 
 ---
 
@@ -39,9 +45,10 @@ Ensuite :
 1. **L'accès GitHub** — `gh auth status`. Si elle n'est pas connectée, lance `gh auth login` et
    accompagne-la : cette étape passe par le navigateur et c'est elle qui doit la faire.
 2. **Récupérer le site** — `gh repo clone scouts-europe-suisse/website`, puis entrer dedans.
-3. **L'identité git** — si `git config user.name` est vide, demande-lui son nom et son e-mail et
-   pose-les. Sans ça, ses modifications n'ont pas d'auteur.
-4. **Préparer** — `npm install`.
+3. **L'identité git** — si `git config user.name` ou `user.email` est vide, demande-lui son nom
+   et son e-mail et pose-les. Sans ça, ses modifications n'ont pas d'auteur.
+4. **Préparer** — `npm install`. Si npm signale des scripts d'installation en attente
+   (`allow-scripts`), les approuver : sans eux, le site ne se construit pas.
 5. **Le navigateur piloté** — vérifie que le serveur MCP déclaré dans `.mcp.json` démarre bien
    sur ce système ; c'est lui qui te permet de montrer le site. Le premier lancement télécharge
    le paquet et peut prendre une minute : ce n'est pas une panne. **Sous Windows uniquement**, si
@@ -67,9 +74,8 @@ demande à l'utilisateur en français simple quand un vrai choix se pose.
 
 ### 1. Identifier l'utilisateur
 
-Le nom de session de la machine est l'identité de l'utilisateur (`whoami`). Utilise-le tel quel
-comme suffixe de branche, sans transformation ni recherche d'adresse e-mail.
-Exemple : `perki` → branche `work/perki`.
+Le nom de session de la machine (`whoami`) et le compte GitHub (`gh api user --jq .login`)
+identifient l'utilisateur. Le compte GitHub sert à retrouver « ses » issues.
 
 ### 2. Ouvrir le site, tout de suite
 
@@ -94,29 +100,29 @@ c. **Si aucun navigateur piloté n'est disponible** (serveur MCP absent, en pann
    piloté n'est pas rétabli — voir [`_memory/navigateur-mcp.md`](_memory/navigateur-mcp.md).
 d. **Une phrase, pas un rapport** : « Le site tourne, je te l'ai ouvert. »
 
-### 3. S'assurer que sa branche est à jour
+### 3. Mettre le dépôt à jour
 
-a. Déterminer la branche attendue : `work/<whoami>` (la créer depuis `main` si elle n'existe pas).
-b. Basculer dessus si ce n'est pas déjà le cas.
-c. Vérifier si `work/<whoami>` est en retard sur `main`. Si oui, **la mettre à jour
-   automatiquement** et l'expliquer en une phrase courte : « J'ai récupéré les dernières
-   modifications de l'équipe dans ton travail. »
-d. En cas de conflit, s'arrêter et le montrer clairement. Ne jamais résoudre en silence.
+a. `git fetch --prune`, puis se placer sur `main` à jour si aucune branche d'issue n'est en
+   cours pour cette personne.
+b. Si une branche `issue/…` ou `lot/…` a des changements non commités ou non poussés, le dire :
+   « Tu avais commencé l'issue #NN, on la reprend ? »
+c. En cas de conflit, s'arrêter et le montrer clairement. Ne jamais résoudre en silence.
 
-*(Le dépôt distant est `scouts-europe-suisse/website` sur GitHub, en privé. Faire un `git fetch`
-avant de comparer, et pousser la branche de la personne en fin de session pour que son travail
-soit sauvegardé. Voir [`_memory/conventions.md`](_memory/conventions.md).)*
+### 4. Regarder les issues
 
-### 4. Montrer sur quoi les autres travaillent
+**C'est le cœur du fonctionnement.** `gh issue list --limit 100`, puis :
 
-a. Lister les branches `work/*` et l'état de `main`.
-b. Pour chaque branche en avance sur `main`, indiquer : de qui il s'agit, la date du dernier
-   commit, le sujet des derniers commits.
-c. Demander : *« Tu veux voir le détail de l'un de ces travaux ? Je peux te montrer les
-   changements ici, ou ouvrir l'aperçu du site dans le navigateur. Ou on passe, et tu commences
-   tes propres modifications. »*
-d. S'il en choisit un, demander ensuite : *« Tu veux reprendre ces changements dans ton
-   travail ? »* Si oui, fusionner cette branche dans la sienne.
+a. Les issues **`état: en cours`** : de qui, depuis quand, sur quelle branche. Si l'une est à
+   cette personne, proposer de la continuer.
+b. Les issues **`état: à tester`** : proposer de faire la vérification (voir le cycle).
+c. Les issues **`état: prêt`**, par priorité : proposer d'en prendre une.
+d. Les issues **`état: à trier`** : les qualifier (type, zone, langue, priorité, plan) et les
+   passer en `prêt`, ou poser la question qui manque en commentaire.
+e. Les issues **`type: décision`** avec un commentaire « Décision : … » : reporter la décision
+   dans le plan concerné, changer l'étiquette, et débloquer ce qui l'attendait.
+
+Résumer en trois ou quatre lignes, pas plus : « Tu as une issue en cours, deux sont prêtes, une
+attend une décision de quelqu'un. Tu veux reprendre la tienne ? »
 
 ### 5. Regarder les plans
 
@@ -128,43 +134,117 @@ au démarrage.
 liste recopiée ici.** Une liste écrite en dur dans ce fichier devient fausse dès que quelqu'un
 ajoute un plan.
 
-a. **Calcule l'étiquette de cette session** : `scutil --get LocalHostName` suivi du chemin absolu
-   du dossier qui contient ce `CLAUDE.md`. Exemple : `perkim5 /Users/perki/code/scouts/website`.
-   **Jamais `hostname`** : sous VPN, macOS le remplace par un nom DHCP, et l'étiquette ne
-   correspond plus à rien.
+a. **Calcule l'étiquette de cette session** : `scutil --get LocalHostName` (macOS) ou `hostname`
+   (Windows, Linux), suivi du chemin absolu du dossier qui contient ce `CLAUDE.md`. Exemple :
+   `perkim5 /Users/perki/code/scouts/website`. **Jamais `hostname` sous macOS** : sous VPN, il
+   est remplacé par un nom DHCP.
 b. **Liste ce qui est vivant.** Tout dossier de `_plans/` qui n'est pas `_archives/`. Le suffixe
    dit l'état : `-atwork` en cours, `-paused` arrêté en route, `-later` parqué, `-study` à
    l'étude. Un `XX-` en tête veut dire « en réserve, sans rang ».
 c. **Reprends le plan de cette session.** Si un plan `-atwork` porte l'étiquette calculée en (a),
-   propose de le continuer, en lisant d'abord son `SessionState.md` s'il en a un. Il est à nous,
-   même s'il vient d'une session précédente qui s'est arrêtée.
+   propose de le continuer, en lisant d'abord son `SessionState.md` s'il en a un.
 d. **Préviens si un plan est tenu par une autre session.** Ne le reprends pas sans confirmation
-   explicite : quelqu'un est peut-être en plein dedans.
+   explicite.
 e. **En attente de cet utilisateur ?** Pour chaque plan sans `Session:`, lis la ligne
-   `**Responsable :**`. Si elle nomme l'utilisateur, explique-lui en une ou deux phrases simples
-   de quoi il s'agit, puis demande s'il veut s'en occuper maintenant ou plus tard.
+   `**Responsable :**`. Si elle nomme l'utilisateur, explique-lui en une ou deux phrases de quoi
+   il s'agit, puis demande s'il veut s'en occuper maintenant ou plus tard.
 f. **Terminé mais toujours ouvert ?** Si les critères de « Ce que "terminé" veut dire » semblent
    remplis, **dis-le et demande**. Ne ferme jamais seul.
 g. Quand l'utilisateur décide de démarrer, mettre en pause ou fermer un plan, fais la mécanique
-   pour lui — renommer le dossier, poser ou retirer la ligne `Session:`, écrire la note de
-   résultat, déplacer vers `_archives/` — puis **commite et pousse tout de suite**. C'est une
-   exception assumée à « on ne commite pas sans demander », limitée aux fichiers du plan.
+   pour lui, puis **commite et pousse tout de suite**, directement sur `main`. C'est l'exception
+   assumée, limitée aux fichiers de `_plans/`.
 
 ### 6. Seulement ensuite — la demande de l'utilisateur
 
 ---
 
+## Travailler par issues
+
+**Toute modification, ajout, suppression, remarque ou objectif fait l'objet d'une issue
+GitHub, une par sujet.** Si l'utilisateur te demande un changement sans issue, **crée l'issue
+d'abord**, avec ses mots, puis travaille dessus. Il n'a rien à faire sur GitHub s'il ne veut pas :
+tu t'en charges avec `gh`.
+
+### Les étiquettes
+
+Six familles, toutes posées sur GitHub. Une issue qualifiée porte au moins type, priorité, état
+et plan.
+
+| Famille | Valeurs |
+|---|---|
+| `type:` | contenu, visuel, technique, bug, décision, **charte** (voir le gel) |
+| `zone:` | global, accueil, notre-scoutisme, mouvement, actualités, nous-rejoindre, contact, carrick |
+| `langue:` | fr, de |
+| `priorité:` | bloquant, haute, normale, basse |
+| `état:` | à trier, prêt, en cours, à tester, testé, bloqué |
+| `plan:` | le plan de rattachement (01, 04, 05, XX…) |
+
+Les modèles d'issue dans `.github/ISSUE_TEMPLATE/` posent le type et `état: à trier` tout
+seuls.
+
+### Le cycle d'une issue
+
+1. **Créer** (modèle ou `gh issue create`). Naît en `état: à trier`.
+2. **Qualifier** : type, zone, langue, priorité, plan. Passe en `état: prêt`.
+3. **Prendre** : `gh issue edit NN --add-assignee @me`, étiquette `état: en cours`, branche
+   **`issue/NN-mot-clef`** créée depuis `main` à jour. Plusieurs issues semblables peuvent
+   partager une branche **`lot/NN-NN-mot-clef`**.
+4. **Faire**, en petits commits dont le message cite l'issue (`#NN`) et explique le pourquoi.
+5. **Ouvrir la pull request** vers `main` (`gh pr create --fill`) : le modèle contient la liste
+   de vérification. Passer l'issue en `état: à tester`.
+6. **Tester** : dérouler la liste, joindre les captures, cocher. Celui qui vérifie passe
+   l'issue en `état: testé`. **La même personne peut faire et tester**, à condition de dérouler
+   réellement la liste. Une seule personne suffit pour tout : c'est la règle du chantier, sans
+   collégialité.
+7. **Fusionner** (`gh pr merge --squash --delete-branch`). L'issue se ferme. Mettre à jour la
+   section « Issues » du plan concerné dans le même mouvement.
+8. **Publier** : dès que l'issue #4 est faite, la fusion sur `main` publie l'aperçu toute
+   seule. En attendant, `npm run deploy` depuis `main` à jour, après la fusion.
+
+### Ce que « testé » veut dire
+
+Le site se construit sans erreur ; la page est vue en français **et** en allemand, sur
+ordinateur **et** en vue étroite ; aucun lien mort, aucune image manquante ; captures jointes
+pour tout changement visible ; aucune photo sans autorisation, aucun fait inventé. Ne pas
+alourdir au-delà : c'est une liste, pas une procédure.
+
+### Plans et issues : les deux restent cohérents
+
+- Un plan dit **le pourquoi et le cap** ; une issue dit **une action unitaire**.
+- Chaque issue porte `plan: NN`. Chaque `PLAN.md` a une section **« Issues »** listant les
+  siennes avec leur état. **Tu la mets à jour à chaque changement d'état d'issue**, dans un
+  commit `_plans/` direct sur `main`.
+- Les décisions se prennent **dans l'issue** (commentaire « Décision : … », signé) et sont
+  recopiées dans le tableau du plan. Une décision non écrite n'existe pas.
+- Un plan ne se ferme que quand toutes ses issues sont fermées, ou reportées par écrit.
+
+### Le gel du design
+
+Quand le plan 05 aura validé la charte et le système de composants, **`src/styles/`,
+`src/layouts/` et `src/components/` sont gelés.** Toute modification demande :
+
+1. une issue `type: charte` qui dit ce qui change et pourquoi ;
+2. un commentaire « **Accord :** … » signé par une personne (une seule suffit) ;
+3. la mention de cette issue dans la pull request.
+
+Sans ces trois choses, **refuse de toucher à ces dossiers**, même si on te le demande
+gentiment, et propose d'ouvrir l'issue. Les contenus, eux, se modifient librement par issue.
+Tant que le plan 05 n'a pas prononcé le gel, cette règle ne s'applique pas encore.
+
+---
+
 ## Sauf demande explicite contraire
 
-- **Toujours travailler sur `work/<whoami>`.** Ne jamais commiter directement sur `main`.
-  **Une seule exception :** un changement qui ne touche **que** des fichiers de `_plans/`
-  (renommage de dossier, ligne `Session:`, note de résultat, archivage) va directement sur `main`
-  et se pousse aussitôt, sinon personne d'autre ne voit qui travaille sur quoi.
+- **Une branche par issue**, créée depuis `main`. Jamais de commit direct sur `main`, sauf un
+  changement qui ne touche **que** `_plans/` (état d'un plan, section « Issues »).
+- **`work/<whoami>`** reste possible pour explorer sans issue, mais rien n'en part vers `main`
+  sans passer par une issue et une pull request.
 - **Ne jamais réécrire l'historique de `main`** (pas de force-push, pas de rebase).
-- **Ne jamais modifier la branche `work/...` de quelqu'un d'autre.**
+- **Ne jamais modifier la branche de quelqu'un d'autre.**
+- **Ne jamais fusionner une pull request dont la liste de vérification n'est pas déroulée.**
 
-Si l'utilisateur demande explicitement de « travailler sur main » ou nomme une autre branche,
-cette consigne est levée pour cette session uniquement.
+**Limite connue :** les comptes contributeurs n'ont pas les droits d'administration sur le dépôt.
+Il n'y a donc pas de protection de branche : ces règles tiennent parce que tu les appliques.
 
 ---
 
@@ -183,6 +263,7 @@ npm run dev        # http://localhost:4321
   Regarde et dis-moi ce que tu veux changer. »*
 - La page se recharge à chaque enregistrement : pendant que tu modifies les fichiers, son
   navigateur se met à jour tout seul.
+- La recherche ne marche pas en `npm run dev` : `npm run build && npm run preview` pour l'essayer.
 
 **Pas de proxy HTTPS ici.** Le serveur de développement est du `http://localhost` simple, sans
 `backloop.dev` ni équivalent. Détails : [`_memory/local-dev-and-deploy.md`](_memory/local-dev-and-deploy.md).
@@ -200,35 +281,39 @@ npm run deploy
 
 **Le site officiel du mouvement n'est pas touché.** `www.scouts-europe.ch` tourne toujours sous
 WordPress. L'aperçu sert à montrer le travail et à le faire relire. Quand quelqu'un demande à
-publier, le lui dire dans ces termes.
+publier, le lui dire dans ces termes. La bascule et l'hébergeur sont les issues #1 et #2.
 
 **Avant chaque publication**, la règle de fond du chantier s'applique telle quelle : aucune photo
-où un mineur est reconnaissable, et rien de personnel dans le dépôt, qui est public. Le détail
-est dans [`_memory/feedback_publication.md`](_memory/feedback_publication.md).
+où un mineur est reconnaissable sans autorisation, et rien de personnel dans le dépôt, qui est
+public. Le détail est dans [`_memory/feedback_publication.md`](_memory/feedback_publication.md).
+Le script refuse de publier si une page a perdu sa mention « ne pas indexer » ou si une adresse a
+échappé au préfixe : ne contourne jamais ces refus.
 
 ## Contenu : bilingue français / allemand
 
 - Le site est bilingue **français (par défaut) et allemand**. Chaque page a une jumelle :
-  `src/content/pages/fr/<slug>.md` et `src/content/pages/de/<slug>.md`, même slug des deux côtés.
-- **L'allemand du site actuel n'existe pas.** `www.scouts-europe.ch/de/` sert aujourd'hui la page
-  française à l'identique. Les pages `de/` d'ici sont donc des ébauches marquées
-  `translated: false` dans leur en-tête, à faire relire par un germanophone du mouvement.
-- **Ne jamais traduire une page en allemand et la présenter comme validée.** Une traduction
-  automatique se marque `translated: false` et se signale à l'utilisateur.
+  `src/content/pages/fr/<slug>.md` et `src/content/pages/de/<slug>.md`, reliées par le même
+  `key`. Comment écrire une page : [`_memory/ecrire-une-page.md`](_memory/ecrire-une-page.md).
+- **Décision du 2026-09-11 :** tous les contenus existent dans les deux langues. Pendant la
+  refonte, une traduction faite par Claude est **acceptée par défaut**, mais marquée
+  `translated: false` pour qu'on sache qu'aucun germanophone n'est passé. En production, la
+  validation reprendra au cas par cas.
 - **N'invente jamais un fait sur le mouvement** — une date, un effectif, un nom de responsable,
-  une adresse, un montant. Si l'information manque, laisse le texte en attente et demande.
+  une adresse, un montant. Si l'information manque, laisse le texte en attente et pose la
+  question dans l'issue.
 
 ---
 
 ## Images et photos
 
 **Toujours créditer les photos, et ne jamais publier une photo dont la licence est inconnue.**
-Les photos du mouvement viennent en majorité de l'ETN Photo. Pour chaque image ajoutée, il faut
-savoir qui l'a prise et à quel titre elle est utilisable.
+Les photos de l'ancien site sont couvertes (confirmé par Perki le 2026-09-10). Les photos des
+comptes Facebook et Instagram du mouvement peuvent être reprises (décision du 2026-09-11), avec
+leur provenance notée dans l'issue. **Aucune image générée par IA.**
 
 **Point de vigilance particulier au scoutisme : les photos de mineurs.** Une photo où un enfant
 est reconnaissable ne se publie pas sans autorisation des parents. En cas de doute, préférer une
-image où les visages ne sont pas identifiables, et poser la question à l'utilisateur.
+image où les visages ne sont pas identifiables, et poser la question dans l'issue.
 
 ---
 
@@ -236,11 +321,12 @@ image où les visages ne sont pas identifiables, et poser la question à l'utili
 
 - **Langage courant, toujours.** « Je récupère les dernières modifications » : oui.
   « Je rebase sur origin/main » : non.
-- **Fais les étapes ennuyeuses toi-même**, en silence. Ne fais remonter que les vrais choix.
+- **Fais les étapes ennuyeuses toi-même**, en silence : créer l'issue, la branche, la pull
+  request, mettre les étiquettes. Ne fais remonter que les vrais choix.
 - **Expose les compromis**, ne les cache pas. Si une action risque de perdre du travail, arrête-toi
   et demande.
 - **Ne suppose pas que l'utilisateur se souvient de git.** Quand tu dis « ton travail », sois
-  précis : « les modifications que tu as faites hier sur la page contact ».
+  précis : « l'issue #12, la page contact ».
 - **Une question à la fois** quand il y a un arbre de décision.
 
 ---
@@ -252,8 +338,9 @@ image où les visages ne sont pas identifiables, et poser la question à l'utili
 | [`_plans/`](_plans/) | Les plans — les vivants à la racine, les terminés dans [`_plans/_archives/`](_plans/_archives/). **Fonctionnement : [`_plans/README.md`](_plans/README.md).** Ne les liste pas ici, le dossier fait foi. |
 | [`_memory/`](_memory/) | Règles, conventions, état du chantier. **Lis [`_memory/MEMORY.md`](_memory/MEMORY.md) tôt dans chaque session.** |
 | [`_references/`](_references/) | Documents de référence reçus du SES — dont le cahier des charges SES25. |
-| [`_migrations/`](_migrations/) | La **carte** de l'ancien site : la table des adresses ([`url-map.md`](_migrations/url-map.md)) et l'inventaire des images. **Pas les fichiers d'origine** : seul ce qui sert au nouveau site entre dans le dépôt. |
-| `src/` | Le site lui-même (Astro 5 + Tailwind v4). |
-| `public/` | Fichiers servis tels quels : favicon, robots.txt, images. |
+| [`_migrations/`](_migrations/) | La **carte** de l'ancien site : la table des adresses ([`url-map.md`](_migrations/url-map.md)) et l'inventaire des images. **Pas les fichiers d'origine.** |
+| `.github/` | Modèles d'issue et de pull request ; plus tard, la publication automatique. |
+| `src/` | Le site lui-même (Astro 5 + Tailwind v4). `src/content/` est le texte des pages. |
+| `public/` | Fichiers servis tels quels : favicons, polices, images. |
 
 Les dossiers préfixés `_` sont la mémoire du chantier : ils restent pendant toute la vie du projet.

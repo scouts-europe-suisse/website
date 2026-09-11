@@ -1,6 +1,6 @@
 ---
 name: conventions
-description: Conventions de travail du dépôt — une branche par personne, organisation des dossiers, public visé. Référencé depuis CLAUDE.md.
+description: Conventions de travail du dépôt — issues GitHub, une branche par issue, organisation des dossiers, public visé. Référencé depuis CLAUDE.md.
 metadata:
   type: project
 ---
@@ -19,34 +19,45 @@ Le chantier travaille **en français** : conversations, commits, plans, notes de
 Le *site*, lui, est bilingue français / allemand — c'est autre chose, voir
 [source-site.md](source-site.md).
 
-## Branches
+## Issues, branches, pull requests
 
-- `main` — la référence commune. Pas de commit direct.
-- `work/<identifiant>` — une branche par personne, nommée d'après son nom de session machine
-  (`whoami`). Exemple : `work/perki`.
-- `origin` — le dépôt distant : `git@github.com:scouts-europe-suisse/website.git`, **privé**.
+Depuis le 2026-09-11 (plan 05), **tout changement du site part d'une issue GitHub** : un texte,
+une image, une page, un bug, une remarque, une décision. Les issues portent des étiquettes en six
+familles (`type:`, `zone:`, `langue:`, `priorité:`, `état:`, `plan:`), posées sur le dépôt. Les
+modèles sont dans `.github/ISSUE_TEMPLATE/`. Le détail du cycle est dans
+[`../CLAUDE.md`](../CLAUDE.md), section « Travailler par issues ».
 
-### Pourquoi une branche par personne
+- `main` — la référence commune, toujours publiable. Pas de commit direct, sauf `_plans/`.
+- `issue/NN-mot-clef` — une branche par issue, créée depuis `main`, fusionnée par pull request
+  en squash, puis supprimée. `lot/NN-NN-mot-clef` pour un groupe d'issues semblables.
+- `work/<identifiant>` — branche d'exploration personnelle, facultative. Rien n'en part vers
+  `main` sans issue ni pull request.
+- `gh-pages` — le site publié, écrit par le script de publication (bientôt par GitHub Actions,
+  issue #4). On n'y travaille jamais à la main.
+- `origin` — `https://github.com/scouts-europe-suisse/website`, **public**.
 
-La plupart des utilisateurs ne penseront pas à créer une branche avant de modifier quelque chose.
-Les mettre d'office sur leur propre branche :
+### Qui décide
 
-- évite que deux personnes se marchent dessus ;
-- rend « qui a changé quoi » lisible depuis `git log work/<personne>` ;
-- donne une unité naturelle pour « reprends le travail d'untel » (fusionner sa branche).
+Chaque contributeur, **individuellement**. Une seule personne suffit pour qualifier une issue,
+la faire, la tester, la fusionner, publier, ou trancher une décision. Il n'y a pas de
+collégialité (décision de Nicolas, 2026-09-11). Les décisions s'écrivent dans l'issue,
+commentaire « Décision : … » signé, puis dans le plan.
+
+### Plans et issues
+
+Les deux cohabitent et doivent rester cohérents : chaque issue porte `plan: NN`, chaque plan
+liste ses issues dans une section « Issues » que Claude tient à jour.
 
 ### Dépôt distant
 
-`git@github.com:scouts-europe-suisse/website.git`, sur le compte GitHub du mouvement, **en
-privé** (ajouté le 2026-09-10). Conséquences pratiques :
+Le dépôt est **public** depuis le 2026-09-10 (nécessaire pour GitHub Pages). Conséquences :
 
 - le travail est sauvegardé ailleurs que sur la machine de la personne qui l'a fait ;
 - « à jour » veut dire « à jour par rapport à `origin/main` » : au démarrage de session, on fait
   un `git fetch` avant de comparer ;
-- chaque branche `work/<identifiant>` est poussée, ce qui rend visible aux autres qui travaille
-  sur quoi — c'est ce qui fait fonctionner l'étape 3 du rituel de démarrage ;
-- **privé ne veut pas dire secret** : toute personne ajoutée au dépôt voit tout, y compris
-  l'historique. Ce qui entre dans un commit y reste, même supprimé ensuite. Ne jamais y mettre de
+- les branches d'issue sont poussées dès le premier commit, ce qui rend visible qui travaille
+  sur quoi ;
+- **tout ce qui entre dans un commit y reste, même supprimé ensuite.** Ne jamais y mettre de
   mot de passe, de clé, ni de donnée personnelle de membre.
 
 ## Organisation des dossiers
@@ -59,7 +70,8 @@ website/
 ├── _memory/             Règles, conventions, état (ce dossier)
 ├── _references/         Documents reçus du SES (cahier des charges…)
 ├── _migrations/         Ce qu'on récupère du WordPress actuel
-├── public/              Servi tel quel : favicon, robots.txt, images
+├── .github/             Modèles d'issue et de pull request
+├── public/              Servi tel quel : favicons, polices, images
 ├── src/                 Le site (Astro 5 + Tailwind v4)
 └── _build/              Résultat de la construction (ignoré par git)
 ```
@@ -88,8 +100,11 @@ l'historique garde ce qu'on y met même après suppression.
 
 ## Ce que Claude fait toujours automatiquement
 
-- Le rituel de démarrage ([feedback_rituel_demarrage.md](feedback_rituel_demarrage.md)).
-- Garder `work/<identifiant>` à jour par rapport à `main`.
+- Le rituel de démarrage ([feedback_rituel_demarrage.md](feedback_rituel_demarrage.md)),
+  issues comprises.
+- Créer l'issue quand l'utilisateur demande un changement sans en avoir ouvert une.
+- Créer la branche, la pull request, poser les étiquettes, mettre à jour la section « Issues »
+  du plan.
 - Lancer le serveur local en tâche de fond et ouvrir le navigateur, quand on lui demande à voir
   le site.
 
@@ -97,5 +112,9 @@ l'historique garde ce qu'on y met même après suppression.
 
 - Commiter sur `main` (sauf un changement qui ne touche que `_plans/`).
 - Réécrire l'historique de `main`.
-- Modifier la branche `work/...` de quelqu'un d'autre.
-- Mettre le site en ligne — voir [feedback_pas_de_publication.md](feedback_publication.md).
+- Modifier la branche de quelqu'un d'autre.
+- Fusionner une pull request dont la liste de vérification n'est pas déroulée.
+- Toucher à `src/styles/`, `src/layouts/` ou `src/components/` après le gel du design sans
+  issue `type: charte` et accord écrit.
+- Mettre le site en ligne hors du cycle des issues — voir
+  [feedback_publication.md](feedback_publication.md).

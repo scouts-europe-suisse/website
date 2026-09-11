@@ -6,23 +6,23 @@ WordPress actuel de [www.scouts-europe.ch](https://www.scouts-europe.ch/fr/).
 
 ## Règles (type « feedback » — ne jamais les enfreindre sans accord explicite de l'utilisateur)
 
-- [feedback_branche_par_personne.md](feedback_branche_par_personne.md) — travailler sur
-  `work/<whoami>`. Jamais de commit direct sur `main`, sauf `_plans/`.
-- [feedback_rituel_demarrage.md](feedback_rituel_demarrage.md) — synchroniser la branche et
-  faire le tour du travail des autres avant toute tâche.
+- [feedback_branche_par_issue.md](feedback_branche_par_issue.md) — une branche par issue
+  GitHub, pull request vers `main`. Jamais de commit direct sur `main`, sauf `_plans/`.
+- [feedback_rituel_demarrage.md](feedback_rituel_demarrage.md) — montrer le site, mettre le
+  dépôt à jour, regarder les issues et les plans avant toute tâche.
 - [feedback_publication.md](feedback_publication.md) — le site est publié en **aperçu public**
   sur GitHub Pages ; `www.scouts-europe.ch` n'est pas touché. Ce qu'il faut vérifier avant
   chaque publication.
 - [feedback_faits_du_mouvement.md](feedback_faits_du_mouvement.md) — **ne jamais inventer un
-  fait sur le SES** (date, effectif, nom, adresse, montant) ni valider une traduction allemande.
+  fait sur le SES** (date, effectif, nom, adresse, montant). Les traductions sont acceptées par
+  défaut pendant la refonte, mais marquées `translated: false`.
 
 ## Conventions et procédures
 
 - [ecrire-une-page.md](ecrire-une-page.md) — **comment écrire ou modifier une page**, les champs
   d'en-tête, l'appariement français/allemand, les images. À lire par qui reprend le contenu.
-
-- [conventions.md](conventions.md) — modèle de branches, organisation des dossiers, public,
-  style de communication.
+- [conventions.md](conventions.md) — travail par issues, branches, organisation des dossiers,
+  public, style de communication.
 - [navigateur-mcp.md](navigateur-mcp.md) — le navigateur piloté : ce qu'il faut vérifier selon
   le système, la variante Windows, et **le redémarrage de session obligatoire après toute
   modification de `.mcp.json`**.
@@ -30,11 +30,13 @@ WordPress actuel de [www.scouts-europe.ch](https://www.scouts-europe.ch/fr/).
   (`npm run dev`, http://localhost:4321, **sans backloop.dev**), et où en est la question de
   la mise en ligne.
 - [design-system.md](design-system.md) — les variables CSS provisoires, les couleurs de branche,
-  où déposer logo et favicons quand la charte arrivera.
+  où déposer logo et favicons. **À refaire entièrement à l'étape 1 du plan 05.**
 
 ## Contexte du projet
 
 - [state.md](state.md) — état du chantier. À lire juste après `CLAUDE.md`.
+- [diagnostic-2026-09-11.md](diagnostic-2026-09-11.md) — le diagnostic avant la refonte
+  visuelle : ce qui est à garder, ce qui fait amateur, les priorités.
 - [source-site.md](source-site.md) — ce que contient le site WordPress actuel : arborescence,
   adresses des pages, état réel de l'allemand.
 - [croix-suisse-et-armoiries.md](croix-suisse-et-armoiries.md) — ce que dit la loi sur la croix

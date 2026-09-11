@@ -1,0 +1,24 @@
+name: Nouvelle fonctionnalité ou nouvelle page
+description: Quelque chose que le site ne fait pas encore.
+title: "[Fonctionnalité] "
+labels: ["type: technique", "état: à trier"]
+body:
+  - type: textarea
+    id: besoin
+    attributes:
+      label: Le besoin
+      description: À quoi ça sert, pour qui. Un parent ? Un chef ? Un journaliste ?
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Ce que ça ferait
+      description: Décrivez le résultat attendu, pas la technique.
+    validations:
+      required: true
+  - type: textarea
+    id: donnees
+    attributes:
+      label: Données personnelles ou service extérieur
+      description: La fonctionnalité recueille-t-elle des données de visiteurs (formulaire, carte, réseaux sociaux) ? Dépend-elle d'un service tiers ? Si vous ne savez pas, laissez vide.
