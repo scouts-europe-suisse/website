@@ -171,5 +171,6 @@ Rattachées à d'autres plans mais faites dans les étapes de ce plan :
 
 Faites avant la conversation, à la demande de Nicolas :
 - #14 Pictogrammes des branches (SVG AGSE, couleurs de branche) — **fermée** le 2026-09-11 (PR #15)
+- #18 Branche jaune, un seul pictogramme — **fermée** le 2026-09-11 (PR #19)
 
 Étapes 1 à 6 : issues à créer après la conversation préalable.
