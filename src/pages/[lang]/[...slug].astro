@@ -59,25 +59,27 @@ const { lang } = Astro.params as { lang: Lang };
 const rendered = kind === 'page' || kind === 'news' ? await render(entry) : null;
 const Content = rendered?.Content;
 
-// Une page de rubrique sans texte propre affiche le sommaire de ses filles
-// plutôt qu'une page blanche.
-// `body` peut être absent selon le chargeur : on ne suppose pas qu'il existe.
-const emptyBody =
-  kind === 'page' &&
-  !entry.data.contactForm &&
-  (entry.body ?? '').replace(/<!--[\s\S]*?-->/g, '').trim() === '';
-
-// Une rubrique qui affiche le sommaire de ses filles n'est pas une page
-// blanche : elle rend service telle quelle. Le bandeau « ébauche » ne
-// s'affiche donc que si elle n'a vraiment rien à montrer.
 // Dimensions réelles de l'image à la une : elles évitent que la page saute
 // au chargement, et disent si c'est un écusson ou un bandeau.
 const coverSize = entry?.data?.cover ? imageSize(entry.data.cover) : null;
 const coverEmblem = isEmblem(coverSize);
 
-const sectionChildren =
-  emptyBody ? await childrenOf(entry.data.key, lang) : [];
+// Une rubrique du menu affiche le sommaire de ses pages, qu'elle ait ou non
+// une introduction. La condition portait autrefois sur un corps de texte
+// vide : le jour où quelqu'un aurait écrit cette introduction, le chemin
+// vers les sous-pages aurait disparu, et la rubrique serait redevenue le
+// cul-de-sac qu'elle est sur le site actuel — en allemand, « Unsere
+// Pfadfinderschaft » et « Uns beitreten » n'y sont qu'un titre sur une page
+// blanche.
+const sectionChildren = kind === 'page' ? await childrenOf(entry.data.key, lang) : [];
 const showsIndex = sectionChildren.length > 0;
+
+// Une rubrique qui affiche ce sommaire n'est pas une page blanche : elle rend
+// service telle quelle. Ni le bandeau « ébauche » ni la consigne faite aux
+// moteurs de recherche de l'ignorer ne s'y appliquent donc, et les deux
+// suivent la même règle : sinon la page reste introuvable en ligne sans que
+// rien ne le montre à l'écran.
+const stillToWrite = kind === 'page' && entry.data.draft && !showsIndex;
 
 const accent =
   kind === 'page' && entry.data.branche
@@ -119,7 +121,7 @@ const accent =
     description={entry.data.description}
     lang={lang}
     pageKey={entry.data.key}
-    noindex={entry.data.draft}
+    noindex={stillToWrite}
   >
     <article>
       {/* L'image à la une, au-dessus du titre, comme sur le site actuel. */}
@@ -146,7 +148,7 @@ const accent =
       <div class="mt-6">
         <PageNotices
           lang={lang}
-          draft={entry.data.draft && !showsIndex}
+          draft={stillToWrite}
           translated={entry.data.translated}
         />
         <div class="ses-prose">
