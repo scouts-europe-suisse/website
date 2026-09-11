@@ -47,32 +47,23 @@ export async function twinOf(key: string, current: Lang): Promise<string | null>
 /**
  * Les sous-pages d'une rubrique, dans la même langue.
  *
- * On suit d'abord LE MENU : c'est lui qui dit ce qui appartient à une
+ * C'est LE MENU qui fait foi, et lui seul : il dit ce qui appartient à une
  * rubrique. « Un mouvement suisse » et « ESPAS » sont sous « Le mouvement »
  * dans le menu, alors que leurs adresses sont ailleurs dans l'arborescence —
  * en se fiant aux adresses, la rubrique n'en montrait que la moitié.
  *
- * À défaut d'entrée de menu, on retombe sur les adresses, ce qui rattrape les
- * pages hors menu (la page de Fribourg, fille des implantations).
+ * Une page hors menu n'apparaît donc dans aucun sommaire, même si son adresse
+ * la place sous une rubrique. C'est voulu : en retombant sur les adresses, la
+ * page des implantations affichait un bouton « Fribourg » que le site actuel
+ * n'a pas, alors que cette page se rejoint depuis la carte.
  */
 export async function childrenOf(key: string, lang: Lang): Promise<PageRef[]> {
   const list = await all();
-  const me = list.find((x) => x.key === key && x.lang === lang);
-  if (!me) return [];
+  if (!list.some((x) => x.key === key && x.lang === lang)) return [];
 
-  const fromMenu = NAV.find((i) => i.key === key)?.children ?? [];
-  if (fromMenu.length) {
-    return fromMenu
-      .map((c) => list.find((x) => x.key === c.key && x.lang === lang))
-      .filter((x): x is PageRef => Boolean(x));
-  }
-
-  if (!me.slug) return [];
-  const prefix = me.slug + '/';
-  return list
-    .filter((x) => x.lang === lang && x.slug.startsWith(prefix))
-    .filter((x) => !x.slug.slice(prefix.length).includes('/'))
-    .sort((a, b) => a.title.localeCompare(b.title, lang));
+  return (NAV.find((i) => i.key === key)?.children ?? [])
+    .map((c) => list.find((x) => x.key === c.key && x.lang === lang))
+    .filter((x): x is PageRef => Boolean(x));
 }
 
 /** Toutes les pages d'une langue, pour construire des index. */
