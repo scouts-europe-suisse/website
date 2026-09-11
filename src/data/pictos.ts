@@ -48,7 +48,7 @@ export const BRANCHE_HEX: Record<Branche, string> = {
 
 /** Les deux pictogrammes de chaque branche, dans l'ordre d'affichage. */
 export const BRANCHES: Record<Branche, PictoKey[]> = {
-  jaune: ['louveteaux', 'louvettes'],
+  jaune: ['louveteaux'], // louvettes : même glyphe, on ne le répète pas (#18)
   verte: ['eclaireurs', 'eclaireuses'],
   rouge: ['routiers', 'guides-ainees'],
 };
