@@ -162,6 +162,7 @@ _(mise à jour par Claude à chaque changement d'état)_
 - #4 Publier automatiquement l'aperçu à chaque fusion sur main — prêt
 - #5 Gestion des contributeurs — décision, prêt
 - #11 Mettre à jour la documentation périmée — prêt, priorité basse
+- #16 Publication cassée sous Windows (npm.cmd EINVAL) — **fermée** le 2026-09-11 (PR #17)
 
 Rattachées à d'autres plans mais faites dans les étapes de ce plan :
 - #6 Compléter l'allemand (plan 04) — étape 5
