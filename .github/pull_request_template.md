@@ -1,6 +1,6 @@
 ## Ce que fait cette modification
 
-Ferme #
+Closes #   ← le mot anglais est obligatoire, sinon GitHub ne ferme pas l'issue à la fusion
 
 ## Vérifications avant fusion
 
