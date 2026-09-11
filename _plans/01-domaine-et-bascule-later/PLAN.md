@@ -87,3 +87,11 @@ le jour J, ce que cette section est là pour empêcher. Détail dans
 - Le site est construit en mode production, et il est vérifié **sur le vrai domaine** qu'il
   n'est plus marqué « ne pas indexer ».
 - Le sort de l'e-mail et des anciennes adresses est tranché par écrit.
+
+## Issues
+
+_(ajouté le 2026-09-11 : les deux décisions de ce plan sont des issues GitHub, ouvertes
+jusqu'à la mise en production, étiquetées `plan: 01`.)_
+
+- #1 Bascule du domaine www.scouts-europe.ch — bloqué, après le gel du design (plan 05)
+- #2 Choix de l'hébergeur du site officiel — bloqué

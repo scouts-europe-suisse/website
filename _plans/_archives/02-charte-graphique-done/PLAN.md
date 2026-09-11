@@ -1,6 +1,15 @@
 # Plan 02 — Décliner la charte graphique dans le site
 
-**Statut :** ouvert
+> **Fermé le 2026-09-11, absorbé par le plan 05 (décision de Nicolas).** La charte n'attendra
+> pas l'ETN Multimédia : elle est **créée dans le chantier**, au cours de l'étape 1 du plan 05,
+> avec le logo actuel conservé et sa version vectorielle produite par Claude. Ce que ce plan
+> prévoyait et qui n'est pas fait ici : la réflexion de fond de l'ETN Multimédia, le contact avec
+> l'AGSE, le logo définitif dessiné par le mouvement, les documents types et le guide de style.
+> Ces points ne sont pas abandonnés, ils passent dans le plan 05 sous une autre forme. Les deux
+> questions juridiques (croix suisse, emblème Croix-Rouge) restent à poser à l'IPI ; elles
+> seront une issue du plan 05. La `PROPOSITION.md` de ce dossier est la charte provisoire qui
+> habille le site aujourd'hui, jusqu'à ce que la nouvelle la remplace.
+
 **Responsable :** à définir (ETN Multimédia)
 **Date :** 2026-09-10
 **Demandé par :** cahier des charges SES25, partie 1
