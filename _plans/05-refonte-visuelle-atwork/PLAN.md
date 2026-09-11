@@ -176,4 +176,14 @@ Faites avant la conversation, à la demande de Nicolas :
 - #21 Accueil : dernières photos Instagram, modale, albums — bloqué (jeton Meta, conversation)
 - #22 Configuration Meta : .env, jetons, secrets hors dépôt — **fermée** le 2026-09-11 (PR #23)
 
-Étapes 1 à 6 : issues à créer après la conversation préalable.
+Refonte, version 1 (décision de Nicolas du 2026-09-11 : « fais toute la refonte maintenant,
+sans interruption », à soumettre aux autres le soir même) :
+- #24 Charte et système de composants (étapes 1 et 2) — **fermée** le 2026-09-11 (PR #26)
+- #25 Toutes les pages refaites (étape 3) — **fermée** le 2026-09-11 (PR #26)
+- #9 Introductions des six rubriques (plan 04) — **fermée** le 2026-09-11 (PR #26)
+- #20 Carte des implantations — carte dessinée faite (PR #26), reste le rafraîchissement automatique (#4)
+- #21 Section Instagram sur l'accueil — faite (PR #26), reste le rafraîchissement automatique (#4)
+- #22 Configuration Meta — **fermée** (PR #23)
+
+Ce qui reste avant le gel (étape 6) : relecture par les autres membres, corrections en issues,
+publication automatique (#4), audit de référencement local (plan XX), puis gel.
