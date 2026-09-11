@@ -21,8 +21,17 @@ const REPO = 'website';
 const SITE_URL = `https://${ORG}.github.io`;
 const BASE_PATH = `/${REPO}`;
 
+// Sous Windows, npm est un fichier .cmd : depuis Node 18.20 / 20.12, un .cmd
+// ne se lance plus sans passer par l'interpréteur de commandes (correctif de
+// sécurité CVE-2024-27980), d'où l'EINVAL de l'issue #16. On ne passe par le
+// shell que pour lui ; git, lui, est un vrai exécutable.
 const run = (cmd, args, opts = {}) =>
-  execFileSync(cmd, args, { stdio: 'pipe', encoding: 'utf8', shell: false, ...opts });
+  execFileSync(cmd, args, {
+    stdio: 'pipe',
+    encoding: 'utf8',
+    shell: process.platform === 'win32' && cmd.endsWith('.cmd'),
+    ...opts,
+  });
 const git = (args, opts) => run('git', args, opts).trim();
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 
