@@ -116,6 +116,19 @@ trois en allemand. Quelques phrases suffisent : dire ce qu'on trouve dans la rub
 amélioration par rapport au site actuel, pas une reprise. **Ne pas les inventer** : ils parlent
 du mouvement.
 
+**C'est une décision, pas une tâche technique.** Elle revient aux membres du SES qui reprennent
+le site, pas à celui qui l'a construit. Trois issues possibles, toutes acceptables :
+
+1. **Écrire les six textes.** Quelques phrases par rubrique, en français et en allemand. C'est
+   ce qui rend le site meilleur que l'actuel. Demande un germanophone pour les trois pages
+   allemandes — voir le point 3.
+2. **N'écrire que le français** et laisser l'allemand en attente, marqué comme tel.
+3. **Ne rien écrire du tout** et garder le sommaire seul. C'est déjà mieux que le site actuel,
+   où ces pages sont des culs-de-sac ou des rebonds. Il suffit alors de l'écrire ici — une
+   phrase, datée — pour que ce soit une décision et non un oubli.
+
+Ce que le critère de clôture demande, c'est **qu'on tranche**, pas qu'on écrive.
+
 **Déjà réglé côté technique, à ne pas refaire :**
 
 - Le texte de « Die Bewegung » était le contenu recopié de sa sous-page, pas une introduction. Il
