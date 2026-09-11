@@ -1,0 +1,115 @@
+{
+  "source": "https://www.google.com/maps/d/viewer?mid=1mLNKImv1_q7I8xmzMt3Nnnb_ulE",
+  "title": "Implantations SES",
+  "places": [
+    {
+      "name": "District St Amédée - Vaud",
+      "lat": 46.5341185,
+      "lng": 6.6488098,
+      "groupe": "Groupe Lausanne",
+      "unites": [
+        "Deux clairières de louvettes",
+        "Une meute de louveteaux",
+        "Une compagnie d'éclaireuses",
+        "Une troupe d'éclaireurs",
+        "Un feu de guides-aînées",
+        "Un clan de routiers"
+      ],
+      "email": "secretariat-vd@scouts-europe.ch"
+    },
+    {
+      "name": "District Notre Dame des Voirons - Genève",
+      "lat": 46.1949604,
+      "lng": 6.1454666,
+      "groupe": null,
+      "unites": [
+        "Trois clairières de louvettes",
+        "Trois meutes de louveteaux",
+        "Deux compagnies d'éclaireuses",
+        "Trois troupes d'éclaireurs",
+        "Un clan de routiers",
+        "Un feu de guides-aînées"
+      ],
+      "email": "secretariat-ge@scouts-europe.ch"
+    },
+    {
+      "name": "District St Nicolas de Myre - Fribourg",
+      "lat": 46.7970482,
+      "lng": 7.1542668,
+      "groupe": null,
+      "unites": [
+        "Une clairière de louvettes",
+        "Une meute de louveteaux",
+        "Une compagnie d'éclaireuses",
+        "Une troupe d'éclaireurs",
+        "Un clan de routiers"
+      ],
+      "email": "secretariat-fr@scouts-europe.ch"
+    },
+    {
+      "name": "District St Nicolas de Flüe - Zurich",
+      "lat": 47.3694627,
+      "lng": 8.5533419,
+      "groupe": null,
+      "unites": [
+        "Une meute de louveteaux",
+        "Une clairière de louvettes",
+        "Une compagnie d'éclaireuses",
+        "Une troupe d'éclaireurs",
+        "Un feu de guides-aînées",
+        "Un clan de routiers"
+      ],
+      "email": "secretariat-zh@scouts-europe.ch"
+    },
+    {
+      "name": "District St Théodule - Valais",
+      "lat": 46.1047204,
+      "lng": 7.0751953,
+      "groupe": "Groupe de Martigny",
+      "unites": [
+        "Une clairière de louvettes",
+        "Une meute de louveteaux",
+        "Une compagnie d'éclaireuses",
+        "Une troupe d'éclaireurs"
+      ],
+      "email": "secretariat-vs@scouts-europe.ch"
+    },
+    {
+      "name": "Neuchâtel",
+      "lat": 46.9897965,
+      "lng": 6.9291973,
+      "groupe": null,
+      "unites": [
+        "Une clairière de louvettes",
+        "Une meute de louveteaux"
+      ],
+      "email": "secretariat-fr@scouts-europe.ch"
+    },
+    {
+      "name": "Morges",
+      "lat": 46.5108518,
+      "lng": 6.5000331,
+      "groupe": "Groupe La Côte",
+      "unites": [
+        "Une clairière de louvettes",
+        "Une compagnie d'éclaireuses",
+        "Une meute de louveteaux",
+        "Une troupe d'éclaireurs",
+        "Un feu de guides-aînées",
+        "Un clan de routiers"
+      ],
+      "email": "secretariat-vd@scouts-europe.ch"
+    },
+    {
+      "name": "Wädenswil",
+      "lat": 47.2540067,
+      "lng": 8.5963571,
+      "groupe": null,
+      "unites": [
+        "Une clairière de louvettes"
+      ],
+      "email": "secretariat-zh@scouts-europe.ch"
+    }
+  ],
+  "fetched": "2026-09-11T15:07:40.292Z"
+}

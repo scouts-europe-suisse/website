@@ -10,7 +10,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "node scripts/publish.mjs"
+    "deploy": "node scripts/publish.mjs",
+    "implantations": "node --env-file-if-exists=.env scripts/implantations.mjs",
+    "instagram": "node --env-file-if-exists=.env scripts/instagram.mjs",
+    "meta-token": "node --env-file-if-exists=.env scripts/meta-token.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
