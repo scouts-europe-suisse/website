@@ -6,6 +6,20 @@
 **Portée :** `src/layouts/`, `src/data/site.ts`, `public/robots.txt`, `scripts/publish.mjs`,
 et tout ce qui touche aux adresses des pages
 
+## Les deux situations, et ce que ce plan couvre
+
+**Tant que le site est exposé sur `github.io`, nous sommes en préparation.** Ce n'est pas le site
+du mouvement : c'est une maquette qu'on montre pour la faire relire. `www.scouts-europe.ch`
+tourne toujours sous WordPress et reste le vrai site.
+
+**Ce plan ne s'applique donc complètement que le jour où le nouveau site remplacera l'ancien.**
+Mesurer des positions dans Google, inscrire le site à la Search Console, vérifier les
+redirections en conditions réelles : rien de tout ça n'a de sens avant.
+
+**En attendant, on prépare.** La logique se met en place dès maintenant — les balises, la
+structure, la fiche d'identité — pour que le jour de la bascule il n'y ait rien à improviser.
+Et surtout : **en préparation, le site ne doit apparaître dans aucun résultat de recherche.**
+
 ## Le problème, en langage courant
 
 Une famille qui cherche « scoutisme Genève » ou « Pfadfinder Zürich » sur Google doit tomber sur
@@ -59,7 +73,7 @@ savoir d'avance pour ne pas croire qu'on découvre quelque chose :
 
 ## Ce qui manque — constaté le 2026-09-11
 
-1. **L'aperçu public est indexable par Google.** Voir le point urgent ci-dessous.
+1. ~~L'aperçu public est indexable par Google.~~ **Traité le 2026-09-11** — voir l'étape 0.
 2. **Aucune fiche d'identité lisible par les machines.** Un site d'association devrait se
    déclarer comme telle — nom, adresse, contact, langues, zone desservie — dans un petit bloc de
    données que Google lit directement (`schema.org`). Nous n'en avons aucun. C'est ce qui permet
@@ -68,10 +82,10 @@ savoir d'avance pour ne pas croire qu'on découvre quelque chose :
    ou sur Facebook, il n'y a pas de vignette. C'est déjà noté dans
    [`_memory/state.md`](../../_memory/state.md) et ça dépend de la charte
    ([plan 02](../02-charte-graphique-later/PLAN.md)).
-4. **Le `robots.txt` renvoie à un plan qui n'existe plus** (`_plans/01-hebergement-et-mise-en-ligne/`,
-   renommé depuis). Un détail, à corriger en passant.
+4. ~~Le `robots.txt` renvoie à un plan qui n'existe plus.~~ **Traité le 2026-09-11** — le
+   fichier figé a été remplacé par une page générée.
 
-## Le point urgent, qui ne dépend pas de l'outil
+## Le point urgent, qui ne dépendait pas de l'outil — **réglé le 2026-09-11**
 
 **L'aperçu public https://scouts-europe-suisse.github.io/website/ peut être indexé par Google
 dès maintenant, et se présente comme un site à part entière.** Chaque page y déclare son adresse
@@ -98,12 +112,33 @@ pages.
 **Ça ne coûte rien et ça n'enlève rien** : l'aperçu reste visible pour qui a le lien. Il
 disparaît seulement des résultats de recherche, ce qui est exactement ce qu'on veut d'un aperçu.
 
+**C'est fait** — le détail de la mise en œuvre est à l'étape 0.
+
 ## La stratégie, dans l'ordre
 
-### Étape 0 — Protéger l'aperçu *(à faire maintenant, sans attendre le reste)*
+### Étape 0 — Protéger l'aperçu — **fait le 2026-09-11**
 
-Poser la mention « ne pas indexer » sur l'aperçu `github.io` uniquement, comme expliqué ci-dessus.
-Corriger au passage le renvoi périmé du `robots.txt`. Indépendant de claude-seo.
+Le site connaît maintenant deux situations, et une seule ligne les sépare
+([`src/data/site.ts`](../../src/data/site.ts)) :
+
+- **préparation**, par défaut — chaque page porte « ne pas indexer », et le `robots.txt` interdit
+  tout le site ;
+- **production**, à demander explicitement avec `SES_SITE_MODE=production` — le site est indexé,
+  et le `robots.txt` annonce le plan du site.
+
+Le sens est volontaire : **on demande à être indexé, on ne le devient pas par distraction.** Le
+risque qui reste est l'inverse — oublier de lever la protection le jour de la bascule. C'est
+écrit dans le [plan 01](../01-domaine-et-bascule-later/PLAN.md), à l'endroit où on le lira.
+
+Le `robots.txt` n'est plus un fichier figé mais une page générée
+([`src/pages/robots.txt.ts`](../../src/pages/robots.txt.ts)) : son contenu suit la situation, donc
+personne n'a à se souvenir de le modifier à la main.
+
+Et `npm run deploy` **refuse de publier** si une seule page a perdu sa mention « ne pas
+indexer ». Le contrôle est à côté de celui qui vérifie les adresses, dans
+[`scripts/publish.mjs`](../../scripts/publish.mjs).
+
+Reste à faire de cette étape : rien.
 
 ### Étape 1 — Installer la boîte à outils
 
@@ -185,8 +220,8 @@ la partie mécanique : balises, adresses, redirections, structure. C'est là qu'
 
 ## Ce que « terminé » veut dire
 
-- L'aperçu public n'est plus indexable, et c'est vérifié sur le site en ligne, pas seulement
-  dans le code.
+- ~~L'aperçu public n'est plus indexable~~ — **fait le 2026-09-11**, vérifié sur le site en
+  ligne et pas seulement dans le code.
 - Un audit a été passé sur la version locale, et son rapport est lu.
 - Chaque recommandation de ce rapport est soit appliquée, soit écartée **pour une raison
   écrite** — y compris « l'outil se trompe, voici pourquoi ».

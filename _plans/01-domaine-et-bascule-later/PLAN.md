@@ -52,6 +52,28 @@ bouge. Détails : [`../../_memory/local-dev-and-deploy.md`](../../_memory/local-
 4. **Où part l'adresse e-mail `info@scouts-europe.ch`** si le domaine change d'hébergeur — c'est
    le piège classique de ce genre de bascule.
 
+## Le geste à ne pas oublier le jour de la bascule
+
+**Le site est délibérément invisible pour les moteurs de recherche** tant qu'il n'a pas remplacé
+le WordPress. Chaque page porte la mention « ne pas indexer », et le `robots.txt` interdit tout.
+C'est voulu : un aperçu qui dit la même chose que `www.scouts-europe.ch` entrerait en concurrence
+avec lui dans Google.
+
+**Ça ne se lève pas tout seul.** Il faut construire le site avec `SES_SITE_MODE=production`, et
+c'est la seule chose à changer :
+
+```bash
+SES_SITE_MODE=production npm run build
+```
+
+Sans ce réglage, le nouveau site prendrait le domaine du mouvement **et disparaîtrait des
+résultats de recherche.** C'est le genre d'erreur qu'on ne remarque pas avant des semaines.
+
+Le sens de la consigne est volontaire : on demande explicitement à être indexé. On ne peut donc
+pas publier un site de test indexable par distraction — seulement oublier de lever la protection
+le jour J, ce que cette section est là pour empêcher. Détail dans
+[`src/data/site.ts`](../../src/data/site.ts) et le [plan référencement](../XX-referencement-later/PLAN.md).
+
 ## Ce que « terminé » veut dire
 
 - Le domaine `www.scouts-europe.ch` pointe sur le nouveau site, et l'accès à l'hébergement est
@@ -62,4 +84,6 @@ bouge. Détails : [`../../_memory/local-dev-and-deploy.md`](../../_memory/local-
 - Une commande unique publie le site, et elle est décrite dans
   [`../../_memory/local-dev-and-deploy.md`](../../_memory/local-dev-and-deploy.md).
 - La règle de confirmation avant publication est écrite dans `CLAUDE.md`.
+- Le site est construit en mode production, et il est vérifié **sur le vrai domaine** qu'il
+  n'est plus marqué « ne pas indexer ».
 - Le sort de l'e-mail et des anciennes adresses est tranché par écrit.

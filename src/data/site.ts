@@ -7,6 +7,26 @@
  * actuel — voir _memory/source-site.md. Ne rien inventer ici.
  */
 
+/**
+ * Dans quelle situation tourne le site. Les deux n'ont pas les mêmes règles
+ * face aux moteurs de recherche, et c'est la seule différence entre elles.
+ *
+ *   préparation (par défaut) — le site tourne en local, ou il est exposé en
+ *     aperçu sur github.io pour être relu. Ce n'est pas le site du mouvement :
+ *     il ne doit apparaître dans aucun résultat de recherche, sans quoi il
+ *     entre en concurrence avec www.scouts-europe.ch, qui est le vrai site
+ *     tant que la bascule n'a pas eu lieu.
+ *
+ *   production — le site A REMPLACÉ le WordPress et sert le domaine du
+ *     mouvement. Il doit alors être indexé, c'est tout l'intérêt.
+ *
+ * **La production se demande explicitement**, avec SES_SITE_MODE=production au
+ * moment de construire. C'est volontairement dans ce sens : on ne peut pas
+ * publier un site indexable par distraction, il faut l'avoir décidé. Le jour
+ * de la bascule, c'est la ligne à changer — voir le plan 01.
+ */
+export const IS_PRODUCTION_SITE = process.env.SES_SITE_MODE === 'production';
+
 export const LANGS = ['fr', 'de'] as const;
 export type Lang = (typeof LANGS)[number];
 export const DEFAULT_LANG: Lang = 'fr';
