@@ -48,6 +48,11 @@ de style — tout cela reste à l'ETN Multimédia.
   charte : **un carré, jamais un écu.** Lecture complète et réserves :
   [`../../_memory/croix-suisse-et-armoiries.md`](../../_memory/croix-suisse-et-armoiries.md).
   À faire confirmer par l'IPI si le mouvement veut une certitude juridique.
+- **Une seconde question, restée hors du cahier des charges :** la croix scoute est une croix
+  **rouge sur fond blanc**, et une autre loi (RS 232.22) protège strictement l'emblème de la
+  Croix-Rouge, en interdisant jusqu'aux signes susceptibles d'être confondus avec lui comme
+  élément d'un nom d'association. La forme du logo en est éloignée, mais la question se pose et
+  **se pose à l'IPI en même temps que la première**.
 - **L'AGSE est une association sœur**, pas un tiers : le SES et elle relèvent de la même
   fédération, l'Union internationale des Guides et Scouts d'Europe. Reprendre ou adapter son
   travail récent, comme le recommande le cahier des charges, est donc la voie la plus naturelle —

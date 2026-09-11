@@ -55,4 +55,36 @@ Ne pas compter non plus sur un droit acquis : l'art. 35 prévoyait la poursuite 
 armoiries pendant **deux ans au plus** après l'entrée en vigueur de la loi. Ce délai est passé
 depuis longtemps.
 
+## Une SECONDE loi, que le cahier des charges ne cite pas
+
+**Ajouté le 2026-09-11.** L'analyse ci-dessus ne portait que sur la LPAP, parce que c'est le seul
+texte cité par le cahier des charges. Or il en existe un autre, au moins aussi strict :
+
+**La loi fédérale concernant la protection de l'emblème et du nom de la Croix-Rouge**
+([RS 232.22](https://www.fedlex.admin.ch/eli/cc/1954/1297_1327_1355/fr)).
+
+Elle protège la **croix rouge sur fond blanc** — l'inverse exact du drapeau suisse. Son art. 1
+réserve cet emblème à la signalisation du personnel et du matériel protégés par les Conventions
+de Genève. Et surtout, depuis une modification entrée en vigueur en 2017, les signes
+« susceptibles d'être confondus » avec lui ne peuvent être enregistrés **ni comme marque, ni
+comme design, ni comme raison de commerce, ni comme nom d'association** — ni même comme *élément*
+de ceux-ci.
+
+### Pourquoi ça concerne le SES
+
+Le logo du mouvement comporte une **croix rouge sur fond blanc** : la croix scoute à huit
+pointes.
+
+**Je n'ai pas tranché, et ce n'est pas à moi de le faire.** Ce qu'on peut dire : la forme est
+éloignée de celle de la Croix-Rouge, qui est une croix grecque simple à branches égales. Celle du
+mouvement a huit pointes, des branches évasées, et une fleur de lys au centre. Le risque de
+confusion paraît donc faible — mais « paraît faible » n'est pas une réponse juridique.
+
+> **À poser à l'IPI en même temps que la première question.** La démarche est la même, et il
+> serait absurde de ne poser que la moitié du problème. Les deux questions tiennent en deux
+> phrases :
+> 1. Le carré rouge à croix blanche du logo est-il admis au regard de la LPAP ?
+> 2. La croix scoute rouge sur fond blanc est-elle susceptible d'être confondue avec l'emblème de
+>    la Croix-Rouge au sens de la RS 232.22 ?
+
 Voir aussi [[cahier-des-charges]], [[design-system]].
