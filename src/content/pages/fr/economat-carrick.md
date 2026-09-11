@@ -3,7 +3,7 @@ title: "Economat Carrick"
 urlPath: economat-carrick
 key: economat-carrick
 sourceModified: 2025-12-09
-cover: "/images/carrick-logo.jpg"
+cover: "/images/carrick-logo.png"
 coverAlt: "Logo de l’économat Carrick"
 ---
 

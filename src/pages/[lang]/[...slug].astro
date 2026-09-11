@@ -20,6 +20,7 @@ import NewsArticle from '../../components/NewsArticle.astro';
 import SectionIndex from '../../components/SectionIndex.astro';
 import { childrenOf } from '../../lib/pages';
 import { withBase } from '../../data/site';
+import { imageSize, isEmblem } from '../../lib/imageSize';
 import Search from '../../components/Search.astro';
 import { LANGS, NEWS_BASE, SEARCH_BASE, UI, type Lang } from '../../data/site';
 
@@ -69,6 +70,11 @@ const emptyBody =
 // Une rubrique qui affiche le sommaire de ses filles n'est pas une page
 // blanche : elle rend service telle quelle. Le bandeau « ébauche » ne
 // s'affiche donc que si elle n'a vraiment rien à montrer.
+// Dimensions réelles de l'image à la une : elles évitent que la page saute
+// au chargement, et disent si c'est un écusson ou un bandeau.
+const coverSize = entry?.data?.cover ? imageSize(entry.data.cover) : null;
+const coverEmblem = isEmblem(coverSize);
+
 const sectionChildren =
   emptyBody ? await childrenOf(entry.data.key, lang) : [];
 const showsIndex = sectionChildren.length > 0;
@@ -121,7 +127,9 @@ const accent =
         <img
           src={withBase(entry.data.cover)}
           alt={entry.data.coverAlt ?? ''}
-          class="ses-cover"
+          class:list={['ses-cover', coverEmblem && 'ses-cover--ecusson']}
+          width={coverSize?.w}
+          height={coverSize?.h}
           loading="eager"
         />
       )}

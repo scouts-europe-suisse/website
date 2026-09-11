@@ -229,15 +229,18 @@ a:hover { color: var(--ses-primary); }
   font-style: italic;
 }
 
-/* L'image à la une d'une page. Les écussons de branche sont de petites
-   images carrées : on ne les étire pas sur toute la largeur. */
+/* L'image à la une d'une page.
+   La distinction écusson / bandeau se fait sur les DIMENSIONS réelles de
+   l'image, lues à la construction (src/lib/imageSize.ts) — et non sur son
+   extension, ce qui bridait le logo Carrick à la taille d'un écusson de
+   branche au seul motif que les deux sont des PNG. */
 .ses-cover {
   display: block;
   max-width: 100%;
   height: auto;
   margin-bottom: var(--space-3);
 }
-.ses-cover[src$='.png'] {
+.ses-cover--ecusson {
   max-width: 8rem;
 }
 
