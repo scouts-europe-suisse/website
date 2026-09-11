@@ -1,7 +1,8 @@
-# Le site n'est pas encore en ligne (voir _plans/01-hebergement-et-mise-en-ligne/).
-# Cette version autorise l'indexation : à vérifier au moment de la bascule,
-# et à passer en interdiction si le site est publié quelque part en préparation.
+# Site de préparation du Scoutisme Européen Suisse — ce n'est pas le site du mouvement.
+# Le site officiel est https://www.scouts-europe.ch. Cette version sert à préparer son
+# remplacement : elle ne doit apparaître dans aucun résultat de recherche.
+#
+# Ce fichier n'est pas la seule protection : servi depuis un sous-dossier, il
+# n'est jamais lu. Chaque page porte aussi la mention « ne pas indexer ».
 User-agent: *
-Allow: /
-
-Sitemap: https://www.scouts-europe.ch/sitemap-index.xml
+Disallow: /
