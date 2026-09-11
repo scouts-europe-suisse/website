@@ -18,6 +18,8 @@ import ImplantationsMap from '../../components/ImplantationsMap.astro';
 import NewsList from '../../components/NewsList.astro';
 import NewsArticle from '../../components/NewsArticle.astro';
 import SectionIndex from '../../components/SectionIndex.astro';
+import BrancheIcon from '../../components/BrancheIcon.astro';
+import { BRANCHES } from '../../data/pictos';
 import { childrenOf } from '../../lib/pages';
 import { withBase } from '../../data/site';
 import { imageSize, isEmblem } from '../../lib/imageSize';
@@ -124,6 +126,16 @@ const accent =
     noindex={stillToWrite}
   >
     <article>
+      {/* Une page de branche s'ouvre sur ses deux pictogrammes (issue #14),
+          qui portent seuls le nom de la branche pour un lecteur d'écran. */}
+      {entry.data.branche && (
+        <div class="mb-4 flex gap-3">
+          {BRANCHES[entry.data.branche].map((icon) => (
+            <BrancheIcon icon={icon} size="5rem" lang={lang} decorative={false} />
+          ))}
+        </div>
+      )}
+
       {/* L'image à la une, au-dessus du titre, comme sur le site actuel. */}
       {entry.data.cover && (
         <img
