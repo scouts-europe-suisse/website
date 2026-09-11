@@ -1,0 +1,49 @@
+---
+/**
+ * Un pictogramme de branche, en ligne, à la couleur de sa branche.
+ *
+ * La couleur vient de `--ses-branche-<branche>` (global.css) : le pictogramme
+ * suit donc la charte sans qu'on touche aux tracés, qui sont dans
+ * `src/data/pictos.ts`.
+ *
+ * Décoratif par défaut (l'étiquette texte est à côté). Passer
+ * `decorative={false}` quand le pictogramme porte seul l'information : il
+ * reçoit alors un libellé lisible par les lecteurs d'écran.
+ */
+import { PICTOS, type PictoKey } from '../data/pictos';
+import type { Lang } from '../data/site';
+
+interface Props {
+  icon: PictoKey;
+  /** Taille CSS, par défaut 4rem. */
+  size?: string;
+  lang?: Lang;
+  decorative?: boolean;
+  class?: string;
+}
+
+const { icon, size = '4rem', lang = 'fr', decorative = true, class: cls } = Astro.props;
+const p = PICTOS[icon];
+---
+
+<svg
+  class:list={['ses-picto', cls]}
+  viewBox="0 0 64 64"
+  width="64"
+  height="64"
+  style={`width: ${size}; height: ${size}`}
+  role={decorative ? undefined : 'img'}
+  aria-hidden={decorative ? 'true' : undefined}
+  aria-label={decorative ? undefined : p.label[lang]}
+>
+  <circle cx="32" cy="32" r="32" style={`fill: var(--ses-branche-${p.branche})`}></circle>
+  <path d={p.path} transform={p.transform} fill="#fff" fill-rule={p.fillRule}></path>
+</svg>
+
+<style>
+  .ses-picto {
+    display: inline-block;
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
+</style>

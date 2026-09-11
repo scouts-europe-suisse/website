@@ -8,6 +8,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageNotices from '../../components/PageNotices.astro';
 import NewsList from '../../components/NewsList.astro';
 import Slider from '../../components/Slider.astro';
+import BrancheIcon from '../../components/BrancheIcon.astro';
+import { BRANCHES, type Branche } from '../../data/pictos';
 import { pathFor, pagesIn } from '../../lib/pages';
 import { LANGS, NAV, NEWS_BASE, UI, withBase, type Lang } from '../../data/site';
 
@@ -38,9 +40,9 @@ const branchNav = entry_('notre-scoutisme')?.children ?? [];
 const branches = (
   await Promise.all(
     [
-      { key: 'branche-jaune', couleur: 'var(--ses-branche-jaune)', ecusson: '/images/branche-jaune.png' },
-      { key: 'branche-verte', couleur: 'var(--ses-branche-verte)', ecusson: '/images/branche-verte.png' },
-      { key: 'branche-rouge', couleur: 'var(--ses-branche-rouge)', ecusson: '/images/branche-rouge.png' },
+      { key: 'branche-jaune', branche: 'jaune' as Branche, couleur: 'var(--ses-branche-jaune)' },
+      { key: 'branche-verte', branche: 'verte' as Branche, couleur: 'var(--ses-branche-verte)' },
+      { key: 'branche-rouge', branche: 'rouge' as Branche, couleur: 'var(--ses-branche-rouge)' },
     ].map(async (b) => ({
       ...b,
       href: await pathFor(b.key, lang),
@@ -92,7 +94,12 @@ const aboutLabel =
           class="border p-5 text-center"
           style={`border-color: var(--ses-border); background: var(--ses-surface); border-top: 4px solid ${b.couleur}`}
         >
-          <img src={withBase(b.ecusson)} alt="" width="104" height="104" class="mx-auto mb-3" style="width: 5rem; height: auto" />
+          {/* Les deux pictogrammes de la branche (issue #14), à sa couleur. */}
+          <div class="mb-3 flex justify-center gap-2">
+            {BRANCHES[b.branche].map((icon) => (
+              <BrancheIcon icon={icon} size="4rem" lang={lang} />
+            ))}
+          </div>
           <a href={b.href} class="font-semibold no-underline" style="color: var(--ses-fg)">{b.label}</a>
         </li>
       ))}

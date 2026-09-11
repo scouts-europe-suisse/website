@@ -4,8 +4,6 @@ urlPath: branche-rouge
 key: branche-rouge
 branche: rouge
 sourceModified: 2025-12-09
-cover: "/images/branche-rouge.png"
-coverAlt: "Écusson de la branche rouge"
 ---
 
 Avance au large en servant tes frères et soeurs !

@@ -4,8 +4,6 @@ urlPath: woelflingsstufe
 key: branche-jaune
 branche: jaune
 sourceModified: 2025-12-09
-cover: "/images/branche-jaune.png"
-coverAlt: "Abzeichen der gelben Stufe"
 ---
 
 ## Koste das Leben in vollen Zügen, indem du dein Bestes gibst
