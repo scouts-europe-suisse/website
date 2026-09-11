@@ -24,11 +24,19 @@
    dans `src/content/`.
 4. **Le compte Google** derrière la carte des implantations : savoir qui la tient à jour. Si le
    compte se perd, la carte disparaît du site sans prévenir.
+5. **Les introductions des six pages de rubrique** — « Notre scoutisme », « Le mouvement »,
+   « Nous rejoindre », dans les deux langues. Le site actuel n'en a aucune : vérifié page par
+   page dans un navigateur le 2026-09-11. Voir le point 6 du PLAN.md. Elles affichent le
+   sommaire de leurs sous-pages en attendant, donc rien n'est cassé.
 
 ## À ne pas réapprendre à la dure
 
 - **`src/content/` fait foi.** On ne relance pas de reprise depuis la base : ça écraserait le
   travail de relecture.
+- **Le site actuel n'a aucune page de rubrique visible.** En français, les trois adresses
+  rebondissent sur une sous-page ; en allemand, deux sont des pages blanches et la troisième
+  recopie sa sous-page. Ne pas repartir chercher un texte d'introduction dans l'ancien site :
+  il n'y en a pas. Vérifié le 2026-09-11.
 - **Le dépôt est public.** Rien de personnel n'y entre, et l'historique garde ce qu'on y met même
   après suppression.
 - **Historique : clos.** Purgé et vérifié ; le résidu côté GitHub est assumé (décision de Perki,

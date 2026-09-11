@@ -89,9 +89,46 @@ confidentialité — un chargement au clic le règle sans rien changer à la car
 **À vérifier avec le mouvement :** qui tient cette carte à jour, et sous quel compte Google.
 Si le compte se perd, la carte disparaît du site sans prévenir.
 
+## 6. Les introductions des rubriques
+
+**Constaté le 2026-09-11, en comparant les deux sites page par page dans un navigateur.**
+
+Six pages de rubrique n'ont aucun texte à elles : « Notre scoutisme », « Le mouvement » et
+« Nous rejoindre », dans les deux langues. Elles affichent le sommaire de leurs sous-pages, ce
+qui les rend utilisables, mais rien qui dise au visiteur où il est arrivé.
+
+**Il n'y a rien à reprendre du site actuel : ces introductions n'ont jamais existé.**
+
+| Adresse d'origine | Ce qu'elle fait vraiment |
+|---|---|
+| `/fr/notre-scoutisme/` | rebondit sur « Qui sommes-nous ? » |
+| `/fr/mouvement/` | rebondit sur « Un mouvement suisse » |
+| `/fr/nous-rejoindre/` | rebondit sur « Nos implantations » |
+| `/de/unsere-pfadfinderschaft/` | page blanche — un titre, rien d'autre |
+| `/de/uns-beitreten/` | page blanche — un titre, rien d'autre |
+| `/de/die-beweguni/` | recopie mot pour mot sa sous-page « Eine schweizerische Bewegung » |
+
+Les trois adresses françaises ne montrent donc jamais de page de rubrique, et les allemandes sont
+des culs-de-sac : un titre, aucun lien vers les sous-pages.
+
+**Ce que ça demande :** que quelqu'un du mouvement écrive ces six textes — trois en français,
+trois en allemand. Quelques phrases suffisent : dire ce qu'on trouve dans la rubrique. C'est une
+amélioration par rapport au site actuel, pas une reprise. **Ne pas les inventer** : ils parlent
+du mouvement.
+
+**Déjà réglé côté technique, à ne pas refaire :**
+
+- Le texte de « Die Bewegung » était le contenu recopié de sa sous-page, pas une introduction. Il
+  a été retiré le 2026-09-11 ; il reste entier sur « Eine schweizerische Bewegung ».
+- Une rubrique garde son sommaire même une fois l'introduction écrite. Auparavant le premier
+  texte écrit l'aurait fait disparaître.
+- Ces pages ne sont plus cachées des moteurs de recherche. La marque « à écrire » reste dans leur
+  en-tête, comme rappel qu'il manque l'introduction — elle ne cache plus rien.
+
 ## Ce que « terminé » veut dire
 
 - Chaque image a rejoint sa place, ou est écartée pour une raison écrite.
 - La page d'accueil a un texte validé par le mouvement.
 - L'allemand est complet et relu, ou son report est écrit noir sur blanc.
 - Une personne du mouvement a relu les pages et donné son accord.
+- Les six rubriques ont leur introduction, ou leur absence est assumée par écrit.
