@@ -168,4 +168,7 @@ Rattachées à d'autres plans mais faites dans les étapes de ce plan :
 - #9 Introductions des six pages de rubrique (plan 04) — étape 3
 - #1 et #2 Domaine et hébergeur (plan 01) — après le gel
 
+Faites avant la conversation, à la demande de Nicolas :
+- #14 Pictogrammes des branches (SVG AGSE, couleurs de branche) — **fermée** le 2026-09-11 (PR #15)
+
 Étapes 1 à 6 : issues à créer après la conversation préalable.
