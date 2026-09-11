@@ -2,6 +2,8 @@
 title: "Ausbildung der Leiter"
 urlPath: die-bewegung/ausbildung-der-leiter
 key: formation-des-chefs
+description: "Schulungslager, Theorie, technische Workshops: Die Bewegung setzt auf die Ausbildung ihrer Leiter, um ein hochwertiges Pfadfindertum zu bieten."
+translated: false
 sourceModified: 2025-12-09
 ---
 

@@ -2,6 +2,8 @@
 title: "Wer sind wir?"
 urlPath: unsere-pfadfinderschaft/wer-sind-wir
 key: qui-sommes-nous
+description: "Eine Erziehungsbewegung nach der Pfadfindermethode, ergänzend zu Familie und Schule: katholisch, offen für alle und der Natur verbunden."
+translated: false
 sourceModified: 2025-12-09
 ---
 

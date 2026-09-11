@@ -2,6 +2,8 @@
 title: "Europa"
 urlPath: unsere-pfadfinderschaft/europa
 key: dimension-europeenne
+description: "1956 in Köln gegründet, vereint die Union internationale des Guides et Scouts d'Europe junge Menschen aus ganz Europa in christlicher Bruderschaft."
+translated: false
 sourceModified: 2025-12-09
 cover: "/images/drapeaux.jpg"
 coverAlt: "Fahnen europäischer Länder und der Bewegung"

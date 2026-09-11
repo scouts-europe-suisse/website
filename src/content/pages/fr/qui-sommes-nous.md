@@ -2,6 +2,7 @@
 title: "Qui sommes-nous ?"
 urlPath: notre-scoutisme/qui-sommes-nous
 key: qui-sommes-nous
+description: "Un mouvement d'éducation par la méthode scoute, complémentaire de la famille et de l'école, catholique, ouvert à tous et respectueux de la nature."
 sourceModified: 2025-12-09
 ---
 

@@ -120,13 +120,73 @@ export const NAV: NavItem[] = [
   },
 ];
 
+/** Le logo du mouvement, vectorisé depuis le PNG de l'ancien site (plan 05). */
+export const LOGO = '/images/logo-ses.svg';
+/** La croix seule, pour les fonds sombres et les petits formats. */
+export const CROSS = '/images/croix-ses.svg';
+
 /** Les quelques chaînes d'interface qui n'appartiennent à aucune page. */
 export const UI = {
   skipToContent: { fr: 'Aller au contenu', de: 'Zum Inhalt springen' },
   menu: { fr: 'Menu', de: 'Menü' },
+  closeMenu: { fr: 'Fermer le menu', de: 'Menü schliessen' },
   home: { fr: 'Accueil', de: 'Startseite' },
   news: { fr: 'Actualités', de: 'Aktuelles' },
   allNews: { fr: 'Toutes les actualités', de: 'Alle Neuigkeiten' },
+  latestNews: { fr: 'Dernières nouvelles du mouvement', de: 'Neues aus der Bewegung' },
+  findGroup: { fr: 'Trouver un groupe', de: 'Eine Gruppe finden' },
+  discover: { fr: 'Découvrir notre scoutisme', de: 'Unsere Pfadfinderschaft entdecken' },
+  ourBranches: { fr: 'Trois branches, un même chemin', de: 'Drei Stufen, ein Weg' },
+  branchesIntro: {
+    fr: 'De 8 à 19 ans, chaque âge a sa branche, son rythme et ses aventures.',
+    de: 'Von 8 bis 19 Jahren hat jedes Alter seine Stufe, seinen Rhythmus und seine Abenteuer.',
+  },
+  years: { fr: 'ans', de: 'Jahre' },
+  ourMovement: { fr: 'Un mouvement', de: 'Eine Bewegung' },
+  whoWeAre: { fr: 'Qui sommes-nous ?', de: 'Wer sind wir?' },
+  whereWeAre: { fr: 'Nos implantations', de: 'Unsere Standorte' },
+  whereWeAreTitle: { fr: 'Près de chez vous', de: 'In Ihrer Nähe' },
+  whereWeAreIntro: {
+    fr: 'Nos groupes sont présents en Suisse romande et en Suisse alémanique. Trouvez celui qui est le plus proche de chez vous et écrivez à son secrétariat.',
+    de: 'Unsere Gruppen sind in der Romandie und in der Deutschschweiz präsent. Finden Sie die nächstgelegene Gruppe und schreiben Sie ihrem Sekretariat.',
+  },
+  places: { fr: 'implantations', de: 'Standorte' },
+  seeMap: { fr: 'Voir la carte et les contacts', de: 'Karte und Kontakte ansehen' },
+  becomeLeader: { fr: 'Devenir chef', de: 'Leiter werden' },
+  becomeLeaderTitle: { fr: 'Et si vous deveniez chef ?', de: 'Und wenn Sie Leiterin oder Leiter würden?' },
+  becomeLeaderIntro: {
+    fr: 'Le mouvement vit par ses chefs et cheftaines, formés et accompagnés. Découvrez comment vous engager.',
+    de: 'Die Bewegung lebt von ihren Leiterinnen und Leitern, ausgebildet und begleitet. Erfahren Sie, wie Sie sich engagieren können.',
+  },
+  instagramTitle: { fr: 'La vie du mouvement, en images', de: 'Das Leben der Bewegung, in Bildern' },
+  instagramIntro: {
+    fr: 'Les dernières photos publiées sur notre compte Instagram.',
+    de: 'Die neuesten Fotos aus unserem Instagram-Konto.',
+  },
+  followInstagram: { fr: 'Suivre @scouts.europe.suisse', de: '@scouts.europe.suisse folgen' },
+  openPhoto: { fr: 'Agrandir la photo', de: 'Foto vergrössern' },
+  closePhoto: { fr: 'Fermer', de: 'Schliessen' },
+  prevPhoto: { fr: 'Photo précédente', de: 'Vorheriges Foto' },
+  nextPhoto: { fr: 'Photo suivante', de: 'Nächstes Foto' },
+  viewOnInstagram: { fr: 'Voir sur Instagram', de: 'Auf Instagram ansehen' },
+  album: { fr: 'album', de: 'Album' },
+  photos: { fr: 'photos', de: 'Fotos' },
+  inThisSection: { fr: 'Dans cette rubrique', de: 'In dieser Rubrik' },
+  contactTitle: { fr: 'Nous écrire', de: 'Schreiben Sie uns' },
+  secretariats: { fr: 'Les secrétariats de district', de: 'Die Distriktsekretariate' },
+  headOffice: { fr: 'Siège', de: 'Sitz' },
+  followUs: { fr: 'Suivez-nous', de: 'Folgen Sie uns' },
+  memberOf: {
+    fr: 'Association catholique, membre de l’Union internationale des Guides et Scouts d’Europe.',
+    de: 'Katholischer Verein, Mitglied der Internationalen Union der Pfadfinderinnen und Pfadfinder Europas.',
+  },
+  footerSite: { fr: 'Le site', de: 'Die Website' },
+  footerContact: { fr: 'Contact', de: 'Kontakt' },
+  units: { fr: 'Unités', de: 'Einheiten' },
+  writeTo: { fr: 'Écrire au secrétariat', de: 'Dem Sekretariat schreiben' },
+  readArticle: { fr: 'Lire l’article', de: 'Artikel lesen' },
+  backToNews: { fr: 'Retour aux actualités', de: 'Zurück zu Aktuelles' },
+  published: { fr: 'Publié le', de: 'Veröffentlicht am' },
   noNews: {
     fr: "Aucune actualité pour l'instant.",
     de: 'Noch keine Neuigkeiten.',

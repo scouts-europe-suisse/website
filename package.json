@@ -13,7 +13,8 @@
     "deploy": "node scripts/publish.mjs",
     "implantations": "node --env-file-if-exists=.env scripts/implantations.mjs",
     "instagram": "node --env-file-if-exists=.env scripts/instagram.mjs",
-    "meta-token": "node --env-file-if-exists=.env scripts/meta-token.mjs"
+    "meta-token": "node --env-file-if-exists=.env scripts/meta-token.mjs",
+    "suisse": "node scripts/suisse-geometrie.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",

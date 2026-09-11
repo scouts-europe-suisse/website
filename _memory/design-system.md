@@ -1,108 +1,69 @@
 ---
 name: design-system
-description: Les couleurs et polices du site, reprises de l'identité actuelle du SES (couleurs prélevées dans le logo, polices Open Sans et Droid Sans hébergées sur place), et ce qui reste à faire quand la charte graphique arrivera.
+description: La charte du site (version 1 de la refonte, plan 05) — jetons, typographie, composants, où vivent le logo et les pictogrammes, ce qui ne bouge pas.
 metadata:
-  type: reference
+  type: project
 ---
 
-# Habillage du site — provisoire jusqu'à la charte
+# La charte du site — version 1 (2026-09-11)
 
-## L'idée
+Faite d'un bloc par Claude à la demande de Nicolas, sans la conversation préalable prévue par le
+plan 05 : **c'est une première version à soumettre aux autres**, pas un design gelé. Direction
+demandée : moderne, institutionnel, sobre. Références : uigse-fse.org, scouts-europe.org,
+eurojam2027.org.
 
-Le cahier des charges SES25 prévoit une **nouvelle charte graphique**, dont le site doit
-découler. Cette charte n'existe pas encore. En attendant, le site reprend **l'identité visuelle
-actuelle du SES**, relevée le 2026-09-10 : les couleurs du logo et les polices du site
-WordPress. Tout est rassemblé en variables CSS **en haut de
-[`../src/styles/global.css`](../src/styles/global.css)**.
+**Tout est dans `src/styles/global.css`, bloc `:root`, exposé à Tailwind par `@theme inline`.**
+Règle inchangée : aucune couleur, aucune taille de police en dur dans une page ou un composant.
 
-**Règle :** aucune couleur, aucune taille de police en dur dans une page ou un composant. Tout
-passe par ces variables. C'est ce qui permettra de basculer sur la charte définitive en changeant
-un seul fichier, sans relire les pages une par une.
+## Ce qui ne bouge pas (identité du mouvement, pas charte)
 
-C'est l'objet du [plan 02](../_plans/02-charte-graphique-later/PLAN.md).
+- Rouge de la croix `#e3051a`, sa version assombrie pour le texte `#b30414` (6,8:1).
+- Jaune de la fleur de lys `#f8e900` : filets, surtitres sur fond sombre, jamais du texte sur blanc.
+- Couleurs de branche : jaune `#ead728`, verte `#2c8d1b`, rouge `#ba1b1b`.
+- Les six pictogrammes de branche (`src/data/pictos.ts`, AGSE), le logo (croix + texte).
 
-## Les couleurs
+## La charte
 
-Elles sont **prélevées pixel par pixel dans les fichiers du logo**, pas approchées à l'œil.
-Sources et méthode : [`../_migrations/images/README.md`](../_migrations/images/README.md).
-
-| Variable CSS | Code | Ce que c'est |
+| Jeton | Valeur | Usage |
 |---|---|---|
-| `--ses-primary` | `#e3051a` | le rouge de la croix scoute, dans le logo |
-| `--ses-primary-text` | `#b30414` | le même rouge assombri, pour le texte et les liens |
-| `--ses-gold` | `#f8e900` | le jaune de la fleur de lys |
-| `--ses-fg` | `#404040` | le texte courant, repris du site actuel |
-| `--ses-bg` | `#f9f9f9` | le fond de page, repris du site actuel |
+| `--ses-nuit` | `#1c2733` | pied de page, bandes sombres, voile du bandeau, titres forts |
+| `--ses-nature` | `#2f5d3a` | accent secondaire |
+| `--ses-fg` | `#1f1d1a` | encre |
+| `--ses-muted` | `#625b52` | texte secondaire (6,6:1) |
+| `--ses-page` / `--ses-page-alt` | blanc / `#f6f4ef` | sections alternées |
+| `--ses-border` | `#e4e0d8` | filets, cartes |
+| Polices | Cabin (titres), Source Sans 3 (texte) | auto-hébergées, `public/fonts/` |
+| Titres | display `clamp(2.5rem, 5.5vw, 4.25rem)`, h1 `clamp(2rem, 4vw, 3rem)`, h2 `clamp(1.5rem, 2.6vw, 2.125rem)`, h3 1.25rem | vraie hiérarchie |
+| Corps | 17 px, interligne 1,65, colonne de lecture 44rem | |
+| Rayons | 4 / 12 / 24 px, boutons en pilule | |
+| Ombres | `--shadow-1/2/3` | cartes au repos, au survol, visionneuse |
+| Sections | `--section-y: clamp(3.5rem, 7vw, 6.5rem)` | |
+| Colonne | 76rem, étroite 48rem | |
 
-**Deux pièges de contraste**, déjà traités dans le CSS mais à ne pas défaire :
+## Les composants (classes dans global.css, composants dans src/components/)
 
-- **Le rouge du logo ne convient pas au texte sur fond clair.** Il donne 4,6:1, tout juste au
-  seuil réglementaire. D'où `--ses-primary-text`, assombri, qui monte à 6,8:1. Le rouge vif reste
-  pour les aplats et les bandeaux, où il porte du blanc (4,9:1, ce qui passe).
-- **Le jaune de la fleur de lys est illisible en texte** : moins de 1,3:1 sur blanc. Filets,
-  puces, soulignements uniquement. Jamais un mot écrit dedans.
+- `.ses-btn` (rouge), `--secondary` (contour nuit), `--light` (blanc sur sombre), `--ghost`.
+- `.ses-card` avec `__media`, `__body`, `__title` (toute la carte cliquable), `--accent`.
+- `.ses-eyebrow` (surtitre), `.ses-section`, `--alt`, `--dark`, `.ses-page-head` (bandeau de
+  page intérieure avec fil d'Ariane), `.ses-prose`, `.ses-lead`, `.ses-chip`, `.ses-more`.
+- `Header` (une ligne, collée, sous-menus au survol et au clavier, panneau replié en
+  `<details>`), `Footer` (nuit, quatre colonnes), `LangSwitcher` (FR · DE, toujours visible).
+- `SwissMap` (SVG de la Suisse, `src/data/suisse.json`, repères depuis
+  `src/data/implantations.json`), `InstagramGrid` (grille + visionneuse `<dialog>`),
+  `NewsList` (cartes), `SectionIndex` (sommaire en cartes), `ContactBlock`, `BrancheIcon`.
+- `.ses-reveal` : apparition douce au défilement, désactivée avec `prefers-reduced-motion`.
 
-## Les couleurs de branche
+## Logo, favicons, image de partage
 
-Elles appartiennent au mouvement et non à la charte : **elles ne changeront pas avec elle.**
-Prélevées dans les écussons.
+- `public/images/logo-ses.svg` : vectorisé depuis le PNG de l'ancien site par tracé par couches
+  (croix, lys, texte, drapeau). Le texte garde un léger grain de vectorisation : **à remplacer
+  par un dessin propre dès que le mouvement fournit l'original**.
+- `public/images/croix-ses.svg` : la croix seule (pied de page, vignettes sans image).
+- `public/favicon.svg` et les PNG (32, 192, 512, apple-touch) : la croix sur fond blanc arrondi.
+- `public/images/og-image.jpg` : 1200×630, photo + logo, pour les partages.
 
-| Branche | Variable CSS | Code |
-|---|---|---|
-| Louveteaux et louvettes | `--ses-branche-jaune` | `#ead728` |
-| Éclaireurs et éclaireuses | `--ses-branche-verte` | `#2c8d1b` |
-| Routiers et guides-aînées | `--ses-branche-rouge` | `#ba1b1b` |
+## Photos
 
-## Les polices
-
-Celles du site actuel : **Open Sans** pour le texte courant, **Droid Sans** pour les titres.
-Toutes deux sous licence Apache 2.0, qui autorise l'hébergement sur nos propres serveurs.
-
-Elles sont **hébergées dans `public/fonts/`**, pas chargées depuis Google. Une police servie par
-Google fait partir l'adresse IP de chaque visiteur chez un tiers — un point que le cahier des
-charges demande explicitement de surveiller. Les déclarations sont dans
-[`../src/styles/fonts.css`](../src/styles/fonts.css).
-
-Seul le latin est embarqué (le site est en français et en allemand) : 100 Ko en tout, contre
-250 Ko avec le cyrillique, le grec et le vietnamien dont personne n'a l'usage ici.
-
-**Un écart assumé avec le site actuel :** le corps de texte passe de 14 à 17 px. Le 14 px du
-WordPress est en dessous de ce qui se lit confortablement sur un écran d'aujourd'hui, et le
-public visé par le cahier des charges — les parents — n'a pas vingt ans.
-
-## Logo et favicons
-
-Quand le logo définitif sera prêt (croix à huit pointes conservée, texte adapté), déposer dans
-`public/` :
-
-| Fichier | À quoi ça sert |
-|---|---|
-| `favicon.svg` | icône d'onglet, version vectorielle |
-| `favicon.ico` | icône d'onglet, navigateurs anciens |
-| `favicon-32x32.png` | icône d'onglet, format courant |
-| `favicon-512x512.png` | icône quand le site est ajouté à un écran d'accueil |
-| `og-image.png` (1200×630) | vignette quand un lien du site est partagé sur les réseaux |
-| `images/logo-ses.svg` | le logo affiché dans l'en-tête du site |
-
-**Ce qui est en place :** le logo long du mouvement (`public/images/logo-ses.png`, repris du
-site actuel) est dans l'en-tête, et les trois écussons de branche sont sur la page d'accueil.
-
-**Les icônes d'onglet sont les vraies.** J'avais noté ici qu'il n'existait pas de version carrée
-du logo : c'était faux. WordPress en enregistrait une (`cropped-logo-SES.png`, 512 px), un
-médaillon rond avec la croix, la fleur de lys, le nom en cercle et la croix suisse. Elle a été
-reprise et déclinée en `favicon.ico` (16/32/48), `favicon-32x32.png`, `favicon-192x192.png`,
-`favicon-512x512.png` et `apple-touch-icon.png` (180 px).
-
-**Limite connue :** à 32 px, le nom écrit en cercle n'est plus lisible — c'est inhérent au
-dessin, et le site actuel a exactement le même défaut. Si la nouvelle charte veut une icône
-lisible en tout petit, il faudra une version simplifiée (la croix seule), à demander à
-l'ETN Multimédia. Ne pas la fabriquer soi-même : c'est un élément d'identité.
-
-**Manque encore :** l'image de partage `og-image.png` (1200×630), affichée quand un lien du site
-est partagé sur les réseaux.
-
-**Point ouvert :** le cahier des charges demande de vérifier la légalité de l'usage du drapeau
-suisse dans le logo (loi et ordonnance sur la protection des armoiries). À trancher avant toute
-mise en ligne.
-
-Voir aussi [[cahier-des-charges]].
+Bandeau d'accueil et bande « Devenir chef » : photos du compte Instagram du mouvement
+(`public/images/instagram/`, décision du 2026-09-11). Elles changent si `npm run instagram`
+supprime le fichier : les deux fichiers utilisés sont nommés dans `src/pages/[lang]/index.astro`.

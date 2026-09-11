@@ -1,5 +1,5 @@
 ---
-/** Une actualité : titre, date, image de couverture créditée, puis le texte. */
+/** Une actualité : bandeau de titre, image de couverture créditée, puis le texte. */
 import PageNotices from './PageNotices.astro';
 import { NEWS_BASE, UI, withBase, type Lang } from '../data/site';
 
@@ -9,40 +9,42 @@ interface Props {
 }
 const { entry, lang } = Astro.props;
 const d = entry.data;
+const fmt = (x: Date) =>
+  x.toLocaleDateString(lang === 'fr' ? 'fr-CH' : 'de-CH', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
 
 <article>
-  <p style="color: var(--ses-muted); font-size: var(--text-small)">
-    <a href={withBase(`/${lang}/${NEWS_BASE[lang]}/`)}>{UI.news[lang]}</a>
-  </p>
-  <h1 class="mt-2" style="font-size: var(--text-h1)">{d.title}</h1>
-  <p class="mt-2" style="color: var(--ses-muted); font-size: var(--text-small)">
-    <time datetime={d.date.toISOString()}>
-      {d.date.toLocaleDateString(lang === 'fr' ? 'fr-CH' : 'de-CH', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-      })}
-    </time>
-    {d.author && <> · {d.author}</>}
-  </p>
+  <div class="ses-page-head">
+    <div class="ses-col ses-col--narrow">
+      <ol class="ses-crumbs">
+        <li><a href={withBase(`/${lang}/`)}>{UI.home[lang]}</a></li>
+        <li><a href={withBase(`/${lang}/${NEWS_BASE[lang]}/`)}>{UI.news[lang]}</a></li>
+      </ol>
+      <h1>{d.title}</h1>
+      <p class="mt-3 ses-muted">
+        <time datetime={d.date.toISOString()}>{fmt(d.date)}</time>
+        {d.author && <> · {d.author}</>}
+      </p>
+    </div>
+  </div>
 
-  {d.cover && (
-    <figure class="mt-6">
-      <img src={withBase(d.cover)} alt="" style="max-width: 100%; height: auto" />
-      {/* Le crédit n'est jamais facultatif dès qu'il y a une image. */}
-      {d.coverCredit && (
-        <figcaption style="color: var(--ses-muted); font-size: var(--text-small)">
-          <Fragment set:html={d.coverCredit} />
-        </figcaption>
-      )}
-    </figure>
-  )}
-
-  <div class="mt-6">
+  <div class="ses-col ses-col--narrow ses-section" style="padding-top: var(--space-4)">
+    {d.cover && (
+      <figure class="ses-figure">
+        <img src={withBase(d.cover)} alt="" loading="eager" />
+        {d.coverCredit && <figcaption class="ses-small ses-muted"><Fragment set:html={d.coverCredit} /></figcaption>}
+      </figure>
+    )}
     <PageNotices lang={lang} draft={d.draft} translated={d.translated} />
     <div class="ses-prose">
       <slot />
     </div>
+    <p class="mt-10"><a href={withBase(`/${lang}/${NEWS_BASE[lang]}/`)} class="ses-more">{UI.backToNews[lang]}</a></p>
   </div>
 </article>
+
+<style>
+  .ses-figure { margin-bottom: var(--space-4); }
+  .ses-figure img { display: block; width: 100%; border-radius: var(--radius-2); box-shadow: var(--shadow-1); }
+  .ses-figure figcaption { margin-top: 0.5rem; }
+</style>

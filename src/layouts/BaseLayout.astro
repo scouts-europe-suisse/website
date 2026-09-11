@@ -2,9 +2,9 @@
 /**
  * Le gabarit commun à toutes les pages : <head>, en-tête, pied de page.
  *
- * Toute page passe par ici. Ce qui est propre à une page (titre, résumé)
- * arrive en propriété ; ce qui est commun (langue, jumelle dans l'autre
- * langue, données pour les moteurs de recherche) est calculé ici une fois.
+ * Toute page passe par ici. Ce qui est propre à une page (titre, résumé,
+ * image de partage) arrive en propriété ; ce qui est commun (langue, jumelle
+ * dans l'autre langue, données pour les moteurs de recherche) est calculé ici.
  */
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -16,58 +16,51 @@ interface Props {
   title: string;
   description?: string;
   lang: Lang;
-  /** true = pas de bandeau ni de colonne autour du contenu (page d'accueil). */
-  fullWidth?: boolean;
   ogType?: 'website' | 'article';
+  /** Image de partage propre à la page (chemin absolu du site). */
+  image?: string;
   /**
    * true = demander aux moteurs de recherche d'ignorer la page.
-   * Mis d'office sur les ébauches : une page dont le contenu reste à écrire
-   * n'a rien à faire dans les résultats de recherche, et une fois indexée
-   * elle y reste des semaines après avoir été corrigée.
+   * Mis d'office sur les ébauches.
    */
   noindex?: boolean;
   /**
    * La clé de la page, qui permet de retrouver sa jumelle dans l'autre
-   * langue. Sans elle, le sélecteur de langue renvoie vers l'accueil : c'est
-   * le cas des pages qui n'ont pas d'équivalent (une actualité non traduite).
+   * langue. Sans elle, le sélecteur de langue renvoie vers l'accueil.
    */
   pageKey?: string;
+  /** Adresse de la jumelle déjà connue (pour les routes hors collection). */
+  twinHref?: string | null;
 }
 
-const { title, description, lang, fullWidth = false, ogType = 'website', noindex = false, pageKey } =
+const { title, description, lang, ogType = 'website', image, noindex = false, pageKey, twinHref } =
   Astro.props;
 
 // Tant que le site n'a pas remplacé le WordPress, AUCUNE page ne doit être
-// indexée : cette version-ci n'est pas le site du mouvement, et deux sites qui
-// disent la même chose se font concurrence dans les résultats de recherche.
-// C'est ici que ça se joue, et pas dans le robots.txt : servi depuis un
+// indexée. C'est ici que ça se joue, pas dans le robots.txt : servi depuis un
 // sous-dossier (github.io/website/), celui-ci n'est jamais lu par les moteurs.
 const hideFromSearch = noindex || !IS_PRODUCTION_SITE;
 
 const siteUrl = (Astro.site ?? new URL(SITE.domain)).origin;
 const canonical = new URL(Astro.url.pathname, siteUrl).href;
 
-// Le titre d'onglet se termine toujours par le nom du mouvement, sans le
-// répéter quand la page le contient déjà.
 const fullTitle = title.includes(SITE.shortName) || title.includes(SITE.name)
   ? title
   : `${title} · ${SITE.name}`;
 
 const defaultDescription: Record<Lang, string> = {
   fr: `${SITE.name} — le scoutisme européen en Suisse : nos branches, notre projet éducatif, et comment nous rejoindre.`,
-  de: `${SITE.name} — europäisches Pfadfindertum in der Schweiz.`,
+  de: `${SITE.name} — europäisches Pfadfindertum in der Schweiz: unsere Stufen, unser Erziehungsprojekt, und wie Sie uns beitreten.`,
 };
+const desc = description ?? defaultDescription[lang];
 
-// La page équivalente dans l'autre langue. Les deux adresses n'ayant rien en
-// commun (/fr/branche-jaune/ ↔ /de/woelflingsstufe/), on passe par la clé.
-// Sert au sélecteur de langue et aux balises hreflang, qui évitent que les
-// deux versions soient prises pour du contenu dupliqué.
-const twin = pageKey ? await twinOf(pageKey, lang) : null;
+const twin = twinHref !== undefined ? twinHref : pageKey ? await twinOf(pageKey, lang) : null;
 const otherLang: Lang = lang === 'fr' ? 'de' : 'fr';
 const alternates = [
-  { lang, href: new URL(Astro.url.pathname, siteUrl).href },
+  { lang, href: canonical },
   ...(twin ? [{ lang: otherLang, href: new URL(twin, siteUrl).href }] : []),
 ];
+const ogImage = new URL(withBase(image ?? '/images/og-image.jpg'), siteUrl).href;
 ---
 
 <!doctype html>
@@ -76,50 +69,54 @@ const alternates = [
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
-    <meta name="description" content={description ?? defaultDescription[lang]} />
+    <meta name="description" content={desc} />
+    <meta name="theme-color" content="#1c2733" />
     <link rel="canonical" href={canonical} />
     {hideFromSearch && <meta name="robots" content="noindex, nofollow" />}
 
     {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
-    <link
-      rel="alternate"
-      hreflang="x-default"
-      href={(alternates.find((a) => a.lang === 'fr') ?? alternates[0]).href}
-    />
+    <link rel="alternate" hreflang="x-default" href={(alternates.find((a) => a.lang === 'fr') ?? alternates[0]).href} />
 
-    <!-- Icônes : le vrai emblème carré du mouvement, repris du site actuel.
-         Le .ico (16/32/48) reste utile aux navigateurs anciens et aux
-         agrégateurs de flux, qui ne lisent que celui-là. -->
-    <link rel="icon" href={withBase("/favicon.ico")} sizes="any" />
-    <link rel="icon" href={withBase("/favicon-32x32.png")} type="image/png" sizes="32x32" />
-    <link rel="icon" href={withBase("/favicon-192x192.png")} type="image/png" sizes="192x192" />
-    <link rel="apple-touch-icon" href={withBase("/apple-touch-icon.png")} />
-    <link rel="sitemap" href={withBase("/sitemap-index.xml")} />
+    <link rel="icon" href={withBase('/favicon.ico')} sizes="any" />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    <link rel="icon" href={withBase('/favicon-32x32.png')} type="image/png" sizes="32x32" />
+    <link rel="icon" href={withBase('/favicon-192x192.png')} type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
+    <link rel="sitemap" href={withBase('/sitemap-index.xml')} />
+    <link rel="preload" href={withBase('/fonts/cabin-latin.woff2')} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={withBase('/fonts/source-sans-3-latin.woff2')} as="font" type="font/woff2" crossorigin />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={description ?? defaultDescription[lang]} />
+    <meta property="og:description" content={desc} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:locale" content={lang === 'fr' ? 'fr_CH' : 'de_CH'} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
   </head>
 
   <body>
-    <a href="#contenu" class="ses-skip">
-      {lang === 'fr' ? 'Aller au contenu' : 'Zum Inhalt springen'}
-    </a>
+    <a href="#contenu" class="ses-skip">{lang === 'fr' ? 'Aller au contenu' : 'Zum Inhalt springen'}</a>
+    <Header lang={lang} twin={twin} />
+    <main id="contenu">
+      <slot />
+    </main>
+    <Footer lang={lang} twin={twin} />
 
-    <!-- La colonne blanche posée sur le fond gris : c'est la mise en page de
-         l'ancien site, sa signature visuelle la plus reconnaissable. -->
-    <div class="ses-sheet">
-      <Header lang={lang} twin={twin} />
-
-      <main id="contenu" class={fullWidth ? '' : 'ses-col py-10'}>
-        <slot />
-      </main>
-
-      <Footer lang={lang} />
-    </div>
+    <script is:inline>
+      // Apparition douce des blocs marqués .ses-reveal, si le navigateur sait
+      // observer l'écran. Sinon (ou sans JS), tout est visible d'emblée.
+      (function () {
+        if (!('IntersectionObserver' in window)) { document.querySelectorAll('.ses-reveal').forEach(function (e) { e.classList.add('is-in'); }); return; }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
+        }, { rootMargin: '0px 0px -8% 0px' });
+        document.querySelectorAll('.ses-reveal').forEach(function (e) { io.observe(e); });
+      })();
+    </script>
   </body>
 </html>

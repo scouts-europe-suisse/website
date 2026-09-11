@@ -1,30 +1,29 @@
 ---
 /**
- * La route unique du site : pages de contenu, liste des actualités, et
- * chaque actualité.
+ * La route unique du site : pages de contenu, liste des actualités, chaque
+ * actualité, et la recherche.
  *
- * Pourquoi une seule route pour trois choses : Astro n'autorise qu'un seul
- * fichier « attrape-tout » par niveau, et les adresses diffèrent d'une langue
- * à l'autre (/fr/actualites/ mais /de/aktuelles/). Générer les trois ici est
- * la façon la plus simple de garder des adresses en bon allemand.
+ * Pourquoi une seule route pour tout : Astro n'autorise qu'un seul fichier
+ * « attrape-tout » par niveau, et les adresses diffèrent d'une langue à
+ * l'autre (/fr/actualites/ mais /de/aktuelles/). Générer tout ici est la
+ * façon la plus simple de garder des adresses en bon allemand.
  *
- * `kind` dit laquelle des trois est rendue. Chaque cas reste court.
+ * `kind` dit ce qui est rendu.
  */
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageNotices from '../../components/PageNotices.astro';
-import ContactForm from '../../components/ContactForm.astro';
-import ImplantationsMap from '../../components/ImplantationsMap.astro';
+import ContactBlock from '../../components/ContactBlock.astro';
+import SwissMap from '../../components/SwissMap.astro';
 import NewsList from '../../components/NewsList.astro';
 import NewsArticle from '../../components/NewsArticle.astro';
 import SectionIndex from '../../components/SectionIndex.astro';
 import BrancheIcon from '../../components/BrancheIcon.astro';
-import { BRANCHES } from '../../data/pictos';
-import { childrenOf } from '../../lib/pages';
-import { withBase } from '../../data/site';
-import { imageSize, isEmblem } from '../../lib/imageSize';
 import Search from '../../components/Search.astro';
-import { LANGS, NEWS_BASE, SEARCH_BASE, UI, type Lang } from '../../data/site';
+import { BRANCHES } from '../../data/pictos';
+import { childrenOf, pathFor } from '../../lib/pages';
+import { imageSize, isEmblem } from '../../lib/imageSize';
+import { LANGS, NAV, NEWS_BASE, SEARCH_BASE, UI, withBase, path, type Lang } from '../../data/site';
 
 export async function getStaticPaths() {
   const out: any[] = [];
@@ -57,49 +56,55 @@ export async function getStaticPaths() {
 
 const { kind, entry } = Astro.props as { kind: string; entry?: any };
 const { lang } = Astro.params as { lang: Lang };
+const other: Lang = lang === 'fr' ? 'de' : 'fr';
 
 const rendered = kind === 'page' || kind === 'news' ? await render(entry) : null;
 const Content = rendered?.Content;
 
-// Dimensions réelles de l'image à la une : elles évitent que la page saute
-// au chargement, et disent si c'est un écusson ou un bandeau.
 const coverSize = entry?.data?.cover ? imageSize(entry.data.cover) : null;
 const coverEmblem = isEmblem(coverSize);
 
 // Une rubrique du menu affiche le sommaire de ses pages, qu'elle ait ou non
-// une introduction. La condition portait autrefois sur un corps de texte
-// vide : le jour où quelqu'un aurait écrit cette introduction, le chemin
-// vers les sous-pages aurait disparu, et la rubrique serait redevenue le
-// cul-de-sac qu'elle est sur le site actuel — en allemand, « Unsere
-// Pfadfinderschaft » et « Uns beitreten » n'y sont qu'un titre sur une page
-// blanche.
+// une introduction.
 const sectionChildren = kind === 'page' ? await childrenOf(entry.data.key, lang) : [];
 const showsIndex = sectionChildren.length > 0;
-
-// Une rubrique qui affiche ce sommaire n'est pas une page blanche : elle rend
-// service telle quelle. Ni le bandeau « ébauche » ni la consigne faite aux
-// moteurs de recherche de l'ignorer ne s'y appliquent donc, et les deux
-// suivent la même règle : sinon la page reste introuvable en ligne sans que
-// rien ne le montre à l'écran.
 const stillToWrite = kind === 'page' && entry.data.draft && !showsIndex;
 
-const accent =
-  kind === 'page' && entry.data.branche
-    ? `var(--ses-branche-${entry.data.branche})`
-    : 'var(--ses-primary)';
+// Le fil d'Ariane : accueil › rubrique › page, d'après le menu.
+const crumbs: { label: string; href: string | null }[] = [{ label: UI.home[lang], href: path(lang) }];
+if (kind === 'page') {
+  const parent = NAV.find((i) => i.children?.some((c) => c.key === entry.data.key));
+  if (parent?.key) crumbs.push({ label: parent.label[lang], href: await pathFor(parent.key, lang) });
+}
+
+// La liste des actualités et la recherche existent dans les deux langues :
+// on donne leur jumelle au gabarit, pour le sélecteur de langue et le hreflang.
+const routeTwin =
+  kind === 'news-index' ? path(other, NEWS_BASE[other]) : kind === 'search' ? path(other, SEARCH_BASE[other]) : undefined;
 ---
 
 {kind === 'search' && (
-  <BaseLayout title={UI.search[lang]} lang={lang} noindex>
-    <h1 style="font-size: var(--text-h1)">{UI.search[lang]}</h1>
-    <p class="mt-2" style="color: var(--ses-muted)">{UI.searchIntro[lang]}</p>
-    <div class="mt-6"><Search lang={lang} /></div>
+  <BaseLayout title={UI.search[lang]} lang={lang} noindex twinHref={routeTwin}>
+    <div class="ses-page-head">
+      <div class="ses-col ses-col--narrow">
+        <h1>{UI.search[lang]}</h1>
+        <p class="ses-lead mt-3">{UI.searchIntro[lang]}</p>
+      </div>
+    </div>
+    <div class="ses-col ses-col--narrow ses-section"><Search lang={lang} /></div>
   </BaseLayout>
 )}
 
 {kind === 'news-index' && (
-  <BaseLayout title={UI.news[lang]} lang={lang} pageKey="news-index">
-    <NewsList lang={lang} />
+  <BaseLayout title={UI.news[lang]} lang={lang} twinHref={routeTwin}>
+    <div class="ses-page-head">
+      <div class="ses-col">
+        <ol class="ses-crumbs"><li><a href={path(lang)}>{UI.home[lang]}</a></li><li>{UI.news[lang]}</li></ol>
+        <h1>{UI.news[lang]}</h1>
+        <p class="ses-lead mt-3">{UI.latestNews[lang]}</p>
+      </div>
+    </div>
+    <div class="ses-col ses-section"><NewsList lang={lang} /></div>
   </BaseLayout>
 )}
 
@@ -109,6 +114,7 @@ const accent =
     description={entry.data.summary}
     lang={lang}
     ogType="article"
+    image={entry.data.cover}
     noindex={entry.data.draft}
   >
     <NewsArticle entry={entry} lang={lang}>
@@ -126,50 +132,50 @@ const accent =
     noindex={stillToWrite}
   >
     <article>
-      {/* Une page de branche s'ouvre sur ses deux pictogrammes (issue #14),
-          qui portent seuls le nom de la branche pour un lecteur d'écran. */}
-      {entry.data.branche && (
-        <div class="mb-4 flex gap-3">
-          {BRANCHES[entry.data.branche].map((icon) => (
-            <BrancheIcon icon={icon} size="5rem" lang={lang} decorative={false} />
-          ))}
+      <div class="ses-page-head">
+        <div class:list={['ses-col', !showsIndex && !entry.data.map && 'ses-col--narrow']}>
+          <ol class="ses-crumbs">
+            {crumbs.map((c) => <li>{c.href ? <a href={c.href}>{c.label}</a> : c.label}</li>)}
+            <li aria-current="page">{entry.data.title}</li>
+          </ol>
+          {entry.data.branche && (
+            <div class="ses-head-icons">
+              {BRANCHES[entry.data.branche].map((icon) => (
+                <BrancheIcon icon={icon} size="4rem" lang={lang} decorative={false} />
+              ))}
+            </div>
+          )}
+          <h1>{entry.data.title}</h1>
+          {entry.data.description && <p class="ses-lead mt-3">{entry.data.description}</p>}
         </div>
-      )}
+      </div>
 
-      {/* L'image à la une, au-dessus du titre, comme sur le site actuel. */}
-      {entry.data.cover && (
-        <img
-          src={withBase(entry.data.cover)}
-          alt={entry.data.coverAlt ?? ''}
-          class:list={['ses-cover', coverEmblem && 'ses-cover--ecusson']}
-          width={coverSize?.w}
-          height={coverSize?.h}
-          loading="eager"
-        />
-      )}
-
-      {/* Une page de branche garde un filet de sa couleur : c'est le seul
-          repère visuel qui distingue les trois branches. Les autres pages
-          n'en ont pas, comme sur le site actuel. */}
-      {entry.data.branche && (
-        <div style={`width: 3rem; height: 4px; background: ${accent}`}></div>
-      )}
-      <h1 class={entry.data.branche ? 'mt-4' : ''} style="font-size: var(--text-h1)">
-        {entry.data.title}
-      </h1>
-      <div class="mt-6">
-        <PageNotices
-          lang={lang}
-          draft={stillToWrite}
-          translated={entry.data.translated}
-        />
+      <div class:list={['ses-col', 'ses-section', !showsIndex && !entry.data.map && 'ses-col--narrow']} style="padding-top: var(--space-4)">
+        {entry.data.cover && (
+          <img
+            src={withBase(entry.data.cover)}
+            alt={entry.data.coverAlt ?? ''}
+            class:list={['ses-cover', coverEmblem && 'ses-cover--ecusson']}
+            width={coverSize?.w}
+            height={coverSize?.h}
+            loading="eager"
+          />
+        )}
+        <PageNotices lang={lang} draft={stillToWrite} translated={entry.data.translated} />
         <div class="ses-prose">
           <Content />
         </div>
-        {showsIndex && <SectionIndex lang={lang} children={sectionChildren} />}
-        {entry.data.map && <ImplantationsMap lang={lang} />}
-        {entry.data.contactForm && <ContactForm lang={lang} />}
+        {showsIndex && <SectionIndex lang={lang} pages={sectionChildren} />}
+        {entry.data.map && <div class="mt-10"><SwissMap lang={lang} /></div>}
+        {entry.data.contactForm && <div class="mt-8"><ContactBlock lang={lang} /></div>}
       </div>
     </article>
   </BaseLayout>
 )}
+
+<style>
+  .ses-head-icons { display: flex; gap: 0.75rem; margin-bottom: var(--space-2); }
+  .ses-cover { display: block; max-width: 100%; height: auto; border-radius: var(--radius-2); margin-bottom: var(--space-3); }
+  .ses-cover--ecusson { max-width: 8rem; }
+  .ses-cover:not(.ses-cover--ecusson) { max-width: 36rem; }
+</style>

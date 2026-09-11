@@ -2,6 +2,7 @@
 title: "Routiers et guides-aînées — 17-19 ans"
 urlPath: branche-rouge
 key: branche-rouge
+description: "Avance au large en servant tes frères et sœurs ! Services, chantiers, rencontres et approfondissement de la foi, à l'âge des choix importants."
 branche: rouge
 sourceModified: 2025-12-09
 ---

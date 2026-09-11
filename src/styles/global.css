@@ -2,110 +2,125 @@
 @import "./fonts.css";
 
 /* ══════════════════════════════════════════════════════════════════
-   Habillage du site.
-
-   PROPOSITION DE CHARTE (2026-09-10) — première version, faite pour être
-   discutée et changée. Elle est décrite et justifiée dans
-   _plans/02-charte-graphique-later/PROPOSITION.md.
+   La charte du site — version 1 de la refonte (plan 05, 2026-09-11).
 
    Ce qui NE bouge pas, parce que c'est l'identité du mouvement et non un
    choix graphique : le rouge de la croix, le jaune de la fleur de lys, et les
-   trois couleurs de branche. Tout le reste est discutable.
+   trois couleurs de branche. Tout le reste est la charte, et se discute dans
+   une issue `type: charte` une fois le design gelé.
 
-   Les couleurs de l'identité sont prélevées dans le logo :
-     - les couleurs sont prélevées directement dans le fichier du logo
-       (_migrations/images/logo-SES-long-2.png), pas approchées à l'œil ;
-     - les polices sont celles du site actuel, Open Sans et Droid Sans.
-
-   Elles restent PROVISOIRES : le cahier des charges SES25 prévoit une
-   nouvelle charte graphique, dont le site devra découler. Le jour où elle
-   arrive, on remplace les valeurs de ce bloc et rien d'autre.
-   Voir _plans/02-charte-graphique/ et _memory/design-system.md.
+   Direction (décision de Nicolas, 2026-09-11) : moderne, institutionnel,
+   sobre. Base blanche, encre chaude, un bleu nuit pour les fonds sombres et
+   l'assise institutionnelle, le rouge et l'or en accents, beaucoup d'air, la
+   photo comme matière.
 
    Règle : aucune couleur, aucune taille de police en dur dans une page ou
-   un composant. Tout passe par ces variables.
+   un composant. Tout passe par ces variables, et par les classes utilitaires
+   Tailwind qui en découlent (bloc @theme plus bas).
    ══════════════════════════════════════════════════════════════════ */
 :root {
-  /* ── Couleurs de l'identité, prélevées dans le logo ────────────────
-     Le rouge de la croix et le jaune de la fleur de lys. */
-  --ses-primary: #e3051a;          /* le rouge de la croix scoute        */
-  --ses-primary-hover: #b30414;
-  --ses-primary-contrast: #ffffff; /* texte posé sur --ses-primary       */
+  /* ── Identité du mouvement ────────────────────────────────────── */
+  --ses-red: #e3051a;            /* le rouge de la croix                */
+  --ses-red-deep: #b30414;       /* le même, assombri : texte, liens, survol (6,8:1) */
+  --ses-gold: #f8e900;           /* la fleur de lys — jamais du texte   */
+  --ses-branche-jaune: #ead728;
+  --ses-branche-verte: #2c8d1b;
+  --ses-branche-rouge: #ba1b1b;
 
-  /* Le même rouge, assombri, pour le texte et les liens sur fond clair.
-     Le rouge du logo sur fond clair donne un contraste de 4,6:1 — tout
-     juste au seuil ; celui-ci monte à 6,8:1 et reste lisible pour tous. */
-  --ses-primary-text: #b30414;
+  /* ── Charte ───────────────────────────────────────────────────── */
+  --ses-nuit: #1c2733;           /* bleu nuit : pied de page, bandes sombres, titres forts */
+  --ses-nuit-2: #2a3a4c;         /* le même, un ton plus clair           */
+  --ses-nature: #2f5d3a;         /* accent secondaire, filets, sommaires */
+  --ses-fg: #1f1d1a;             /* encre chaude — 16:1 sur blanc        */
+  --ses-muted: #625b52;          /* texte secondaire — 6,6:1             */
+  --ses-page: #ffffff;
+  --ses-page-alt: #f6f4ef;       /* papier : sections alternées          */
+  --ses-surface: #ffffff;
+  --ses-border: #e4e0d8;
+  --ses-on-dark: #ffffff;
+  --ses-on-dark-muted: #b9c1cc;  /* 8:1 sur nuit                          */
 
-  /* Le jaune de la fleur de lys. Filets, puces, soulignements : jamais du
-     texte, il est illisible sur blanc (contraste inférieur à 1,3:1). */
-  --ses-gold: #f8e900;
-
-  /* ── Fonds et textes, repris du site actuel ──────────────────────────
-     Le site actuel pose une colonne blanche sur un fond gris clair. On
-     reprend cette mise en page : c'est sa signature visuelle la plus
-     reconnaissable, avant même les couleurs. */
-  --ses-page: #efece5;             /* papier chaud autour de la colonne  */
-  --ses-bg: #ffffff;               /* la colonne de contenu, blanche     */
-  --ses-surface: #ffffff;          /* cartes, encadrés, en-tête          */
-  --ses-fg: #2a2724;               /* encre chaude — 14,9:1 sur blanc    */
-  --ses-muted: #6b6459;            /* texte secondaire — 5,9:1           */
-  --ses-border: #ddd8ce;
-
-  /* « Naturel », l'une des quatre valeurs nommées par le cahier des charges.
-     Filets de section, seconds accents. 7,6:1 sur blanc dans les deux sens. */
-  --ses-nature: #2f5d3a;   /* utilisée par les sommaires de rubrique */
-
-  /* ── Couleurs des branches — prélevées dans leurs écussons ───────────
-     Elles appartiennent au mouvement, pas à la charte : elles ne changeront
-     pas avec elle. Sources : Logo-BJ.png, Logo-BV.png, Logo-BR.png. */
-  --ses-branche-jaune: #ead728;    /* Louveteaux et louvettes            */
-  --ses-branche-verte: #2c8d1b;    /* Éclaireurs et éclaireuses          */
-  --ses-branche-rouge: #ba1b1b;    /* Routiers et guides-aînées          */
-
-  /* ── Typographie — celle du site actuel ─────────────────────────────
-     Open Sans pour le texte, Droid Sans pour les titres. Hébergées ici,
-     pas chargées depuis Google : voir src/styles/fonts.css. */
   --ses-font-body: 'Source Sans 3', ui-sans-serif, system-ui, -apple-system,
                    'Segoe UI', Roboto, Arial, sans-serif;
   --ses-font-heading: 'Cabin', 'Source Sans 3', ui-sans-serif, system-ui,
                       -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
 
-  /* Échelle de titres. clamp() = s'adapte du téléphone au grand écran.
-     Le corps de texte est monté de 14 à 17px : le 14px du site actuel est
-     en dessous de ce qui se lit confortablement sur un écran d'aujourd'hui. */
-  /* Relevé sur le site actuel : titre de page 30 px en graisse NORMALE, et
-     titres de section à la taille du texte courant, en gras. C'est une
-     hiérarchie très plate — c'est la sienne, on la reprend. */
-  --text-hero: clamp(2rem, 4.5vw, 2.75rem);
-  --text-h1: clamp(1.625rem, 3.5vw, 1.875rem);   /* 30 px au maximum */
-  --text-h2: 1.0625rem;                          /* la taille du texte  */
-  --text-h3: 1rem;
+  /* Échelle typographique : une vraie hiérarchie, du titre d'accueil au
+     petit texte. clamp() suit la largeur d'écran. */
+  --text-display: clamp(2.5rem, 5.5vw, 4.25rem);
+  --text-h1: clamp(2rem, 4vw, 3rem);
+  --text-h2: clamp(1.5rem, 2.6vw, 2.125rem);
+  --text-h3: 1.25rem;
+  --text-h4: 1.0625rem;
+  --text-lead: clamp(1.125rem, 1.6vw, 1.3125rem);
   --text-body: 1.0625rem;
   --text-small: 0.875rem;
+  --text-eyebrow: 0.8125rem;
   --leading-body: 1.65;
+  --leading-tight: 1.15;
 
-  /* ── Espacements. Choisir dans l'échelle, jamais entre deux pas. ── */
+  /* Espacements : choisir dans l'échelle, jamais entre deux pas. */
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
   --space-4: 2.5rem;
   --space-5: 4rem;
   --space-6: 6rem;
+  --section-y: clamp(3.5rem, 7vw, 6.5rem);
 
-  /* ── Largeurs ───────────────────────────────────────────────────── */
-  --content-col: 71rem;   /* la colonne du site, proche des 1200 px de l'actuel */
-  --prose-max: 44rem;     /* le texte courant ne dépasse jamais ~85 signes */
+  /* Rayons, ombres, transitions. */
+  --radius-1: 4px;
+  --radius-2: 12px;
+  --radius-3: 24px;
+  --shadow-1: 0 1px 2px rgb(28 39 51 / 0.06), 0 1px 3px rgb(28 39 51 / 0.04);
+  --shadow-2: 0 10px 30px rgb(28 39 51 / 0.10);
+  --shadow-3: 0 24px 60px rgb(28 39 51 / 0.18);
+  --ease: 180ms cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  /* Largeurs. */
+  --content-col: 76rem;
+  --content-narrow: 48rem;
+  --prose-max: 44rem;
+}
+
+/* Les mêmes jetons, exposés à Tailwind : bg-nuit, text-muted, rounded-2,
+   shadow-2, etc. `inline` = Tailwind copie la référence à la variable, donc
+   changer :root change les classes. */
+@theme inline {
+  --color-red: var(--ses-red);
+  --color-red-deep: var(--ses-red-deep);
+  --color-gold: var(--ses-gold);
+  --color-nuit: var(--ses-nuit);
+  --color-nuit-2: var(--ses-nuit-2);
+  --color-nature: var(--ses-nature);
+  --color-ink: var(--ses-fg);
+  --color-muted: var(--ses-muted);
+  --color-page: var(--ses-page);
+  --color-page-alt: var(--ses-page-alt);
+  --color-surface: var(--ses-surface);
+  --color-line: var(--ses-border);
+  --color-on-dark: var(--ses-on-dark);
+  --color-on-dark-muted: var(--ses-on-dark-muted);
+  --color-branche-jaune: var(--ses-branche-jaune);
+  --color-branche-verte: var(--ses-branche-verte);
+  --color-branche-rouge: var(--ses-branche-rouge);
+  --font-heading: var(--ses-font-heading);
+  --font-body: var(--ses-font-body);
+  --radius-1: var(--radius-1);
+  --radius-2: var(--radius-2);
+  --radius-3: var(--radius-3);
+  --shadow-1: var(--shadow-1);
+  --shadow-2: var(--shadow-2);
+  --shadow-3: var(--shadow-3);
 }
 
 /* ══════════════════════════════════════════════════════════════════
    Base
    ══════════════════════════════════════════════════════════════════ */
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
 
 body {
@@ -115,38 +130,46 @@ body {
   font-size: var(--text-body);
   line-height: var(--leading-body);
   -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+main { flex: 1 0 auto; }
 
 h1, h2, h3, h4 {
   font-family: var(--ses-font-heading);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: var(--leading-tight);
   text-wrap: balance;
   color: var(--ses-fg);
+  letter-spacing: -0.01em;
 }
-
-/* Le titre de page du site actuel n'est pas gras : 30 px en graisse normale,
-   en Droid Sans. C'est ce qui donne son allure sobre à l'en-tête de page. */
-h1 {
-  font-weight: 400;
-}
+h1 { font-size: var(--text-h1); }
+h2 { font-size: var(--text-h2); }
+h3 { font-size: var(--text-h3); }
+h4 { font-size: var(--text-h4); }
 
 a {
-  color: var(--ses-primary-text);
+  color: var(--ses-red-deep);
   text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
 }
-a:hover { color: var(--ses-primary); }
+a:hover { color: var(--ses-red); }
+
+img, svg, video { max-width: 100%; height: auto; }
 
 /* Le focus clavier reste visible partout : c'est la seule façon de
    naviguer pour une partie des visiteurs. Ne pas le retirer. */
-:where(a, button, input, select, textarea, summary):focus-visible {
-  outline: 3px solid var(--ses-primary-text);
-  outline-offset: 2px;
-  border-radius: 2px;
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--ses-red-deep);
+  outline-offset: 3px;
+  border-radius: var(--radius-1);
 }
 
+::selection { background: color-mix(in srgb, var(--ses-gold) 55%, white); }
+
 /* ══════════════════════════════════════════════════════════════════
-   Éléments réutilisables
+   Mise en page
    ══════════════════════════════════════════════════════════════════ */
 
 /* La colonne du site. Une seule, partout, pour que tout s'aligne. */
@@ -154,142 +177,218 @@ a:hover { color: var(--ses-primary); }
   width: 100%;
   max-width: var(--content-col);
   margin-inline: auto;
-  padding-inline: var(--space-3);
+  padding-inline: clamp(1rem, 4vw, 2rem);
 }
+.ses-col--narrow { max-width: var(--content-narrow); }
 
-/* L'enveloppe blanche qui porte tout le site, posée sur le fond gris.
-   C'est la mise en page de l'ancien site : une colonne blanche centrée. */
-.ses-sheet {
-  width: 100%;
-  max-width: calc(var(--content-col) + 6rem);
-  margin-inline: auto;
-  background: var(--ses-bg);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 0 12px rgb(0 0 0 / 0.10);
+/* Une section : de l'air au-dessus et en dessous, un fond au choix. */
+.ses-section { padding-block: var(--section-y); }
+.ses-section--alt { background: var(--ses-page-alt); }
+.ses-section--dark {
+  background: var(--ses-nuit);
+  color: var(--ses-on-dark);
 }
+.ses-section--dark :where(h1, h2, h3, h4) { color: var(--ses-on-dark); }
+.ses-section--dark a { color: var(--ses-on-dark); }
+.ses-section--dark .ses-muted { color: var(--ses-on-dark-muted); }
 
-/* La barre de navigation noire, comme sur le site actuel : texte blanc,
-   et l'entrée courante en négatif (fond blanc, texte noir). */
-.ses-navbar {
-  background: #2b2b2b;
-}
-.ses-navbar a {
-  color: #ffffff;
-  text-decoration: none;
-}
-.ses-navbar a:hover {
-  background: #3d3d3d;
-  color: #ffffff;
-}
-.ses-navbar a[aria-current='page'],
-.ses-navbar .ses-nav-item.is-active > a {
-  background: var(--ses-bg);
-  color: var(--ses-fg);
-}
-
-/* Le texte courant d'une page de contenu. */
-.ses-prose {
+.ses-muted { color: var(--ses-muted); }
+.ses-small { font-size: var(--text-small); }
+.ses-lead {
+  font-size: var(--text-lead);
+  line-height: 1.5;
+  color: var(--ses-muted);
   max-width: var(--prose-max);
 }
-/* Les titres de section sont, sur le site actuel, de simples paragraphes en
-   gras à la taille du texte. On garde de vrais <h2> — c'est ce qui permet à
-   un lecteur d'écran et aux moteurs de recherche de suivre le plan de la
-   page — mais on leur donne cette apparence-là. */
-.ses-prose h2 {
-  font-family: var(--ses-font-body);
-  font-size: var(--text-h2);
-  font-weight: 700;
-  margin-top: var(--space-3);
-  margin-bottom: 0;
-}
-.ses-prose h3 {
-  font-family: var(--ses-font-body);
-  font-size: var(--text-h3);
-  font-weight: 700;
-  margin-top: var(--space-2);
-  margin-bottom: 0;
-}
-.ses-prose > * + * { margin-top: var(--space-2); }
 
-.ses-prose ul, .ses-prose ol {
-  padding-left: 1.4em;
-  list-style: revert;
+/* Surtitre : un petit mot en capitales, en rouge, au-dessus d'un titre. */
+.ses-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--ses-font-heading);
+  font-size: var(--text-eyebrow);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ses-red-deep);
 }
-.ses-prose li + li { margin-top: 0.35em; }
-.ses-prose img {
-  max-width: 100%;
-  height: auto;
+.ses-eyebrow::before {
+  content: '';
+  width: 1.5rem;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--ses-red);
 }
-.ses-prose blockquote {
-  border-left: 4px solid var(--ses-gold);
-  padding-left: var(--space-2);
+.ses-section--dark .ses-eyebrow { color: var(--ses-gold); }
+.ses-section--dark .ses-eyebrow::before { background: var(--ses-gold); }
+
+/* L'en-tête d'une section : surtitre, titre, une phrase. */
+.ses-section-head { max-width: var(--prose-max); }
+.ses-section-head > * + * { margin-top: var(--space-2); }
+.ses-section-head--center { margin-inline: auto; text-align: center; }
+.ses-section-head--center .ses-eyebrow::before { display: none; }
+
+/* Le bandeau d'une page intérieure : titre, chapeau, fil d'Ariane. */
+.ses-page-head {
+  background: var(--ses-page-alt);
+  border-bottom: 1px solid var(--ses-border);
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+.ses-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.6rem;
+  font-size: var(--text-small);
   color: var(--ses-muted);
-  font-style: italic;
+  margin-bottom: var(--space-2);
 }
+.ses-crumbs a { color: var(--ses-muted); text-decoration: none; }
+.ses-crumbs a:hover { color: var(--ses-red-deep); text-decoration: underline; }
+.ses-crumbs li + li::before { content: '›'; margin-right: 0.6rem; opacity: 0.6; }
 
-/* L'image à la une d'une page.
-   La distinction écusson / bandeau se fait sur les DIMENSIONS réelles de
-   l'image, lues à la construction (src/lib/imageSize.ts) — et non sur son
-   extension, ce qui bridait le logo Carrick à la taille d'un écusson de
-   branche au seul motif que les deux sont des PNG. */
-.ses-cover {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin-bottom: var(--space-3);
-}
-.ses-cover--ecusson {
-  max-width: 8rem;
-}
-
-/* Bouton principal */
+/* ══════════════════════════════════════════════════════════════════
+   Boutons
+   ══════════════════════════════════════════════════════════════════ */
 .ses-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.75rem;          /* cible tactile confortable */
-  padding: 0.5rem 1.25rem;
-  background: var(--ses-primary);
-  color: var(--ses-primary-contrast);
-  font-weight: 600;
-  border-radius: 3px;
+  gap: 0.5rem;
+  min-height: 3rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  font-family: var(--ses-font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.2;
   text-decoration: none;
-  transition: background-color 120ms ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background-color var(--ease), color var(--ease), border-color var(--ease), transform var(--ease), box-shadow var(--ease);
+  background: var(--ses-red);
+  color: var(--ses-on-dark);
 }
-.ses-btn:hover {
-  background: var(--ses-primary-hover);
-  color: var(--ses-primary-contrast);
+.ses-btn:hover { background: var(--ses-red-deep); color: var(--ses-on-dark); transform: translateY(-1px); box-shadow: var(--shadow-2); }
+.ses-btn--secondary {
+  background: transparent;
+  color: var(--ses-nuit);
+  border-color: var(--ses-nuit);
 }
+.ses-btn--secondary:hover { background: var(--ses-nuit); color: var(--ses-on-dark); }
+.ses-btn--light {
+  background: var(--ses-on-dark);
+  color: var(--ses-nuit);
+}
+.ses-btn--light:hover { background: var(--ses-gold); color: var(--ses-nuit); }
+.ses-btn--ghost {
+  background: transparent;
+  color: var(--ses-on-dark);
+  border-color: rgb(255 255 255 / 0.6);
+}
+.ses-btn--ghost:hover { background: var(--ses-on-dark); color: var(--ses-nuit); border-color: var(--ses-on-dark); }
+.ses-btn--small { min-height: 2.5rem; padding: 0.4rem 1.1rem; font-size: 0.9375rem; }
 
-/* Bandeau d'ébauche — visible tant qu'une page n'a pas de vrai contenu.
-   Il disparaît tout seul dès que `draft: true` est retiré de la page. */
+/* Un lien « en savoir plus » avec sa flèche. */
+.ses-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--ses-font-heading);
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--ses-red-deep);
+}
+.ses-more::after { content: '→'; transition: transform var(--ease); }
+.ses-more:hover::after { transform: translateX(4px); }
+
+/* ══════════════════════════════════════════════════════════════════
+   Cartes
+   ══════════════════════════════════════════════════════════════════ */
+.ses-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--ses-surface);
+  border: 1px solid var(--ses-border);
+  border-radius: var(--radius-2);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+  transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+  position: relative;
+}
+.ses-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-2); }
+.ses-card__media {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--ses-page-alt);
+}
+.ses-card__media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 600ms ease; }
+.ses-card:hover .ses-card__media img { transform: scale(1.04); }
+.ses-card__body { padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-1); flex: 1; }
+.ses-card__title { font-size: var(--text-h3); }
+.ses-card__title a { color: inherit; text-decoration: none; }
+/* Toute la carte est cliquable via le lien du titre. */
+.ses-card__title a::after { content: ''; position: absolute; inset: 0; }
+.ses-card--accent { border-top: 4px solid var(--accent, var(--ses-red)); }
+
+/* ══════════════════════════════════════════════════════════════════
+   Texte courant
+   ══════════════════════════════════════════════════════════════════ */
+.ses-prose { max-width: var(--prose-max); }
+.ses-prose > * + * { margin-top: var(--space-2); }
+.ses-prose h2 { margin-top: var(--space-4); font-size: clamp(1.375rem, 2.2vw, 1.75rem); }
+.ses-prose h3 { margin-top: var(--space-3); font-size: var(--text-h3); }
+.ses-prose h4 { margin-top: var(--space-2); font-size: var(--text-h4); }
+.ses-prose h2 + *, .ses-prose h3 + *, .ses-prose h4 + * { margin-top: var(--space-1); }
+.ses-prose p:first-child strong:only-child { font-size: var(--text-lead); font-weight: 600; color: var(--ses-nuit); }
+.ses-prose ul, .ses-prose ol { padding-left: 1.4em; list-style: revert; }
+.ses-prose li + li { margin-top: 0.35em; }
+.ses-prose li::marker { color: var(--ses-red); }
+.ses-prose img {
+  display: block;
+  border-radius: var(--radius-2);
+  margin-block: var(--space-3);
+  box-shadow: var(--shadow-1);
+}
+.ses-prose blockquote {
+  border-left: 4px solid var(--ses-gold);
+  padding: var(--space-1) var(--space-3);
+  background: var(--ses-page-alt);
+  border-radius: 0 var(--radius-2) var(--radius-2) 0;
+  color: var(--ses-nuit);
+  font-style: italic;
+  font-size: var(--text-lead);
+  line-height: 1.5;
+}
+.ses-prose hr { border: 0; border-top: 1px solid var(--ses-border); margin-block: var(--space-4); }
+.ses-prose table { width: 100%; border-collapse: collapse; font-size: var(--text-small); }
+.ses-prose th, .ses-prose td { border-bottom: 1px solid var(--ses-border); padding: 0.5rem 0.6rem; text-align: left; }
+
+/* ══════════════════════════════════════════════════════════════════
+   Petits éléments
+   ══════════════════════════════════════════════════════════════════ */
 .ses-draft {
-  border: 1px dashed var(--ses-primary);
-  background: color-mix(in srgb, var(--ses-gold) 22%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ses-gold) 60%, #b8a400);
+  background: color-mix(in srgb, var(--ses-gold) 14%, white);
   color: var(--ses-muted);
-  padding: var(--space-2);
+  padding: var(--space-1) var(--space-2);
   font-size: var(--text-small);
-  border-radius: 3px;
+  border-radius: var(--radius-1);
   margin-bottom: var(--space-3);
 }
 
-/* Le champ de recherche de l'en-tête, dans l'esprit de celui du site actuel :
-   un rectangle gris clair, discret. */
-.ses-search {
-  width: 11rem;
-  padding: 0.35rem 0.6rem;
-  border: 1px solid #c4c4c4;
-  border-radius: 3px;
-  background: #f2f2f2;
+.ses-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  background: var(--ses-page-alt);
+  border: 1px solid var(--ses-border);
   font-size: var(--text-small);
-  color: var(--ses-fg);
+  color: var(--ses-muted);
 }
-.ses-search::placeholder { color: #8a8a8a; }
-.ses-search:focus { background: #fff; }
 
-/* Visible seulement pour les lecteurs d'écran. */
 .sr-only {
   position: absolute;
   width: 1px; height: 1px;
@@ -300,16 +399,21 @@ a:hover { color: var(--ses-primary); }
   border: 0;
 }
 
-/* Lien d'évitement : premier élément au clavier, invisible à la souris. */
 .ses-skip {
   position: absolute;
   left: -9999px;
   top: 0;
   background: var(--ses-surface);
+  color: var(--ses-fg);
   padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-1);
   z-index: 100;
 }
-.ses-skip:focus {
-  left: var(--space-2);
-  top: var(--space-2);
+.ses-skip:focus { left: var(--space-2); top: var(--space-2); }
+
+/* Apparition douce au défilement — purement décorative, désactivée si la
+   personne a demandé moins de mouvement. */
+@media (prefers-reduced-motion: no-preference) {
+  .ses-reveal { opacity: 0; transform: translateY(14px); transition: opacity 500ms ease, transform 500ms ease; }
+  .ses-reveal.is-in { opacity: 1; transform: none; }
 }

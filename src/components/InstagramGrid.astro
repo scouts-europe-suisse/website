@@ -1,0 +1,232 @@
+---
+/**
+ * Les dernières photos Instagram du mouvement (issue #21).
+ *
+ * Les données viennent de src/data/instagram.json et les images de
+ * public/images/instagram/, tous deux écrits par `npm run instagram`. Rien
+ * n'est chargé depuis Meta dans le navigateur du visiteur.
+ *
+ * Chaque vignette ouvre la publication dans une visionneuse (<dialog>) : la
+ * photo en grand, sa légende, et pour un album les flèches pour faire
+ * défiler ses photos. Sans JavaScript, la vignette mène à la publication sur
+ * Instagram.
+ */
+import { UI, withBase, type Lang } from '../data/site';
+import instagram from '../data/instagram.json';
+
+interface Props {
+  lang: Lang;
+  limit?: number;
+}
+const { lang, limit = 8 } = Astro.props;
+
+const posts = instagram.posts.slice(0, limit).map((p) => ({
+  ...p,
+  date: new Date(p.timestamp).toLocaleDateString(lang === 'fr' ? 'fr-CH' : 'de-CH', { day: 'numeric', month: 'long', year: 'numeric' }),
+  images: p.images.map((i) => ({ ...i, src: withBase(`/images/instagram/${i.file}`) })),
+}));
+const t = {
+  open: UI.openPhoto[lang], close: UI.closePhoto[lang], prev: UI.prevPhoto[lang], next: UI.nextPhoto[lang],
+  view: UI.viewOnInstagram[lang], photos: UI.photos[lang],
+};
+---
+
+{posts.length > 0 && (
+  <div class="ses-insta" data-insta>
+    <ul class="ses-insta__grid">
+      {posts.map((p, i) => (
+        <li class="ses-reveal" style={`transition-delay: ${Math.min(i, 7) * 40}ms`}>
+          <a
+            href={p.permalink}
+            target="_blank"
+            rel="noopener"
+            class="ses-insta__tile"
+            data-post={i}
+            aria-label={`${t.open} — ${p.date}`}
+          >
+            <img
+              src={p.images[0].src}
+              width={p.images[0].w}
+              height={p.images[0].h}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+            {p.album && (
+              <span class="ses-insta__badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="14" height="14" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v12"/></svg>
+                {p.images.length}
+              </span>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <dialog class="ses-lightbox" aria-label={t.open}>
+      <button type="button" class="ses-lightbox__close" data-close aria-label={t.close}>
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <div class="ses-lightbox__stage">
+        <button type="button" class="ses-lightbox__nav ses-lightbox__prev" data-prev aria-label={t.prev}>
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg>
+        </button>
+        <figure class="ses-lightbox__figure">
+          <img data-img alt="" />
+          <figcaption>
+            <p class="ses-lightbox__count" data-count></p>
+            <p class="ses-lightbox__caption" data-caption></p>
+            <p class="ses-lightbox__meta"><span data-date></span> · <a data-link href="#" target="_blank" rel="noopener">{t.view}</a></p>
+          </figcaption>
+        </figure>
+        <button type="button" class="ses-lightbox__nav ses-lightbox__next" data-next aria-label={t.next}>
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+    </dialog>
+
+    <script type="application/json" data-posts set:html={JSON.stringify(posts.map((p) => ({ caption: p.caption, permalink: p.permalink, date: p.date, images: p.images.map((i) => i.src) })))} />
+  </div>
+)}
+
+<script is:inline>
+  (function () {
+    var root = document.querySelector('[data-insta]');
+    if (!root || !('HTMLDialogElement' in window)) return;
+    var posts = JSON.parse(root.querySelector('[data-posts]').textContent);
+    var dlg = root.querySelector('dialog');
+    var img = dlg.querySelector('[data-img]');
+    var cap = dlg.querySelector('[data-caption]');
+    var cnt = dlg.querySelector('[data-count]');
+    var dat = dlg.querySelector('[data-date]');
+    var lnk = dlg.querySelector('[data-link]');
+    var prev = dlg.querySelector('[data-prev]');
+    var next = dlg.querySelector('[data-next]');
+    var p = 0, k = 0, opener = null;
+
+    function show() {
+      var post = posts[p];
+      img.src = post.images[k];
+      cap.textContent = post.caption;
+      dat.textContent = post.date;
+      lnk.href = post.permalink;
+      var multi = post.images.length > 1;
+      cnt.textContent = multi ? (k + 1) + ' / ' + post.images.length : '';
+      prev.hidden = !multi; next.hidden = !multi;
+      // Précharge la suivante pour un défilement sans à-coup.
+      if (multi) { var pre = new Image(); pre.src = post.images[(k + 1) % post.images.length]; }
+    }
+    function open(i, from) { p = i; k = 0; opener = from; show(); dlg.showModal(); }
+    function step(d) { var n = posts[p].images.length; k = (k + d + n) % n; show(); }
+
+    root.querySelectorAll('[data-post]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); open(Number(a.dataset.post), a); });
+    });
+    prev.addEventListener('click', function () { step(-1); });
+    next.addEventListener('click', function () { step(1); });
+    dlg.querySelector('[data-close]').addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', function () { if (opener) opener.focus(); });
+    dlg.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
+    });
+    // Balayage au doigt.
+    var x0 = null;
+    dlg.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    dlg.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+    });
+  })();
+</script>
+
+<style>
+  .ses-insta__grid {
+    display: grid;
+    gap: 0.6rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 40rem) { .ses-insta__grid { grid-template-columns: repeat(4, 1fr); gap: 0.85rem; } }
+  .ses-insta__tile {
+    position: relative;
+    display: block;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: var(--radius-2);
+    background: var(--ses-page-alt);
+  }
+  .ses-insta__tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 600ms ease; }
+  .ses-insta__tile:hover img { transform: scale(1.05); }
+  .ses-insta__tile::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgb(28 39 51 / 0.35), transparent 50%);
+    opacity: 0;
+    transition: opacity var(--ease);
+  }
+  .ses-insta__tile:hover::after { opacity: 1; }
+  .ses-insta__badge {
+    position: absolute; top: 0.6rem; right: 0.6rem;
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    background: rgb(28 39 51 / 0.65);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    backdrop-filter: blur(4px);
+  }
+
+  .ses-lightbox {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    width: min(100vw, 1100px);
+    max-width: 100vw;
+    max-height: 100vh;
+    color: #fff;
+  }
+  .ses-lightbox::backdrop { background: rgb(12 18 26 / 0.92); backdrop-filter: blur(6px); }
+  .ses-lightbox__stage {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 3rem 0.5rem 1rem;
+  }
+  .ses-lightbox__figure { margin: 0; text-align: center; min-width: 0; }
+  .ses-lightbox__figure img {
+    max-height: 70vh;
+    width: auto;
+    max-width: 100%;
+    margin-inline: auto;
+    border-radius: var(--radius-2);
+    box-shadow: var(--shadow-3);
+    display: block;
+  }
+  .ses-lightbox__figure figcaption { margin-top: 0.9rem; max-width: 46rem; margin-inline: auto; }
+  .ses-lightbox__count { font-size: var(--text-small); color: var(--ses-on-dark-muted); }
+  .ses-lightbox__caption { white-space: pre-line; font-size: 0.95rem; line-height: 1.5; max-height: 6.2em; overflow: auto; }
+  .ses-lightbox__meta { margin-top: 0.4rem; font-size: var(--text-small); color: var(--ses-on-dark-muted); }
+  .ses-lightbox__meta a { color: var(--ses-gold); }
+  .ses-lightbox__close, .ses-lightbox__nav {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 2.75rem; height: 2.75rem;
+    border-radius: 999px;
+    border: 1px solid rgb(255 255 255 / 0.3);
+    background: rgb(255 255 255 / 0.08);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color var(--ease);
+  }
+  .ses-lightbox__close:hover, .ses-lightbox__nav:hover { background: rgb(255 255 255 / 0.2); }
+  .ses-lightbox__close { position: absolute; top: 0.5rem; right: 0.5rem; }
+  .ses-lightbox__nav[hidden] { visibility: hidden; display: inline-flex; }
+  @media (max-width: 40rem) {
+    .ses-lightbox__stage { grid-template-columns: 1fr; padding-top: 3.5rem; }
+    .ses-lightbox__nav { position: absolute; top: 40%; }
+    .ses-lightbox__prev { left: 0.4rem; } .ses-lightbox__next { right: 0.4rem; }
+  }
+</style>

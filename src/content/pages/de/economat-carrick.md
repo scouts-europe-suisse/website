@@ -2,6 +2,8 @@
 title: "Carrick"
 urlPath: carrick
 key: economat-carrick
+description: "Um die Uniform Ihrer Kinder zu kaufen oder zu ergänzen: Bestellung per Telefon oder E-Mail bei Carrick Schweiz oder online im Carrick-Shop."
+translated: false
 sourceModified: 2025-12-09
 cover: "/images/carrick-logo.png"
 coverAlt: "Logo des Carrick-Shops"

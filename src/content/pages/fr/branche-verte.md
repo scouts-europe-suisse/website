@@ -2,6 +2,7 @@
 title: "Eclaireurs et éclaireuses — 12-17 ans"
 urlPath: branche-verte
 key: branche-verte
+description: "L'aventure passionnément en étant toujours prêt ! Camper, construire, explorer et prendre de vraies responsabilités en patrouille, de 12 à 17 ans."
 branche: verte
 sourceModified: 2025-12-09
 ---

@@ -1,42 +1,69 @@
 ---
 /**
- * Les deux langues, écrites en toutes lettres, comme sur le site actuel :
- * un germanophone qui tombe sur une page française doit voir « Deutsch », pas
- * un code à deviner.
+ * Les deux langues, en deux lettres, côte à côte : « FR · DE ». La langue
+ * courante est marquée, l'autre est un lien vers la page jumelle. Visible à
+ * toutes les largeurs d'écran : un germanophone sur téléphone doit pouvoir
+ * changer de langue sans ouvrir le menu.
  *
- * L'adresse de la jumelle est calculée par le gabarit (via la clé de la page).
- * Quand la page n'existe pas dans l'autre langue, le lien mène à l'accueil de
- * cette langue plutôt que vers une page inexistante, et le dit.
+ * Quand la page n'existe pas dans l'autre langue, le lien mène à l'accueil
+ * de cette langue, et le dit dans son intitulé.
  */
 import { LANGS, LANG_LABELS, path, type Lang } from '../data/site';
 
 interface Props {
   lang: Lang;
   twin?: string | null;
+  class?: string;
 }
-const { lang, twin } = Astro.props;
+const { lang, twin, class: cls } = Astro.props;
 const other: Lang = lang === 'fr' ? 'de' : 'fr';
 ---
 
-<ul class="flex flex-col items-end text-sm leading-tight">
+<ul class:list={['ses-lang', cls]} aria-label={lang === 'fr' ? 'Langue' : 'Sprache'}>
   {LANGS.map((l) => (
     <li>
       {l === lang ? (
-        <span style="color: var(--ses-muted)" aria-current="true">{LANG_LABELS[l]}</span>
+        <span aria-current="true" title={LANG_LABELS[l]}>{l.toUpperCase()}</span>
       ) : (
         <a
           href={twin ?? path(other)}
           hreflang={l}
           lang={l}
+          aria-label={LANG_LABELS[l]}
           title={twin
             ? LANG_LABELS[l]
             : l === 'de'
               ? 'Diese Seite gibt es noch nicht auf Deutsch — zur Startseite'
               : "Cette page n'existe pas encore en français — aller à l'accueil"}
         >
-          {LANG_LABELS[l]}
+          {l.toUpperCase()}
         </a>
       )}
     </li>
   ))}
 </ul>
+
+<style>
+  .ses-lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.15rem;
+    font-family: var(--ses-font-heading);
+    font-size: var(--text-small);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+  .ses-lang li + li::before { content: '·'; margin: 0 0.35rem; color: var(--ses-border); }
+  .ses-lang a, .ses-lang span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+    border-radius: 999px;
+    text-decoration: none;
+  }
+  .ses-lang a { color: var(--ses-muted); }
+  .ses-lang a:hover { color: var(--ses-red-deep); background: var(--ses-page-alt); }
+  .ses-lang span { color: var(--ses-nuit); background: var(--ses-page-alt); }
+</style>

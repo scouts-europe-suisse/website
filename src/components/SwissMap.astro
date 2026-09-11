@@ -1,0 +1,153 @@
+---
+/**
+ * La carte des implantations, dessinée dans le site (issue #20).
+ *
+ * Le fond est un SVG de la Suisse et de ses grands lacs (src/data/suisse.json,
+ * produit par scripts/suisse-geometrie.mjs depuis Natural Earth). Les repères
+ * viennent de src/data/implantations.json, lu dans la carte Google du
+ * mouvement par `npm run implantations`. Aucun service tiers n'est contacté
+ * par le navigateur du visiteur.
+ *
+ * Chaque repère est un lien vers sa fiche dans la liste : la carte marche
+ * donc sans JavaScript. Le script n'ajoute que la mise en évidence du repère
+ * et de la fiche qui vont ensemble.
+ *
+ * `compact` = la version de la page d'accueil : la carte et un résumé,
+ * sans la liste des fiches.
+ */
+import { UI, withBase, type Lang } from '../data/site';
+import suisse from '../data/suisse.json';
+import implantations from '../data/implantations.json';
+
+interface Props {
+  lang: Lang;
+  compact?: boolean;
+  /** Adresse de la page complète (pour le bouton de la version compacte). */
+  moreHref?: string | null;
+}
+const { lang, compact = false, moreHref } = Astro.props;
+
+const { bbox, width: W, height: H } = suisse;
+const project = (lon: number, lat: number) => ({
+  x: ((lon - bbox.minLon) / (bbox.maxLon - bbox.minLon)) * W,
+  y: ((bbox.maxLat - lat) / (bbox.maxLat - bbox.minLat)) * H,
+});
+const places = implantations.places.map((p, i) => ({ ...p, i, id: `lieu-${i + 1}`, ...project(p.lng, p.lat) }));
+const title = lang === 'fr' ? 'Carte des implantations du Scoutisme Européen Suisse' : 'Karte der Standorte der Schweizerischen Pfadfinderschaft Europas';
+---
+
+<div class:list={['ses-map', compact && 'ses-map--compact']} data-map>
+  <figure class="ses-map__figure">
+    <svg viewBox={suisse.viewBox} role="img" aria-label={title} class="ses-map__svg">
+      <path d={suisse.country} class="ses-map__land" />
+      <path d={suisse.lakes} class="ses-map__lakes" />
+      {places.map((p) => (
+        <a href={compact && moreHref ? `${moreHref}#${p.id}` : `#${p.id}`} class="ses-map__pin" data-pin={p.id} aria-label={p.name}>
+          <circle cx={p.x} cy={p.y} r="22" class="ses-map__halo" />
+          <circle cx={p.x} cy={p.y} r="9" class="ses-map__dot" />
+          <text x={p.x} y={p.y - 16} class="ses-map__label">{p.name.replace(/^District .* - /, '')}</text>
+        </a>
+      ))}
+    </svg>
+  </figure>
+
+  {!compact && (
+    <ol class="ses-map__list">
+      {places.map((p) => (
+        <li id={p.id} class="ses-card ses-place" data-place={p.id} tabindex="-1">
+          <div class="ses-card__body">
+            <h3 class="ses-place__title">{p.name}</h3>
+            {p.groupe && <p class="ses-muted">{p.groupe}</p>}
+            {p.unites.length > 0 && (
+              <ul class="ses-place__units">
+                {p.unites.map((u) => <li>{u}</li>)}
+              </ul>
+            )}
+            {p.email && (
+              <p class="mt-2"><a href={`mailto:${p.email}`} class="ses-more">{UI.writeTo[lang]}</a></p>
+            )}
+          </div>
+        </li>
+      ))}
+    </ol>
+  )}
+</div>
+
+{!compact && (
+  <script is:inline>
+    (function () {
+      var root = document.querySelector('[data-map]');
+      if (!root) return;
+      function light(id) {
+        root.querySelectorAll('[data-pin]').forEach(function (a) { a.classList.toggle('is-on', a.dataset.pin === id); });
+        root.querySelectorAll('[data-place]').forEach(function (c) { c.classList.toggle('is-on', c.dataset.place === id); });
+      }
+      root.querySelectorAll('[data-pin]').forEach(function (a) {
+        a.addEventListener('mouseenter', function () { light(a.dataset.pin); });
+        a.addEventListener('focus', function () { light(a.dataset.pin); });
+        a.addEventListener('click', function () {
+          light(a.dataset.pin);
+          var card = document.getElementById(a.dataset.pin);
+          if (card) setTimeout(function () { card.focus({ preventScroll: true }); }, 300);
+        });
+      });
+      root.querySelectorAll('[data-place]').forEach(function (c) {
+        c.addEventListener('mouseenter', function () { light(c.dataset.place); });
+      });
+      if (location.hash) light(location.hash.slice(1));
+    })();
+  </script>
+)}
+
+<style>
+  .ses-map { display: grid; gap: var(--space-4); }
+  @media (min-width: 64rem) { .ses-map:not(.ses-map--compact) { grid-template-columns: 1.3fr 1fr; align-items: start; } }
+  .ses-map__figure {
+    margin: 0;
+    background: var(--ses-surface);
+    border: 1px solid var(--ses-border);
+    border-radius: var(--radius-3);
+    padding: var(--space-2);
+    box-shadow: var(--shadow-1);
+    position: sticky;
+    top: 5.5rem;
+  }
+  .ses-map--compact .ses-map__figure { position: static; }
+  .ses-map__svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .ses-map__land { fill: #ece8df; stroke: #cfc8ba; stroke-width: 1.2; stroke-linejoin: round; }
+  .ses-map__lakes { fill: #bfd9ea; stroke: #9cc3dc; stroke-width: 0.8; }
+  .ses-map__pin { cursor: pointer; outline: none; }
+  .ses-map__halo { fill: var(--ses-red); opacity: 0.18; transform-origin: center; transform-box: fill-box; animation: ses-pulse 2.6s ease-out infinite; }
+  .ses-map__dot { fill: var(--ses-red); stroke: #fff; stroke-width: 3; transition: r var(--ease); }
+  .ses-map__label {
+    font-family: var(--ses-font-heading);
+    font-size: 15px;
+    font-weight: 700;
+    fill: var(--ses-nuit);
+    text-anchor: middle;
+    paint-order: stroke;
+    stroke: #fff;
+    stroke-width: 4px;
+    stroke-linejoin: round;
+    pointer-events: none;
+  }
+  .ses-map__pin:hover .ses-map__dot, .ses-map__pin.is-on .ses-map__dot, .ses-map__pin:focus-visible .ses-map__dot { r: 12; fill: var(--ses-nuit); }
+  .ses-map__pin:focus-visible .ses-map__halo { opacity: 0.4; }
+  @keyframes ses-pulse { 0% { transform: scale(0.6); opacity: 0.35; } 100% { transform: scale(1.6); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .ses-map__halo { animation: none; opacity: 0.15; } }
+
+  .ses-map__list { display: grid; gap: var(--space-2); }
+  .ses-place { scroll-margin-top: 6rem; transition: border-color var(--ease), box-shadow var(--ease); }
+  .ses-place:hover { transform: none; }
+  .ses-place.is-on, .ses-place:target { border-color: var(--ses-red); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ses-red) 18%, transparent); }
+  .ses-place__title { font-size: var(--text-h4); }
+  .ses-place__units { margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .ses-place__units li {
+    font-size: var(--text-small);
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    background: var(--ses-page-alt);
+    border: 1px solid var(--ses-border);
+    color: var(--ses-muted);
+  }
+</style>

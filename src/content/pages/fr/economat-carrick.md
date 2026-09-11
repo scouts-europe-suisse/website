@@ -2,6 +2,7 @@
 title: "Economat Carrick"
 urlPath: economat-carrick
 key: economat-carrick
+description: "Pour acheter ou compléter l'uniforme de vos enfants : commande par téléphone ou e-mail à Carrick Suisse, ou en ligne sur la plateforme Carrick."
 sourceModified: 2025-12-09
 cover: "/images/carrick-logo.png"
 coverAlt: "Logo de l’économat Carrick"

@@ -2,6 +2,8 @@
 title: "Leiter werden"
 urlPath: uns-beitreten/leiter-werden
 key: devenir-chef
+description: "Die Bewegung vertraut ihre Einheiten jungen Menschen von 18 bis 30 Jahren an und bildet sie aus. Leiter sein: eine einzigartige Erfahrung und Lebensschule."
+translated: false
 sourceModified: 2025-12-09
 ---
 

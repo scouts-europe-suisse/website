@@ -2,6 +2,7 @@
 title: "Un mouvement suisse"
 urlPath: notre-scoutisme/suisse
 key: mouvement-suisse
+description: "Des débuts au Mont-Pèlerin dans les années 1970 à un mouvement national : l'histoire des Scouts d'Europe en Suisse romande et à Zurich."
 sourceModified: 2025-12-09
 cover: "/images/chapelle-montagne.jpg"
 coverAlt: "Chapelle sur une crête"

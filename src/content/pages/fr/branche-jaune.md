@@ -2,6 +2,7 @@
 title: "Louveteaux et louvettes — 8-12 ans"
 urlPath: branche-jaune
 key: branche-jaune
+description: "Croque la vie à pleine dents en faisant de ton mieux ! Jouer, créer, chanter, camper et découvrir le monde sur les traces de Mowgli, de 8 à 12 ans."
 branche: jaune
 sourceModified: 2025-12-09
 ---

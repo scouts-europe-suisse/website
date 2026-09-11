@@ -1,6 +1,7 @@
 ---
 urlPath: ""
 key: home
+translated: false
 title: "Schweizerische Pfadfinderschaft Europas"
 description: "Der Verein der Schweizerischen Pfadfinderschaft Europas ist eine Bewegung, die sich eine von der Pfadfindermethode geprägte Erziehung vorstellt, ergänzend zu Familie und Schule."
 ---

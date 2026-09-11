@@ -2,6 +2,8 @@
 title: "Betreuung"
 urlPath: die-bewegung/betreuung
 key: encadrement
+description: "Abteilungsleiter, Distriktkommissar, Vereinsleitung, technische Einheiten: die Kader, die den Leitern bei ihren Pfadfinderaktivitäten den Rücken stärken."
+translated: false
 sourceModified: 2025-12-09
 ---
 

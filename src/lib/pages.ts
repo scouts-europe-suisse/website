@@ -36,7 +36,8 @@ async function all(): Promise<PageRef[]> {
  */
 export async function pathFor(key: string, lang: Lang): Promise<string | null> {
   const p = (await all()).find((x) => x.key === key && x.lang === lang);
-  return p ? withBase(`/${lang}/${p.slug}/`) : null;
+  // L'accueil a un urlPath vide : sans ce cas, on produirait « /de// ».
+  return p ? withBase(p.slug ? `/${lang}/${p.slug}/` : `/${lang}/`) : null;
 }
 
 /** La page jumelle, à partir de la clé et de la langue courante. */

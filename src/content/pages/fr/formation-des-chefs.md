@@ -2,6 +2,7 @@
 title: "Formation des chefs"
 urlPath: mouvement/formation-des-chefs
 key: formation-des-chefs
+description: "Camps-écoles, sessions théoriques, ateliers techniques : le mouvement met l'accent sur la formation des chefs pour offrir un scoutisme de qualité."
 sourceModified: 2025-12-09
 ---
 

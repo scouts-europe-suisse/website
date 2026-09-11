@@ -2,6 +2,8 @@
 title: "Wölflinge — 8 bis 12 Jahre"
 urlPath: woelflingsstufe
 key: branche-jaune
+description: "Koste das Leben in vollen Zügen und gib dein Bestes! Spielen, basteln, singen, zelten und die Welt entdecken auf den Spuren von Mowgli, von 8 bis 12 Jahren."
+translated: false
 branche: jaune
 sourceModified: 2025-12-09
 ---

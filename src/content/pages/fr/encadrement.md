@@ -2,6 +2,7 @@
 title: "Encadrement"
 urlPath: mouvement/encadrement
 key: encadrement
+description: "Chef de groupe, commissaire de district, équipe nationale, équipes techniques : les cadres qui soutiennent les chefs dans leurs activités scoutes."
 sourceModified: 2025-12-09
 ---
 
