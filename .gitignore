@@ -37,3 +37,8 @@ _migrations/_brut/
 # Working files
 *.bak
 _temp
+
+# Secrets locaux (Meta, etc.) — jamais dans le dépôt. Voir _memory/secrets-et-configuration.md
+.env
+.env.*
+!.env.example
