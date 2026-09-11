@@ -8,7 +8,7 @@
  * impossible. Node est déjà nécessaire pour construire le site ; s'en servir
  * ici supprime le problème au lieu de le contourner.
  */
-import { execFileSync } from 'node:child_process';
+import { execFileSync, execSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -21,8 +21,19 @@ const REPO = 'website';
 const SITE_URL = `https://${ORG}.github.io`;
 const BASE_PATH = `/${REPO}`;
 
-const run = (cmd, args, opts = {}) =>
-  execFileSync(cmd, args, { stdio: 'pipe', encoding: 'utf8', shell: false, ...opts });
+// Sous Windows, npm est un fichier .cmd : depuis Node 18.20 / 20.12, un .cmd
+// ne se lance plus sans passer par l'interpréteur de commandes (correctif de
+// sécurité CVE-2024-27980), d'où l'EINVAL de l'issue #16. On ne passe par le
+// shell que pour lui ; git, lui, est un vrai exécutable.
+const run = (cmd, args, opts = {}) => {
+  const base = { stdio: 'pipe', encoding: 'utf8', ...opts };
+  if (process.platform === 'win32' && cmd.endsWith('.cmd')) {
+    // Une seule chaîne, sans arguments séparés : Node refuse de les concaténer
+    // lui-même quand il passe par le shell. Les arguments sont des mots fixes.
+    return execSync([cmd, ...args].join(' '), base);
+  }
+  return execFileSync(cmd, args, { shell: false, ...base });
+};
 const git = (args, opts) => run('git', args, opts).trim();
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 
