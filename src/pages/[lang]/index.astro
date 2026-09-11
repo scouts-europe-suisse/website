@@ -1,17 +1,23 @@
 ---
 /**
- * La page d'accueil, dans chaque langue. Son texte vient de
- * src/content/pages/<langue>/home.md ; la mise en page est ici.
+ * La page d'accueil, construite comme un parcours pour un parent qui arrive :
+ * qui nous sommes en une phrase, les trois branches, ce qui fait le
+ * mouvement, où nous trouver, les nouvelles, la vie en images, et l'appel à
+ * devenir chef. Son texte vient de src/content/pages/<langue>/home.md ; les
+ * accroches des branches viennent de la description de chaque page de
+ * branche. Rien n'est écrit ici qui ne soit dans le contenu.
  */
-import { getEntry, render } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageNotices from '../../components/PageNotices.astro';
 import NewsList from '../../components/NewsList.astro';
-import Slider from '../../components/Slider.astro';
 import BrancheIcon from '../../components/BrancheIcon.astro';
+import SwissMap from '../../components/SwissMap.astro';
+import InstagramGrid from '../../components/InstagramGrid.astro';
 import { BRANCHES, type Branche } from '../../data/pictos';
-import { pathFor, pagesIn } from '../../lib/pages';
-import { LANGS, NAV, NEWS_BASE, UI, withBase, type Lang } from '../../data/site';
+import { pathFor } from '../../lib/pages';
+import { LANGS, NAV, NEWS_BASE, SITE, SOCIAL, UI, withBase, type Lang } from '../../data/site';
+import implantations from '../../data/implantations.json';
 
 export function getStaticPaths() {
   return LANGS.map((lang) => ({ params: { lang } }));
@@ -22,100 +28,269 @@ const { lang } = Astro.params as { lang: Lang };
 const entry = await getEntry('pages', `${lang}/home`);
 if (!entry) throw new Error(`Page d'accueil manquante : ${lang}/home`);
 const { Content } = await render(entry);
+const pages = await getCollection('pages', (e) => e.id.startsWith(`${lang}/`));
+const data = (key: string) => pages.find((e) => e.data.key === key)?.data;
 
-/**
- * On retrouve les entrées du menu PAR CLÉ, jamais par position : les indices
- * (NAV[0], NAV[2]) se sont cassés dès que l'ordre du menu a changé, et la
- * page d'accueil s'est mise à afficher « Accueil » en titre de section et les
- * clés brutes à la place des noms de branches.
- */
-const entry_ = (key: string) => NAV.find((i) => i.key === key);
-async function pageTitle(key: string, l: Lang) {
-  return (await pagesIn(l)).find((p) => p.key === key)?.title;
-}
-const childOf = (parent: string, key: string) =>
-  entry_(parent)?.children?.find((c) => c.key === key);
-
-const branchNav = entry_('notre-scoutisme')?.children ?? [];
+const navItem = (key: string) => NAV.find((i) => i.key === key);
 const branches = (
   await Promise.all(
-    [
-      { key: 'branche-jaune', branche: 'jaune' as Branche, couleur: 'var(--ses-branche-jaune)' },
-      { key: 'branche-verte', branche: 'verte' as Branche, couleur: 'var(--ses-branche-verte)' },
-      { key: 'branche-rouge', branche: 'rouge' as Branche, couleur: 'var(--ses-branche-rouge)' },
-    ].map(async (b) => ({
-      ...b,
-      href: await pathFor(b.key, lang),
-      // Le titre de la page porte la tranche d'âge (« … — 8-12 ans »), que
-      // le site actuel affiche sur ses cartes. Le libellé du menu, lui, est
-      // volontairement court.
-      label: (await pageTitle(b.key, lang)) ?? branchNav.find((c) => c.key === b.key)?.label[lang] ?? b.key,
-    })),
+    (['jaune', 'verte', 'rouge'] as Branche[]).map(async (branche) => {
+      const key = `branche-${branche}`;
+      const d = data(key);
+      // Le titre de page porte la tranche d'âge : « Louveteaux et louvettes — 8-12 ans ».
+      const [name, ages] = (d?.title ?? key).split(' — ');
+      return { branche, href: await pathFor(key, lang), name, ages, description: d?.description };
+    }),
   )
 ).filter((b) => b.href);
 
-const joinHref = await pathFor('nous-rejoindre', lang);
-const joinLabel = entry_('nous-rejoindre')?.label[lang] ?? '';
-const scoutingLabel = entry_('notre-scoutisme')?.label[lang] ?? '';
+// « Un mouvement » : les titres de section de « Qui sommes-nous ? », qui sont
+// la définition du mouvement par lui-même, illustrés par la première phrase
+// de chaque section.
+const about = pages.find((e) => e.data.key === 'qui-sommes-nous');
+const values: { title: string; text: string }[] = [];
+if (about?.body) {
+  const parts = about.body.split(/^##\s+/m).slice(1);
+  for (const part of parts) {
+    const [title, ...rest] = part.split('\n');
+    const text = rest.join(' ').replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/\s+/g, ' ').trim();
+    const first = text.match(/^(.+?[.!?])(\s|$)/)?.[1] ?? text.slice(0, 160);
+    if (title && first) values.push({ title: title.trim(), text: first });
+  }
+}
 const aboutHref = await pathFor('qui-sommes-nous', lang);
-const aboutLabel =
-  entry_('notre-scoutisme')?.children?.find((c) => c.key === 'qui-sommes-nous')?.label[lang] ?? '';
+const joinHref = await pathFor('nos-implantations', lang);
+const scoutingHref = await pathFor('notre-scoutisme', lang);
+const leaderHref = await pathFor('devenir-chef', lang);
+const instagram = SOCIAL.find((s) => s.icon === 'instagram');
+
+// Deux photos du compte Instagram du mouvement (week-end national des
+// éclaireuses 2026 ; RTIP 2026), copiées hors du dossier instagram/, qui est
+// renouvelé par `npm run instagram`.
+const HERO = '/images/accueil-bandeau.jpg';
+const LEADER_IMG = '/images/accueil-devenir-chef.jpg';
 ---
 
 <BaseLayout
   title={entry.data.title}
   description={entry.data.description}
   lang={lang}
-  fullWidth
   pageKey="home"
   noindex={entry.data.draft}
 >
-  <!-- Le bandeau défilant, directement sous le menu, comme sur le site
-       actuel. Il remplace le bandeau rouge que j'avais dessiné. -->
-  <Slider lang={lang} />
-
-
-  <div class="ses-col py-10">
-    <h1 style="font-size: var(--text-h1)">{entry.data.title}</h1>
-    {entry.data.description && (
-      <p class="mt-2 ses-prose" style="color: var(--ses-muted)">{entry.data.description}</p>
-    )}
-
-    <PageNotices lang={lang} draft={entry.data.draft} translated={entry.data.translated} />
-
-    <div class="ses-prose">
-      <Content />
+  {/* ── Le bandeau d'ouverture ─────────────────────────────────────── */}
+  <section class="ses-hero" aria-labelledby="hero-title">
+    <img src={withBase(HERO)} alt="" width="1200" height="799" class="ses-hero__img" loading="eager" fetchpriority="high" />
+    <div class="ses-hero__veil" aria-hidden="true"></div>
+    <div class="ses-col ses-hero__inner">
+      <p class="ses-eyebrow ses-hero__eyebrow">{SITE.name}</p>
+      <h1 id="hero-title" class="ses-hero__title">
+        {lang === 'fr' ? 'Un mouvement d’éducation par la méthode scoute' : 'Eine Erziehungsbewegung nach der Pfadfindermethode'}
+      </h1>
+      {entry.data.description && <p class="ses-hero__lead">{entry.data.description}</p>}
+      <div class="ses-hero__actions">
+        {joinHref && <a href={joinHref} class="ses-btn">{UI.findGroup[lang]}</a>}
+        {scoutingHref && <a href={scoutingHref} class="ses-btn ses-btn--ghost">{UI.discover[lang]}</a>}
+      </div>
     </div>
+  </section>
 
-    <h2 class="mt-12" style="font-size: var(--text-h2)">{scoutingLabel}</h2>
-    <ul class="mt-4 grid gap-4 sm:grid-cols-3">
-      {branches.map((b) => (
-        <li
-          class="border p-5 text-center"
-          style={`border-color: var(--ses-border); background: var(--ses-surface); border-top: 4px solid ${b.couleur}`}
-        >
-          {/* Les deux pictogrammes de la branche (issue #14), à sa couleur. */}
-          <div class="mb-3 flex justify-center gap-2">
-            {BRANCHES[b.branche].map((icon) => (
-              <BrancheIcon icon={icon} size="4rem" lang={lang} />
-            ))}
+  {(entry.data.draft || entry.data.translated === false) && (
+    <div class="ses-col" style="padding-top: var(--space-3)">
+      <PageNotices lang={lang} draft={entry.data.draft} translated={entry.data.translated} />
+    </div>
+  )}
+
+  {/* ── Les trois branches ───────────────────────────────────────── */}
+  <section class="ses-section" aria-labelledby="branches-title">
+    <div class="ses-col">
+      <div class="ses-section-head ses-section-head--center">
+        <p class="ses-eyebrow">{navItem('notre-scoutisme')?.label[lang]}</p>
+        <h2 id="branches-title">{UI.ourBranches[lang]}</h2>
+        <p class="ses-lead" style="margin-inline: auto">{UI.branchesIntro[lang]}</p>
+      </div>
+      <ul class="ses-branches">
+        {branches.map((b, i) => (
+          <li class="ses-card ses-card--accent ses-reveal" style={`--accent: var(--ses-branche-${b.branche}); transition-delay: ${i * 80}ms`}>
+            <div class="ses-card__body ses-branch">
+              <div class="ses-branch__icons">
+                {BRANCHES[b.branche].map((icon) => <BrancheIcon icon={icon} size="4.5rem" lang={lang} />)}
+              </div>
+              <p class="ses-chip">{b.ages}</p>
+              <h3 class="ses-card__title"><a href={b.href}>{b.name}</a></h3>
+              {b.description && <p class="ses-muted">{b.description}</p>}
+              <span class="ses-more" aria-hidden="true">{lang === 'fr' ? 'Découvrir' : 'Entdecken'}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* ── Le mouvement ─────────────────────────────────────────────── */}
+  {values.length > 0 && (
+    <section class="ses-section ses-section--alt" aria-labelledby="values-title">
+      <div class="ses-col">
+        <div class="ses-values">
+          <div class="ses-values__intro">
+            <p class="ses-eyebrow">{UI.whoWeAre[lang]}</p>
+            <h2 id="values-title">{entry.data.title}</h2>
+            <div class="ses-prose mt-4">
+              <Content />
+            </div>
+            {aboutHref && <p class="mt-6"><a href={aboutHref} class="ses-btn ses-btn--secondary">{UI.whoWeAre[lang]}</a></p>}
           </div>
-          <a href={b.href} class="font-semibold no-underline" style="color: var(--ses-fg)">{b.label}</a>
-        </li>
-      ))}
-    </ul>
+          <ul class="ses-values__list">
+            {values.slice(0, 6).map((v, i) => (
+              <li class="ses-reveal" style={`transition-delay: ${i * 60}ms`}>
+                <h3>{v.title}</h3>
+                <p class="ses-muted">{v.text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  )}
 
-    {aboutHref && (
-      <p class="mt-6">
-        <a href={aboutHref}>{aboutLabel} →</a>
-      </p>
-    )}
+  {/* ── Près de chez vous ────────────────────────────────────────── */}
+  <section class="ses-section" aria-labelledby="map-title">
+    <div class="ses-col ses-near">
+      <div class="ses-near__text">
+        <p class="ses-eyebrow">{UI.whereWeAre[lang]}</p>
+        <h2 id="map-title">{UI.whereWeAreTitle[lang]}</h2>
+        <p class="ses-lead mt-4">{UI.whereWeAreIntro[lang]}</p>
+        <p class="ses-near__count mt-6">
+          <strong>{implantations.places.length}</strong> {UI.places[lang]}
+        </p>
+        {joinHref && <p class="mt-6"><a href={joinHref} class="ses-btn">{UI.seeMap[lang]}</a></p>}
+      </div>
+      <div class="ses-near__map ses-reveal">
+        <SwissMap lang={lang} compact moreHref={joinHref} />
+      </div>
+    </div>
+  </section>
 
-    <h2 class="mt-12" style="font-size: var(--text-h2)">{UI.news[lang]}</h2>
-    <NewsList lang={lang} limit={3} heading={false} />
-    <p class="mt-4">
-      <a href={withBase(`/${lang}/${NEWS_BASE[lang]}/`)}>{UI.allNews[lang]}</a>
-    </p>
-  </div>
+  {/* ── Actualités ───────────────────────────────────────────────── */}
+  <section class="ses-section ses-section--alt" aria-labelledby="news-title">
+    <div class="ses-col">
+      <div class="ses-split-head">
+        <div class="ses-section-head">
+          <p class="ses-eyebrow">{UI.news[lang]}</p>
+          <h2 id="news-title">{UI.latestNews[lang]}</h2>
+        </div>
+        <a href={withBase(`/${lang}/${NEWS_BASE[lang]}/`)} class="ses-more">{UI.allNews[lang]}</a>
+      </div>
+      <div class="mt-8"><NewsList lang={lang} limit={3} /></div>
+    </div>
+  </section>
+
+  {/* ── Instagram ────────────────────────────────────────────────── */}
+  <section class="ses-section" aria-labelledby="insta-title">
+    <div class="ses-col">
+      <div class="ses-split-head">
+        <div class="ses-section-head">
+          <p class="ses-eyebrow">Instagram</p>
+          <h2 id="insta-title">{UI.instagramTitle[lang]}</h2>
+          <p class="ses-lead">{UI.instagramIntro[lang]}</p>
+        </div>
+        {instagram && <a href={instagram.url} target="_blank" rel="noopener" class="ses-more">{UI.followInstagram[lang]}</a>}
+      </div>
+      <div class="mt-8"><InstagramGrid lang={lang} limit={8} /></div>
+    </div>
+  </section>
+
+  {/* ── Devenir chef ─────────────────────────────────────────────── */}
+  {leaderHref && (
+    <section class="ses-cta" aria-labelledby="cta-title">
+      <img src={withBase(LEADER_IMG)} alt="" width="1200" height="798" class="ses-cta__img" loading="lazy" />
+      <div class="ses-cta__veil" aria-hidden="true"></div>
+      <div class="ses-col ses-cta__inner">
+        <p class="ses-eyebrow">{UI.becomeLeader[lang]}</p>
+        <h2 id="cta-title">{UI.becomeLeaderTitle[lang]}</h2>
+        <p class="ses-lead ses-cta__lead">{UI.becomeLeaderIntro[lang]}</p>
+        <p class="mt-6"><a href={leaderHref} class="ses-btn ses-btn--light">{UI.becomeLeader[lang]}</a></p>
+      </div>
+    </section>
+  )}
 </BaseLayout>
 
+<style>
+  /* Le bandeau d'ouverture : la photo en fond, un voile bleu nuit, le texte en blanc. */
+  .ses-hero {
+    position: relative;
+    min-height: clamp(30rem, 78vh, 46rem);
+    display: flex;
+    align-items: flex-end;
+    color: var(--ses-on-dark);
+    background: var(--ses-nuit);
+    overflow: hidden;
+  }
+  .ses-hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+  .ses-hero__veil {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to top, rgb(28 39 51 / 0.92) 0%, rgb(28 39 51 / 0.55) 45%, rgb(28 39 51 / 0.15) 100%);
+  }
+  .ses-hero__inner { position: relative; padding-block: clamp(3rem, 8vw, 6rem) clamp(3rem, 7vw, 5.5rem); max-width: var(--content-col); }
+  .ses-hero__eyebrow { color: var(--ses-gold); }
+  .ses-hero__eyebrow::before { background: var(--ses-gold); }
+  .ses-hero__title {
+    margin-top: var(--space-2);
+    font-size: var(--text-display);
+    color: var(--ses-on-dark);
+    max-width: 16ch;
+    text-shadow: 0 2px 20px rgb(0 0 0 / 0.25);
+  }
+  .ses-hero__lead {
+    margin-top: var(--space-3);
+    font-size: var(--text-lead);
+    line-height: 1.5;
+    max-width: 38rem;
+    color: rgb(255 255 255 / 0.9);
+  }
+  .ses-hero__actions { margin-top: var(--space-4); display: flex; flex-wrap: wrap; gap: var(--space-2); }
+
+  .ses-branches {
+    margin-top: var(--space-5);
+    display: grid;
+    gap: var(--space-3);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  }
+  .ses-branch { align-items: flex-start; padding: var(--space-4) var(--space-3); }
+  .ses-branch__icons { display: flex; gap: 0.6rem; margin-bottom: 0.5rem; }
+  .ses-branch .ses-more { margin-top: auto; padding-top: var(--space-2); }
+
+  .ses-values { display: grid; gap: var(--space-5); }
+  @media (min-width: 64rem) { .ses-values { grid-template-columns: 1fr 1.2fr; align-items: start; } }
+  .ses-values__list {
+    display: grid;
+    gap: var(--space-3);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+  .ses-values__list li { padding-left: var(--space-2); border-left: 3px solid var(--ses-gold); }
+  .ses-values__list h3 { font-size: var(--text-h4); color: var(--ses-nuit); }
+  .ses-values__list p { margin-top: 0.35rem; font-size: 0.95rem; }
+
+  .ses-near { display: grid; gap: var(--space-4); align-items: center; }
+  @media (min-width: 64rem) { .ses-near { grid-template-columns: 1fr 1.4fr; gap: var(--space-5); } }
+  .ses-near__count { font-family: var(--ses-font-heading); font-size: var(--text-h3); color: var(--ses-nuit); }
+  .ses-near__count strong { font-size: var(--text-display); line-height: 1; color: var(--ses-red); margin-right: 0.35rem; }
+
+  .ses-split-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--space-2); }
+
+  .ses-cta {
+    position: relative;
+    color: var(--ses-on-dark);
+    background: var(--ses-nuit);
+    overflow: hidden;
+    text-align: center;
+  }
+  .ses-cta__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+  .ses-cta__veil { position: absolute; inset: 0; background: rgb(28 39 51 / 0.78); }
+  .ses-cta__inner { position: relative; padding-block: var(--section-y); display: flex; flex-direction: column; align-items: center; }
+  .ses-cta h2 { color: var(--ses-on-dark); margin-top: var(--space-2); }
+  .ses-cta .ses-eyebrow { color: var(--ses-gold); }
+  .ses-cta .ses-eyebrow::before { display: none; }
+  .ses-cta__lead { color: var(--ses-on-dark-muted); margin-top: var(--space-2); }
+</style>

@@ -1,34 +1,56 @@
 ---
 /**
- * La liste des sous-pages d'une rubrique.
- *
- * Les pages de rubrique (« Notre scoutisme », « Le mouvement », « Nous
- * rejoindre ») n'ont pas de texte propre : sur l'ancien site, WordPress y
- * affichait le contenu d'une de leurs filles, ce qui donnait deux adresses
- * pour la même page. Ici elles servent de sommaire, jusqu'à ce que quelqu'un
- * leur écrive une introduction.
+ * Le sommaire d'une rubrique : ses sous-pages en cartes, avec leur résumé.
+ * Les pages de branche montrent leur pictogramme à la couleur de la branche.
  */
+import { getCollection } from 'astro:content';
 import type { PageRef } from '../lib/pages';
-import { withBase, type Lang } from '../data/site';
+import { UI, withBase, type Lang } from '../data/site';
+import { BRANCHES } from '../data/pictos';
+import BrancheIcon from './BrancheIcon.astro';
 
 interface Props {
   lang: Lang;
-  children: PageRef[];
+  pages: PageRef[];
 }
-const { lang, children } = Astro.props;
+const { lang, pages } = Astro.props;
+
+const entries = await getCollection('pages');
+const meta = (key: string) => entries.find((e) => e.data.key === key && e.id.startsWith(`${lang}/`))?.data;
 ---
 
-{children.length > 0 && (
-  <ul class="not-prose mt-2 grid gap-3 sm:grid-cols-2">
-    {children.map((c) => (
-      <li
-        class="border p-4"
-        style="border-color: var(--ses-border); background: var(--ses-surface); border-left: 4px solid var(--ses-nature)"
-      >
-        <a href={withBase(`/${lang}/${c.slug}/`)} class="font-semibold no-underline" style="color: var(--ses-fg)">
-          {c.title}
-        </a>
-      </li>
-    ))}
-  </ul>
+{pages.length > 0 && (
+  <section class="ses-section-index" aria-label={UI.inThisSection[lang]}>
+    <p class="ses-eyebrow">{UI.inThisSection[lang]}</p>
+    <ul class="ses-index-grid">
+      {pages.map((p) => {
+        const m = meta(p.key);
+        const branche = m?.branche;
+        return (
+          <li class:list={['ses-card', branche && 'ses-card--accent']} style={branche ? `--accent: var(--ses-branche-${branche})` : undefined}>
+            <div class="ses-card__body">
+              {branche && (
+                <div class="ses-index-icons">
+                  {BRANCHES[branche].map((icon) => <BrancheIcon icon={icon} size="3rem" lang={lang} />)}
+                </div>
+              )}
+              <h3 class="ses-card__title"><a href={withBase(`/${lang}/${p.slug}/`)}>{p.title}</a></h3>
+              {m?.description && <p class="ses-muted ses-small">{m.description}</p>}
+            </div>
+          </li>
+        );
+      })}
+    </ul>
+  </section>
 )}
+
+<style>
+  .ses-section-index { margin-top: var(--space-4); }
+  .ses-index-grid {
+    margin-top: var(--space-2);
+    display: grid;
+    gap: var(--space-2);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  }
+  .ses-index-icons { display: flex; gap: 0.5rem; margin-bottom: 0.25rem; }
+</style>

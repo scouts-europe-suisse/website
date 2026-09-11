@@ -1,0 +1,99 @@
+---
+/**
+ * Le bloc de contact : le siège et son adresse e-mail, puis les secrétariats
+ * de district, lus dans les données de la carte des implantations
+ * (src/data/implantations.json, tenues à jour par `npm run implantations`).
+ *
+ * Pas de formulaire : un site statique n'a pas de serveur pour le recevoir,
+ * et un service tiers recueillerait des données personnelles de parents. Le
+ * lien e-mail marche partout et ne collecte rien. À revoir avec l'hébergeur
+ * (issue #2) si un vrai formulaire est voulu.
+ */
+import { SITE, SOCIAL, UI, type Lang } from '../data/site';
+import SocialIcon from './SocialIcon.astro';
+import implantations from '../data/implantations.json';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+
+const T = {
+  fr: {
+    intro: 'Une question sur le mouvement, ses activités, ou un groupe près de chez vous ? Écrivez-nous.',
+    hint: 'Précisez votre région dans votre message : nous vous orienterons vers le groupe le plus proche.',
+    direct: 'Vous pouvez aussi écrire directement au secrétariat de votre district.',
+  },
+  de: {
+    intro: 'Eine Frage zur Bewegung, zu ihren Aktivitäten oder zu einer Abteilung in Ihrer Nähe? Schreiben Sie uns.',
+    hint: 'Geben Sie Ihre Region an: Wir verweisen Sie an die nächstgelegene Abteilung.',
+    direct: 'Sie können auch direkt dem Sekretariat Ihres Distrikts schreiben.',
+  },
+}[lang];
+
+// Un secrétariat par adresse e-mail, avec les lieux qu'il couvre.
+const byEmail = new Map<string, string[]>();
+for (const p of implantations.places) {
+  if (!p.email) continue;
+  byEmail.set(p.email, [...(byEmail.get(p.email) ?? []), p.name]);
+}
+const secretariats = [...byEmail.entries()].map(([email, names]) => ({ email, names }));
+---
+
+<div class="ses-contact">
+  <div class="ses-contact__main">
+    <p class="ses-lead">{T.intro}</p>
+    <p class="mt-6"><a href={`mailto:${SITE.email}`} class="ses-btn">{UI.contactUs[lang]}</a></p>
+    <p class="mt-3 ses-small ses-muted">{T.hint}</p>
+
+    <h2 class="mt-10" style="font-size: var(--text-h3)">{UI.headOffice[lang]}</h2>
+    <address class="not-italic mt-2">
+      {SITE.name}<br />
+      {SITE.address.street}<br />
+      {SITE.address.city[lang]}, {SITE.address.country[lang]}<br />
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+    </address>
+
+    <h2 class="mt-8" style="font-size: var(--text-h3)">{UI.followUs[lang]}</h2>
+    <ul class="ses-contact__social mt-3">
+      {SOCIAL.map((s) => (
+        <li>
+          <a href={s.url} target="_blank" rel="noopener" class="ses-chip">
+            <SocialIcon icon={s.icon} size={16} /> {s.name}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <aside class="ses-contact__side">
+    <h2 style="font-size: var(--text-h3)">{UI.secretariats[lang]}</h2>
+    <p class="mt-2 ses-small ses-muted">{T.direct}</p>
+    <ul class="mt-4 ses-contact__list">
+      {secretariats.map((s) => (
+        <li>
+          <p class="font-semibold">{s.names.join(' · ')}</p>
+          <a href={`mailto:${s.email}`}>{s.email}</a>
+        </li>
+      ))}
+    </ul>
+  </aside>
+</div>
+
+<style>
+  .ses-contact { display: grid; gap: var(--space-4); }
+  @media (min-width: 48rem) { .ses-contact { grid-template-columns: 1.2fr 1fr; gap: var(--space-5); } }
+  .ses-contact__social { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .ses-contact__social a { text-decoration: none; }
+  .ses-contact__social a:hover { border-color: var(--ses-red); color: var(--ses-red-deep); }
+  .ses-contact__side {
+    background: var(--ses-page-alt);
+    border: 1px solid var(--ses-border);
+    border-radius: var(--radius-2);
+    padding: var(--space-3);
+    align-self: start;
+  }
+  .ses-contact__list { display: grid; gap: var(--space-2); }
+  .ses-contact__list li { padding-top: var(--space-2); border-top: 1px solid var(--ses-border); }
+  .ses-contact__list li:first-child { padding-top: 0; border-top: 0; }
+</style>

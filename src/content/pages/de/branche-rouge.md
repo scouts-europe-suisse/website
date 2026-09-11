@@ -2,6 +2,8 @@
 title: "Rover und Ranger — 17 bis 19 Jahre"
 urlPath: rote-stufe
 key: branche-rouge
+description: "Schreite fort in der Weite und diene deinen Schwestern und Brüdern! Dienste, Projekte, Begegnungen und Glaube im Alter wichtiger Entscheidungen."
+translated: false
 branche: rouge
 sourceModified: 2025-12-09
 ---

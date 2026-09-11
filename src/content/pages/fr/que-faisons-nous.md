@@ -2,6 +2,7 @@
 title: "Que faisons-nous ?"
 urlPath: notre-scoutisme/scoutisme
 key: que-faisons-nous
+description: "Aider chaque jeune à devenir un homme ou une femme responsable : le sens du concret, du service et de Dieu, à travers trois pédagogies par âge."
 sourceModified: 2025-12-09
 ---
 

@@ -2,6 +2,7 @@
 title: "Fribourg"
 urlPath: nous-rejoindre/nos-implantations/fribourg
 key: fribourg
+description: "Le district St Nicolas de Myre accueille des enfants des cantons de Fribourg, Berne et Neuchâtel : louveteaux, louvettes, scouts et guides."
 sourceModified: 2025-12-09
 ---
 

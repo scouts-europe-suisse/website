@@ -2,6 +2,8 @@
 title: "Pfadfinder — 12 bis 17 Jahre"
 urlPath: gruene-stufe
 key: branche-verte
+description: "Ein leidenschaftliches Abenteuer, allzeit bereit! Zelten, bauen, erkunden und echte Verantwortung in der Patrouille übernehmen, von 12 bis 17 Jahren."
+translated: false
 branche: verte
 sourceModified: 2025-12-09
 ---

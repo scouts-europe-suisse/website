@@ -1,60 +1,142 @@
 ---
 /**
- * Pied de page : coordonnées du mouvement, rappel du menu, réseaux sociaux.
- *
- * Les liens vers les réseaux sociaux sont demandés par le cahier des charges
- * (partie 2, point 4). Les adresses exactes des comptes ne sont pas encore
- * renseignées : à compléter avec l'ETN Communication, ne pas les deviner.
+ * Pied de page : la carte de visite du mouvement et le plan du site.
+ * Fond bleu nuit, quatre colonnes : qui nous sommes, le site, notre
+ * scoutisme, contact et réseaux. Barre finale : droits et langues.
  */
-import { NAV, SITE, path, type Lang } from '../data/site';
+import { CROSS, NAV, SITE, SOCIAL, UI, path, withBase, type Lang } from '../data/site';
 import { pathFor } from '../lib/pages';
+import SocialIcon from './SocialIcon.astro';
 
 interface Props {
   lang: Lang;
+  twin?: string | null;
 }
-const { lang } = Astro.props;
+const { lang, twin } = Astro.props;
 const year = new Date().getFullYear();
+const other: Lang = lang === 'fr' ? 'de' : 'fr';
 
-const links = (
+const resolveKey = async (key?: string, route?: Record<Lang, string>) =>
+  route ? path(lang, route[lang]) : key ? await pathFor(key, lang) : null;
+
+const siteLinks = (
   await Promise.all(
-    NAV.map(async (item) => {
-      const href = item.route ? path(lang, item.route[lang]) : await pathFor(item.key!, lang);
-      return href ? { label: item.label[lang], href } : null;
+    NAV.map(async (i) => {
+      const href = await resolveKey(i.key, i.route);
+      return href ? { label: i.label[lang], href } : null;
     }),
   )
 ).filter((x) => x !== null);
+
+const scouting = NAV.find((i) => i.key === 'notre-scoutisme');
+const scoutingLinks = (
+  await Promise.all(
+    (scouting?.children ?? []).map(async (c) => {
+      const href = await resolveKey(c.key, c.route);
+      return href ? { label: c.label[lang], href } : null;
+    }),
+  )
+).filter((x) => x !== null);
+const joinHref = await pathFor('nous-rejoindre', lang);
+const leaderHref = await pathFor('devenir-chef', lang);
 ---
 
-<footer class="mt-auto border-t" style="border-color: var(--ses-border); background: var(--ses-surface)">
-  <div class="ses-col grid gap-8 py-10 md:grid-cols-3">
-    <div>
-      <p class="font-bold">{SITE.name}</p>
-      <address class="not-italic" style="color: var(--ses-muted)">
-        {SITE.address.street}<br />
-        {SITE.address.city[lang]}<br />
-        {SITE.address.country[lang]}
-      </address>
-      <p class="mt-2">
-        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
-      </p>
+<footer class="ses-footer">
+  <div class="ses-col ses-footer__grid">
+    <div class="ses-footer__brand">
+      <img src={withBase(CROSS)} alt="" width="64" height="64" class="ses-footer__cross" />
+      <p class="ses-footer__name">{SITE.name}</p>
+      <p class="ses-footer__about">{UI.memberOf[lang]}</p>
+      {joinHref && (
+        <a href={joinHref} class="ses-btn ses-btn--light ses-btn--small">{UI.findGroup[lang]}</a>
+      )}
     </div>
 
-    <nav class="md:col-span-2" aria-label={lang === 'fr' ? 'Plan du site' : 'Sitemap'}>
-      <ul class="grid gap-2 sm:grid-cols-2">
-        {links.map((item) => (
+    <nav aria-label={UI.footerSite[lang]}>
+      <h2 class="ses-footer__h">{UI.footerSite[lang]}</h2>
+      <ul class="ses-footer__links">
+        {siteLinks.map((l) => (<li><a href={l.href}>{l.label}</a></li>))}
+      </ul>
+    </nav>
+
+    <nav aria-label={scouting?.label[lang]}>
+      <h2 class="ses-footer__h">{scouting?.label[lang]}</h2>
+      <ul class="ses-footer__links">
+        {scoutingLinks.map((l) => (<li><a href={l.href}>{l.label}</a></li>))}
+        {leaderHref && <li><a href={leaderHref}>{UI.becomeLeader[lang]}</a></li>}
+      </ul>
+    </nav>
+
+    <div>
+      <h2 class="ses-footer__h">{UI.footerContact[lang]}</h2>
+      <address class="not-italic ses-footer__addr">
+        {SITE.name}<br />
+        {SITE.address.street}<br />
+        {SITE.address.city[lang]}, {SITE.address.country[lang]}
+      </address>
+      <p class="mt-3"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+      <h2 class="ses-footer__h mt-6">{UI.followUs[lang]}</h2>
+      <ul class="ses-footer__social">
+        {SOCIAL.map((s) => (
           <li>
-            <a href={item.href} style="color: var(--ses-fg)">
-              {item.label}
+            <a href={s.url} target="_blank" rel="noopener" aria-label={s.name} title={s.name}>
+              <SocialIcon icon={s.icon} size={18} />
             </a>
           </li>
         ))}
       </ul>
-    </nav>
+    </div>
   </div>
 
-  <div class="border-t" style="border-color: var(--ses-border)">
-    <p class="ses-col py-4 text-center" style="color: var(--ses-muted); font-size: var(--text-small)">
-      © 1973–{year} {SITE.name}
-    </p>
+  <div class="ses-footer__bar">
+    <div class="ses-col ses-footer__barrow">
+      <p>© 1973–{year} {SITE.name}</p>
+      <p>
+        <a href={twin ?? path(other)} hreflang={other} lang={other}>
+          {other === 'de' ? 'Deutsch' : 'Français'}
+        </a>
+      </p>
+    </div>
   </div>
 </footer>
+
+<style>
+  .ses-footer {
+    margin-top: auto;
+    background: var(--ses-nuit);
+    color: var(--ses-on-dark-muted);
+  }
+  .ses-footer a:not(.ses-btn) { color: var(--ses-on-dark); text-decoration: none; }
+  .ses-footer a:not(.ses-btn):hover { color: var(--ses-gold); }
+  .ses-footer__grid {
+    display: grid;
+    gap: var(--space-4);
+    padding-block: var(--space-5);
+  }
+  @media (min-width: 48rem) { .ses-footer__grid { grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: var(--space-4); } }
+  .ses-footer__brand { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+  .ses-footer__cross { width: 3.5rem; height: 3.5rem; }
+  .ses-footer__name { font-family: var(--ses-font-heading); font-weight: 700; font-size: var(--text-h3); color: var(--ses-on-dark); }
+  .ses-footer__about { max-width: 26rem; }
+  .ses-footer__h {
+    font-family: var(--ses-font-heading);
+    font-size: var(--text-eyebrow);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ses-gold);
+    margin-bottom: var(--space-2);
+  }
+  .ses-footer__links { display: grid; gap: 0.5rem; }
+  .ses-footer__addr { line-height: 1.55; }
+  .ses-footer__social { display: flex; gap: 0.5rem; }
+  .ses-footer__social a {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 2.5rem; height: 2.5rem; border-radius: 999px;
+    border: 1px solid rgb(255 255 255 / 0.25);
+    transition: background-color var(--ease), border-color var(--ease), color var(--ease);
+  }
+  .ses-footer__social a:hover { background: var(--ses-on-dark); color: var(--ses-nuit); border-color: var(--ses-on-dark); }
+  .ses-footer__bar { border-top: 1px solid rgb(255 255 255 / 0.12); font-size: var(--text-small); }
+  .ses-footer__barrow { display: flex; justify-content: space-between; gap: var(--space-2); flex-wrap: wrap; padding-block: var(--space-2); }
+</style>

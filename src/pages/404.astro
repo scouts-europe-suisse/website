@@ -1,16 +1,24 @@
 ---
 /**
- * La page affichée quand une adresse n'existe pas. Elle est en français,
- * la langue par défaut : à ce stade, on ne sait pas d'où vient le visiteur.
+ * La page affichée quand une adresse n'existe pas. On ne sait pas d'où vient
+ * le visiteur, donc elle parle les deux langues, français d'abord.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { UI, path } from '../data/site';
 ---
 
-<BaseLayout title={UI.notFoundTitle.fr} lang="fr">
-  <h1 style="font-size: var(--text-h1)">{UI.notFoundTitle.fr}</h1>
-  <p class="mt-4 ses-prose">{UI.notFoundBody.fr}</p>
-  <p class="mt-6">
-    <a href={path('fr')} class="ses-btn">{UI.home.fr}</a>
-  </p>
+<BaseLayout title={UI.notFoundTitle.fr} lang="fr" noindex twinHref={null}>
+  <div class="ses-page-head">
+    <div class="ses-col ses-col--narrow">
+      <p class="ses-eyebrow">404</p>
+      <h1>{UI.notFoundTitle.fr}</h1>
+      <p class="ses-lead mt-3">{UI.notFoundBody.fr}</p>
+      <p class="mt-6"><a href={path('fr')} class="ses-btn">{UI.home.fr}</a></p>
+    </div>
+  </div>
+  <div class="ses-col ses-col--narrow ses-section" lang="de">
+    <h2>{UI.notFoundTitle.de}</h2>
+    <p class="ses-lead mt-3">{UI.notFoundBody.de}</p>
+    <p class="mt-6"><a href={path('de')} class="ses-btn ses-btn--secondary">{UI.home.de}</a></p>
+  </div>
 </BaseLayout>

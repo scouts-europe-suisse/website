@@ -2,6 +2,8 @@
 title: "Eine schweizerische Bewegung"
 urlPath: unsere-pfadfinderschaft/schweizerische-bewegung
 key: mouvement-suisse
+description: "Von den Anfängen am Mont-Pèlerin in den 1970er Jahren zur nationalen Bewegung: die Geschichte der Pfadfinder Europas in der Romandie und in Zürich."
+translated: false
 sourceModified: 2025-12-09
 cover: "/images/chapelle-montagne.jpg"
 coverAlt: "Kapelle auf einem Grat"

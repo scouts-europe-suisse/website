@@ -2,6 +2,8 @@
 title: "Was machen wir?"
 urlPath: unsere-pfadfinderschaft/was-machen-wir
 key: que-faisons-nous
+description: "Jeden jungen Menschen zu einer verantwortungsvollen Frau oder einem verantwortungsvollen Mann machen: Sinn des Konkreten, des Dienstes und Gottes."
+translated: false
 sourceModified: 2025-12-09
 ---
 

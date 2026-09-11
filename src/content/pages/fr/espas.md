@@ -2,6 +2,7 @@
 title: "ESPAS - pour des contacts adéquats"
 urlPath: espas
 key: espas
+description: "Partenaire d'ESPAS depuis 2018, le Scoutisme Européen Suisse forme ses chefs et cadres à la prévention des abus et à la protection des mineurs."
 sourceModified: 2025-12-09
 ---
 

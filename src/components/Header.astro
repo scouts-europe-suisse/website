@@ -1,12 +1,14 @@
 ---
 /**
- * En-tête du site : logo, menu principal à deux niveaux, sélecteur de langue.
+ * En-tête du site : une seule ligne, collée en haut de l'écran.
+ * Logo à gauche, menu à deux niveaux au centre-droit, langue et recherche à
+ * droite. Sur les écrans étroits, le menu se replie derrière un bouton ; le
+ * pliage est fait avec <details>, donc il marche même sans JavaScript, et le
+ * script n'ajoute que la fermeture au clic ailleurs et à la touche Échap.
  *
  * Le menu est lu depuis src/data/site.ts — ne pas recopier d'items ici.
- * Sur téléphone, il se replie derrière un bouton ; le pliage est fait avec
- * <details>, donc il fonctionne même sans JavaScript.
  */
-import { NAV, SEARCH_BASE, SITE, SOCIAL, UI, path, withBase, type NavItem, type Lang } from '../data/site';
+import { LOGO, NAV, SEARCH_BASE, SITE, SOCIAL, UI, path, withBase, type NavItem, type Lang } from '../data/site';
 import { pathFor } from '../lib/pages';
 import LangSwitcher from './LangSwitcher.astro';
 import SocialIcon from './SocialIcon.astro';
@@ -18,11 +20,6 @@ interface Props {
 const { lang, twin } = Astro.props;
 const here = Astro.url.pathname;
 
-/**
- * Résout le menu pour la langue courante : chaque entrée porte une clé, dont
- * l'adresse dépend de la langue. Une entrée dont la page n'existe pas dans
- * cette langue est retirée du menu plutôt que de mener à une page absente.
- */
 async function resolve(item: NavItem) {
   const href = item.route ? path(lang, item.route[lang]) : await pathFor(item.key!, lang);
   const children = [];
@@ -32,215 +29,244 @@ async function resolve(item: NavItem) {
   }
   return href ? { label: item.label[lang], href, children } : null;
 }
-const nav = (await Promise.all(NAV.map(resolve))).filter((x) => x !== null);
+// L'accueil n'est pas dans la barre : le logo y mène.
+const nav = (await Promise.all(NAV.map(resolve))).filter((x) => x !== null && x.href !== path(lang));
 
-/**
- * Une entrée est active sur sa page et ses sous-pages. L'accueil fait
- * exception : son adresse est le préfixe de toutes les autres, donc on exige
- * une correspondance exacte, sinon il resterait allumé partout.
- */
 const home = path(lang);
-function isActive(href: string): boolean {
-  return href === home ? here === home : here === href || here.startsWith(href);
-}
+const isActive = (href: string) => (href === home ? here === home : here === href || here.startsWith(href));
+const searchHref = path(lang, SEARCH_BASE[lang]);
 ---
 
-<!-- `relative` ancre le menu déplié du téléphone, qui est en position absolue. -->
-<header class="relative border-b" style="border-color: var(--ses-border); background: var(--ses-surface)">
-  <div class="ses-col flex items-center justify-between gap-4 py-3">
-    <!-- Le logo porte déjà le nom du mouvement : pas de texte à côté, qui
-         ferait doublon à l'écran comme pour un lecteur d'écran. L'alt tient
-         lieu de nom. -->
-    <a href={path(lang)} class="inline-flex items-center no-underline">
-      <img
-        src={withBase("/images/logo-ses.png")}
-        alt={SITE.name}
-        width="351"
-        height="134"
-        class="ses-logo"
-      />
+<header class="ses-header">
+  <div class="ses-col ses-header__row">
+    <a href={home} class="ses-header__logo" aria-label={SITE.name}>
+      <img src={withBase(LOGO)} alt={SITE.name} width="351" height="134" />
     </a>
 
-    <div class="flex items-center gap-4">
-      <div class="hidden sm:flex flex-col items-end leading-tight">
-        <LangSwitcher lang={lang} twin={twin} />
-      </div>
-
-      <!-- La recherche. Un simple formulaire GET vers la page de recherche :
-           il fonctionne même sans JavaScript. -->
-      <form class="hidden md:block" action={path(lang, SEARCH_BASE[lang])} role="search">
-        <label class="sr-only" for="q">{UI.search[lang]}</label>
-        <input
-          id="q"
-          type="search"
-          name="q"
-          placeholder={UI.searchPlaceholder[lang]}
-          class="ses-search"
-        />
-      </form>
-
-      <!-- Les comptes du mouvement. Demandés par le cahier des charges
-           (partie 2, point 4). Simples liens : pas de widget embarqué, qui
-           ferait partir des données du visiteur chez le réseau concerné. -->
-      <ul class="hidden sm:flex items-center gap-2">
-        {SOCIAL.map((s) => (
-          <li>
-            <a
-              href={s.url}
-              target="_blank"
-              rel="noopener"
-              class="ses-social"
-              title={s.name}
-              aria-label={s.name}
-            >
-              <SocialIcon icon={s.icon} />
+    <nav class="ses-nav" aria-label={UI.menu[lang]}>
+      <ul class="ses-nav__list">
+        {nav.map((item) => (
+          <li class:list={['ses-nav__item', isActive(item.href) && 'is-active', item.children.length > 0 && 'has-sub']}>
+            <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
+              {item.label}
+              {item.children.length > 0 && <span class="ses-nav__caret" aria-hidden="true"></span>}
             </a>
+            {item.children.length > 0 && (
+              <ul class="ses-nav__sub">
+                {item.children.map((child) => (
+                  <li><a href={child.href} aria-current={here === child.href ? 'page' : undefined}>{child.label}</a></li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
       </ul>
+    </nav>
 
-      <!-- Menu replié sur téléphone, déplié à partir de la tablette. -->
-      <details class="lg:hidden ses-mobile-nav">
-        <summary
-          class="list-none cursor-pointer inline-flex items-center justify-center min-w-11 min-h-11 font-semibold"
-          aria-label={UI.menu[lang]}
-        >
-          {UI.menu[lang]}
+    <div class="ses-header__tools">
+      <LangSwitcher lang={lang} twin={twin} />
+      <a href={searchHref} class="ses-iconbtn" aria-label={UI.search[lang]} title={UI.search[lang]}>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.8-3.8"></path>
+        </svg>
+      </a>
+
+      <details class="ses-burger" id="ses-burger">
+        <summary class="ses-iconbtn" aria-label={UI.menu[lang]} title={UI.menu[lang]}>
+          <svg class="ses-burger__open" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+          <svg class="ses-burger__close" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M6 6l12 12M18 6 6 18"></path>
+          </svg>
         </summary>
-        <nav class="ses-mobile-panel" aria-label={UI.menu[lang]}>
-          <ul>
-            {nav.map((item) => (
-              <li>
-                <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>
-                  {item.label}
-                </a>
-                {item.children.length > 0 && (
-                  <ul>
-                    {item.children.map((child) => (
-                      <li>
-                        <a href={child.href}>{child.label}</a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
+        <nav class="ses-panel" aria-label={UI.menu[lang]}>
+          <div class="ses-col">
+            <ul class="ses-panel__list">
+              <li><a href={home} aria-current={here === home ? 'page' : undefined}>{UI.home[lang]}</a></li>
+              {nav.map((item) => (
+                <li>
+                  <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
+                  {item.children.length > 0 && (
+                    <ul>
+                      {item.children.map((child) => (
+                        <li><a href={child.href}>{child.label}</a></li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <div class="ses-panel__foot">
+              <a href={searchHref} class="ses-btn ses-btn--secondary ses-btn--small">{UI.search[lang]}</a>
+              <ul class="ses-panel__social" aria-label={UI.followUs[lang]}>
+                {SOCIAL.map((s) => (
+                  <li>
+                    <a href={s.url} target="_blank" rel="noopener" aria-label={s.name} title={s.name} class="ses-iconbtn">
+                      <SocialIcon icon={s.icon} size={18} />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </nav>
       </details>
     </div>
   </div>
-
-  <!-- Menu horizontal, à partir du grand écran. -->
-  <nav class="ses-navbar hidden lg:block" aria-label={UI.menu[lang]}>
-    <ul class="ses-col flex flex-wrap items-stretch gap-1">
-      {nav.map((item) => (
-        <li class:list={['relative', 'ses-nav-item', isActive(item.href) && 'is-active']}>
-          <a
-            href={item.href}
-            class="inline-flex items-center px-4 py-3 font-semibold no-underline"
-            aria-current={isActive(item.href) ? 'page' : undefined}
-          >
-            {item.label}
-          </a>
-          {item.children.length > 0 && (
-            <ul class="ses-submenu">
-              {item.children.map((child) => (
-                <li>
-                  <a href={child.href}>{child.label}</a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </li>
-      ))}
-    </ul>
-  </nav>
 </header>
 
+<script is:inline>
+  (function () {
+    var d = document.getElementById('ses-burger');
+    if (!d) return;
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && d.open) { d.open = false; d.querySelector('summary').focus(); } });
+    document.addEventListener('click', function (e) { if (d.open && !d.contains(e.target)) d.open = false; });
+    // Le panneau bloque le défilement de la page derrière lui tant qu'il est ouvert.
+    d.addEventListener('toggle', function () { document.documentElement.classList.toggle('ses-noscroll', d.open); });
+  })();
+</script>
+
 <style>
-  /* Pastilles des réseaux sociaux : une initiale dans un rond gris, comme
-     sur le site actuel, sans charger d'icônes depuis un service tiers. */
-  .ses-social {
+  .ses-header {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    /* Fond opaque, sans backdrop-filter : celui-ci ferait de l'en-tête le
+       repère du panneau `position: fixed` du menu replié, qui resterait
+       coincé dans la barre. */
+    background: var(--ses-surface);
+    border-bottom: 1px solid var(--ses-border);
+    box-shadow: var(--shadow-1);
+  }
+  .ses-header__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    min-height: 4.5rem;
+  }
+  .ses-header__logo { display: inline-flex; align-items: center; flex-shrink: 0; }
+  .ses-header__logo img { height: 2.9rem; width: auto; }
+  @media (max-width: 26rem) { .ses-header__logo img { height: 2.4rem; } }
+
+  /* Le menu horizontal, à partir du grand écran. */
+  .ses-nav { display: none; }
+  @media (min-width: 64rem) { .ses-nav { display: block; margin-left: auto; } }
+  .ses-nav__list { display: flex; align-items: stretch; gap: 0.25rem; }
+  .ses-nav__item { position: relative; }
+  .ses-nav__item > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.6rem 0.85rem;
+    border-radius: 999px;
+    font-family: var(--ses-font-heading);
+    font-weight: 700;
+    font-size: 0.9875rem;
+    color: var(--ses-nuit);
+    text-decoration: none;
+    transition: background-color var(--ease), color var(--ease);
+  }
+  .ses-nav__item > a:hover, .ses-nav__item:focus-within > a { background: var(--ses-page-alt); color: var(--ses-red-deep); }
+  .ses-nav__item.is-active > a { color: var(--ses-red-deep); box-shadow: inset 0 -3px 0 var(--ses-red); border-radius: 999px 999px 4px 4px; }
+  .ses-nav__caret {
+    width: 0.4rem; height: 0.4rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    opacity: 0.6;
+  }
+  .ses-nav__sub {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.4rem);
+    left: 0;
+    min-width: 16rem;
+    background: var(--ses-surface);
+    border: 1px solid var(--ses-border);
+    border-radius: var(--radius-2);
+    padding: 0.5rem;
+    box-shadow: var(--shadow-2);
+    z-index: 40;
+  }
+  /* Un pont invisible entre l'entrée et son sous-menu, pour ne pas le fermer
+     en traversant l'espace qui les sépare. */
+  .ses-nav__sub::before { content: ''; position: absolute; left: 0; right: 0; top: -0.5rem; height: 0.5rem; }
+  .ses-nav__item:hover > .ses-nav__sub, .ses-nav__item:focus-within > .ses-nav__sub { display: block; }
+  .ses-nav__sub a {
+    display: block;
+    padding: 0.55rem 0.8rem;
+    border-radius: var(--radius-1);
+    color: var(--ses-fg);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .ses-nav__sub a:hover, .ses-nav__sub a[aria-current='page'] { background: var(--ses-page-alt); color: var(--ses-red-deep); }
+
+  .ses-header__tools { display: flex; align-items: center; gap: 0.25rem; }
+  .ses-iconbtn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1.9rem;
-    height: 1.9rem;
-    border-radius: 50%;
-    background: #c9c9c9;
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 0.85rem;
-    text-decoration: none;
-    transition: background-color 120ms ease;
+    width: 2.75rem; height: 2.75rem;
+    border-radius: 999px;
+    color: var(--ses-nuit);
+    cursor: pointer;
+    list-style: none;
+    transition: background-color var(--ease), color var(--ease);
   }
-  .ses-social:hover { background: var(--ses-primary); color: #fff; }
+  .ses-iconbtn:hover { background: var(--ses-page-alt); color: var(--ses-red-deep); }
 
-  /* Le logo est fourni en 351×134. On le pose à une hauteur fixe et on
-     laisse la largeur suivre, pour qu'il ne se déforme jamais. */
-  .ses-logo {
-    height: 3.25rem;
-    width: auto;
-  }
-  @media (max-width: 26rem) {
-    .ses-logo { height: 2.5rem; }
-  }
-
-  /* Le triangle par défaut du <details> : retiré, le mot « Menu » suffit. */
-  .ses-mobile-nav summary::-webkit-details-marker { display: none; }
-
-  .ses-mobile-panel {
-    position: absolute;
-    left: 0;
-    right: 0;
-    z-index: 50;
+  /* Le bouton et le panneau du menu replié. */
+  .ses-burger { display: block; }
+  @media (min-width: 64rem) { .ses-burger { display: none; } }
+  .ses-burger summary::-webkit-details-marker { display: none; }
+  .ses-burger__close { display: none; }
+  .ses-burger[open] .ses-burger__open { display: none; }
+  .ses-burger[open] .ses-burger__close { display: block; }
+  .ses-panel {
+    position: fixed;
+    left: 0; right: 0;
+    top: 4.5rem;
+    bottom: 0;
     background: var(--ses-surface);
-    border-bottom: 1px solid var(--ses-border);
-    padding: var(--space-2) var(--space-3);
-    max-height: 75vh;
     overflow-y: auto;
+    padding-block: var(--space-3) var(--space-5);
+    z-index: 50;
+    border-top: 1px solid var(--ses-border);
   }
-  .ses-mobile-panel a {
+  .ses-panel__list > li + li { border-top: 1px solid var(--ses-border); }
+  .ses-panel__list > li > a {
     display: block;
-    padding: 0.6rem 0;
+    padding: 0.9rem 0;
+    font-family: var(--ses-font-heading);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--ses-nuit);
     text-decoration: none;
-    color: var(--ses-fg);
   }
-  .ses-mobile-panel ul ul a {
-    padding-left: var(--space-2);
+  .ses-panel__list > li > a[aria-current='page'] { color: var(--ses-red-deep); }
+  .ses-panel__list ul { padding-bottom: 0.6rem; display: grid; gap: 0.1rem; }
+  .ses-panel__list ul a {
+    display: block;
+    padding: 0.45rem 0 0.45rem 1rem;
     color: var(--ses-muted);
-    font-size: var(--text-small);
-  }
-
-  /* Sous-menu du grand écran : ouvert au survol et au focus clavier, pour
-     qu'il soit atteignable autrement qu'à la souris. */
-  .ses-submenu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 15rem;
-    background: var(--ses-surface);
-    border: 1px solid var(--ses-border);
-    border-top: 3px solid var(--ses-primary);
-    padding: var(--space-1) 0;
-    z-index: 40;
-    box-shadow: 0 6px 18px rgb(0 0 0 / 0.08);
-  }
-  .ses-nav-item:hover > .ses-submenu,
-  .ses-nav-item:focus-within > .ses-submenu {
-    display: block;
-  }
-  .ses-submenu a {
-    display: block;
-    padding: 0.45rem var(--space-2);
     text-decoration: none;
-    color: var(--ses-fg);
-    font-size: var(--text-small);
+    border-left: 2px solid var(--ses-border);
   }
-  .ses-submenu a:hover {
-    background: color-mix(in srgb, var(--ses-primary) 8%, transparent);
-    color: var(--ses-primary);
+  .ses-panel__list ul a:hover { color: var(--ses-red-deep); border-color: var(--ses-red); }
+  .ses-panel__foot {
+    margin-top: var(--space-3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    flex-wrap: wrap;
   }
+  .ses-panel__social { display: flex; gap: 0.25rem; }
+</style>
+
+<style is:global>
+  html.ses-noscroll { overflow: hidden; }
 </style>

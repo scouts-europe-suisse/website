@@ -9,11 +9,12 @@
  */
 interface Props {
   icon: string;
+  size?: number;
 }
-const { icon } = Astro.props;
+const { icon, size = 16 } = Astro.props;
 ---
 
-<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false" fill="currentColor">
+<svg viewBox="0 0 24 24" width={size} height={size} aria-hidden="true" focusable="false" fill="currentColor">
   {icon === 'facebook' && (
     <path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.25-1.5 1.55-1.5h1.65V4.6C16.4 4.55 15.5 4.5 14.45 4.5c-2.2 0-3.7 1.35-3.7 3.8v2.6H8v3.1h2.75v8z" />
   )}
@@ -26,7 +27,7 @@ const { icon } = Astro.props;
   {icon === 'youtube' && (
     <g>
       <path d="M22.2 8.1a2.7 2.7 0 0 0-1.9-1.9C18.6 5.75 12 5.75 12 5.75s-6.6 0-8.3.45A2.7 2.7 0 0 0 1.8 8.1 28 28 0 0 0 1.35 12a28 28 0 0 0 .45 3.9 2.7 2.7 0 0 0 1.9 1.9c1.7.45 8.3.45 8.3.45s6.6 0 8.3-.45a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22.65 12a28 28 0 0 0-.45-3.9z" />
-      <path d="M10.1 15.15 15.5 12l-5.4-3.15z" fill="#fff" />
+      <path d="M10.1 15.15 15.5 12l-5.4-3.15z" fill="var(--ses-surface, #fff)" />
     </g>
   )}
   {icon === 'instagram' && (

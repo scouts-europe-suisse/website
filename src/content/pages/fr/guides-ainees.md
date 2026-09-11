@@ -2,6 +2,7 @@
 title: "Guides-aînées"
 urlPath: branche-rouge/guides-ainees
 key: guides-ainees
+description: "Ose l'aventure de la route ! Vers 17 ans, la guide-aînée monte au feu pilote pour apprendre à piloter sa propre vie, servir et découvrir sa vocation."
 branche: rouge
 sourceModified: 2025-12-09
 ---

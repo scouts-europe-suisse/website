@@ -2,6 +2,7 @@
 title: "Devenir chef"
 urlPath: nous-rejoindre/devenir-chef
 key: devenir-chef
+description: "Le mouvement confie ses unités à des jeunes de 18 à 30 ans, qu'il soutient et forme. Être chef : une expérience unique et une école de vie."
 sourceModified: 2025-12-09
 ---
 

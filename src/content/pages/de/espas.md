@@ -2,6 +2,8 @@
 title: "ESPAS - für den richtigen Kontakt"
 urlPath: espas
 key: espas
+description: "Seit 2018 Partner von ESPAS: Die Schweizerische Pfadfinderschaft Europas schult Leiter und Kader in Missbrauchsprävention und im Schutz Minderjähriger."
+translated: false
 sourceModified: 2025-12-09
 ---
 

@@ -2,6 +2,7 @@
 title: "La dimension européenne"
 urlPath: notre-scoutisme/europeen
 key: dimension-europeenne
+description: "Née à Cologne en 1956, l'Union internationale des Guides et Scouts d'Europe rassemble des jeunes de toute l'Europe dans une fraternité scoute chrétienne."
 sourceModified: 2025-12-09
 cover: "/images/drapeaux.jpg"
 coverAlt: "Drapeaux des pays d’Europe et du mouvement"
