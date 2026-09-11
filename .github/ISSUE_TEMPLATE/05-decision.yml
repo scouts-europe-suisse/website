@@ -1,0 +1,26 @@
+name: Décision à prendre
+description: Un choix qui bloque ou oriente la suite. La décision se prend dans les commentaires.
+title: "[Décision] "
+labels: ["type: décision", "état: à trier"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Une seule personne suffit pour trancher. Écrivez la décision en commentaire,
+        sous la forme « **Décision :** … », signée. Claude la reportera dans le plan concerné.
+  - type: textarea
+    id: question
+    attributes:
+      label: La question
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: Les options connues
+      description: Une par ligne, avec ce qu'elle implique.
+  - type: textarea
+    id: consequences
+    attributes:
+      label: Ce qui attend cette décision
+      description: Quelles issues ou quelles étapes sont bloquées tant que ce n'est pas tranché.

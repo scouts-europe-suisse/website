@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Voir l'aperçu du site
+    url: https://scouts-europe-suisse.github.io/website/
+    about: L'aperçu public, mis à jour à chaque fusion sur main. Ce n'est pas le site officiel.

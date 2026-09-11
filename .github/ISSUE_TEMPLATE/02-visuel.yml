@@ -1,0 +1,33 @@
+name: Remarque visuelle
+description: Quelque chose gêne à l'œil ou à l'usage, mais rien n'est cassé.
+title: "[Visuel] "
+labels: ["type: visuel", "état: à trier"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page ou élément concerné
+      placeholder: Page d'accueil, le menu, toutes les pages…
+    validations:
+      required: true
+  - type: dropdown
+    id: appareil
+    attributes:
+      label: Vu sur
+      multiple: true
+      options:
+        - Ordinateur
+        - Téléphone
+        - Tablette
+  - type: textarea
+    id: constat
+    attributes:
+      label: Ce qui gêne
+      description: Décrivez ce que vous voyez. Une capture d'écran aide beaucoup (glissez-la ici).
+    validations:
+      required: true
+  - type: textarea
+    id: proposition
+    attributes:
+      label: Ce que vous proposez
+      description: Facultatif. Une idée, un exemple d'un autre site, une direction.

@@ -125,7 +125,7 @@ dans ce dépôt.** L'hébergement n'est pas choisi : c'est l'objet du
 [plan 01](../_plans/01-domaine-et-bascule-later/PLAN.md).
 
 Si un utilisateur demande à publier : ne pas improviser. La règle est dans
-[feedback_pas_de_publication.md](feedback_publication.md).
+[feedback_publication.md](feedback_publication.md).
 
 Le site actuel (WordPress) continue de tourner chez son hébergeur pendant tout le chantier.
 Rien de ce qui est fait ici ne l'affecte.
@@ -142,4 +142,4 @@ Deux choses à ne pas confondre, parce qu'elles se ressemblent :
 C'est le piège habituel : si l'outil se met à construire dans `dist/`, on change la
 configuration, on ne redirige pas le dossier de publication.
 
-Voir aussi [[conventions]], [[feedback_pas_de_publication]].
+Voir aussi [[conventions]], [[feedback_publication]].
