@@ -1,15 +1,18 @@
 ---
 /**
- * L'explorateur des implantations (issue #20, demande de Nicolas du 2026-09-12).
+ * L'explorateur des implantations (issues #20, #29).
  *
- * Une barre de filtres par branche (les pictogrammes), une carte dont les
- * repères s'éteignent quand ils ne correspondent plus, et une fiche par
- * implantation : district, groupe, unités par branche avec leur nombre,
- * secrétariat à qui écrire. Carte et fiches se répondent au survol et au clic.
+ * Deux colonnes sur grand écran : à gauche, la carte, fixe à l'écran pendant
+ * qu'on fait défiler les fiches, avec en dessous une rangée discrète de
+ * filtres (les pictogrammes de branche), les compteurs et « Autour de moi » ;
+ * à droite, une fiche par implantation. Sur téléphone, tout s'empile : la
+ * carte, les filtres, les fiches. Rien ne se superpose jamais.
  *
  * Tout est lu dans src/data/implantations.json (la carte Google du mouvement)
  * et interprété par src/lib/implantations.ts. Sans JavaScript, les filtres
  * n'agissent pas mais tout reste lisible : la carte mène aux fiches.
+ * « Autour de moi » demande la position au navigateur et ne la transmet à
+ * personne : elle sert seulement à trier les fiches par distance.
  */
 import SwissMapSvg from './SwissMapSvg.astro';
 import BrancheIcon from './BrancheIcon.astro';
@@ -28,104 +31,123 @@ const kindsPresent = KIND_ORDER.filter((k) => places.some((p) => p.kinds.include
 const T = {
   fr: {
     title: 'Carte des implantations du Scoutisme Européen Suisse',
-    filter: 'Je cherche pour…',
-    all: 'Toutes les branches',
-    places: (n: number) => `${n} implantation${n > 1 ? 's' : ''}`,
-    units: (n: number) => `${n} unité${n > 1 ? 's' : ''}`,
+    filter: 'Filtrer par branche',
+    all: 'Toutes',
+    places: 'implantations', place: 'implantation',
+    units: 'unités', unit: 'unité',
     none: 'Aucune implantation ne propose encore toutes ces branches. Écrivez-nous : nous vous orienterons.',
     years: 'ans',
     district: 'District',
-    group: 'Groupe',
-    source: 'Données tenues à jour par le mouvement dans sa carte',
-    reset: 'Tout afficher',
+    source: 'Données tenues à jour par le mouvement',
+    near: 'Autour de moi',
+    nearHint: 'Votre position reste dans votre navigateur : elle sert seulement à trier les fiches.',
+    nearBusy: 'Recherche de votre position…',
+    nearDone: 'Fiches triées de la plus proche à la plus lointaine.',
+    nearDenied: 'Position refusée ou indisponible.',
+    km: 'km',
   },
   de: {
     title: 'Karte der Standorte der Schweizerischen Pfadfinderschaft Europas',
-    filter: 'Ich suche für…',
-    all: 'Alle Stufen',
-    places: (n: number) => `${n} Standort${n > 1 ? 'e' : ''}`,
-    units: (n: number) => `${n} Einheit${n > 1 ? 'en' : ''}`,
+    filter: 'Nach Stufe filtern',
+    all: 'Alle',
+    places: 'Standorte', place: 'Standort',
+    units: 'Einheiten', unit: 'Einheit',
     none: 'Noch kein Standort bietet alle diese Stufen an. Schreiben Sie uns: Wir helfen weiter.',
     years: 'Jahre',
     district: 'Distrikt',
-    group: 'Abteilung',
-    source: 'Daten, die die Bewegung in ihrer Karte aktuell hält',
-    reset: 'Alle anzeigen',
+    source: 'Daten, die die Bewegung aktuell hält',
+    near: 'In meiner Nähe',
+    nearHint: 'Ihr Standort bleibt in Ihrem Browser: Er dient nur dazu, die Karten zu sortieren.',
+    nearBusy: 'Standort wird gesucht…',
+    nearDone: 'Sortiert, vom nächsten zum entferntesten.',
+    nearDenied: 'Standort abgelehnt oder nicht verfügbar.',
+    km: 'km',
   },
 }[lang];
+const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.nearDenied, km: T.km, places: T.places, place: T.place, units: T.units, unit: T.unit });
 ---
 
-<section class="ses-explorer" data-explorer aria-label={T.title}>
-  <div class="ses-explorer__bar">
-    <p class="ses-explorer__legend">
-      <span class="ses-eyebrow">{T.filter}</span>
-    </p>
-    <div class="ses-explorer__chips" role="group" aria-label={T.filter}>
-      <button type="button" class="ses-chip ses-chip--btn is-active" data-all aria-pressed="true">{T.all}</button>
-      {kindsPresent.map((k) => (
-        <button type="button" class="ses-chip ses-chip--btn" data-kind={k} aria-pressed="false" style={`--accent: var(--ses-branche-${PICTOS[k].branche})`}>
-          <BrancheIcon icon={k} size="1.5rem" lang={lang} />
-          <span>{KIND_LABELS[k][lang]}</span>
-          <small>{KIND_AGES[k]} {T.years}</small>
-        </button>
-      ))}
-    </div>
-    <p class="ses-explorer__count" aria-live="polite">
-      <strong data-count-places>{places.length}</strong> <span data-count-places-label>{T.places(places.length).replace(/^\d+\s/, '')}</span>
-      <span class="ses-explorer__sep">·</span>
-      <strong data-count-units>{totalUnits}</strong> <span data-count-units-label>{T.units(totalUnits).replace(/^\d+\s/, '')}</span>
-    </p>
-  </div>
-
-  <div class="ses-explorer__grid">
+<section class="ses-explorer" data-explorer aria-label={T.title} data-i18n={i18n}>
+  <div class="ses-explorer__side">
     <figure class="ses-explorer__map">
       <SwissMapSvg places={places} title={T.title} href={(p) => `#${p.id}`} scaled />
-      <figcaption class="ses-small ses-muted">
-        {T.source} · <a href={SOURCE} target="_blank" rel="noopener">Google My Maps</a>
-      </figcaption>
     </figure>
 
-    <div class="ses-explorer__list">
-      <p class="ses-explorer__empty ses-muted" data-empty hidden>{T.none}</p>
-      <ol class="ses-explorer__cards">
-        {places.map((p) => (
-          <li id={p.id} class="ses-card ses-place" data-place={p.id} data-kinds={p.kinds.join(' ')} tabindex="-1">
-            <div class="ses-card__body">
-              <div class="ses-place__head">
-                <div>
-                  {p.district && <p class="ses-eyebrow ses-place__eyebrow">{T.district} {p.district}</p>}
-                  <h3 class="ses-place__title">{p.region ?? p.name}</h3>
-                  {p.groupe && <p class="ses-muted">{p.groupe}</p>}
-                </div>
-                <p class="ses-place__total" aria-label={T.units(p.unitCount)}>
-                  <strong>{p.unitCount}</strong><span>{T.units(p.unitCount).replace(/^\d+\s/, '')}</span>
-                </p>
-              </div>
-              {p.units.length > 0 && (
-                <ul class="ses-place__units">
-                  {p.units.map((u) => (
-                    <li title={u.label} style={`--accent: var(--ses-branche-${PICTOS[u.kind].branche})`}>
-                      <BrancheIcon icon={u.kind} size="2rem" lang={lang} />
-                      <span class="ses-place__unit">
-                        <strong>{u.count > 1 ? `${u.count} ×` : ''} {KIND_LABELS[u.kind][lang]}</strong>
-                        <small>{KIND_AGES[u.kind]} {T.years}</small>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {p.other.length > 0 && <p class="ses-small ses-muted">{p.other.join(' · ')}</p>}
-              {p.email && (
-                <p class="ses-place__cta">
-                  <a href={`mailto:${p.email}`} class="ses-btn ses-btn--secondary ses-btn--small">{UI.writeTo[lang]}</a>
-                  <span class="ses-small ses-muted">{p.email}</span>
-                </p>
-              )}
-            </div>
-          </li>
+    <div class="ses-explorer__tools">
+      <div class="ses-explorer__filters" role="group" aria-label={T.filter}>
+        <span class="ses-explorer__filters-label">{T.filter}</span>
+        <button type="button" class="ses-fbtn ses-fbtn--text is-active" data-all aria-pressed="true">{T.all}</button>
+        {kindsPresent.map((k) => (
+          <button
+            type="button"
+            class="ses-fbtn"
+            data-kind={k}
+            aria-pressed="false"
+            aria-label={`${KIND_LABELS[k][lang]}, ${KIND_AGES[k]} ${T.years}`}
+            title={`${KIND_LABELS[k][lang]} · ${KIND_AGES[k]} ${T.years}`}
+            style={`--accent: var(--ses-branche-${PICTOS[k].branche})`}
+          >
+            <BrancheIcon icon={k} size="1.75rem" lang={lang} />
+          </button>
         ))}
-      </ol>
+      </div>
+      <p class="ses-explorer__active ses-small ses-muted" data-active aria-live="polite"></p>
+      <div class="ses-explorer__meta">
+        <p class="ses-explorer__count" aria-live="polite">
+          <strong data-count-places>{places.length}</strong> <span data-count-places-label>{T.places}</span>
+          <span class="ses-explorer__sep">·</span>
+          <strong data-count-units>{totalUnits}</strong> <span data-count-units-label>{T.units}</span>
+        </p>
+        <button type="button" class="ses-fbtn ses-fbtn--text" data-near title={T.nearHint}>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></svg>
+          {T.near}
+        </button>
+      </div>
+      <p class="ses-small ses-muted ses-explorer__status" data-near-status role="status"></p>
+      <p class="ses-small ses-muted ses-explorer__source">{T.source} · <a href={SOURCE} target="_blank" rel="noopener">Google My Maps</a></p>
     </div>
+  </div>
+
+  <div class="ses-explorer__list">
+    <p class="ses-explorer__empty ses-muted" data-empty hidden>{T.none}</p>
+    <ol class="ses-explorer__cards">
+      {places.map((p) => (
+        <li id={p.id} class="ses-card ses-place" data-place={p.id} data-kinds={p.kinds.join(' ')} data-lat={p.lat} data-lng={p.lng} data-units={p.unitCount} tabindex="-1">
+          <div class="ses-card__body">
+            <div class="ses-place__head">
+              <div>
+                {p.district && <p class="ses-eyebrow ses-place__eyebrow">{T.district} {p.district}</p>}
+                <h3 class="ses-place__title">{p.region ?? p.name} <span class="ses-place__dist" data-dist hidden></span></h3>
+                {p.groupe && <p class="ses-muted">{p.groupe}</p>}
+              </div>
+              <p class="ses-place__total">
+                <strong>{p.unitCount}</strong><span>{p.unitCount > 1 ? T.units : T.unit}</span>
+              </p>
+            </div>
+            {p.units.length > 0 && (
+              <ul class="ses-place__units">
+                {p.units.map((u) => (
+                  <li title={u.label} style={`--accent: var(--ses-branche-${PICTOS[u.kind].branche})`}>
+                    <BrancheIcon icon={u.kind} size="2rem" lang={lang} />
+                    <span class="ses-place__unit">
+                      <strong>{u.count > 1 ? `${u.count} × ` : ''}{KIND_LABELS[u.kind][lang]}</strong>
+                      <small>{KIND_AGES[u.kind]} {T.years}</small>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {p.other.length > 0 && <p class="ses-small ses-muted">{p.other.join(' · ')}</p>}
+            {p.email && (
+              <p class="ses-place__cta">
+                <a href={`mailto:${p.email}`} class="ses-btn ses-btn--secondary ses-btn--small">{UI.writeTo[lang]}</a>
+                <span class="ses-small ses-muted">{p.email}</span>
+              </p>
+            )}
+          </div>
+        </li>
+      ))}
+    </ol>
   </div>
 </section>
 
@@ -133,11 +155,13 @@ const T = {
   (function () {
     var root = document.querySelector('[data-explorer]');
     if (!root) return;
+    var T = JSON.parse(root.dataset.i18n || '{}');
     var pins = Array.prototype.slice.call(root.querySelectorAll('[data-pin]'));
     var cards = Array.prototype.slice.call(root.querySelectorAll('[data-place]'));
     var chips = Array.prototype.slice.call(root.querySelectorAll('[data-kind]'));
     var all = root.querySelector('[data-all]');
     var empty = root.querySelector('[data-empty]');
+    var activeLabel = root.querySelector('[data-active]');
     var active = [];
 
     function kindsOf(el) { return (el.dataset.kinds || '').split(' ').filter(Boolean); }
@@ -147,14 +171,19 @@ const T = {
       cards.forEach(function (c) {
         var ok = matches(c);
         c.hidden = !ok;
-        if (ok) { shown++; units += Number(c.querySelector('.ses-place__total strong').textContent) || 0; }
+        if (ok) { shown++; units += Number(c.dataset.units) || 0; }
       });
       pins.forEach(function (p) { p.classList.toggle('is-off', !matches(p)); });
       chips.forEach(function (ch) { var on = active.indexOf(ch.dataset.kind) !== -1; ch.classList.toggle('is-active', on); ch.setAttribute('aria-pressed', on ? 'true' : 'false'); });
       all.classList.toggle('is-active', active.length === 0);
       all.setAttribute('aria-pressed', active.length === 0 ? 'true' : 'false');
       root.querySelector('[data-count-places]').textContent = shown;
+      root.querySelector('[data-count-places-label]').textContent = shown === 1 ? T.place : T.places;
       root.querySelector('[data-count-units]').textContent = units;
+      root.querySelector('[data-count-units-label]').textContent = units === 1 ? T.unit : T.units;
+      activeLabel.textContent = active.length
+        ? chips.filter(function (ch) { return active.indexOf(ch.dataset.kind) !== -1; }).map(function (ch) { return ch.title.split(' · ')[0]; }).join(' + ')
+        : '';
       empty.hidden = shown > 0;
     }
     chips.forEach(function (ch) {
@@ -184,51 +213,52 @@ const T = {
       c.addEventListener('focusin', function () { light(c.dataset.place); });
     });
     if (location.hash) light(location.hash.slice(1));
+
+    // « Autour de moi » : la position reste dans le navigateur ; on trie les
+    // fiches par distance à vol d'oiseau.
+    var nearBtn = root.querySelector('[data-near]');
+    var status = root.querySelector('[data-near-status]');
+    var list = root.querySelector('.ses-explorer__cards');
+    if (!('geolocation' in navigator)) nearBtn.hidden = true;
+    function km(a, b, c, d) {
+      var R = 6371, rad = function (x) { return (x * Math.PI) / 180; };
+      var dLat = rad(c - a), dLng = rad(d - b);
+      var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(rad(a)) * Math.cos(rad(c)) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+      return 2 * R * Math.asin(Math.sqrt(h));
+    }
+    nearBtn.addEventListener('click', function () {
+      status.textContent = T.busy;
+      nearBtn.disabled = true;
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        var lat = pos.coords.latitude, lng = pos.coords.longitude;
+        var ranked = cards.map(function (c) { return { c: c, d: km(lat, lng, Number(c.dataset.lat), Number(c.dataset.lng)) }; })
+          .sort(function (x, y) { return x.d - y.d; });
+        ranked.forEach(function (r) {
+          var el = r.c.querySelector('[data-dist]');
+          el.textContent = '≈ ' + Math.round(r.d) + ' ' + T.km;
+          el.hidden = false;
+          list.appendChild(r.c);
+        });
+        pins.forEach(function (p) { p.classList.toggle('is-near', p.dataset.pin === ranked[0].c.dataset.place); });
+        status.textContent = T.done;
+        nearBtn.disabled = false;
+        ranked[0].c.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, function () {
+        status.textContent = T.denied;
+        nearBtn.disabled = false;
+      }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 });
+    });
   })();
 </script>
 
 <style>
-  .ses-explorer { display: grid; gap: var(--space-3); }
-  .ses-explorer__bar {
-    position: sticky;
-    top: 4.5rem;
-    z-index: 5;
-    background: color-mix(in srgb, var(--ses-page) 96%, transparent);
-    border: 1px solid var(--ses-border);
-    border-radius: var(--radius-2);
-    padding: var(--space-2) var(--space-3);
-    display: grid;
-    gap: var(--space-2);
-    box-shadow: var(--shadow-1);
-  }
+  .ses-explorer { display: grid; gap: var(--space-4); }
   @media (min-width: 64rem) {
-    .ses-explorer__bar { grid-template-columns: auto 1fr auto; align-items: center; }
+    .ses-explorer { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--space-5); align-items: start; }
+    /* La carte reste à l'écran pendant qu'on fait défiler les fiches. */
+    .ses-explorer__side { position: sticky; top: 5.5rem; }
+    .ses-explorer__map :global(.ses-map__svg) { max-height: calc(100vh - 19rem); }
   }
-  .ses-explorer__legend { margin: 0; }
-  .ses-explorer__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .ses-chip--btn {
-    cursor: pointer;
-    background: var(--ses-surface);
-    color: var(--ses-fg);
-    padding: 0.3rem 0.9rem 0.3rem 0.35rem;
-    gap: 0.55rem;
-    transition: border-color var(--ease), background-color var(--ease), color var(--ease), box-shadow var(--ease);
-  }
-  .ses-chip--btn[data-all] { padding-left: 0.9rem; }
-  .ses-chip--btn small { color: var(--ses-muted); font-size: 0.75rem; }
-  .ses-chip--btn:hover { border-color: var(--ses-nuit); }
-  .ses-chip--btn.is-active {
-    border-color: var(--accent, var(--ses-nuit));
-    background: color-mix(in srgb, var(--accent, var(--ses-nuit)) 12%, white);
-    color: var(--ses-nuit);
-    box-shadow: inset 0 0 0 1px var(--accent, var(--ses-nuit));
-  }
-  .ses-explorer__count { margin: 0; font-family: var(--ses-font-heading); color: var(--ses-muted); white-space: nowrap; }
-  .ses-explorer__count strong { color: var(--ses-red); font-size: 1.35rem; }
-  .ses-explorer__sep { margin-inline: 0.5rem; }
-
-  .ses-explorer__grid { display: grid; gap: var(--space-4); }
-  @media (min-width: 64rem) { .ses-explorer__grid { grid-template-columns: 1.2fr 1fr; align-items: start; } }
   .ses-explorer__map {
     margin: 0;
     background: var(--ses-surface);
@@ -236,20 +266,46 @@ const T = {
     border-radius: var(--radius-3);
     padding: var(--space-2);
     box-shadow: var(--shadow-1);
-    position: sticky;
-    top: 10rem;
   }
-  .ses-explorer__map figcaption { margin-top: 0.5rem; text-align: right; }
+
+  /* Les outils, en retrait sous la carte. */
+  .ses-explorer__tools { margin-top: var(--space-2); display: grid; gap: 0.4rem; }
+  .ses-explorer__filters { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+  .ses-explorer__filters-label { font-size: var(--text-eyebrow); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ses-muted); margin-right: 0.3rem; }
+  .ses-fbtn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+    min-width: 2.5rem; min-height: 2.5rem;
+    padding: 0.25rem;
+    border-radius: 999px;
+    border: 1px solid var(--ses-border);
+    background: var(--ses-surface);
+    color: var(--ses-nuit);
+    cursor: pointer;
+    transition: border-color var(--ease), box-shadow var(--ease), background-color var(--ease), opacity var(--ease);
+  }
+  .ses-fbtn--text { padding: 0.25rem 0.85rem; font-family: var(--ses-font-heading); font-weight: 700; font-size: var(--text-small); }
+  .ses-fbtn:hover { border-color: var(--ses-nuit); }
+  .ses-fbtn.is-active { border-color: var(--accent, var(--ses-nuit)); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent, var(--ses-nuit)) 25%, transparent); background: color-mix(in srgb, var(--accent, var(--ses-nuit)) 10%, white); }
+  .ses-fbtn[disabled] { opacity: 0.6; cursor: wait; }
+  .ses-explorer__active { margin: 0; min-height: 1.2em; }
+  .ses-explorer__meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; }
+  .ses-explorer__count { margin: 0; font-family: var(--ses-font-heading); color: var(--ses-muted); }
+  .ses-explorer__count strong { color: var(--ses-red); font-size: 1.25rem; }
+  .ses-explorer__sep { margin-inline: 0.4rem; }
+  .ses-explorer__status { margin: 0; min-height: 1.2em; }
+  .ses-explorer__source { margin: 0; }
+
   .ses-explorer__cards { display: grid; gap: var(--space-2); }
   .ses-explorer__empty { padding: var(--space-3); border: 1px dashed var(--ses-border); border-radius: var(--radius-2); }
 
-  .ses-place { scroll-margin-top: 11rem; transition: border-color var(--ease), box-shadow var(--ease); }
+  .ses-place { scroll-margin-top: 6rem; transition: border-color var(--ease), box-shadow var(--ease); }
   .ses-place:hover { transform: none; }
   .ses-place.is-on, .ses-place:target { border-color: var(--ses-red); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ses-red) 18%, transparent); }
   .ses-place__head { display: flex; justify-content: space-between; gap: var(--space-2); align-items: flex-start; }
   .ses-place__eyebrow { font-size: 0.72rem; }
   .ses-place__eyebrow::before { display: none; }
   .ses-place__title { font-size: var(--text-h3); margin-top: 0.15rem; }
+  .ses-place__dist { font-size: var(--text-small); font-weight: 600; color: var(--ses-red-deep); margin-left: 0.4rem; white-space: nowrap; }
   .ses-place__total {
     display: flex; flex-direction: column; align-items: center;
     min-width: 3.6rem; padding: 0.35rem 0.5rem;

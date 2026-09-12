@@ -4,6 +4,10 @@
  * `npm run suisse` depuis Natural Earth), et un repère par implantation.
  * Partagé par la carte compacte de l'accueil et l'explorateur des
  * implantations. Chaque repère est un lien : la carte marche sans JavaScript.
+ *
+ * Les étiquettes sont placées à la construction pour ne pas se chevaucher :
+ * au-dessus du point si la place est libre, sinon en dessous, à droite, à
+ * gauche (issue #29 : Vaud, Morges et Genève se recouvraient).
  */
 import suisse from '../data/suisse.json';
 import type { Place } from '../lib/implantations';
@@ -24,7 +28,29 @@ const project = (lon: number, lat: number) => ({
   x: ((lon - bbox.minLon) / (bbox.maxLon - bbox.minLon)) * W,
   y: ((bbox.maxLat - lat) / (bbox.maxLat - bbox.minLat)) * H,
 });
-const pins = places.map((p) => ({ ...p, ...project(p.lng, p.lat), r: scaled ? 8 + Math.min(p.unitCount, 12) * 0.9 : 9 }));
+const pins = places.map((p) => ({ ...p, ...project(p.lng, p.lat), r: scaled ? 7 + Math.min(p.unitCount, 13) * 0.7 : 8 }));
+
+// Placement des étiquettes : quatre positions candidates, la première libre gagne.
+const CH_W = 8.2, LINE_H = 18, PAD = 3;
+type Box = { x: number; y: number; w: number; h: number };
+const overlaps = (a: Box, b: Box) => a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+const taken: Box[] = pins.map((p) => ({ x: p.x - p.r - 2, y: p.y - p.r - 2, w: (p.r + 2) * 2, h: (p.r + 2) * 2 }));
+const placed = pins
+  .slice()
+  .sort((a, b) => b.unitCount - a.unitCount)
+  .map((p) => {
+    const w = p.short.length * CH_W + PAD * 2;
+    const candidates: { box: Box; anchor: 'middle' | 'start' | 'end'; tx: number; ty: number }[] = [
+      { box: { x: p.x - w / 2, y: p.y - p.r - 9 - LINE_H, w, h: LINE_H }, anchor: 'middle', tx: p.x, ty: p.y - p.r - 9 },
+      { box: { x: p.x - w / 2, y: p.y + p.r + 5, w, h: LINE_H }, anchor: 'middle', tx: p.x, ty: p.y + p.r + 5 + 13 },
+      { box: { x: p.x + p.r + 6, y: p.y - LINE_H / 2, w, h: LINE_H }, anchor: 'start', tx: p.x + p.r + 6 + PAD, ty: p.y + 5 },
+      { box: { x: p.x - p.r - 6 - w, y: p.y - LINE_H / 2, w, h: LINE_H }, anchor: 'end', tx: p.x - p.r - 6 - PAD, ty: p.y + 5 },
+    ];
+    const pick = candidates.find((c) => !taken.some((t) => overlaps(c.box, t))) ?? candidates[0];
+    taken.push(pick.box);
+    return { ...p, label: pick };
+  })
+  .sort((a, b) => a.y - b.y);
 ---
 
 <svg viewBox={suisse.viewBox} role="img" aria-label={title} class="ses-map__svg">
@@ -35,12 +61,14 @@ const pins = places.map((p) => ({ ...p, ...project(p.lng, p.lat), r: scaled ? 8 
   </defs>
   <path d={suisse.country} class="ses-map__land" filter="url(#ses-map-shadow)" />
   <path d={suisse.lakes} class="ses-map__lakes" />
-  {pins.map((p) => (
+  {placed.map((p) => (
     <a href={href(p)} class="ses-map__pin" data-pin={p.id} data-kinds={p.kinds.join(' ')} aria-label={p.name}>
       <title>{p.name}{p.unitCount ? ` — ${p.unitCount} ${p.unitCount > 1 ? 'unités' : 'unité'}` : ''}</title>
-      <circle cx={p.x} cy={p.y} r={p.r * 2.4} class="ses-map__halo" />
+      <circle cx={p.x} cy={p.y} r={p.r * 1.7} class="ses-map__halo" />
       <circle cx={p.x} cy={p.y} r={p.r} class="ses-map__dot" />
-      {labels && <text x={p.x} y={p.y - p.r - 7} class="ses-map__label">{p.short}</text>}
+      {labels && (
+        <text x={p.label.tx} y={p.label.ty} class="ses-map__label" style={`text-anchor: ${p.label.anchor}`}>{p.short}</text>
+      )}
     </a>
   ))}
 </svg>
@@ -50,23 +78,22 @@ const pins = places.map((p) => ({ ...p, ...project(p.lng, p.lat), r: scaled ? 8 
   .ses-map__land { fill: #ece8df; stroke: #cfc8ba; stroke-width: 1.2; stroke-linejoin: round; }
   .ses-map__lakes { fill: #bfd9ea; stroke: #9cc3dc; stroke-width: 0.8; }
   .ses-map__pin { cursor: pointer; outline: none; transition: opacity var(--ease); }
-  .ses-map__pin.is-off { opacity: 0.18; pointer-events: none; }
-  .ses-map__halo { fill: var(--ses-red); opacity: 0.16; transform-origin: center; transform-box: fill-box; animation: ses-pulse 2.8s ease-out infinite; }
+  .ses-map__pin.is-off { opacity: 0.15; pointer-events: none; }
+  .ses-map__halo { fill: var(--ses-red); opacity: 0.14; transform-origin: center; transform-box: fill-box; animation: ses-pulse 2.8s ease-out infinite; }
   .ses-map__dot { fill: var(--ses-red); stroke: #fff; stroke-width: 3; transition: fill var(--ease), r var(--ease); }
   .ses-map__label {
     font-family: var(--ses-font-heading);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     fill: var(--ses-nuit);
-    text-anchor: middle;
     paint-order: stroke;
     stroke: #fff;
     stroke-width: 4px;
     stroke-linejoin: round;
     pointer-events: none;
   }
-  .ses-map__pin:hover .ses-map__dot, .ses-map__pin.is-on .ses-map__dot, .ses-map__pin:focus-visible .ses-map__dot { fill: var(--ses-nuit); }
+  .ses-map__pin:hover .ses-map__dot, .ses-map__pin.is-on .ses-map__dot, .ses-map__pin:focus-visible .ses-map__dot, .ses-map__pin.is-near .ses-map__dot { fill: var(--ses-nuit); }
   .ses-map__pin:focus-visible .ses-map__halo { opacity: 0.4; animation: none; }
-  @keyframes ses-pulse { 0% { transform: scale(0.5); opacity: 0.35; } 100% { transform: scale(1.4); opacity: 0; } }
-  @media (prefers-reduced-motion: reduce) { .ses-map__halo { animation: none; opacity: 0.14; } }
+  @keyframes ses-pulse { 0% { transform: scale(0.6); opacity: 0.3; } 100% { transform: scale(1.5); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .ses-map__halo { animation: none; opacity: 0.12; } }
 </style>
