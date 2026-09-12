@@ -185,6 +185,7 @@ sans interruption », à soumettre aux autres le soir même) :
 - #21 Section Instagram sur l'accueil — faite (PR #26), reste le rafraîchissement automatique (#4)
 - #22 Configuration Meta — **fermée** (PR #23)
 - #27 Logo sur la croix officielle, explorateur des implantations, icônes officielles — **fermée** le 2026-09-12 (PR #28)
+- #29 Page des implantations : carte fixe, filtres en retrait, tri par distance — **fermée** le 2026-09-12 (PR #30)
 
 Ce qui reste avant le gel (étape 6) : relecture par les autres membres, corrections en issues,
 publication automatique (#4), audit de référencement local (plan XX), puis gel.
