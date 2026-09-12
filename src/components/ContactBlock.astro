@@ -11,7 +11,7 @@
  */
 import { SITE, SOCIAL, UI, type Lang } from '../data/site';
 import SocialIcon from './SocialIcon.astro';
-import implantations from '../data/implantations.json';
+import { getPlaces } from '../lib/implantations';
 
 interface Props {
   lang: Lang;
@@ -33,7 +33,7 @@ const T = {
 
 // Un secrétariat par adresse e-mail, avec les lieux qu'il couvre.
 const byEmail = new Map<string, string[]>();
-for (const p of implantations.places) {
+for (const p of getPlaces()) {
   if (!p.email) continue;
   byEmail.set(p.email, [...(byEmail.get(p.email) ?? []), p.name]);
 }

@@ -20,9 +20,12 @@
    ══════════════════════════════════════════════════════════════════ */
 :root {
   /* ── Identité du mouvement ────────────────────────────────────── */
-  --ses-red: #e3051a;            /* le rouge de la croix                */
-  --ses-red-deep: #b30414;       /* le même, assombri : texte, liens, survol (6,8:1) */
-  --ses-gold: #f8e900;           /* la fleur de lys — jamais du texte   */
+  /* Le rouge et le jaune sont ceux du SVG officiel de la croix des Scouts
+     d'Europe, fourni par Nicolas le 2026-09-12 (issue #27). Avant : valeurs
+     prélevées dans le PNG de l'ancien site. */
+  --ses-red: #be0033;            /* le rouge de la croix — 6,9:1 sur blanc */
+  --ses-red-deep: #99002a;       /* le même, assombri : liens, survol (9,4:1) */
+  --ses-gold: #ffed26;           /* la fleur de lys — jamais du texte   */
   --ses-branche-jaune: #ead728;
   --ses-branche-verte: #2c8d1b;
   --ses-branche-rouge: #ba1b1b;

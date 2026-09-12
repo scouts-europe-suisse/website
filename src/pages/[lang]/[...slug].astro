@@ -15,6 +15,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageNotices from '../../components/PageNotices.astro';
 import ContactBlock from '../../components/ContactBlock.astro';
 import SwissMap from '../../components/SwissMap.astro';
+import ImplantationsExplorer from '../../components/ImplantationsExplorer.astro';
 import NewsList from '../../components/NewsList.astro';
 import NewsArticle from '../../components/NewsArticle.astro';
 import SectionIndex from '../../components/SectionIndex.astro';
@@ -79,6 +80,8 @@ if (kind === 'page') {
 
 // La liste des actualités et la recherche existent dans les deux langues :
 // on donne leur jumelle au gabarit, pour le sélecteur de langue et le hreflang.
+const implantationsHref = kind === 'page' && entry.data.map ? await pathFor('nos-implantations', lang) : null;
+
 const routeTwin =
   kind === 'news-index' ? path(other, NEWS_BASE[other]) : kind === 'search' ? path(other, SEARCH_BASE[other]) : undefined;
 ---
@@ -166,7 +169,14 @@ const routeTwin =
           <Content />
         </div>
         {showsIndex && <SectionIndex lang={lang} pages={sectionChildren} />}
-        {entry.data.map && <div class="mt-10"><SwissMap lang={lang} /></div>}
+        {/* La page des implantations reçoit l'explorateur complet ; la
+            rubrique « Nous rejoindre » une carte compacte qui y mène. */}
+        {entry.data.map && entry.data.key === 'nos-implantations' && (
+          <div class="mt-8"><ImplantationsExplorer lang={lang} /></div>
+        )}
+        {entry.data.map && entry.data.key !== 'nos-implantations' && (
+          <div class="mt-10"><SwissMap lang={lang} moreHref={implantationsHref} /></div>
+        )}
         {entry.data.contactForm && <div class="mt-8"><ContactBlock lang={lang} /></div>}
       </div>
     </article>

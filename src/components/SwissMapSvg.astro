@@ -1,0 +1,72 @@
+---
+/**
+ * Le fond de carte : la Suisse et ses lacs (src/data/suisse.json, produit par
+ * `npm run suisse` depuis Natural Earth), et un repère par implantation.
+ * Partagé par la carte compacte de l'accueil et l'explorateur des
+ * implantations. Chaque repère est un lien : la carte marche sans JavaScript.
+ */
+import suisse from '../data/suisse.json';
+import type { Place } from '../lib/implantations';
+
+interface Props {
+  places: Place[];
+  title: string;
+  /** Fabrique l'adresse du lien de chaque repère. */
+  href: (p: Place) => string;
+  /** Rayon du point selon le nombre d'unités (explorateur) ou fixe. */
+  scaled?: boolean;
+  labels?: boolean;
+}
+const { places, title, href, scaled = false, labels = true } = Astro.props;
+
+const { bbox, width: W, height: H } = suisse;
+const project = (lon: number, lat: number) => ({
+  x: ((lon - bbox.minLon) / (bbox.maxLon - bbox.minLon)) * W,
+  y: ((bbox.maxLat - lat) / (bbox.maxLat - bbox.minLat)) * H,
+});
+const pins = places.map((p) => ({ ...p, ...project(p.lng, p.lat), r: scaled ? 8 + Math.min(p.unitCount, 12) * 0.9 : 9 }));
+---
+
+<svg viewBox={suisse.viewBox} role="img" aria-label={title} class="ses-map__svg">
+  <defs>
+    <filter id="ses-map-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#1c2733" flood-opacity="0.18" />
+    </filter>
+  </defs>
+  <path d={suisse.country} class="ses-map__land" filter="url(#ses-map-shadow)" />
+  <path d={suisse.lakes} class="ses-map__lakes" />
+  {pins.map((p) => (
+    <a href={href(p)} class="ses-map__pin" data-pin={p.id} data-kinds={p.kinds.join(' ')} aria-label={p.name}>
+      <title>{p.name}{p.unitCount ? ` — ${p.unitCount} ${p.unitCount > 1 ? 'unités' : 'unité'}` : ''}</title>
+      <circle cx={p.x} cy={p.y} r={p.r * 2.4} class="ses-map__halo" />
+      <circle cx={p.x} cy={p.y} r={p.r} class="ses-map__dot" />
+      {labels && <text x={p.x} y={p.y - p.r - 7} class="ses-map__label">{p.short}</text>}
+    </a>
+  ))}
+</svg>
+
+<style is:global>
+  .ses-map__svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .ses-map__land { fill: #ece8df; stroke: #cfc8ba; stroke-width: 1.2; stroke-linejoin: round; }
+  .ses-map__lakes { fill: #bfd9ea; stroke: #9cc3dc; stroke-width: 0.8; }
+  .ses-map__pin { cursor: pointer; outline: none; transition: opacity var(--ease); }
+  .ses-map__pin.is-off { opacity: 0.18; pointer-events: none; }
+  .ses-map__halo { fill: var(--ses-red); opacity: 0.16; transform-origin: center; transform-box: fill-box; animation: ses-pulse 2.8s ease-out infinite; }
+  .ses-map__dot { fill: var(--ses-red); stroke: #fff; stroke-width: 3; transition: fill var(--ease), r var(--ease); }
+  .ses-map__label {
+    font-family: var(--ses-font-heading);
+    font-size: 15px;
+    font-weight: 700;
+    fill: var(--ses-nuit);
+    text-anchor: middle;
+    paint-order: stroke;
+    stroke: #fff;
+    stroke-width: 4px;
+    stroke-linejoin: round;
+    pointer-events: none;
+  }
+  .ses-map__pin:hover .ses-map__dot, .ses-map__pin.is-on .ses-map__dot, .ses-map__pin:focus-visible .ses-map__dot { fill: var(--ses-nuit); }
+  .ses-map__pin:focus-visible .ses-map__halo { opacity: 0.4; animation: none; }
+  @keyframes ses-pulse { 0% { transform: scale(0.5); opacity: 0.35; } 100% { transform: scale(1.4); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .ses-map__halo { animation: none; opacity: 0.14; } }
+</style>
