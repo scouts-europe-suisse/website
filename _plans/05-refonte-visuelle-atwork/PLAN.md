@@ -186,6 +186,7 @@ sans interruption », à soumettre aux autres le soir même) :
 - #22 Configuration Meta — **fermée** (PR #23)
 - #27 Logo sur la croix officielle, explorateur des implantations, icônes officielles — **fermée** le 2026-09-12 (PR #28)
 - #29 Page des implantations : carte fixe, filtres en retrait, tri par distance — **fermée** le 2026-09-12 (PR #30)
+- #31 En-tête sur téléphone, FR · DE sur une ligne — **fermée** le 2026-09-12 (PR #32)
 
 Ce qui reste avant le gel (étape 6) : relecture par les autres membres, corrections en issues,
 publication automatique (#4), audit de référencement local (plan XX), puis gel.
