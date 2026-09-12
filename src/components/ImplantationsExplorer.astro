@@ -1,0 +1,281 @@
+---
+/**
+ * L'explorateur des implantations (issue #20, demande de Nicolas du 2026-09-12).
+ *
+ * Une barre de filtres par branche (les pictogrammes), une carte dont les
+ * repères s'éteignent quand ils ne correspondent plus, et une fiche par
+ * implantation : district, groupe, unités par branche avec leur nombre,
+ * secrétariat à qui écrire. Carte et fiches se répondent au survol et au clic.
+ *
+ * Tout est lu dans src/data/implantations.json (la carte Google du mouvement)
+ * et interprété par src/lib/implantations.ts. Sans JavaScript, les filtres
+ * n'agissent pas mais tout reste lisible : la carte mène aux fiches.
+ */
+import SwissMapSvg from './SwissMapSvg.astro';
+import BrancheIcon from './BrancheIcon.astro';
+import { PICTOS } from '../data/pictos';
+import { getPlaces, KIND_AGES, KIND_LABELS, KIND_ORDER, SOURCE } from '../lib/implantations';
+import { UI, type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const places = getPlaces();
+const totalUnits = places.reduce((s, p) => s + p.unitCount, 0);
+const kindsPresent = KIND_ORDER.filter((k) => places.some((p) => p.kinds.includes(k)));
+
+const T = {
+  fr: {
+    title: 'Carte des implantations du Scoutisme Européen Suisse',
+    filter: 'Je cherche pour…',
+    all: 'Toutes les branches',
+    places: (n: number) => `${n} implantation${n > 1 ? 's' : ''}`,
+    units: (n: number) => `${n} unité${n > 1 ? 's' : ''}`,
+    none: 'Aucune implantation ne propose encore toutes ces branches. Écrivez-nous : nous vous orienterons.',
+    years: 'ans',
+    district: 'District',
+    group: 'Groupe',
+    source: 'Données tenues à jour par le mouvement dans sa carte',
+    reset: 'Tout afficher',
+  },
+  de: {
+    title: 'Karte der Standorte der Schweizerischen Pfadfinderschaft Europas',
+    filter: 'Ich suche für…',
+    all: 'Alle Stufen',
+    places: (n: number) => `${n} Standort${n > 1 ? 'e' : ''}`,
+    units: (n: number) => `${n} Einheit${n > 1 ? 'en' : ''}`,
+    none: 'Noch kein Standort bietet alle diese Stufen an. Schreiben Sie uns: Wir helfen weiter.',
+    years: 'Jahre',
+    district: 'Distrikt',
+    group: 'Abteilung',
+    source: 'Daten, die die Bewegung in ihrer Karte aktuell hält',
+    reset: 'Alle anzeigen',
+  },
+}[lang];
+---
+
+<section class="ses-explorer" data-explorer aria-label={T.title}>
+  <div class="ses-explorer__bar">
+    <p class="ses-explorer__legend">
+      <span class="ses-eyebrow">{T.filter}</span>
+    </p>
+    <div class="ses-explorer__chips" role="group" aria-label={T.filter}>
+      <button type="button" class="ses-chip ses-chip--btn is-active" data-all aria-pressed="true">{T.all}</button>
+      {kindsPresent.map((k) => (
+        <button type="button" class="ses-chip ses-chip--btn" data-kind={k} aria-pressed="false" style={`--accent: var(--ses-branche-${PICTOS[k].branche})`}>
+          <BrancheIcon icon={k} size="1.5rem" lang={lang} />
+          <span>{KIND_LABELS[k][lang]}</span>
+          <small>{KIND_AGES[k]} {T.years}</small>
+        </button>
+      ))}
+    </div>
+    <p class="ses-explorer__count" aria-live="polite">
+      <strong data-count-places>{places.length}</strong> <span data-count-places-label>{T.places(places.length).replace(/^\d+\s/, '')}</span>
+      <span class="ses-explorer__sep">·</span>
+      <strong data-count-units>{totalUnits}</strong> <span data-count-units-label>{T.units(totalUnits).replace(/^\d+\s/, '')}</span>
+    </p>
+  </div>
+
+  <div class="ses-explorer__grid">
+    <figure class="ses-explorer__map">
+      <SwissMapSvg places={places} title={T.title} href={(p) => `#${p.id}`} scaled />
+      <figcaption class="ses-small ses-muted">
+        {T.source} · <a href={SOURCE} target="_blank" rel="noopener">Google My Maps</a>
+      </figcaption>
+    </figure>
+
+    <div class="ses-explorer__list">
+      <p class="ses-explorer__empty ses-muted" data-empty hidden>{T.none}</p>
+      <ol class="ses-explorer__cards">
+        {places.map((p) => (
+          <li id={p.id} class="ses-card ses-place" data-place={p.id} data-kinds={p.kinds.join(' ')} tabindex="-1">
+            <div class="ses-card__body">
+              <div class="ses-place__head">
+                <div>
+                  {p.district && <p class="ses-eyebrow ses-place__eyebrow">{T.district} {p.district}</p>}
+                  <h3 class="ses-place__title">{p.region ?? p.name}</h3>
+                  {p.groupe && <p class="ses-muted">{p.groupe}</p>}
+                </div>
+                <p class="ses-place__total" aria-label={T.units(p.unitCount)}>
+                  <strong>{p.unitCount}</strong><span>{T.units(p.unitCount).replace(/^\d+\s/, '')}</span>
+                </p>
+              </div>
+              {p.units.length > 0 && (
+                <ul class="ses-place__units">
+                  {p.units.map((u) => (
+                    <li title={u.label} style={`--accent: var(--ses-branche-${PICTOS[u.kind].branche})`}>
+                      <BrancheIcon icon={u.kind} size="2rem" lang={lang} />
+                      <span class="ses-place__unit">
+                        <strong>{u.count > 1 ? `${u.count} ×` : ''} {KIND_LABELS[u.kind][lang]}</strong>
+                        <small>{KIND_AGES[u.kind]} {T.years}</small>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {p.other.length > 0 && <p class="ses-small ses-muted">{p.other.join(' · ')}</p>}
+              {p.email && (
+                <p class="ses-place__cta">
+                  <a href={`mailto:${p.email}`} class="ses-btn ses-btn--secondary ses-btn--small">{UI.writeTo[lang]}</a>
+                  <span class="ses-small ses-muted">{p.email}</span>
+                </p>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var root = document.querySelector('[data-explorer]');
+    if (!root) return;
+    var pins = Array.prototype.slice.call(root.querySelectorAll('[data-pin]'));
+    var cards = Array.prototype.slice.call(root.querySelectorAll('[data-place]'));
+    var chips = Array.prototype.slice.call(root.querySelectorAll('[data-kind]'));
+    var all = root.querySelector('[data-all]');
+    var empty = root.querySelector('[data-empty]');
+    var active = [];
+
+    function kindsOf(el) { return (el.dataset.kinds || '').split(' ').filter(Boolean); }
+    function matches(el) { var k = kindsOf(el); return active.every(function (a) { return k.indexOf(a) !== -1; }); }
+    function apply() {
+      var shown = 0, units = 0;
+      cards.forEach(function (c) {
+        var ok = matches(c);
+        c.hidden = !ok;
+        if (ok) { shown++; units += Number(c.querySelector('.ses-place__total strong').textContent) || 0; }
+      });
+      pins.forEach(function (p) { p.classList.toggle('is-off', !matches(p)); });
+      chips.forEach(function (ch) { var on = active.indexOf(ch.dataset.kind) !== -1; ch.classList.toggle('is-active', on); ch.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      all.classList.toggle('is-active', active.length === 0);
+      all.setAttribute('aria-pressed', active.length === 0 ? 'true' : 'false');
+      root.querySelector('[data-count-places]').textContent = shown;
+      root.querySelector('[data-count-units]').textContent = units;
+      empty.hidden = shown > 0;
+    }
+    chips.forEach(function (ch) {
+      ch.addEventListener('click', function () {
+        var k = ch.dataset.kind, i = active.indexOf(k);
+        if (i === -1) active.push(k); else active.splice(i, 1);
+        apply();
+      });
+    });
+    all.addEventListener('click', function () { active = []; apply(); });
+
+    function light(id) {
+      pins.forEach(function (a) { a.classList.toggle('is-on', a.dataset.pin === id); });
+      cards.forEach(function (c) { c.classList.toggle('is-on', c.dataset.place === id); });
+    }
+    pins.forEach(function (a) {
+      a.addEventListener('mouseenter', function () { light(a.dataset.pin); });
+      a.addEventListener('focus', function () { light(a.dataset.pin); });
+      a.addEventListener('click', function () {
+        light(a.dataset.pin);
+        var card = document.getElementById(a.dataset.pin);
+        if (card) setTimeout(function () { card.focus({ preventScroll: true }); }, 350);
+      });
+    });
+    cards.forEach(function (c) {
+      c.addEventListener('mouseenter', function () { light(c.dataset.place); });
+      c.addEventListener('focusin', function () { light(c.dataset.place); });
+    });
+    if (location.hash) light(location.hash.slice(1));
+  })();
+</script>
+
+<style>
+  .ses-explorer { display: grid; gap: var(--space-3); }
+  .ses-explorer__bar {
+    position: sticky;
+    top: 4.5rem;
+    z-index: 5;
+    background: color-mix(in srgb, var(--ses-page) 96%, transparent);
+    border: 1px solid var(--ses-border);
+    border-radius: var(--radius-2);
+    padding: var(--space-2) var(--space-3);
+    display: grid;
+    gap: var(--space-2);
+    box-shadow: var(--shadow-1);
+  }
+  @media (min-width: 64rem) {
+    .ses-explorer__bar { grid-template-columns: auto 1fr auto; align-items: center; }
+  }
+  .ses-explorer__legend { margin: 0; }
+  .ses-explorer__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .ses-chip--btn {
+    cursor: pointer;
+    background: var(--ses-surface);
+    color: var(--ses-fg);
+    padding: 0.3rem 0.9rem 0.3rem 0.35rem;
+    gap: 0.55rem;
+    transition: border-color var(--ease), background-color var(--ease), color var(--ease), box-shadow var(--ease);
+  }
+  .ses-chip--btn[data-all] { padding-left: 0.9rem; }
+  .ses-chip--btn small { color: var(--ses-muted); font-size: 0.75rem; }
+  .ses-chip--btn:hover { border-color: var(--ses-nuit); }
+  .ses-chip--btn.is-active {
+    border-color: var(--accent, var(--ses-nuit));
+    background: color-mix(in srgb, var(--accent, var(--ses-nuit)) 12%, white);
+    color: var(--ses-nuit);
+    box-shadow: inset 0 0 0 1px var(--accent, var(--ses-nuit));
+  }
+  .ses-explorer__count { margin: 0; font-family: var(--ses-font-heading); color: var(--ses-muted); white-space: nowrap; }
+  .ses-explorer__count strong { color: var(--ses-red); font-size: 1.35rem; }
+  .ses-explorer__sep { margin-inline: 0.5rem; }
+
+  .ses-explorer__grid { display: grid; gap: var(--space-4); }
+  @media (min-width: 64rem) { .ses-explorer__grid { grid-template-columns: 1.2fr 1fr; align-items: start; } }
+  .ses-explorer__map {
+    margin: 0;
+    background: var(--ses-surface);
+    border: 1px solid var(--ses-border);
+    border-radius: var(--radius-3);
+    padding: var(--space-2);
+    box-shadow: var(--shadow-1);
+    position: sticky;
+    top: 10rem;
+  }
+  .ses-explorer__map figcaption { margin-top: 0.5rem; text-align: right; }
+  .ses-explorer__cards { display: grid; gap: var(--space-2); }
+  .ses-explorer__empty { padding: var(--space-3); border: 1px dashed var(--ses-border); border-radius: var(--radius-2); }
+
+  .ses-place { scroll-margin-top: 11rem; transition: border-color var(--ease), box-shadow var(--ease); }
+  .ses-place:hover { transform: none; }
+  .ses-place.is-on, .ses-place:target { border-color: var(--ses-red); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ses-red) 18%, transparent); }
+  .ses-place__head { display: flex; justify-content: space-between; gap: var(--space-2); align-items: flex-start; }
+  .ses-place__eyebrow { font-size: 0.72rem; }
+  .ses-place__eyebrow::before { display: none; }
+  .ses-place__title { font-size: var(--text-h3); margin-top: 0.15rem; }
+  .ses-place__total {
+    display: flex; flex-direction: column; align-items: center;
+    min-width: 3.6rem; padding: 0.35rem 0.5rem;
+    border-radius: var(--radius-2);
+    background: var(--ses-page-alt);
+    font-family: var(--ses-font-heading);
+    line-height: 1.1;
+  }
+  .ses-place__total strong { font-size: 1.5rem; color: var(--ses-nuit); }
+  .ses-place__total span { font-size: 0.7rem; color: var(--ses-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .ses-place__units {
+    margin-top: var(--space-2);
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr));
+  }
+  .ses-place__units li {
+    display: flex; align-items: center; gap: 0.6rem;
+    padding: 0.4rem 0.6rem 0.4rem 0.4rem;
+    border: 1px solid var(--ses-border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-1);
+    background: var(--ses-surface);
+  }
+  .ses-place__unit { display: flex; flex-direction: column; line-height: 1.2; }
+  .ses-place__unit strong { font-size: 0.95rem; }
+  .ses-place__unit small { color: var(--ses-muted); font-size: 0.75rem; }
+  .ses-place__cta { margin-top: var(--space-2); display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
+</style>

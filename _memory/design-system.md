@@ -17,8 +17,8 @@ Règle inchangée : aucune couleur, aucune taille de police en dur dans une page
 
 ## Ce qui ne bouge pas (identité du mouvement, pas charte)
 
-- Rouge de la croix `#e3051a`, sa version assombrie pour le texte `#b30414` (6,8:1).
-- Jaune de la fleur de lys `#f8e900` : filets, surtitres sur fond sombre, jamais du texte sur blanc.
+- Rouge de la croix `#be0033` (6,9:1 sur blanc), sa version assombrie pour les liens `#99002a`.
+- Jaune de la fleur de lys `#ffed26` : filets, surtitres sur fond sombre, jamais du texte sur blanc.
 - Couleurs de branche : jaune `#ead728`, verte `#2c8d1b`, rouge `#ba1b1b`.
 - Les six pictogrammes de branche (`src/data/pictos.ts`, AGSE), le logo (croix + texte).
 
@@ -55,12 +55,17 @@ Règle inchangée : aucune couleur, aucune taille de police en dur dans une page
 
 ## Logo, favicons, image de partage
 
-- `public/images/logo-ses.svg` : vectorisé depuis le PNG de l'ancien site par tracé par couches
-  (croix, lys, texte, drapeau). Le texte garde un léger grain de vectorisation : **à remplacer
-  par un dessin propre dès que le mouvement fournit l'original**.
+- `public/images/logo-ses.svg` : construit le 2026-09-12 (issue #27) à partir du **SVG officiel de
+  la croix des Scouts d'Europe** fourni par Nicolas (croix et fleur de lys reprises telles
+  quelles), avec le texte « Scoutisme Européen Suisse » composé en Cabin et converti en tracés,
+  un filet entre les deux lignes, et le drapeau suisse carré (proportions 6:7:6, rouge #FF0000 ;
+  un carré, jamais un écu). Le script qui le fabrique est dans le dossier de travail temporaire
+  de Claude ; en cas de retouche, le refaire à partir des mêmes tracés officiels.
+- Le rouge `#be0033` et le jaune `#ffed26` de la charte sont ceux de ce SVG officiel.
 - `public/images/croix-ses.svg` : la croix seule (pied de page, vignettes sans image).
 - `public/favicon.svg` et les PNG (32, 192, 512, apple-touch) : la croix sur fond blanc arrondi.
 - `public/images/og-image.jpg` : 1200×630, photo + logo, pour les partages.
+- Icônes des réseaux (`SocialIcon.astro`) : les marques officielles en tracés.
 
 ## Photos
 

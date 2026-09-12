@@ -17,7 +17,7 @@ import InstagramGrid from '../../components/InstagramGrid.astro';
 import { BRANCHES, type Branche } from '../../data/pictos';
 import { pathFor } from '../../lib/pages';
 import { LANGS, NAV, NEWS_BASE, SITE, SOCIAL, UI, withBase, type Lang } from '../../data/site';
-import implantations from '../../data/implantations.json';
+import { getPlaces } from '../../lib/implantations';
 
 export function getStaticPaths() {
   return LANGS.map((lang) => ({ params: { lang } }));
@@ -161,12 +161,12 @@ const LEADER_IMG = '/images/accueil-devenir-chef.jpg';
         <h2 id="map-title">{UI.whereWeAreTitle[lang]}</h2>
         <p class="ses-lead mt-4">{UI.whereWeAreIntro[lang]}</p>
         <p class="ses-near__count mt-6">
-          <strong>{implantations.places.length}</strong> {UI.places[lang]}
+          <strong>{getPlaces().length}</strong> {UI.places[lang]}
         </p>
         {joinHref && <p class="mt-6"><a href={joinHref} class="ses-btn">{UI.seeMap[lang]}</a></p>}
       </div>
       <div class="ses-near__map ses-reveal">
-        <SwissMap lang={lang} compact moreHref={joinHref} />
+        <SwissMap lang={lang} moreHref={joinHref} />
       </div>
     </div>
   </section>
