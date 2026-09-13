@@ -3,6 +3,8 @@ title: "Pèlerinage national 2023"
 date: 2023-07-25
 summary: "Cette année, les aînés du Scoutisme Européen Suisse se sont de nouveau rassemblés à la Pentecôte !"
 updated: 2025-12-09
+cover: "/images/actualites/pelerinage-national-2023.jpg"
+coverCredit: "Photo : compte Instagram du Scoutisme Européen Suisse, publication du 31.05.2023"
 ---
 
 Cette année, les aînés du Scoutisme Européen Suisse se sont de nouveau rassemblés à la Pentecôte !

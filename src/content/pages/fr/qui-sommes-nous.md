@@ -24,7 +24,7 @@ Le mouvement du Scoutisme Européen Suisse souhaite être ouvert à tous ceux q
 
 L'association est une association catholique, membre de l'Union internationale des Guides et Scouts d'Europe qui est reconnue par le Conseil pontifical pour les laïcs comme association privée internationale de fidèles. Elle peut également accueillir des groupes de confession protestante ou orthodoxe.
 
-Notre association est attachée à la dimension chrétienne de la pédagogie, qui s'imprègne de l'Evangile et se base sur la vocation de tout chrétien à la sainteté.
+Notre association est attachée à la dimension chrétienne de la pédagogie, qui s'imprègne de l'Évangile et se base sur la vocation de tout chrétien à la sainteté.
 
 ![0044](/images/0044.jpg)
 

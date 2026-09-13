@@ -1,17 +1,17 @@
 ---
 /**
  * Le bloc de contact : le siège et son adresse e-mail, puis les secrétariats
- * de district, lus dans les données de la carte des implantations
- * (src/data/implantations.json, tenues à jour par `npm run implantations`).
+ * de district (src/data/districts.ts). Toutes les adresses sont protégées des
+ * robots (issue #37) : rien en clair dans la page, lien reconstitué à
+ * l'interaction du visiteur.
  *
  * Pas de formulaire : un site statique n'a pas de serveur pour le recevoir,
- * et un service tiers recueillerait des données personnelles de parents. Le
- * lien e-mail marche partout et ne collecte rien. À revoir avec l'hébergeur
- * (issue #2) si un vrai formulaire est voulu.
+ * et un service tiers recueillerait des données personnelles de parents.
  */
 import { SITE, SOCIAL, UI, type Lang } from '../data/site';
 import SocialIcon from './SocialIcon.astro';
-import { getPlaces } from '../lib/implantations';
+import Protected from './Protected.astro';
+import { DISTRICTS } from '../data/districts';
 
 interface Props {
   lang: Lang;
@@ -30,28 +30,20 @@ const T = {
     direct: 'Sie können auch direkt dem Sekretariat Ihres Distrikts schreiben.',
   },
 }[lang];
-
-// Un secrétariat par adresse e-mail, avec les lieux qu'il couvre.
-const byEmail = new Map<string, string[]>();
-for (const p of getPlaces()) {
-  if (!p.email) continue;
-  byEmail.set(p.email, [...(byEmail.get(p.email) ?? []), p.name]);
-}
-const secretariats = [...byEmail.entries()].map(([email, names]) => ({ email, names }));
 ---
 
 <div class="ses-contact">
   <div class="ses-contact__main">
     <p class="ses-lead">{T.intro}</p>
-    <p class="mt-6"><a href={`mailto:${SITE.email}`} class="ses-btn">{UI.contactUs[lang]}</a></p>
+    <p class="mt-6"><Protected value={SITE.email} kind="email" lang={lang} label={UI.contactUs[lang]} class="ses-btn" /></p>
     <p class="mt-3 ses-small ses-muted">{T.hint}</p>
 
     <h2 class="mt-10" style="font-size: var(--text-h3)">{UI.headOffice[lang]}</h2>
     <address class="not-italic mt-2">
       {SITE.name}<br />
-      {SITE.address.street}<br />
+      {SITE.address.street && <>{SITE.address.street}<br /></>}
       {SITE.address.city[lang]}, {SITE.address.country[lang]}<br />
-      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      <Protected value={SITE.email} kind="email" lang={lang} />
     </address>
 
     <h2 class="mt-8" style="font-size: var(--text-h3)">{UI.followUs[lang]}</h2>
@@ -70,10 +62,11 @@ const secretariats = [...byEmail.entries()].map(([email, names]) => ({ email, na
     <h2 style="font-size: var(--text-h3)">{UI.secretariats[lang]}</h2>
     <p class="mt-2 ses-small ses-muted">{T.direct}</p>
     <ul class="mt-4 ses-contact__list">
-      {secretariats.map((s) => (
+      {DISTRICTS.map((d) => (
         <li>
-          <p class="font-semibold">{s.names.join(' · ')}</p>
-          <a href={`mailto:${s.email}`}>{s.email}</a>
+          <p class="font-semibold">{d.name}</p>
+          <p class="ses-small ses-muted">{d.cantons}</p>
+          <Protected value={d.email} kind="email" lang={lang} />
         </li>
       ))}
     </ul>

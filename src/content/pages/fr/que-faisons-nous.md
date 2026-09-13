@@ -11,7 +11,7 @@ L'objectif du scoutisme : aider chaque jeune à devenir un homme ou une femme re
 La méthode scoute se décline en trois pédagogies adaptée à chaque tranche d'âge :
 
 - [Louvetisme](/fr/branche-jaune/) (8-12 ans)
-- [Eclaireurs et éclaireuses](/fr/branche-verte/) (12-17 ans)
+- [Éclaireurs et éclaireuses](/fr/branche-verte/) (12-17 ans)
 - [Routiers et guides-aînées](/fr/branche-rouge/) (17 ans et plus)
 
 ## Le sens du concret
@@ -42,7 +42,7 @@ La vie scoute n'a de sens que si elle débouche sur le service aux autres. C'est
 
 ## Le sens de Dieu
 
-Le scoutisme est une occasion pour chaque jeune de découvrir la présence de Dieu dans sa vie : en lui et dans les autres, de mieux le connaître, d'éclairer sa vie à la lumière de l'Evangile. Le scoutisme veut aider chaque jeune à trouver le sens de sa vie.
+Le scoutisme est une occasion pour chaque jeune de découvrir la présence de Dieu dans sa vie : en lui et dans les autres, de mieux le connaître, d'éclairer sa vie à la lumière de l'Évangile. Le scoutisme veut aider chaque jeune à trouver le sens de sa vie.
 
 ![Messe en camp de louvettes](/images/img-4776.jpg)
 

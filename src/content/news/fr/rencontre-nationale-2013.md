@@ -13,4 +13,4 @@ Des sourires sur toutes les lèvres, la joie qui rayonne sur tous les visages. L
 
 CP ou chef, se dire qu’être en service prend tout son sens au sein de la grande famille scoute ! Partir, gonflés à bloc pour les camps qui se profilent à l’horizon, en se disant : quand on est ce qu’on recommence ? S’il y a un premier, c’est pour qu’il y ait un second !
 
-Par Etienne R., assistant du Commissaire National Eclaireur
+Par Étienne R., assistant du Commissaire National Éclaireur

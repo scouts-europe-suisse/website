@@ -420,3 +420,14 @@ img, svg, video { max-width: 100%; height: auto; }
   .ses-reveal { opacity: 0; transform: translateY(14px); transition: opacity 500ms ease, transform 500ms ease; }
   .ses-reveal.is-in { opacity: 1; transform: none; }
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   Adresses e-mail et téléphones protégés (issue #37, src/lib/protect.mjs)
+   Le texte est écrit à l'envers dans le HTML et remis à l'endroit ici ; le
+   « @ » et le « + » sont dessinés par CSS, jamais présents dans le texte.
+   ══════════════════════════════════════════════════════════════════ */
+.ses-obf { cursor: pointer; }
+.ses-obf__t { unicode-bidi: bidi-override; direction: rtl; display: inline-block; white-space: nowrap; }
+.ses-obf__at::before { content: '@'; }
+.ses-obf__plus::before { content: '+'; }
+.ses-obf.is-open .ses-obf__t { unicode-bidi: normal; direction: ltr; }

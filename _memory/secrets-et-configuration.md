@@ -16,13 +16,13 @@ issue, ni dans une pull request.** L'historique garde tout, même supprimé ensu
 |---|---|---|
 | **Publique** | App ID Meta, identifiant de la carte Google, adresses des comptes | Dans le code (`src/data/site.ts`, `.env.example`, scripts) |
 | **Secret** | App Secret Meta, jeton de page Facebook | `.env` à la racine, ignoré par git ; secrets GitHub pour les tâches automatiques |
-| **Donnée récupérée** | `src/data/implantations.json`, `src/data/instagram.json`, `public/images/instagram/` | Dans le dépôt : ce sont des photographies publiques, commitées |
+| **Donnée récupérée** | `src/data/instagram.json`, `public/images/instagram/`, `public/images/og/` | Dans le dépôt : ce sont des photographies publiques, commitées |
 
 ## Sur un poste
 
 1. Copier `.env.example` en `.env` et remplir. Le fichier est dans `.gitignore`.
 2. Les scripts le lisent avec `node --env-file-if-exists=.env …` (c'est ce que font les
-   commandes `npm run instagram`, `npm run implantations`).
+   commandes `npm run instagram`, `npm run meta-token`).
 3. Ne jamais coller une valeur de `.env` dans la conversation avec Claude si on peut
    l'éviter : Claude n'a pas besoin de la lire, seulement de savoir qu'elle est là.
 
@@ -44,10 +44,18 @@ perki). Les noms sont les mêmes que dans `.env`.
   mouvement, sinon l'API ne le voit pas.
 - Le navigateur des visiteurs ne parle jamais à Meta : tout est récupéré à la construction.
 
-## Carte des implantations
+## Implantations
 
-- Carte Google My Maps du mouvement, `mid=1mLNKImv1_q7I8xmzMt3Nnnb_ulE`, publique.
-- `npm run implantations` lit son export KML et écrit `src/data/implantations.json`.
-- Qui tient cette carte et sous quel compte : issue #10.
+- Depuis le 2026-09-13 (issue #34), la source est `src/data/districts.ts` : districts, groupes,
+  clans et feux, d'après la liste des groupes transmise par Nicolas. La carte Google du mouvement
+  n'est plus lue (le script `implantations` a été retiré). Toute modification passe par une issue
+  « Contenu ».
+
+## Adresses e-mail et téléphones
+
+- Jamais en clair dans une page (issue #37) : `Protected.astro` dans les composants, et le
+  greffon `rehypeProtectContacts` (astro.config.mjs) pour tout ce qui est écrit dans le markdown.
+  Principe et clé dans `src/lib/protect.mjs`. Le contrôle après construction :
+  `grep -rlE '[A-Za-z0-9._%-]@scouts-europe\.ch|href="mailto:' _build` doit ne rien trouver.
 
 Voir aussi [[conventions]], [[feedback_publication]].

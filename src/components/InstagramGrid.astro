@@ -23,7 +23,7 @@ const { lang, limit = 8 } = Astro.props;
 const posts = instagram.posts.slice(0, limit).map((p) => ({
   ...p,
   date: new Date(p.timestamp).toLocaleDateString(lang === 'fr' ? 'fr-CH' : 'de-CH', { day: 'numeric', month: 'long', year: 'numeric' }),
-  images: p.images.map((i) => ({ ...i, src: withBase(`/images/instagram/${i.file}`) })),
+  images: p.images.map((i) => ({ ...i, src: withBase(`/images/instagram/${i.file}`), thumb: withBase(`/images/instagram/${i.thumb ?? i.file}`) })),
 }));
 const t = {
   open: UI.openPhoto[lang], close: UI.closePhoto[lang], prev: UI.prevPhoto[lang], next: UI.nextPhoto[lang],
@@ -44,10 +44,11 @@ const t = {
             data-post={i}
             aria-label={`${t.open} — ${p.date}`}
           >
+            {/* La vignette carrée de 600 px ; la photo entière ne se charge qu'en grand (issue #39). */}
             <img
-              src={p.images[0].src}
-              width={p.images[0].w}
-              height={p.images[0].h}
+              src={p.images[0].thumb}
+              width="600"
+              height="600"
               alt=""
               loading="lazy"
               decoding="async"

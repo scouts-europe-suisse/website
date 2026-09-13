@@ -1,0 +1,34 @@
+---
+/**
+ * Une adresse e-mail ou un numéro de téléphone protégé des robots (issue #37).
+ * Voir src/lib/protect.mjs pour le principe. Le script qui reconstitue le
+ * lien à l'interaction est dans BaseLayout.astro, une fois pour toute la page.
+ */
+import { encode, reversedParts } from '../lib/protect.mjs';
+import type { Lang } from '../data/site';
+
+interface Props {
+  value: string;
+  kind?: 'email' | 'tel';
+  lang?: Lang;
+  /** Texte affiché à la place de la valeur (un bouton « Nous écrire », par exemple). */
+  label?: string;
+  class?: string;
+}
+const { value, kind = 'email', lang = 'fr', label, class: cls } = Astro.props;
+const parts = reversedParts(value, kind);
+const a11y = {
+  fr: kind === 'email' ? 'Adresse e-mail protégée : survoler ou cliquer pour l’afficher' : 'Numéro de téléphone protégé : survoler ou cliquer pour l’afficher',
+  de: kind === 'email' ? 'Geschützte E-Mail-Adresse: darüberfahren oder klicken, um sie anzuzeigen' : 'Geschützte Telefonnummer: darüberfahren oder klicken, um sie anzuzeigen',
+}[lang];
+---
+
+<a href="#" class:list={['ses-obf', cls]} data-obf={encode(value)} data-kind={kind} aria-label={label ? undefined : a11y} rel="nofollow">
+  {label ? (
+    label
+  ) : kind === 'email' ? (
+    <span class="ses-obf__t" aria-hidden="true"><span class="ses-obf__d">{parts.b}</span><span class="ses-obf__at"></span><span class="ses-obf__u">{parts.a}</span></span>
+  ) : (
+    <span class="ses-obf__t" aria-hidden="true"><span class="ses-obf__d">{parts.a}</span><span class="ses-obf__plus"></span></span>
+  )}
+</a>

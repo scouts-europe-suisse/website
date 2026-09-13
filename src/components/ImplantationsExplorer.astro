@@ -1,23 +1,23 @@
 ---
 /**
- * L'explorateur des implantations (issues #20, #29).
+ * L'explorateur des implantations (issues #20, #29, #34).
  *
- * Deux colonnes sur grand écran : à gauche, la carte, fixe à l'écran pendant
- * qu'on fait défiler les fiches, avec en dessous une rangée discrète de
- * filtres (les pictogrammes de branche), les compteurs et « Autour de moi » ;
- * à droite, une fiche par implantation. Sur téléphone, tout s'empile : la
- * carte, les filtres, les fiches. Rien ne se superpose jamais.
+ * La hiérarchie du mouvement est respectée : une fiche par **district**, avec
+ * ses **groupes** (scouts ou guides, leur saint patron, leur localité), puis
+ * son **clan** et son **feu**. La carte marque chaque localité ; ses repères
+ * répondent aux filtres par branche et se synchronisent avec les fiches.
  *
- * Tout est lu dans src/data/implantations.json (la carte Google du mouvement)
- * et interprété par src/lib/implantations.ts. Sans JavaScript, les filtres
- * n'agissent pas mais tout reste lisible : la carte mène aux fiches.
- * « Autour de moi » demande la position au navigateur et ne la transmet à
- * personne : elle sert seulement à trier les fiches par distance.
+ * Sur grand écran, la carte reste à l'écran pendant qu'on fait défiler les
+ * fiches ; les filtres, discrets, sont sous la carte. Sans JavaScript, tout
+ * reste lisible. « Autour de moi » demande la position au navigateur, ne la
+ * transmet à personne, et trie les districts par distance à leur localité la
+ * plus proche. Les adresses des secrétariats sont protégées (issue #37).
  */
 import SwissMapSvg from './SwissMapSvg.astro';
 import BrancheIcon from './BrancheIcon.astro';
+import Protected from './Protected.astro';
 import { PICTOS } from '../data/pictos';
-import { getPlaces, KIND_AGES, KIND_LABELS, KIND_ORDER, SOURCE } from '../lib/implantations';
+import { DISTRICTS, districtKinds, getPlaces, groupKinds, KIND_AGES, KIND_LABELS, KIND_ORDER } from '../lib/implantations';
 import { UI, type Lang } from '../data/site';
 
 interface Props {
@@ -25,24 +25,27 @@ interface Props {
 }
 const { lang } = Astro.props;
 const places = getPlaces();
-const totalUnits = places.reduce((s, p) => s + p.unitCount, 0);
 const kindsPresent = KIND_ORDER.filter((k) => places.some((p) => p.kinds.includes(k)));
+const totalGroups = DISTRICTS.reduce((s, d) => s + d.groups.filter((g) => !g.sleeping).length, 0);
 
 const T = {
   fr: {
     title: 'Carte des implantations du Scoutisme Européen Suisse',
     filter: 'Filtrer par branche',
     all: 'Toutes',
-    places: 'implantations', place: 'implantation',
-    units: 'unités', unit: 'unité',
-    none: 'Aucune implantation ne propose encore toutes ces branches. Écrivez-nous : nous vous orienterons.',
+    districts: 'districts', district: 'district',
+    groups: 'groupes', group: 'groupe',
+    none: 'Aucun district ne propose encore toutes ces branches. Écrivez-nous : nous vous orienterons.',
     years: 'ans',
-    district: 'District',
-    source: 'Données tenues à jour par le mouvement',
+    cantons: 'Canton', cantonsPl: 'Cantons',
+    scouts: 'Groupe scout', guides: 'Groupe guide',
+    sleeping: 'en sommeil',
+    clan: 'Clan', feu: 'Feu', feuPilote: 'Feu pilote',
+    secretariat: 'Secrétariat du district',
     near: 'Autour de moi',
-    nearHint: 'Votre position reste dans votre navigateur : elle sert seulement à trier les fiches.',
+    nearHint: 'Votre position reste dans votre navigateur : elle sert seulement à trier les districts.',
     nearBusy: 'Recherche de votre position…',
-    nearDone: 'Fiches triées de la plus proche à la plus lointaine.',
+    nearDone: 'Districts triés du plus proche au plus lointain.',
     nearDenied: 'Position refusée ou indisponible.',
     km: 'km',
   },
@@ -50,27 +53,30 @@ const T = {
     title: 'Karte der Standorte der Schweizerischen Pfadfinderschaft Europas',
     filter: 'Nach Stufe filtern',
     all: 'Alle',
-    places: 'Standorte', place: 'Standort',
-    units: 'Einheiten', unit: 'Einheit',
-    none: 'Noch kein Standort bietet alle diese Stufen an. Schreiben Sie uns: Wir helfen weiter.',
+    districts: 'Distrikte', district: 'Distrikt',
+    groups: 'Abteilungen', group: 'Abteilung',
+    none: 'Noch kein Distrikt bietet alle diese Stufen an. Schreiben Sie uns: Wir helfen weiter.',
     years: 'Jahre',
-    district: 'Distrikt',
-    source: 'Daten, die die Bewegung aktuell hält',
+    cantons: 'Kanton', cantonsPl: 'Kantone',
+    scouts: 'Pfadfinderabteilung', guides: 'Pfadfinderinnenabteilung',
+    sleeping: 'ruhend',
+    clan: 'Roverclan', feu: 'Rangerfeu', feuPilote: 'Pilot-Feu',
+    secretariat: 'Distriktsekretariat',
     near: 'In meiner Nähe',
-    nearHint: 'Ihr Standort bleibt in Ihrem Browser: Er dient nur dazu, die Karten zu sortieren.',
+    nearHint: 'Ihr Standort bleibt in Ihrem Browser: Er dient nur dazu, die Distrikte zu sortieren.',
     nearBusy: 'Standort wird gesucht…',
     nearDone: 'Sortiert, vom nächsten zum entferntesten.',
     nearDenied: 'Standort abgelehnt oder nicht verfügbar.',
     km: 'km',
   },
 }[lang];
-const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.nearDenied, km: T.km, places: T.places, place: T.place, units: T.units, unit: T.unit });
+const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.nearDenied, km: T.km, districts: T.districts, district: T.district, groups: T.groups, group: T.group });
 ---
 
 <section class="ses-explorer" data-explorer aria-label={T.title} data-i18n={i18n}>
   <div class="ses-explorer__side">
     <figure class="ses-explorer__map">
-      <SwissMapSvg places={places} title={T.title} href={(p) => `#${p.id}`} scaled />
+      <SwissMapSvg places={places} title={T.title} href={(p) => `#district-${p.district.key}`} scaled />
     </figure>
 
     <div class="ses-explorer__tools">
@@ -94,9 +100,9 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
       <p class="ses-explorer__active ses-small ses-muted" data-active aria-live="polite"></p>
       <div class="ses-explorer__meta">
         <p class="ses-explorer__count" aria-live="polite">
-          <strong data-count-places>{places.length}</strong> <span data-count-places-label>{T.places}</span>
+          <strong data-count-d>{DISTRICTS.length}</strong> <span data-count-d-label>{T.districts}</span>
           <span class="ses-explorer__sep">·</span>
-          <strong data-count-units>{totalUnits}</strong> <span data-count-units-label>{T.units}</span>
+          <strong data-count-g>{totalGroups}</strong> <span data-count-g-label>{T.groups}</span>
         </p>
         <button type="button" class="ses-fbtn ses-fbtn--text" data-near title={T.nearHint}>
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></svg>
@@ -104,49 +110,75 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
         </button>
       </div>
       <p class="ses-small ses-muted ses-explorer__status" data-near-status role="status"></p>
-      <p class="ses-small ses-muted ses-explorer__source">{T.source} · <a href={SOURCE} target="_blank" rel="noopener">Google My Maps</a></p>
     </div>
   </div>
 
   <div class="ses-explorer__list">
     <p class="ses-explorer__empty ses-muted" data-empty hidden>{T.none}</p>
     <ol class="ses-explorer__cards">
-      {places.map((p) => (
-        <li id={p.id} class="ses-card ses-place" data-place={p.id} data-kinds={p.kinds.join(' ')} data-lat={p.lat} data-lng={p.lng} data-units={p.unitCount} tabindex="-1">
-          <div class="ses-card__body">
-            <div class="ses-place__head">
-              <div>
-                {p.district && <p class="ses-eyebrow ses-place__eyebrow">{T.district} {p.district}</p>}
-                <h3 class="ses-place__title">{p.region ?? p.name} <span class="ses-place__dist" data-dist hidden></span></h3>
-                {p.groupe && <p class="ses-muted">{p.groupe}</p>}
+      {DISTRICTS.map((d) => {
+        const kinds = districtKinds(d);
+        const towns = places.filter((p) => p.district.key === d.key);
+        return (
+          <li
+            id={`district-${d.key}`}
+            class="ses-card ses-district"
+            data-district={d.key}
+            data-kinds={kinds.join(' ')}
+            data-points={JSON.stringify(towns.map((t) => [t.lat, t.lng]))}
+            data-groups={d.groups.filter((g) => !g.sleeping).length}
+            tabindex="-1"
+          >
+            <div class="ses-card__body">
+              <div class="ses-district__head">
+                <div>
+                  <p class="ses-eyebrow ses-district__eyebrow">{d.codes.length > 1 ? T.cantonsPl : T.cantons} {d.codes.join(' · ')}</p>
+                  <h3 class="ses-district__title">{d.name} <span class="ses-district__dist" data-dist hidden></span></h3>
+                  <p class="ses-muted">{d.cantons}</p>
+                </div>
+                <ul class="ses-district__kinds" aria-label={T.filter}>
+                  {kinds.map((k) => (
+                    <li title={`${KIND_LABELS[k][lang]} · ${KIND_AGES[k]} ${T.years}`}><BrancheIcon icon={k} size="1.6rem" lang={lang} decorative={false} /></li>
+                  ))}
+                </ul>
               </div>
-              <p class="ses-place__total">
-                <strong>{p.unitCount}</strong><span>{p.unitCount > 1 ? T.units : T.unit}</span>
-              </p>
-            </div>
-            {p.units.length > 0 && (
-              <ul class="ses-place__units">
-                {p.units.map((u) => (
-                  <li title={u.label} style={`--accent: var(--ses-branche-${PICTOS[u.kind].branche})`}>
-                    <BrancheIcon icon={u.kind} size="2rem" lang={lang} />
-                    <span class="ses-place__unit">
-                      <strong>{u.count > 1 ? `${u.count} × ` : ''}{KIND_LABELS[u.kind][lang]}</strong>
-                      <small>{KIND_AGES[u.kind]} {T.years}</small>
+
+              <ul class="ses-groups">
+                {d.groups.map((g) => (
+                  <li class="ses-group" data-group-kinds={groupKinds(g).join(' ')} class:list={[g.sleeping && 'is-sleeping']}>
+                    <span class="ses-group__icons" aria-hidden="true">
+                      {(g.type === 'scouts' ? ['louveteaux', 'eclaireurs'] : ['louvettes', 'eclaireuses']).map((k) => (
+                        <BrancheIcon icon={k as any} size="1.5rem" lang={lang} />
+                      ))}
+                    </span>
+                    <span class="ses-group__text">
+                      <strong>{g.name}</strong>{g.patron && <> — {g.patron}</>}
+                      <small>{g.type === 'scouts' ? T.scouts : T.guides} · {g.town}{g.sleeping && <> · <em>{T.sleeping}</em></>}</small>
                     </span>
                   </li>
                 ))}
+                {d.clan && (
+                  <li class="ses-group ses-group--district" data-group-kinds="routiers">
+                    <span class="ses-group__icons" aria-hidden="true"><BrancheIcon icon="routiers" size="1.5rem" lang={lang} /></span>
+                    <span class="ses-group__text"><strong>{T.clan} {d.clan}</strong><small>{KIND_LABELS.routiers[lang]} · {KIND_AGES.routiers} {T.years}</small></span>
+                  </li>
+                )}
+                {d.feu && (
+                  <li class="ses-group ses-group--district" data-group-kinds="guides-ainees">
+                    <span class="ses-group__icons" aria-hidden="true"><BrancheIcon icon="guides-ainees" size="1.5rem" lang={lang} /></span>
+                    <span class="ses-group__text"><strong>{d.feu === 'pilote' ? T.feuPilote : `${T.feu} ${d.feu}`}</strong><small>{KIND_LABELS['guides-ainees'][lang]} · {KIND_AGES['guides-ainees']} {T.years}</small></span>
+                  </li>
+                )}
               </ul>
-            )}
-            {p.other.length > 0 && <p class="ses-small ses-muted">{p.other.join(' · ')}</p>}
-            {p.email && (
-              <p class="ses-place__cta">
-                <a href={`mailto:${p.email}`} class="ses-btn ses-btn--secondary ses-btn--small">{UI.writeTo[lang]}</a>
-                <span class="ses-small ses-muted">{p.email}</span>
+
+              <p class="ses-district__cta">
+                <Protected value={d.email} kind="email" lang={lang} label={UI.writeTo[lang]} class="ses-btn ses-btn--secondary ses-btn--small" />
+                <span class="ses-small ses-muted">{T.secretariat} · <Protected value={d.email} kind="email" lang={lang} /></span>
               </p>
-            )}
-          </div>
-        </li>
-      ))}
+            </div>
+          </li>
+        );
+      })}
     </ol>
   </div>
 </section>
@@ -157,30 +189,34 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
     if (!root) return;
     var T = JSON.parse(root.dataset.i18n || '{}');
     var pins = Array.prototype.slice.call(root.querySelectorAll('[data-pin]'));
-    var cards = Array.prototype.slice.call(root.querySelectorAll('[data-place]'));
+    var cards = Array.prototype.slice.call(root.querySelectorAll('[data-district]'));
     var chips = Array.prototype.slice.call(root.querySelectorAll('[data-kind]'));
     var all = root.querySelector('[data-all]');
     var empty = root.querySelector('[data-empty]');
     var activeLabel = root.querySelector('[data-active]');
     var active = [];
 
-    function kindsOf(el) { return (el.dataset.kinds || '').split(' ').filter(Boolean); }
-    function matches(el) { var k = kindsOf(el); return active.every(function (a) { return k.indexOf(a) !== -1; }); }
+    function kindsOf(el, attr) { return (el.getAttribute(attr) || '').split(' ').filter(Boolean); }
+    function matches(el, attr) { var k = kindsOf(el, attr); return active.every(function (a) { return k.indexOf(a) !== -1; }); }
     function apply() {
-      var shown = 0, units = 0;
+      var shown = 0, groups = 0;
       cards.forEach(function (c) {
-        var ok = matches(c);
+        var ok = matches(c, 'data-kinds');
         c.hidden = !ok;
-        if (ok) { shown++; units += Number(c.dataset.units) || 0; }
+        if (ok) { shown++; groups += Number(c.dataset.groups) || 0; }
+        c.querySelectorAll('[data-group-kinds]').forEach(function (g) {
+          var gk = kindsOf(g, 'data-group-kinds');
+          g.classList.toggle('is-dim', active.length > 0 && !active.some(function (a) { return gk.indexOf(a) !== -1; }));
+        });
       });
-      pins.forEach(function (p) { p.classList.toggle('is-off', !matches(p)); });
+      pins.forEach(function (p) { p.classList.toggle('is-off', !matches(p, 'data-kinds')); });
       chips.forEach(function (ch) { var on = active.indexOf(ch.dataset.kind) !== -1; ch.classList.toggle('is-active', on); ch.setAttribute('aria-pressed', on ? 'true' : 'false'); });
       all.classList.toggle('is-active', active.length === 0);
       all.setAttribute('aria-pressed', active.length === 0 ? 'true' : 'false');
-      root.querySelector('[data-count-places]').textContent = shown;
-      root.querySelector('[data-count-places-label]').textContent = shown === 1 ? T.place : T.places;
-      root.querySelector('[data-count-units]').textContent = units;
-      root.querySelector('[data-count-units-label]').textContent = units === 1 ? T.unit : T.units;
+      root.querySelector('[data-count-d]').textContent = shown;
+      root.querySelector('[data-count-d-label]').textContent = shown === 1 ? T.district : T.districts;
+      root.querySelector('[data-count-g]').textContent = groups;
+      root.querySelector('[data-count-g-label]').textContent = groups === 1 ? T.group : T.groups;
       activeLabel.textContent = active.length
         ? chips.filter(function (ch) { return active.indexOf(ch.dataset.kind) !== -1; }).map(function (ch) { return ch.title.split(' · ')[0]; }).join(' + ')
         : '';
@@ -195,27 +231,26 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
     });
     all.addEventListener('click', function () { active = []; apply(); });
 
-    function light(id) {
-      pins.forEach(function (a) { a.classList.toggle('is-on', a.dataset.pin === id); });
-      cards.forEach(function (c) { c.classList.toggle('is-on', c.dataset.place === id); });
+    function light(key) {
+      pins.forEach(function (a) { a.classList.toggle('is-on', a.getAttribute('href') === '#district-' + key); });
+      cards.forEach(function (c) { c.classList.toggle('is-on', c.dataset.district === key); });
     }
     pins.forEach(function (a) {
-      a.addEventListener('mouseenter', function () { light(a.dataset.pin); });
-      a.addEventListener('focus', function () { light(a.dataset.pin); });
+      var key = (a.getAttribute('href') || '').replace('#district-', '');
+      a.addEventListener('mouseenter', function () { light(key); });
+      a.addEventListener('focus', function () { light(key); });
       a.addEventListener('click', function () {
-        light(a.dataset.pin);
-        var card = document.getElementById(a.dataset.pin);
+        light(key);
+        var card = document.getElementById('district-' + key);
         if (card) setTimeout(function () { card.focus({ preventScroll: true }); }, 350);
       });
     });
     cards.forEach(function (c) {
-      c.addEventListener('mouseenter', function () { light(c.dataset.place); });
-      c.addEventListener('focusin', function () { light(c.dataset.place); });
+      c.addEventListener('mouseenter', function () { light(c.dataset.district); });
+      c.addEventListener('focusin', function () { light(c.dataset.district); });
     });
-    if (location.hash) light(location.hash.slice(1));
+    if (location.hash.indexOf('#district-') === 0) light(location.hash.slice(10));
 
-    // « Autour de moi » : la position reste dans le navigateur ; on trie les
-    // fiches par distance à vol d'oiseau.
     var nearBtn = root.querySelector('[data-near]');
     var status = root.querySelector('[data-near-status]');
     var list = root.querySelector('.ses-explorer__cards');
@@ -231,15 +266,18 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
       nearBtn.disabled = true;
       navigator.geolocation.getCurrentPosition(function (pos) {
         var lat = pos.coords.latitude, lng = pos.coords.longitude;
-        var ranked = cards.map(function (c) { return { c: c, d: km(lat, lng, Number(c.dataset.lat), Number(c.dataset.lng)) }; })
-          .sort(function (x, y) { return x.d - y.d; });
+        var ranked = cards.map(function (c) {
+          var pts = JSON.parse(c.dataset.points || '[]');
+          var d = Math.min.apply(null, pts.map(function (p) { return km(lat, lng, p[0], p[1]); }));
+          return { c: c, d: d };
+        }).sort(function (x, y) { return x.d - y.d; });
         ranked.forEach(function (r) {
           var el = r.c.querySelector('[data-dist]');
           el.textContent = '≈ ' + Math.round(r.d) + ' ' + T.km;
           el.hidden = false;
           list.appendChild(r.c);
         });
-        pins.forEach(function (p) { p.classList.toggle('is-near', p.dataset.pin === ranked[0].c.dataset.place); });
+        light(ranked[0].c.dataset.district);
         status.textContent = T.done;
         nearBtn.disabled = false;
         ranked[0].c.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -254,10 +292,9 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
 <style>
   .ses-explorer { display: grid; gap: var(--space-4); }
   @media (min-width: 64rem) {
-    .ses-explorer { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: var(--space-5); align-items: start; }
-    /* La carte reste à l'écran pendant qu'on fait défiler les fiches. */
+    .ses-explorer { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: var(--space-5); align-items: start; }
     .ses-explorer__side { position: sticky; top: 5.5rem; }
-    .ses-explorer__map :global(.ses-map__svg) { max-height: calc(100vh - 19rem); }
+    .ses-explorer__map :global(.ses-map__svg) { max-height: calc(100vh - 18rem); }
   }
   .ses-explorer__map {
     margin: 0;
@@ -267,8 +304,6 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
     padding: var(--space-2);
     box-shadow: var(--shadow-1);
   }
-
-  /* Les outils, en retrait sous la carte. */
   .ses-explorer__tools { margin-top: var(--space-2); display: grid; gap: 0.4rem; }
   .ses-explorer__filters { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
   .ses-explorer__filters-label { font-size: var(--text-eyebrow); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ses-muted); margin-right: 0.3rem; }
@@ -293,45 +328,36 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
   .ses-explorer__count strong { color: var(--ses-red); font-size: 1.25rem; }
   .ses-explorer__sep { margin-inline: 0.4rem; }
   .ses-explorer__status { margin: 0; min-height: 1.2em; }
-  .ses-explorer__source { margin: 0; }
 
-  .ses-explorer__cards { display: grid; gap: var(--space-2); }
+  .ses-explorer__cards { display: grid; gap: var(--space-3); }
   .ses-explorer__empty { padding: var(--space-3); border: 1px dashed var(--ses-border); border-radius: var(--radius-2); }
 
-  .ses-place { scroll-margin-top: 6rem; transition: border-color var(--ease), box-shadow var(--ease); }
-  .ses-place:hover { transform: none; }
-  .ses-place.is-on, .ses-place:target { border-color: var(--ses-red); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ses-red) 18%, transparent); }
-  .ses-place__head { display: flex; justify-content: space-between; gap: var(--space-2); align-items: flex-start; }
-  .ses-place__eyebrow { font-size: 0.72rem; }
-  .ses-place__eyebrow::before { display: none; }
-  .ses-place__title { font-size: var(--text-h3); margin-top: 0.15rem; }
-  .ses-place__dist { font-size: var(--text-small); font-weight: 600; color: var(--ses-red-deep); margin-left: 0.4rem; white-space: nowrap; }
-  .ses-place__total {
-    display: flex; flex-direction: column; align-items: center;
-    min-width: 3.6rem; padding: 0.35rem 0.5rem;
-    border-radius: var(--radius-2);
-    background: var(--ses-page-alt);
-    font-family: var(--ses-font-heading);
-    line-height: 1.1;
-  }
-  .ses-place__total strong { font-size: 1.5rem; color: var(--ses-nuit); }
-  .ses-place__total span { font-size: 0.7rem; color: var(--ses-muted); text-transform: uppercase; letter-spacing: 0.06em; }
-  .ses-place__units {
-    margin-top: var(--space-2);
-    display: grid;
-    gap: 0.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr));
-  }
-  .ses-place__units li {
-    display: flex; align-items: center; gap: 0.6rem;
-    padding: 0.4rem 0.6rem 0.4rem 0.4rem;
+  .ses-district { scroll-margin-top: 6rem; transition: border-color var(--ease), box-shadow var(--ease); }
+  .ses-district:hover { transform: none; }
+  .ses-district.is-on, .ses-district:target { border-color: var(--ses-red); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ses-red) 18%, transparent); }
+  .ses-district__head { display: flex; justify-content: space-between; gap: var(--space-2); align-items: flex-start; flex-wrap: wrap; }
+  .ses-district__eyebrow { font-size: 0.72rem; }
+  .ses-district__eyebrow::before { display: none; }
+  .ses-district__title { font-size: var(--text-h3); margin-top: 0.15rem; }
+  .ses-district__dist { font-size: var(--text-small); font-weight: 600; color: var(--ses-red-deep); margin-left: 0.4rem; white-space: nowrap; }
+  .ses-district__kinds { display: flex; gap: 0.25rem; flex-wrap: wrap; }
+
+  .ses-groups { margin-top: var(--space-2); display: grid; gap: 0.4rem; }
+  .ses-group {
+    display: flex; align-items: center; gap: 0.7rem;
+    padding: 0.5rem 0.7rem 0.5rem 0.5rem;
     border: 1px solid var(--ses-border);
-    border-left: 3px solid var(--accent);
     border-radius: var(--radius-1);
     background: var(--ses-surface);
+    transition: opacity var(--ease);
   }
-  .ses-place__unit { display: flex; flex-direction: column; line-height: 1.2; }
-  .ses-place__unit strong { font-size: 0.95rem; }
-  .ses-place__unit small { color: var(--ses-muted); font-size: 0.75rem; }
-  .ses-place__cta { margin-top: var(--space-2); display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
+  .ses-group--district { background: var(--ses-page-alt); }
+  .ses-group.is-dim { opacity: 0.4; }
+  .ses-group.is-sleeping { border-style: dashed; }
+  .ses-group.is-sleeping .ses-group__icons { opacity: 0.45; }
+  .ses-group__icons { display: inline-flex; gap: 0.2rem; flex-shrink: 0; }
+  .ses-group__text { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
+  .ses-group__text strong { font-size: 0.98rem; }
+  .ses-group__text small { color: var(--ses-muted); font-size: 0.78rem; }
+  .ses-district__cta { margin-top: var(--space-2); display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
 </style>

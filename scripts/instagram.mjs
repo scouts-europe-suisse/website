@@ -33,6 +33,7 @@ const TOKEN = process.env.META_PAGE_TOKEN;
 /** Nombre de publications gardées sur le site. */
 const KEEP = Number(process.env.META_IG_KEEP ?? 12);
 const WIDTH = 1200;
+const THUMB = 600;
 
 if (!IG_USER || !TOKEN) {
   console.error('✗ META_IG_USER_ID et META_PAGE_TOKEN manquent dans .env (voir .env.example et scripts/meta-token.mjs).');
@@ -49,22 +50,25 @@ async function graph(pathname, params) {
   return body;
 }
 
+/** La vignette carrée de la grille (issue #39) : 600 px, bien plus légère que l'image. */
+async function thumb(target, thumbTarget) {
+  if (fs.existsSync(thumbTarget)) return;
+  await sharp(target).resize(THUMB, THUMB, { fit: 'cover' }).jpeg({ quality: 78, mozjpeg: true }).toFile(thumbTarget);
+}
+
 async function download(id, url) {
   const file = `${id}.jpg`;
+  const thumbFile = `${id}-min.jpg`;
   const target = path.join(OUT_DIR, file);
-  if (fs.existsSync(target)) {
-    const meta = await sharp(target).metadata();
-    return { file, w: meta.width, h: meta.height };
+  if (!fs.existsSync(target)) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Image ${id} : ${res.status}`);
+    const buf = Buffer.from(await res.arrayBuffer());
+    await sharp(buf).rotate().resize({ width: WIDTH, withoutEnlargement: true }).jpeg({ quality: 82, mozjpeg: true }).toFile(target);
   }
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`Image ${id} : ${res.status}`);
-  const buf = Buffer.from(await res.arrayBuffer());
-  const info = await sharp(buf)
-    .rotate()
-    .resize({ width: WIDTH, withoutEnlargement: true })
-    .jpeg({ quality: 82, mozjpeg: true })
-    .toFile(target);
-  return { file, w: info.width, h: info.height };
+  await thumb(target, path.join(OUT_DIR, thumbFile));
+  const meta = await sharp(target).metadata();
+  return { file, thumb: thumbFile, w: meta.width, h: meta.height };
 }
 
 async function main() {
@@ -99,7 +103,7 @@ async function main() {
   }
 
   // On ne garde sur disque que les images encore utilisées.
-  const used = new Set(posts.flatMap((p) => p.images.map((i) => i.file)));
+  const used = new Set(posts.flatMap((p) => p.images.flatMap((i) => [i.file, i.thumb])));
   for (const f of fs.readdirSync(OUT_DIR)) if (!used.has(f)) fs.unlinkSync(path.join(OUT_DIR, f));
 
   const previous = fs.existsSync(OUT_JSON) ? JSON.parse(fs.readFileSync(OUT_JSON, 'utf8')) : null;

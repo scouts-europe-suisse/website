@@ -3,6 +3,8 @@ title: "Pèlerinage 2024"
 date: 2025-04-14
 summary: "L’année dernière, j’ai eu la chance de vivre le pèlerinage de Pentecôte aux côtés de beaucoup de d’autres scouts et guides d’Europe Suisse. Nous avons vécu trois jours ensemble dans l’idéal scout.…"
 updated: 2025-12-09
+cover: "/images/actualites/pelerinage-2024.jpg"
+coverCredit: "Photo : compte Instagram du Scoutisme Européen Suisse, publication du 23.05.2024"
 ---
 
 L’année dernière, j’ai eu la chance de vivre le pèlerinage de Pentecôte aux côtés de beaucoup de d’autres scouts et guides d’Europe Suisse. Nous avons vécu trois jours ensemble dans l’idéal scout. Trois jours où nous nous sommes créé des souvenirs, renforcer nos amitiés, prier, chanter mais aussi marcher et bien d’autres choses encore. *Guide toujours… Prête* : voilà le thème du pèlerinage. Il nous a suivi dans toutes les étapes de ce week-end et témoigne l’engagement du scout. Dans ce témoignage, j’aimerai aborder plusieurs de ces points et pourquoi ils sont importants pour moi.

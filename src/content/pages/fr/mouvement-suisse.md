@@ -14,7 +14,7 @@ Le mouvement est lancé dans les années 1970 au Mont-Pèlerin dans le canton de
 
 ## Le développement d'un groupe catholique à Genève
 
-En 1980, une troupe catholique de l'Association genevoise des Eclaireurs (actuels Scouts de Suisse) cherche à vivre plus intensément la dimension chrétienne de son scoutisme et souhaite suivre avec plus de fidélité la méthode scoute de Baden-Powell malgré les réformes opérées chez les Scouts de Suisse. Constatant les écarts dans les objectifs pédagogiques, l'Association des Eclaireurs Genevois conseille au groupe de rejoindre un autre mouvement de scoutisme.
+En 1980, une troupe catholique de l'Association genevoise des Éclaireurs (actuels Scouts de Suisse) cherche à vivre plus intensément la dimension chrétienne de son scoutisme et souhaite suivre avec plus de fidélité la méthode scoute de Baden-Powell malgré les réformes opérées chez les Scouts de Suisse. Constatant les écarts dans les objectifs pédagogiques, l'Association des Éclaireurs Genevois conseille au groupe de rejoindre un autre mouvement de scoutisme.
 
 Le groupe catholique se rattache alors aux Scouts d'Europe, et ne cesse de se développer : il compte 350 membres à la fin des années 2000. On y vit un scoutisme familial et de qualité.
 

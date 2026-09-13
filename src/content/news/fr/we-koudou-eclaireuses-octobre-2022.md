@@ -3,6 +3,8 @@ title: "WE Koudou Éclaireuses - octobre 2022"
 date: 2022-10-10
 summary: "Le week-end de branche, aussi appelé week-end Koudou, a eu lieu les 8 et 9 octobre derniers pour les éclaireuses. Nous nous sommes retrouvés dans la vallée des Sciernes Picats pour marcher, célébrer…"
 updated: 2025-12-09
+cover: "/images/actualites/we-koudou-eclaireuses-octobre-2022.jpg"
+coverCredit: "Photo : compte Instagram du Scoutisme Européen Suisse, publication du 28.10.2022"
 ---
 
 Le week-end de branche, aussi appelé week-end Koudou, a eu lieu les 8 et 9 octobre derniers pour les éclaireuses. Nous nous sommes retrouvés dans la vallée des Sciernes Picats pour marcher, célébrer la messe, partager de beaux et joyeux moments entre cheftaines. La veillée a été l’occasion d’échanger nos meilleurs souvenirs de camp. Les cheftaines ont également pu profiter d’un topo de l’ETN Montagne (merci !) et repartent avec moult idées de jeux techniques pour leur unité.
