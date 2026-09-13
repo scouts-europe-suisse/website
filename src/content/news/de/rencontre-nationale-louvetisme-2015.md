@@ -20,12 +20,8 @@ Die Bilanz ist einstimmig: Wann ist das nächste?
 >
 > Wecken um 7.30 Uhr durch die alten Wölfe, dann ein köstliches Frühstück und eine grosse Partie Scoutball. Wir haben tolle Teams gebildet, wir haben uns alle super gut amüsiert. Wir haben viele Tore geschossen dank der Leute, die uns angefeuert haben.
 >
->
->
 > ![Wölflingsmädchen beim Scoutball-Turnier](/images/dsc-8355.jpg)
->
->
 >
 > Das Wochenende endete mit einer Messe mit aussergewöhnlichen Musikern und einer Versammlung, um Frère Fris *[Nationalkommissar Wölflinge und Leiter des Treffens]*, den Leitern, Leiterinnen und allen zu danken, die zum Gelingen dieses Wochenendes beigetragen haben. Und leider mussten wir dann abreisen.
 >
-> Von Louise, Wölfling der Clairière 2. Zürich.
+> *Von Louise, Wölfling der Clairière 2. Zürich.*

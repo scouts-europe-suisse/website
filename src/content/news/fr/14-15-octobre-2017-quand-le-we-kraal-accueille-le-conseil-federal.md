@@ -9,7 +9,8 @@ Rencontre, formation, fraternité ! C’est autour de ces trois piliers que plus
 
 ![Rassemblement sous les arbres, drapeaux des pays d’Europe](/images/rassemblement-drapeaux.jpg)
 
-**Rencontre**
+## Rencontre
+
 Ils venaient des cantons du Valais, de Zurich, de Genève, de Fribourg et de Vaud ! Les chefs du Scoutisme Européen Suisse étaient rassemblés samedi 14 et dimanche 15 octobre 2017 à Saint-Cergue pour le week-end suisse de rentrée. Rencontrer les chefs des autres cantons, ceux que le foulard scout ne quitte plus depuis des années et ceux qui le revêtaient pour la première fois, se retrouver autour d'un papet vaudois géant le samedi soir, rire en suivant les aventures d’un petit ange gardien lors de la veillée festive puis tous se tourner vers Jésus-Christ lors de la veillée d'adoration… de nouvelles amitiés se sont tissées lors de ce week-end dans un esprit de fraternité scoute.
 
 ![](/images/wekraalsesoct2017-86.jpg)
@@ -18,7 +19,8 @@ Cette rencontre était marquée par la présence de Monseigneur Eleganti, évêq
 
 ![](/images/22496149-10155778721014800-216395909042665082-o.jpg)
 
-**Formation**
+## Formation
+
 En ce début d’année, une formation était proposée pour tous les chefs présents. Formation pédagogique bien sûr, au service des enfants et les jeunes qui sont confiés aux unités : les chefs ont ainsi appris à organiser une sortie ou un week-end, à monter un grand jeu, mais aussi à être éducateur pour faire progresser ces enfants et ces jeunes. Il s’agissait également d’une formation technique : le week-end a été rythmé par la vie de camp avec installations en bois parfois sans ficelle, cuisine sur feu de bois, nuit sous la tente…
 
 ![](/images/wekraalsesoct2017-43.jpg)

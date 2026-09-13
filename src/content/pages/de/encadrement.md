@@ -23,12 +23,12 @@ Die verschiedenen Abteilungen werden auf Kantonsebene vom Distriktkommissar koor
 
 Als Garant der Pädagogik ist die Vereinsleitung für die Ausbildung der Leiter und deren pädagogischen Betreuung im Laufe des Jahres verantwortlich.
 
-Der Vorstand und die Vereinsleitung werden von den während der Mitgliederversammlung anwesenden, ausgebildeten Leiter gewählt und erledigen die einem Verein obliegenden Verwaltungsaufgaben: Versicherungen, Kasse, Reglemente usw.
+Der Vorstand und die Vereinsleitung werden von den während der Mitgliederversammlung anwesenden, ausgebildeten Leitern gewählt und erledigen die einem Verein obliegenden Verwaltungsaufgaben: Versicherungen, Kasse, Reglemente usw.
 
 ![Mitgliederversammlung 2015](/images/dsc-0854.jpg)
 
 ## Spezialisierte Technikgruppen
 
-Nationale technische Einheiten (NTE) bringen erfahrene Rovern und Rangers, Leiter und Leiterinnen zusammen, die ihre Kenntnisse in einer bestimmten Technik vertiefen möchten: Topografie, Knautschtechnik, Camping, Singen, Fotografieren, Multimedia usw. Die Mitglieder trainieren dann ihre Technik im Dienst der Bewegung, bei der Ausbildung anderer oder sogar bei Grossveranstaltungen.
+Nationale technische Einheiten (NTE) bringen erfahrene Rovern und Rangern, Leiter und Leiterinnen zusammen, die ihre Kenntnisse in einer bestimmten Technik vertiefen möchten: Topografie, Knautschtechnik, Camping, Singen, Fotografieren, Multimedia usw. Die Mitglieder trainieren dann ihre Technik im Dienst der Bewegung, bei der Ausbildung anderer oder sogar bei Grossveranstaltungen.
 
 ![Ein im Lager gebautes Pionierbauwerk](/images/pionnierage.jpg)

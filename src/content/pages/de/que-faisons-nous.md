@@ -47,6 +47,6 @@ Das Pfadfindertum ist für jeden jungen Menschen eine Gelegenheit, die Gegenwart
 
 ![Messe im Lager der Wölflingsmädchen](/images/img-4776.jpg)
 
-## Die Komplementarität des Reichtums
+## Die Komplementarität der Reichtümer
 
 Die Pfadfinder Europas fördern und respektieren den Aufbau der spezifischen Identität jeder Person im Rahmen homogener und getrennter Einheiten und versuchen, diese Komplementarität zu entdecken, indem sie Jungen und Mädchen in derselben Bewegung aufnehmen.

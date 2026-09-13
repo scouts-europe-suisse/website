@@ -15,4 +15,4 @@ Pour acheter ou compléter l'uniforme de vos enfants, commander par téléphone 
 **Magasin Carrick de Genève :**
 Le magasin Carrick a fermé en mai 2024. Une solution est en cours de recherche.
 
-**Vente par correspondance:** Par téléphone au **+41 79 611 29 28** ou par mail à l’adresse [carrick@scouts-europe.ch](mailto:carrick@scouts-europe.ch)
+**Vente par correspondance :** Par téléphone au **+41 79 611 29 28** ou par mail à l’adresse [carrick@scouts-europe.ch](mailto:carrick@scouts-europe.ch)

@@ -35,8 +35,10 @@ Zum Schluss möchte ich über die „Prises de flot“ (Verleihung der Flots) un
 
 ![Fackelprozession am Abend](/images/procession-flambeaux.jpg)
 
-Gott ist immer derjenige, der stört. Er hat nie aufgehört, seine eigenen Ideen zu haben. Mit dem Heiligen Geist hat man nie Ruhe. Seid bereit! Wozu? – Zu allem. Und wahrscheinlich zu dem, woran ihr nicht gedacht habt, und noch weniger es gewollt hättet. (Doncoeur, CJS, Januar 1958, S. 4)
+> *Gott ist immer derjenige, der stört. Er hat nie aufgehört, seine eigenen Ideen zu haben. Mit dem Heiligen Geist hat man nie Ruhe. Seid bereit! Wozu? – Zu allem. Und wahrscheinlich zu dem, woran ihr nicht gedacht habt, und noch weniger es gewollt hättet.*
+>
+> (Doncoeur, CJS, Januar 1958, S. 4)
 
-Rose
+*Rose*
 
 ![](/images/image-2.jpg)

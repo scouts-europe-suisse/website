@@ -8,21 +8,21 @@ sourceModified: 2025-12-09
 
 L'objectif du scoutisme : aider chaque jeune à devenir un homme ou une femme responsable, libre pour aimer et servir son prochain et ainsi répondre à sa vocation. En ce sens, le scoutisme est un chemin de sainteté, pour une unité de vie entre la vie concrète et la vie spirituelle de ses membres.
 
-La méthode scoute se décline en trois pédagogies adaptée à chaque tranche d'âge :
+La méthode scoute se décline en trois pédagogies adaptées à chaque tranche d'âge :
 
-- [Louvetisme](/fr/branche-jaune/) (8-12 ans)
-- [Éclaireurs et éclaireuses](/fr/branche-verte/) (12-17 ans)
-- [Routiers et guides-aînées](/fr/branche-rouge/) (17 ans et plus)
+- [Louvetisme](/fr/branche-jaune/) (8-12 ans)
+- [Éclaireurs et éclaireuses](/fr/branche-verte/) (12-17 ans)
+- [Routiers et guides-aînées](/fr/branche-rouge/) (17 ans et plus)
 
 ## Le sens du concret
 
-Loin du virtuel, le scout crée et construit. En complément de la formation scolaire, intellectuelle et théorique, le scoutisme insiste sur le développement de la créativité, l'habileté manuelle, l'esprit pratique, le réalisme face aux distance, au temps et aux capacités de chacun.
+Loin du virtuel, le scout crée et construit. En complément de la formation scolaire, intellectuelle et théorique, le scoutisme insiste sur le développement de la créativité, l'habileté manuelle, l'esprit pratique, le réalisme face aux distances, au temps et aux capacités de chacun.
 
 ![Louveteaux lors de la préparation du repas](/images/image-me-zh.jpg)
 
 ## La santé et le développement physique
 
-Le scoutisme se vit au grand air et permet aux enfants et aux adolescents de trouver un équilibre de vie en harmonie avec la nature et leur corps. Elle est une merveilleuse école qui développe dynamisme, endurance et souplesse, et réclame de s'approprier les règles d'hygiène fondamentales. Elle permet aux jeunes de maîtriser leur corps, et de le respecter notamment en luttant contre toute forme d'addiction (tabac, alcool, drogue, jeux vidéos...).
+Le scoutisme se vit au grand air et permet aux enfants et aux adolescents de trouver un équilibre de vie en harmonie avec la nature et leur corps. Elle est une merveilleuse école qui développe dynamisme, endurance et souplesse, et réclame de s'approprier les règles d'hygiène fondamentales. Elle permet aux jeunes de maîtriser leur corps, et de le respecter notamment en luttant contre toute forme d'addiction (tabac, alcool, drogue, jeux vidéos...).
 
 ![Routiers en marche lors d’une route d’été](/images/route-ete.jpg)
 
@@ -36,7 +36,7 @@ Par la vie communautaire, à l'école de la nature, le scoutisme développe les 
 
 Le scoutisme est une école de service, de respect, de confiance en l'autre. Il vise à se tourner vers les autres, à développer et à traduire en actes les capacités de générosité des jeunes. Il fait progressivement découvrir que le véritable bonheur se trouve dans le don de soi et le service.
 
-La vie scoute n'a de sens que si elle débouche sur le service aux autres. C'est en ce sens qu'on a pu définir le scoutisme comme "le civisme à l'école des bois". "Toujours prêt" : c'est la devise de tous les scouts du monde. Elle exprime bien cette volonté de servir.
+La vie scoute n'a de sens que si elle débouche sur le service aux autres. C'est en ce sens qu'on a pu définir le scoutisme comme « le civisme à l'école des bois ». *« Toujours prêt »* : c'est la devise de tous les scouts du monde. Elle exprime bien cette volonté de servir.
 
 ![Service de bois pour préparer la veillée](/images/dsc-7866.jpg)
 

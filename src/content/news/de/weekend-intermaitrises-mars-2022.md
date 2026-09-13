@@ -7,7 +7,9 @@ cover: "/images/actualites/weekend-intermaitrises-mars-2022.jpg"
 translated: true
 ---
 
-*„Liebe Pfadfinder, ich hatte das Glück, glücklich zu leben, und ich wünsche jedem, dasselbe sagen zu können. […] Versucht, diese Erde zu verlassen, nachdem ihr sie besser gemacht habt, als ihr sie vorgefunden habt“ BP*
+> *„Liebe Pfadfinder, ich hatte das Glück, glücklich zu leben, und ich wünsche jedem, dasselbe sagen zu können. […] Versucht, diese Erde zu verlassen, nachdem ihr sie besser gemacht habt, als ihr sie vorgefunden habt.“*
+>
+> BP
 
 Wir schreiben das Jahr 1920, zwei Jahre nach Kriegsende; Grossbritannien erholt sich rasch von grosser Armut. Da versammeln sich 8000 Pfadfinder aus der ganzen Welt zum ersten Weltjamboree. Sie haben die Freude, sich am Rande der Hauptstadt London in der berühmten Olympia Hall zu zwei Tagen voller Brüderlichkeit und Abenteuer zu treffen.
 

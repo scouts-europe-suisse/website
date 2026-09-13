@@ -11,7 +11,7 @@ Um jungen Menschen qualitativ hochwertiges Pfadfindertum anzubieten, hat sich di
 
 ![Wölflingsleiter in einer theoretischen Ausbildungseinheit in Monteret (Saint-Cergue, Waadt)](/images/wekraalsesoct2017-56.jpg)
 
-In Schulungslagern werden Führungskräfte durch theoretischem Unterricht, technische Workshops und Simulationen geschult:
+In Schulungslagern werden Führungskräfte durch theoretischen Unterricht, technische Workshops und Simulationen geschult:
 
 - Technisches Training (Camping- und Pfadfindertechniken, Spiele, Abendrunden)
 - Pädagogische Ausbildung (Pfadfindermethode, Jahresprogramm, Lagerorganisation, Wissen über das Kind/den Jugendlichen, Pfadfinderfortschritt)

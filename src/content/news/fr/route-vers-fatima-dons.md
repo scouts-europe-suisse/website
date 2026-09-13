@@ -7,7 +7,7 @@ updated: 2025-12-09
 
 ![Chefs et cheftaines en formation pédagogique - Monteret, octobre 2017](/images/wekraalsesoct2017-56.jpg)
 
-Quel est notre projet ?
+## Quel est notre projet ?
 
 Un pèlerinage pour environ 70 chefs de notre association depuis la Suisse jusqu'à Fatima, au Portugal, fin juillet-début août 2018. Avec humilité, nos chefs ont choisi de marcher en direction de Fatima afin de se dépasser, d'approfondir leur vie de prière, et de vivre des amitiés porteuses.
 
@@ -15,18 +15,18 @@ Un pèlerinage pour environ 70 chefs de notre association depuis la Suisse jusqu
 
 Quelques repères concrets du pèlerinage :
 
-- Les chefs se rassembleront à côté de Biarritz en France le 28 juillet.
+- Les chefs se rassembleront à côté de Biarritz en France **le 28 juillet**.
 - Répartis en équipes de 8, ils partiront en direction de Fatima via des lieux forts comme Avila, Coimbra... Ils alterneront des journées de marche avec des sections en minibus.
-- L'arrivée à Fatima est prévue le 4 août, pour des temps forts spirituels, avant de repartir enrichis de ce qu'ils y auront découvert.
+- L'arrivée à Fatima est prévue **le 4 août**, pour des temps forts spirituels, avant de repartir enrichis de ce qu'ils y auront découvert.
 - Ils seront accompagnés par plusieurs cadres de l'association et conseillers religieux.
 
-Pourquoi avons-nous besoin de vous ?
+## Pourquoi avons-nous besoin de vous ?
 
 Notre projet est ambitieux car nous devons maintenir un planning serré pour ces jeunes, souvent partagés entre leurs études, un travail, une famille, et qui donnent également du temps pour encadrer des camps scouts.
 
 ![Route en Terre Sainte - 2014](/images/1490801-10152127350384800-324137207-o.jpg)
 
-Afin de ne pas transformer ce pèlerinage en "voyage en car", nous avons choisi ce modèle de vie en équipe qui correspond à notre pédagogie et permettra une vraie démarche de pèlerinage.
+Afin de ne pas transformer ce pèlerinage en « voyage en car », nous avons choisi ce modèle de vie en équipe qui correspond à notre pédagogie et permettra une vraie démarche de pèlerinage.
 
 Le coût estimé de notre projet est de 84000 CHF dont 20000 CHF de location de minibus. Nous avons donc demandé aux jeunes une participation de 880 CHF par personne.
 
@@ -34,7 +34,7 @@ Le coût estimé de notre projet est de 84000 CHF dont 20000 CHF de location de 
 
 ![Route en Terre Sainte - 2014](/images/1519884-10202988665505860-164616941-o.jpg)
 
-Comment nous aider ?
+## Comment nous aider ?
 
 Avec un don, vous pouvez permettre à un jeune dont les moyens sont limités de nous rejoindre :
 
@@ -45,14 +45,16 @@ Avec un don, vous pouvez permettre à un jeune dont les moyens sont limités de 
 
 Nos donateurs, nos familles, les jeunes dont nous avons la charge seront au coeur de nos prières tout au long de ce pèlerinage.
 
-Pour donner :
+**Pour donner :**
 
-**Scoutisme Européen Suisse****IBAN : CH46 0027 9279 C056 4356 1****Motif : "Don Fatima 2018"**
+- **Scoutisme Européen Suisse**
+- **IBAN : CH46 0027 9279 C056 4356 1**
+- **Motif : « Don Fatima 2018 »**
 
 Sur les 12 000 CHF nécessaires pour permettre aux jeunes chefs de partir, vos dons représentent à ce jour :
 
 ![Répartition du budget de la route vers Fatima](/images/fatima-budget.png)
 
-Pour soutenir le projet de pèlerinage des jeunes chefs, il vous reste encore jusqu'au 30 juin !
+Pour soutenir le projet de pèlerinage des jeunes chefs, il vous reste encore jusqu'au **30 juin** !
 
 En cas de question ou pour toute autre information, n'hésitez pas à nous contacter via le formulaire ci-dessous :

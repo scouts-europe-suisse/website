@@ -14,7 +14,9 @@ In einem kleinen Freundeskreis echte Verantwortung übertragen bekommen! Zelte i
 
 ![Pfadfinder bei der Vorbereitung einer Wanderung](/images/nov-p1030695-e1454756970811.jpg)
 
-**Konkret?** Ein- bis zweimal im Monat brichst du in einer kleinen unabhängigen Gruppe von 6 bis 8 Personen (die Patrouille) auf, um neue Herausforderungen anzunehmen und Projekte aufzubauen. An den Wochenenden bereitest du das grosse 15-tägige Sommerlager vor, das dein Meisterwerk sein wird.
+## Konkret?
+
+Ein- bis zweimal im Monat brichst du in einer kleinen unabhängigen Gruppe von 6 bis 8 Personen (die Patrouille) auf, um neue Herausforderungen anzunehmen und Projekte aufzubauen. An den Wochenenden bereitest du das grosse 15-tägige Sommerlager vor, das dein Meisterwerk sein wird.
 
 ![DSCF1427](/images/dscf1427.jpg)
 

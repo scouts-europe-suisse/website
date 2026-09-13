@@ -19,7 +19,7 @@ Die Pfadfindermethode soll nicht lehren, sondern den Jugendlichen in die Lage ve
 
 ## Eine Bewegung für alle
 
-Die Schweizerische Pfadfinderschaft Europas möchte für alle offen sein, die das pfadfinderische Abenteuer erleben möchten. Das schliesst auch junge Menschen mit Beeinträchtigungen ein
+Die Schweizerische Pfadfinderschaft Europas möchte für alle offen sein, die das pfadfinderische Abenteuer erleben möchten. Das schliesst auch junge Menschen mit Beeinträchtigungen ein.
 
 ## Eine christliche Bewegung
 
@@ -31,7 +31,7 @@ Unser Verein ist der christlichen Dimension der Erziehung verbunden. Sie ist vom
 
 ## Eine gesellschaftlich eingesetzte Bewegung
 
-Das Pfadfindertum versucht im Herzen der heutigen Welt das Verantwortungsgefühl, den Dienst am Nächsten und die Sorge um das gemeinsame Wohl aufzuwerten. Das Leben in der Gemeinschaft  erleichtert das Erlernen der Regeln der Gesellschaft und bereitet junge Menschen darauf vor, sich täglich aktiv daran zu beteiligen. Deshalb achten wir auf strikte politische Neutralität.
+Das Pfadfindertum versucht im Herzen der heutigen Welt das Verantwortungsgefühl, den Dienst am Nächsten und die Sorge um das gemeinsame Wohl aufzuwerten. Das Leben in der Gemeinschaft erleichtert das Erlernen der Regeln der Gesellschaft und bereitet junge Menschen darauf vor, sich täglich aktiv daran zu beteiligen. Deshalb achten wir auf strikte politische Neutralität.
 
 ## Eine naturachtende Bewegung
 
