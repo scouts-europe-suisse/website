@@ -213,7 +213,11 @@ export default defineConfig({
       // `/` is a noindex language-detection shim that forwards to /fr/ or /de/.
       // Keep it out of the sitemap rather than advertise a URL we ask search
       // engines not to index.
-      filter: (page) => new URL(page).pathname.replace(/\/+$/, '/') !== BASE,
+      // Les pages de recherche sont noindex : elles n'ont rien à faire dans le sitemap non plus.
+      filter: (page) => {
+        const p = new URL(page).pathname.replace(/\/+$/, '/');
+        return p !== BASE && !/\/(recherche|suche)\/$/.test(p);
+      },
       // Emit <xhtml:link rel="alternate" hreflang="…"> for the FR/DE page pairs.
       i18n: {
         defaultLocale: 'fr',

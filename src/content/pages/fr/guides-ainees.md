@@ -7,7 +7,7 @@ branche: rouge
 sourceModified: 2025-12-09
 ---
 
-#### « Ose l’aventure de la route ! »
+## « Ose l’aventure de la route ! »
 
 Lorsque tu étais louvette, (si tu l'as été...), Akela t'a demandé pourquoi voulais tu prononcer ta promesse et tu as répondu : « pour être une bonne guide et une bonne guide-aînée plus tard... »
 

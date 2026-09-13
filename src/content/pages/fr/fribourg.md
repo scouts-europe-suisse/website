@@ -6,7 +6,7 @@ description: "Le district St Nicolas de Myre accueille des enfants des cantons d
 sourceModified: 2025-12-09
 ---
 
-#### District St Nicolas de Myre
+## District St Nicolas de Myre
 
 ## District St Nicolas de Myre (Fribourg)
 

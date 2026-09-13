@@ -10,8 +10,11 @@ import { CROSS, NEWS_BASE, UI, withBase, type Lang } from '../data/site';
 interface Props {
   lang: Lang;
   limit?: number;
+  /** Niveau du titre de chaque carte : 2 sous un h1 (liste), 3 sous un h2 (accueil). */
+  level?: 2 | 3;
 }
-const { lang, limit } = Astro.props;
+const { lang, limit, level = 3 } = Astro.props;
+const H = level === 2 ? 'h2' : 'h3';
 
 const all = (await getCollection('news', (e) => e.id.startsWith(`${lang}/`) && !e.data.draft)).sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime(),
@@ -40,9 +43,9 @@ const fmt = (d: Date) =>
           <p class="ses-small ses-muted">
             <time datetime={a.data.date.toISOString()}>{fmt(a.data.date)}</time>
           </p>
-          <h3 class="ses-card__title">
+          <H class="ses-card__title">
             <a href={withBase(`/${lang}/${NEWS_BASE[lang]}/${a.id.split('/')[1]}/`)}>{a.data.title}</a>
-          </h3>
+          </H>
           {a.data.summary && <p class="ses-muted ses-news-summary">{a.data.summary}</p>}
         </div>
       </li>

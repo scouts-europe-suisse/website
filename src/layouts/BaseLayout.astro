@@ -52,13 +52,19 @@ const siteUrl = (Astro.site ?? new URL(SITE.domain)).origin;
 const abs = (p: string) => new URL(withBase(p), siteUrl).href;
 const canonical = new URL(Astro.url.pathname, siteUrl).href;
 
-const fullTitle = title.includes(SITE.shortName) || title.includes(SITE.name) ? title : `${title} · ${SITE.name}`;
+// Le titre d'onglet : le nom du mouvement en suffixe, sauf s'il y est déjà ou si le tout
+// dépasserait ~65 caractères (les moteurs le tronquent) : le titre seul, alors.
+const withSuffix = `${title} · ${SITE.name}`;
+const fullTitle = title.includes(SITE.shortName) || title.includes(SITE.name) ? title : withSuffix.length <= 65 ? withSuffix : title;
 
 const defaultDescription: Record<Lang, string> = {
   fr: `${SITE.name} — le scoutisme européen en Suisse : nos branches, notre projet éducatif, et comment nous rejoindre.`,
   de: `${SITE.name} — europäisches Pfadfindertum in der Schweiz: unsere Stufen, unser Erziehungsprojekt, und wie Sie uns beitreten.`,
 };
-const desc = description ?? defaultDescription[lang];
+// La description : 160 caractères au plus, coupée sur un mot (les résumés d'actualités
+// sont souvent plus longs).
+const clamp = (t: string, n = 158) => (t.length <= n ? t : t.slice(0, n).replace(/\s+\S*$/, '') + '…');
+const desc = clamp((description ?? defaultDescription[lang]).replace(/\s+/g, ' ').trim());
 
 const twin = twinHref !== undefined ? twinHref : pageKey ? await twinOf(pageKey, lang) : null;
 const otherLang: Lang = lang === 'fr' ? 'de' : 'fr';
@@ -183,7 +189,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
     </main>
     <Footer lang={lang} twin={twin} />
 
-    <script is:inline>
+    <script>
       (function () {
         // Apparition douce des blocs marqués .ses-reveal.
         if (!('IntersectionObserver' in window)) { document.querySelectorAll('.ses-reveal').forEach(function (e) { e.classList.add('is-in'); }); }
