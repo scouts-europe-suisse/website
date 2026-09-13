@@ -40,7 +40,7 @@ const T = {
 
     <h2 class="mt-10" style="font-size: var(--text-h3)">{UI.headOffice[lang]}</h2>
     <address class="not-italic mt-2">
-      {SITE.name}<br />
+      {SITE.name[lang]}<br />
       {SITE.address.street && <>{SITE.address.street}<br /></>}
       {SITE.address.city[lang]}, {SITE.address.country[lang]}<br />
       <Protected value={SITE.email} kind="email" lang={lang} />

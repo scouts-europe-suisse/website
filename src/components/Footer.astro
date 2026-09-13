@@ -46,7 +46,7 @@ const leaderHref = await pathFor('devenir-chef', lang);
   <div class="ses-col ses-footer__grid">
     <div class="ses-footer__brand">
       <img src={withBase(CROSS)} alt="" width="64" height="64" class="ses-footer__cross" />
-      <p class="ses-footer__name">{SITE.name}</p>
+      <p class="ses-footer__name">{SITE.name[lang]}</p>
       <p class="ses-footer__about">{UI.memberOf[lang]}</p>
       {joinHref && (
         <a href={joinHref} class="ses-btn ses-btn--light ses-btn--small">{UI.findGroup[lang]}</a>
@@ -71,7 +71,7 @@ const leaderHref = await pathFor('devenir-chef', lang);
     <div>
       <h2 class="ses-footer__h">{UI.footerContact[lang]}</h2>
       <address class="not-italic ses-footer__addr">
-        {SITE.name}<br />
+        {SITE.name[lang]}<br />
         {SITE.address.street && <>{SITE.address.street}<br /></>}
         {SITE.address.city[lang]}, {SITE.address.country[lang]}
       </address>
@@ -91,7 +91,7 @@ const leaderHref = await pathFor('devenir-chef', lang);
 
   <div class="ses-footer__bar">
     <div class="ses-col ses-footer__barrow">
-      <p>© 1973–{year} {SITE.name}</p>
+      <p>© 1973–{year} {SITE.name[lang]}</p>
       <p>
         <a href={twin ?? path(other)} hreflang={other} lang={other}>
           {other === 'de' ? 'Deutsch' : 'Français'}

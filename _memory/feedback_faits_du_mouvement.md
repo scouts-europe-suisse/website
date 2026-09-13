@@ -26,8 +26,10 @@ qu'elle a circulé.
 
 ## Les traductions allemandes
 
-Le site est bilingue, mais **l'allemand du site actuel n'existe pas** : `/de/` sert aujourd'hui
-la page française à l'identique. Tout l'allemand est donc à écrire.
+Le site est bilingue. L'allemand de l'ancien site existait (écrit à la main, jamais servi :
+voir [source-site.md](source-site.md)) et a été repris ; ce qui manquait a été traduit par
+Claude. **Décision du 2026-09-11 :** pendant la refonte, une traduction de Claude est acceptée
+par défaut, marquée `translated: false` ; la validation au cas par cas reprendra en production.
 
 - Une traduction produite automatiquement se marque `translated: false` dans l'en-tête de la
   page, et se signale à l'utilisateur comme étant à relire.

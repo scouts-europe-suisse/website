@@ -3,7 +3,7 @@ title: "Eine schweizerische Bewegung"
 urlPath: unsere-pfadfinderschaft/schweizerische-bewegung
 key: mouvement-suisse
 description: "Von den Anfängen am Mont-Pèlerin in den 1970er Jahren zur nationalen Bewegung: die Geschichte der Pfadfinder Europas in der Romandie und in Zürich."
-translated: false
+translated: true
 sourceModified: 2025-12-09
 cover: "/images/chapelle-montagne.jpg"
 coverAlt: "Kapelle auf einem Grat"
@@ -15,7 +15,7 @@ Die Bewegung wurde in den 1970er Jahren beim Mont-Pèlerin im Kanton Waadt gegr�
 
 ## Die Entwicklung einer katholischen Abteilung in Genf
 
-1980 versuchte eine katholische Truppe der Association genevoise des éclaireurs (heutige Pfadibewegung Schweiz) die christliche Dimension ihrer Pfadfinderarbeit intensiver zu leben und wollte trotz der bei der Pfadibewegung Schweiz durchgeführten Reformen die Pfadfindermethode von Baden-Powell treuer folgen. Die Association des Eclaireurs Genevois bemerkte die Unterschiede bei den Bildungszielen und riet der Abteilung, sich einer anderen Pfadfinderbewegung anzuschließen.
+1980 versuchte eine katholische Truppe der Association genevoise des éclaireurs (heutige Pfadibewegung Schweiz) die christliche Dimension ihrer Pfadfinderarbeit intensiver zu leben und wollte trotz der bei der Pfadibewegung Schweiz durchgeführten Reformen die Pfadfindermethode von Baden-Powell treuer folgen. Die Association des Eclaireurs Genevois bemerkte die Unterschiede bei den Bildungszielen und riet der Abteilung, sich einer anderen Pfadfinderbewegung anzuschliessen.
 
 Die katholische Abteilung schloss sich dann den Pfadfinder Europas an und wuchs weiter: Sie hatte Ende der 2000er Jahre 350 Mitglieder. Man lebt dort ein qualitativ hochwertiges und familiäres Pfadfindertum.
 

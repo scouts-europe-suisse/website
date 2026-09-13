@@ -39,8 +39,8 @@ const searchHref = path(lang, SEARCH_BASE[lang]);
 
 <header class="ses-header">
   <div class="ses-col ses-header__row">
-    <a href={home} class="ses-header__logo" aria-label={SITE.name}>
-      <img src={withBase(LOGO)} alt={SITE.name} width="351" height="134" />
+    <a href={home} class="ses-header__logo" aria-label={SITE.name[lang]}>
+      <img src={withBase(LOGO[lang])} alt={SITE.name[lang]} width="351" height="134" />
     </a>
 
     <nav class="ses-nav" aria-label={UI.menu[lang]}>

@@ -3,7 +3,7 @@ title: "Unsere Pfadfinderschaft"
 urlPath: unsere-pfadfinderschaft
 key: notre-scoutisme
 description: "Wer wir sind, was wir tun, unsere drei Altersstufen und die europäische Dimension: eine Erziehungsbewegung nach der Pfadfindermethode."
-translated: false
+translated: true
 sourceModified: 2025-12-09
 cover: "/images/devenir-chef.jpg"
 coverAlt: "Eine Leiterin mit zwei Wölflingen, bei einem Ausflug"
