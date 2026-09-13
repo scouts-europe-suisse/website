@@ -151,9 +151,8 @@ Ce que le critère de clôture demande, c'est **qu'on tranche**, pas qu'on écri
 _(ajouté le 2026-09-11 : depuis le plan 05, chaque reste de ce plan est une issue GitHub
 étiquetée `plan: 04`. Cette liste est tenue à jour par Claude.)_
 
-- #6 Compléter l'allemand : pages sans jumelle, titres de section, actualités — prêt
-  (décision du 2026-09-11 : traduction complète, validée par défaut pendant la refonte)
+- #6 Compléter l'allemand — **fermée** le 2026-09-13 : tout est traduit et validé par Nicolas (PR #50)
 - #7 Relecture de toutes les pages par un membre du mouvement — bloqué, attend des relecteurs
 - #8 Retrouver l'auteur du texte cité de la page européenne — bloqué, attend une personne
-- #9 Écrire les introductions des six pages de rubrique — prêt, fait à l'étape 3 du plan 05
-- Carte des implantations, compte Google : voir #10 (décision)
+- #9 Introductions des six pages de rubrique — **fermée** le 2026-09-11 (PR #26)
+- #10 Carte des implantations, compte Google — **fermée** le 2026-09-13, sans objet (la carte Google n'est plus lue)

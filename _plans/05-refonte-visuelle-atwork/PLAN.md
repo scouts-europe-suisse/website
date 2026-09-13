@@ -161,19 +161,19 @@ _(mise à jour par Claude à chaque changement d'état)_
 - #3 Mettre en place le fonctionnement par issues — **fermée** le 2026-09-11 (PR #12, #13)
 - #4 Publier automatiquement l'aperçu à chaque fusion sur main — **fermée** le 2026-09-13 (PR #49)
 - #5 Gestion des contributeurs — décision, prêt
-- #11 Mettre à jour la documentation périmée — prêt, priorité basse
+- #11 Mettre à jour la documentation périmée — **fermée** le 2026-09-13 (PR #50)
 - #16 Publication cassée sous Windows (npm.cmd EINVAL) — **fermée** le 2026-09-11 (PR #17)
 
 Rattachées à d'autres plans mais faites dans les étapes de ce plan :
-- #6 Compléter l'allemand (plan 04) — étape 5
+- #6 Compléter l'allemand (plan 04) — **fermée** le 2026-09-13 (PR #50), traductions validées par Nicolas
 - #9 Introductions des six pages de rubrique (plan 04) — étape 3
 - #1 et #2 Domaine et hébergeur (plan 01) — après le gel
 
 Faites avant la conversation, à la demande de Nicolas :
 - #14 Pictogrammes des branches (SVG AGSE, couleurs de branche) — **fermée** le 2026-09-11 (PR #15)
 - #18 Branche jaune, un seul pictogramme — **fermée** le 2026-09-11 (PR #19)
-- #20 Carte des implantations depuis la carte Google, dessinée à la charte — données faites (PR #23), carte bloquée jusqu'à la conversation
-- #21 Accueil : dernières photos Instagram, modale, albums — bloqué (jeton Meta, conversation)
+- #20 Carte des implantations — **fermée** le 2026-09-13 (explorateur par districts, PR #26, #40, #47)
+- #21 Accueil : photos Instagram — **fermée** le 2026-09-13 (PR #26, rafraîchissement par #4)
 - #22 Configuration Meta : .env, jetons, secrets hors dépôt — **fermée** le 2026-09-11 (PR #23)
 
 Refonte, version 1 (décision de Nicolas du 2026-09-11 : « fais toute la refonte maintenant,
