@@ -18,8 +18,7 @@ Nachdem wir unseren Gastgebern für ihre Einladung und die Schönheit ihrer Lied
 
 Die Zeremonie endet mit einem Moment der Besinnung. Wir beten für alle Guides und Pfadfinder, die unsere Bewegung gemacht haben, und für alle, die sie weiterhin lebendig halten. 60 Jahre, ein wirklich schöner Geburtstag!
 
-Von Marc C., Abteilungsleiter Saint Dominique Savio, Verantwortlicher der Scouteurop’Tour für die Schweiz
-und Jean-Yves B., Kommissar des Distrikts Saint Nicolas de Flüe
+*Von Marc C., Abteilungsleiter Saint Dominique Savio, Verantwortlicher der Scouteurop’Tour für die Schweiz, und Jean-Yves B., Kommissar des Distrikts Saint Nicolas de Flüe*
 
 ![Die Flamme der ScoutEurop'Tour bei ihrem Besuch am Intermaîtrises-Wochenende in Lausanne](/images/12321597-10206775254034708-6383653440950626216-n.jpg)
 

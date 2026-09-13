@@ -10,7 +10,8 @@ Begegnung, Ausbildung, Brüderlichkeit! Um diese drei Säulen haben sich über 2
 
 ![Versammlung unter den Bäumen, Fahnen der Länder Europas](/images/rassemblement-drapeaux.jpg)
 
-**Begegnung**
+## Begegnung
+
 Sie kamen aus den Kantonen Wallis, Zürich, Genf, Freiburg und Waadt! Die Leiter der Schweizerischen Pfadfinderschaft Europas waren am Samstag, 14., und Sonntag, 15. Oktober 2017 in Saint-Cergue zum Schweizer Wochenende des Jahresauftakts versammelt. Die Leiter der anderen Kantone treffen – jene, die das Pfadfinderhalstuch seit Jahren nicht mehr ablegen, und jene, die es zum ersten Mal trugen –, sich am Samstagabend um einen riesigen Papet vaudois wiederfinden, bei der festlichen Abendrunde über die Abenteuer eines kleinen Schutzengels lachen und sich dann alle beim Anbetungsabend Jesus Christus zuwenden … An diesem Wochenende sind im Geist pfadfinderischer Brüderlichkeit neue Freundschaften entstanden.
 
 ![](/images/wekraalsesoct2017-86.jpg)
@@ -19,7 +20,8 @@ Diese Begegnung war geprägt von der Anwesenheit von Monseigneur Eleganti, Weihb
 
 ![](/images/22496149-10155778721014800-216395909042665082-o.jpg)
 
-**Ausbildung**
+## Ausbildung
+
 Zu diesem Jahresbeginn wurde allen anwesenden Leitern eine Ausbildung angeboten. Pädagogische Ausbildung natürlich, im Dienst der Kinder und Jugendlichen, die den Einheiten anvertraut sind: Die Leiter lernten so, einen Ausflug oder ein Wochenende zu organisieren, ein grosses Geländespiel aufzubauen, aber auch Erzieher zu sein, um diese Kinder und Jugendlichen voranzubringen. Es ging auch um eine technische Ausbildung: Das Wochenende war vom Lagerleben geprägt, mit Holzbauten, teils ganz ohne Schnur, Kochen auf dem Holzfeuer, Nacht im Zelt …
 
 ![](/images/wekraalsesoct2017-43.jpg)

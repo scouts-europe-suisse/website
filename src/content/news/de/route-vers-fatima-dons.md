@@ -8,20 +8,20 @@ translated: true
 
 ![Leiter und Leiterinnen in pädagogischer Ausbildung – Monteret, Oktober 2017](/images/wekraalsesoct2017-56.jpg)
 
-Was ist unser Projekt?
+## Was ist unser Projekt?
 
 Eine Wallfahrt für rund 70 Leiter unseres Vereins von der Schweiz bis nach Fatima in Portugal, Ende Juli bis Anfang August 2018. In Demut haben unsere Leiter gewählt, in Richtung Fatima zu gehen, um über sich hinauszuwachsen, ihr Gebetsleben zu vertiefen und tragende Freundschaften zu leben.
 
 ![Karte der Strecke nach Fatima](/images/fatima-carte.jpg)
 
-Einige konkrete Eckpunkte der Wallfahrt:
+**Einige konkrete Eckpunkte der Wallfahrt:**
 
 - Die Leiter versammeln sich am 28. Juli in der Nähe von Biarritz in Frankreich.
 - In Teams von 8 aufgeteilt, brechen sie über bedeutende Orte wie Ávila, Coimbra … in Richtung Fatima auf. Sie wechseln zwischen Wandertagen und Abschnitten im Kleinbus.
 - Die Ankunft in Fatima ist für den 4. August vorgesehen, für geistliche Höhepunkte, bevor sie bereichert von dem, was sie dort entdeckt haben werden, wieder aufbrechen.
 - Sie werden von mehreren Kadern des Vereins und geistlichen Beratern begleitet.
 
-Warum brauchen wir Sie?
+## Warum brauchen wir Sie?
 
 Unser Projekt ist ehrgeizig, denn wir müssen für diese jungen Menschen einen engen Zeitplan einhalten – sie sind oft zwischen Studium, Arbeit und Familie hin- und hergerissen und schenken zudem ihre Zeit, um Pfadfinderlager zu leiten.
 
@@ -35,7 +35,7 @@ Die geschätzten Kosten unseres Projekts belaufen sich auf 84 000 CHF, davon 20 
 
 ![Route im Heiligen Land – 2014](/images/1519884-10202988665505860-164616941-o.jpg)
 
-Wie können Sie uns helfen?
+## Wie können Sie uns helfen?
 
 Mit einer Spende können Sie es einem jungen Menschen mit begrenzten Mitteln ermöglichen, mit uns zu kommen:
 
@@ -46,9 +46,11 @@ Mit einer Spende können Sie es einem jungen Menschen mit begrenzten Mitteln erm
 
 Unsere Spender, unsere Familien und die jungen Menschen, die uns anvertraut sind, werden während der ganzen Wallfahrt im Zentrum unserer Gebete stehen.
 
-Um zu spenden:
+**Um zu spenden:**
 
-**Scoutisme Européen Suisse****IBAN: CH46 0027 9279 C056 4356 1****Vermerk: "Don Fatima 2018"**
+- **Scoutisme Européen Suisse**
+- **IBAN: CH46 0027 9279 C056 4356 1**
+- **Vermerk: „Don Fatima 2018“**
 
 Von den 12 000 CHF, die nötig sind, damit die jungen Leiter aufbrechen können, machen Ihre Spenden bis heute aus:
 

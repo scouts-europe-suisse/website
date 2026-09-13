@@ -13,6 +13,6 @@ Ausgehend von der Feststellung, dass Ausbildung notwendig ist, organisiert die U
 
 Dieses Jahr hatte unser Schweizer Verein die Ehre, dieses Treffen in Arzier, auf Waadtländer Boden, zu empfangen. Über 70 Personen aus 13 Ländern haben an diesem Wochenende teilgenommen, das sich um das Thema des geistlichen Wachstums der Mitglieder der Bewegung drehte. Dank des Logistikteams aus Mitgliedern des SES konnten unsere Gäste die Reize der Schweiz entdecken, vom Fondue über das Alphorn bis zu den Cailler-Schokoladenstängeln, was die Teilnehmenden in die richtige Stimmung versetzte, um daran zu arbeiten, die Elemente der Pfadfindermethode zu bestimmen, auf die man sich stützen kann, um die Hindernisse unserer Zeit zu überwinden, die sich dem geistlichen Wachstum unserer Mitglieder in den Weg stellen. Die nationalen Teams freuen sich, diese Woodbadge Days empfangen zu haben, und wünschen sich, dass die aus diesem Treffen entstandenen Initiativen so schnell wie möglich auf alle Einheiten ausstrahlen!
 
-Théophane, ACNL
+*Théophane, ACNL*
 
-![*Die in der Schweiz versammelten Mitglieder der UIGSE für diese Ausgabe 2023*](/images/copie-de-wbd-2023-237-061a9624-1.jpg)
+![Die in der Schweiz versammelten Mitglieder der UIGSE für diese Ausgabe 2023](/images/copie-de-wbd-2023-237-061a9624-1.jpg)

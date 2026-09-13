@@ -29,7 +29,7 @@ C'est au pays basque que notre route a commencé, par une prière au bord de la 
 
 ![En haut du col de Roncevaux](/images/img-20180730-095244.jpg)
 
-Notre route s'est poursuivie avec une deuxième étape du Camino. Ces jours de marche, de belles étapes sous un soleil de plomb, ont soudé les équipes dès le début de notre route. Veillées, chants et services ont rythmé nos temps communs pour une belle dynamique scoute et aînée pour le groupe ! Cette première partie s'est achevée par une journée "désert" au désert des Bardenas Reales : chacun a pu passer une journée seul, dans le désert, sans végétation et avec peu d'ombre, avec pour nourriture un bol de riz et des méditations guidées.
+Notre route s'est poursuivie avec une deuxième étape du Camino. Ces jours de marche, de belles étapes sous un soleil de plomb, ont soudé les équipes dès le début de notre route. Veillées, chants et services ont rythmé nos temps communs pour une belle dynamique scoute et aînée pour le groupe ! Cette première partie s'est achevée par une journée « désert » au désert des Bardenas Reales : chacun a pu passer une journée seul, dans le désert, sans végétation et avec peu d'ombre, avec pour nourriture un bol de riz et des méditations guidées.
 
 ## II - Rencontrer - Recevoir : du 1er août au 7 août
 
@@ -57,4 +57,4 @@ Notre route était un pèlerinage à Fatima, mais nous avons poursuivi notre che
 
 ## Et maintenant, on fait quoi ?
 
-Cette route ne se voulait pas une parenthèse mais un élan dans nos vies d'aînés : tous, nous avons maintenant le désir de "repousser les murs" et de viser haut pour poursuivre ce chemin de croissance personnelle et de sainteté ! Fiat Lux !
+Cette route ne se voulait pas une parenthèse mais un élan dans nos vies d'aînés : tous, nous avons maintenant le désir de « repousser les murs » et de viser haut pour poursuivre ce chemin de croissance personnelle et de sainteté ! Fiat Lux !

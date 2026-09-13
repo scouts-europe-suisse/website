@@ -21,7 +21,7 @@ Die katholische Abteilung schloss sich dann den Pfadfinder Europas an und wuchs 
 
 ## Eine wachsende Bewegung
 
-2007 arbeitete das neue Leitungsteam des Vereins daran, die Bewegung auf nationaler Ebene zu bringen: In Lausanne, Fribourg und Zürich wurden neue Abteilungen gegründet.
+2007 arbeitete das neue Leitungsteam des Vereins daran, die Bewegung auf nationale Ebene zu bringen: In Lausanne, Fribourg und Zürich wurden neue Abteilungen gegründet.
 
 Im Jahr 2014 wurde ein Netzwerk von freien Patrouillen ins Leben gerufen, insbesondere im Unterwallis. In der Folge sind daraus Abteilungen geworden.
 

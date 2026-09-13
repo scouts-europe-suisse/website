@@ -6,7 +6,7 @@ updated: 2025-12-09
 translated: true
 ---
 
-Einheit!
+## Einheit!
 
 Erstes nationales Treffen der Schweizerischen Pfadfinderschaft Europas am 13. und 14. April 2013. Lager je Altersstufe, mit Abschluss in der Kathedrale von Freiburg, wo uns der Bischof empfing. Ein Lager der Gelben Stufe am Hang. Die Grüne Stufe rund um die Abtei Hauterive. Ein Pfadfinderlager, das nur über eine Froissartage-Brücke über den Fluss Saane erreichbar war. Ein Ort für die Abendrunde am Fuss der Flussufer für die Pfadfinderinnen.
 
@@ -14,4 +14,4 @@ Ein Lächeln auf allen Lippen, Freude, die auf allen Gesichtern strahlt. Die Ver
 
 Ob Patrouillenführer oder Leiter: sich sagen, dass im Dienst zu sein in der grossen Pfadfinderfamilie seinen ganzen Sinn bekommt! Aufbrechen, voller Elan für die Lager, die sich am Horizont abzeichnen, und sich dabei sagen: Wann machen wir das wieder? Wenn es ein erstes Mal gibt, dann damit es ein zweites gibt!
 
-Von Étienne R., Assistent des Nationalkommissars Pfadfinder
+*Von Étienne R., Assistent des Nationalkommissars Pfadfinder*
