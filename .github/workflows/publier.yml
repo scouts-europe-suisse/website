@@ -57,6 +57,9 @@ jobs:
         run: npm run og
 
       - name: Commiter les données mises à jour, s'il y en a
+        # Ne bloque jamais la publication : si main a avancé entre-temps et que le push
+        # échoue malgré la relance, les photos seront commitées au passage suivant.
+        continue-on-error: true
         run: |
           git config user.name "Publication automatique"
           git config user.email "noreply@scouts-europe.ch"
@@ -65,7 +68,11 @@ jobs:
             echo "Rien de neuf côté photos."
           else
             git commit -m "Photos Instagram et images de partage mises à jour (automatique)"
-            git push origin HEAD:main
+            for essai in 1 2 3; do
+              git pull --rebase origin main && git push origin HEAD:main && break
+              echo "Push rejeté (essai $essai), nouvelle tentative…"
+              sleep 5
+            done
           fi
 
       - name: Construire pour GitHub Pages
