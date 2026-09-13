@@ -37,7 +37,10 @@ export const LANG_LABELS: Record<Lang, string> = {
 };
 
 export const SITE = {
-  name: 'Scoutisme Européen Suisse',
+  /** Le nom du mouvement, dans chaque langue (décision de Nicolas, 2026-09-13). */
+  name: { fr: 'Scoutisme Européen Suisse', de: 'Schweizerische Pfadfinderschaft Europas' } as Record<Lang, string>,
+  /** Le nom juridique, pour les mentions qui ne se traduisent pas. */
+  legalName: 'Scoutisme Européen Suisse',
   shortName: 'SES',
   domain: 'https://www.scouts-europe.ch',
   email: 'info@scouts-europe.ch',
@@ -121,8 +124,8 @@ export const NAV: NavItem[] = [
   },
 ];
 
-/** Le logo du mouvement, vectorisé depuis le PNG de l'ancien site (plan 05). */
-export const LOGO = '/images/logo-ses.svg';
+/** Le logo du mouvement, par langue : croix officielle, texte en tracés, drapeau (issues #27, #6). */
+export const LOGO: Record<Lang, string> = { fr: '/images/logo-ses.svg', de: '/images/logo-ses-de.svg' };
 /** La croix seule, pour les fonds sombres et les petits formats. */
 export const CROSS = '/images/croix-ses.svg';
 

@@ -3,7 +3,7 @@ title: "Uns beitreten"
 urlPath: uns-beitreten
 key: nous-rejoindre
 description: "Ihr Kind anmelden oder Leiter werden: unsere Standorte und lokalen Kontakte, und was die Bewegung jungen Menschen von 18 bis 30 Jahren bietet."
-translated: false
+translated: true
 map: true
 sourceModified: 2025-12-09
 ---

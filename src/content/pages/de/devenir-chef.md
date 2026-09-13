@@ -3,7 +3,7 @@ title: "Leiter werden"
 urlPath: uns-beitreten/leiter-werden
 key: devenir-chef
 description: "Die Bewegung vertraut ihre Einheiten jungen Menschen von 18 bis 30 Jahren an und bildet sie aus. Leiter sein: eine einzigartige Erfahrung und Lebensschule."
-translated: false
+translated: true
 sourceModified: 2025-12-09
 ---
 
@@ -11,7 +11,7 @@ Die Pfadfindermethode entscheidet sich dafür, junge Menschen im Alter von 18 bi
 
 Leiter zu sein ist eine einzigartige Erfahrung! Es bedeutet, dank der Aktivitäten von September bis Juni und des Sommerlagers die Verantwortung für die Erziehung von rund zwanzig Kindern über ein oder mehrere Jahre zu tragen. Aber es ist auch eine Lebensschule, in der man Teamarbeit, Projektmanagement, Reaktionsfähigkeit und Anpassungsfähigkeit lernt.
 
-![Deux louvettes attentives à leur cheftaine](/images/devenir-chef.jpg)
+![Zwei Wölflingsmädchen hören ihrer Leiterin aufmerksam zu](/images/devenir-chef.jpg)
 
 Der Einheitsleiter wird bei seiner Aufgabe von mehreren Assistenten unterstützt, denen er bestimmte Aufgaben anvertraut: Ersthelfer, Spielleiter, Abendrundenleiter usw.
 

@@ -3,7 +3,7 @@
 **Responsable :** à définir
 **Date :** 2026-09-11
 **Demandé par :** Perki
-**Portée :** `src/layouts/`, `src/data/site.ts`, `public/robots.txt`, `scripts/publish.mjs`,
+**Portée :** `src/layouts/`, `src/data/site.ts`, `src/pages/robots.txt.ts`, `scripts/publish.mjs`,
 et tout ce qui touche aux adresses des pages
 
 ## Les deux situations, et ce que ce plan couvre

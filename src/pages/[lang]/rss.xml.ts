@@ -19,9 +19,9 @@ export async function GET(context: APIContext) {
   ).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
   return rss({
-    title: `${SITE.name} — ${UI.news[lang]}`,
+    title: `${SITE.name[lang]} — ${UI.news[lang]}`,
     description:
-      lang === 'fr' ? `Les actualités du ${SITE.name}.` : `Neuigkeiten der ${SITE.name}.`,
+      lang === 'fr' ? `Les actualités du ${SITE.name.fr}.` : `Neuigkeiten der ${SITE.name.de}.`,
     site: context.site ?? SITE.domain,
     items: articles.map((a) => ({
       title: a.data.title,

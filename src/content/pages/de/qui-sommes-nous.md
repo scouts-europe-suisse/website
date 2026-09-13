@@ -3,7 +3,7 @@ title: "Wer sind wir?"
 urlPath: unsere-pfadfinderschaft/wer-sind-wir
 key: qui-sommes-nous
 description: "Eine Erziehungsbewegung nach der Pfadfindermethode, ergänzend zu Familie und Schule: katholisch, offen für alle und der Natur verbunden."
-translated: false
+translated: true
 sourceModified: 2025-12-09
 ---
 
@@ -11,11 +11,11 @@ sourceModified: 2025-12-09
 
 Der Verein der Schweizerischen Pfadfinderschaft Europas ist eine Bewegung, die sich eine von der Pfadfindermethode geprägte Erziehung vorstellt, ergänzend zu Familie und Schule. Sie zielt auf die Entfaltung der Kinder, Jugendlichen und jungen Erwachsenen ab; durch Spiel und Abenteuer in der Natur, aber auch eine altersangepasste Verantwortungsübernahme.
 
-![Louvettes lors d'un camp d'été](/images/p1140040.jpg)
+![Wölflingsmädchen in einem Sommerlager](/images/p1140040.jpg)
 
 ## Eine Bildungsbewegung für junge Menschen
 
-Die Pfadfindermethode soll nicht lehren, sondern den Jugendlichen in die Lage versetzen, selbstständig zu handeln. So lernt der Pfadfinder, für die ausgewogene Entwicklung aller Bestandteile seiner Persönlichkeit verantwortlich zu werden. Die Jugendlichen erfahren somit ein hohes Maß an Autonomie, das praktische Lernen ihrer Wahlfreiheit, die daraus resultierende Verantwortung und gleichzeitig die Anforderungen des gemeinschaftlichen Lebens.
+Die Pfadfindermethode soll nicht lehren, sondern den Jugendlichen in die Lage versetzen, selbstständig zu handeln. So lernt der Pfadfinder, für die ausgewogene Entwicklung aller Bestandteile seiner Persönlichkeit verantwortlich zu werden. Die Jugendlichen erfahren somit ein hohes Mass an Autonomie, das praktische Lernen ihrer Wahlfreiheit, die daraus resultierende Verantwortung und gleichzeitig die Anforderungen des gemeinschaftlichen Lebens.
 
 ## Eine Bewegung für alle
 

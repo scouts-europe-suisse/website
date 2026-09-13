@@ -149,4 +149,12 @@ Récupérés eux aussi, publiés ni l'un ni l'autre : **aucune page du site actu
 ## Ce qui n'est pas encore relevé
 
 Ces dix fichiers sont ceux de la page d'accueil. Les pages intérieures en ont d'autres, à
-inventorier lors de la reprise du contenu ([plan 03](../../_plans/03-migration-contenu-wordpress/PLAN.md)).
+inventorier lors de la reprise du contenu ([plan 03, archivé](../../_plans/_archives/03-migration-contenu-wordpress-done/PLAN.md)).
+
+---
+
+**Note du 2026-09-13.** Cet inventaire décrit l'état du 2026-09-10. Depuis : les autorisations
+de l'ancien site ont été confirmées par Perki (plan 04, 71 emplacements remplis, 50 images
+publiées) ; les photos des comptes Instagram et Facebook du mouvement sont utilisables
+(décision de Nicolas du 2026-09-11) et servent à l'accueil, au bandeau et à huit actualités ;
+les écussons PNG de branche ont été remplacés par les pictogrammes SVG de l'AGSE.

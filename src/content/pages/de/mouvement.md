@@ -3,7 +3,7 @@ title: "Die Bewegung"
 urlPath: die-bewegung
 key: mouvement
 description: "Ausbildung der Leiter, Betreuung, Geschichte der Pfadfinder Europas in der Schweiz und Partnerschaft mit ESPAS: wie die Bewegung ihre Einheiten trägt."
-translated: false
+translated: true
 sourceModified: 2025-12-09
 cover: "/images/chapelle-montagne.jpg"
 coverAlt: "Kapelle auf einem Grat"

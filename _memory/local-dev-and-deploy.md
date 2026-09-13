@@ -118,19 +118,19 @@ SITE_URL=https://exemple.github.io BASE_PATH=/website npm run build
 grep -rhoE '(src|href)="/[a-zA-Z][^"]*"' _build --include='*.html' | grep -v '^.*"/website' | sort -u
 ```
 
-## La mise en ligne — pas encore décidée
+## La mise en ligne
 
-**Il n'y a volontairement ni script de publication, ni fichier `CNAME`, ni branche de déploiement
-dans ce dépôt.** L'hébergement n'est pas choisi : c'est l'objet du
-[plan 01](../_plans/01-domaine-et-bascule-later/PLAN.md).
+**L'aperçu se publie tout seul** sur GitHub Pages (https://scouts-europe-suisse.github.io/website/)
+à chaque fusion sur `main`, une fois par jour, et à la demande : workflow
+`.github/workflows/publier.yml` (issue #4), garde-fous dans `scripts/verifier-build.mjs`.
+`npm run deploy` (`scripts/publish.mjs`, branche `gh-pages`) reste le secours depuis un poste.
+La règle est dans [feedback_publication.md](feedback_publication.md).
 
-Si un utilisateur demande à publier : ne pas improviser. La règle est dans
-[feedback_publication.md](feedback_publication.md).
+**Le vrai domaine n'est pas encore choisi ni basculé** : issues #1 et #2, plan 01. Le site
+actuel (WordPress) continue de tourner chez son hébergeur pendant tout le chantier. Rien de ce
+qui est fait ici ne l'affecte.
 
-Le site actuel (WordPress) continue de tourner chez son hébergeur pendant tout le chantier.
-Rien de ce qui est fait ici ne l'affecte.
-
-### Le jour où l'hébergement sera choisi
+### Deux dossiers à ne pas confondre
 
 Deux choses à ne pas confondre, parce qu'elles se ressemblent :
 

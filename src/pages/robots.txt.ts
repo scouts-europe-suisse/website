@@ -21,13 +21,13 @@ export const GET: APIRoute = ({ site }) => {
   const origin = (site ?? new URL(SITE.domain)).origin;
 
   const body = IS_PRODUCTION_SITE
-    ? `# ${SITE.name} — ${SITE.domain}
+    ? `# ${SITE.legalName} — ${SITE.domain}
 User-agent: *
 Allow: /
 
 Sitemap: ${origin}/sitemap-index.xml
 `
-    : `# Site de préparation du ${SITE.name} — ce n'est pas le site du mouvement.
+    : `# Site de préparation du ${SITE.legalName} — ce n'est pas le site du mouvement.
 # Le site officiel est ${SITE.domain}. Cette version sert à préparer son
 # remplacement : elle ne doit apparaître dans aucun résultat de recherche.
 #

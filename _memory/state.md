@@ -7,77 +7,64 @@ metadata:
 
 # Où en est le chantier
 
-**Mise à jour : 2026-09-10 (ouverture du chantier).**
+**Mise à jour : 2026-09-13 (refonte visuelle v1 en ligne, fonctionnement par issues).**
+Le détail vivant est dans les issues GitHub et dans
+[`_plans/05-refonte-visuelle-atwork/PLAN.md`](../_plans/05-refonte-visuelle-atwork/PLAN.md) ;
+cette note résume.
 
 ## Ce qui est en place
 
-- **Le squelette du site** : Astro 5 + Tailwind v4, bilingue `/fr/` et `/de/`, avec toutes les
-  pages du menu actuel créées et reliées. Le site se construit et s'affiche.
-- **L'arborescence** reprend celle du site actuel, elle-même proche de celle proposée par le
-  cahier des charges. Les adresses des pages sont conservées à l'identique, sauf les artefacts
-  WordPress (voir [source-site.md](source-site.md)).
-- **L'habillage reprend l'identité actuelle** : logo et écussons de branche du site WordPress,
-  couleurs prélevées dans le logo, polices Open Sans et Droid Sans hébergées sur place.
-  Tout est en variables dans `src/styles/global.css`, remplaçable en un fichier quand la
-  charte arrivera.
-- **Le fonctionnement à plusieurs** : une branche par personne, des plans dans `_plans/`, un
-  rituel de démarrage de session.
-- **Le dépôt distant** : `scouts-europe-suisse/website` sur GitHub, en privé. `main` et
-  `work/perki` y sont poussées.
-
-- **Le contenu est repris** (2026-09-10) : 19 pages françaises, 17 pages allemandes et
-  19 actualités, tirées de l'export de la base du WordPress actuel. Aucun texte n'a été
-  réécrit ni traduit automatiquement.
-- **Le bilinguisme fonctionne vraiment** : l'allemand existait, écrit à la main, mais le site
-  actuel ne le servait pas. Chaque page a son adresse dans sa langue
-  (`/fr/branche-jaune/` ↔ `/de/woelflingsstufe/`), les deux étant reliées par une clé.
+- **Le site** : Astro 5 + Tailwind v4, bilingue `/fr/` et `/de/`, 20 pages françaises, 18
+  allemandes, 19 actualités. Le contenu vient de l'export du WordPress (2026-09-10) ; depuis,
+  il n'est modifié que par des issues. `src/content/` fait foi.
+- **La refonte visuelle v1** (2026-09-11, plan 05) : charte moderne, institutionnelle, sobre,
+  décrite dans [design-system.md](design-system.md) ; logo construit sur la croix officielle
+  des Scouts d'Europe ; pictogrammes de branche de l'AGSE ; accueil comme parcours pour un
+  parent ; carte des implantations dessinée dans le site, organisée par districts, groupes et
+  unités (`src/data/districts.ts`) ; photos Instagram sur l'accueil ; adresses e-mail et
+  téléphones protégés des robots ; données structurées et image de partage par page.
+- **Le fonctionnement à plusieurs** : issues GitHub étiquetées, une branche par issue, pull
+  request vers `main`, plans dans `_plans/`, rituel de démarrage. Depuis le 2026-09-13, tout
+  changement technique, de design ou de structure demande une confirmation dans la
+  conversation ; le contenu seul, non ([feedback_confirmation_technique.md](feedback_confirmation_technique.md)).
+- **La publication** : automatique à chaque fusion sur `main` et une fois par jour (photos
+  Instagram rafraîchies), avec les garde-fous de `scripts/verifier-build.mjs`. `npm run deploy`
+  en secours.
+- **Le dépôt** : `scouts-europe-suisse/website`, **public**. Rien de personnel n'y entre ; les
+  secrets Meta sont dans `.env` local et dans les secrets du dépôt.
 
 ## En ligne
 
-**Aperçu public :** https://scouts-europe-suisse.github.io/website/ — `npm run deploy`.
-Ce n'est **pas** le site officiel : `www.scouts-europe.ch` tourne toujours sous WordPress.
-Le site sait être servi à la racine d'un domaine comme depuis un sous-dossier ; la bascule du
-vrai domaine reste à décider ([plan 01](../_plans/01-domaine-et-bascule-later/PLAN.md)).
+**Aperçu public :** https://scouts-europe-suisse.github.io/website/ — marqué « ne pas
+indexer ». Ce n'est **pas** le site officiel : `www.scouts-europe.ch` tourne toujours sous
+WordPress. La bascule du domaine et l'hébergeur sont les issues #1 et #2 (plan 01).
 
-**Le dépôt est public.** Rien de personnel n'y entre, et l'historique garde ce qu'on y met même
-après suppression.
+## Ce qui n'est pas en place, ou attend quelqu'un
 
-## Ce qui n'est pas en place
-
-- **L'allemand est incomplet** : deux pages françaises sans jumelle (guides-aînées, Fribourg),
-  quelques titres de section restés en français dans les pages allemandes, aucune actualité
-  traduite.
-- **Personne du mouvement n'a relu** les pages. La conversion était automatique.
-- **La carte des implantations** est à construire : la page est vide sur l'ancien site, il n'y
-  avait rien à migrer.
-- **L'habillage définitif.** L'identité actuelle est en place — logo, couleurs prélevées dans le
-  logo, polices du site actuel — mais c'est justement ce que la charte doit revoir
-  ([plan 02](../_plans/02-charte-graphique-later/PLAN.md)). Manque l'image de partage
-  (`og-image.png`).
-- **Deux détails de contenu** : le visuel ESPAS est un PDF, qui ne peut pas s'afficher dans une
-  page ; et le texte cité de la page européenne attend l'identification de son auteur.
-
-## Ce qui est demandé mais pas encore commencé
-
-- **La carte interactive des implantations** (cahier des charges, point 3). Question ouverte :
-  quel fond de carte, et à quelles conditions de protection des données.
-- **Les publications des réseaux sociaux** mises en avant sur le site (point 5). Même question.
-- Les modèles de documents (circulaires, signatures d'e-mail) — hors site, mais partie du même
-  chantier de charte.
+- **La relecture** de toutes les pages par des membres du mouvement, FR et DE (issue #7).
+- **L'auteur du texte cité** de la page européenne (issue #8).
+- **La gestion des contributeurs** : qui invite, avec quel rôle (issue #5).
+- **Le gel du design** : la v1 est soumise aux autres ; les remarques arrivent en issues.
+- **Les documents types** de la charte (circulaires, signatures) : hors site.
+- Deux points à confirmer dans les implantations : un doublon de la liste des groupes
+  (2e Lausanne) et la localité du groupe Riviera (Vevey).
 
 ## Décisions déjà prises
 
 | Décision | Date | Où c'est écrit |
 |---|---|---|
-| Site statique (Astro) plutôt qu'un CMS type WordPress | 2026-09-10 | [cahier-des-charges.md](cahier-des-charges.md) |
+| Site statique (Astro) plutôt qu'un CMS ; **Claude tient le rôle du CMS** | 2026-09-10, 2026-09-11 | [cahier-des-charges.md](cahier-des-charges.md), plan 05 |
 | Français par défaut, allemand en seconde langue, préfixe `/fr/` conservé | 2026-09-10 | [source-site.md](source-site.md) |
-| Pas de `backloop.dev` en local — `http://localhost` simple | 2026-09-10 | [local-dev-and-deploy.md](local-dev-and-deploy.md) |
-| Polices du site actuel (Open Sans, Droid Sans), hébergées sur place plutôt que chez Google | 2026-09-10 | [design-system.md](design-system.md) |
-| Couleurs prélevées dans le logo plutôt qu'approchées à l'œil | 2026-09-10 | [design-system.md](design-system.md) |
-| Les trois photos où des mineurs sont reconnaissables ne sont pas reprises sans vérification des autorisations | 2026-09-10 | [../_migrations/images/README.md](../_migrations/images/README.md) |
-| Une branche par personne, `_plans/` directement sur `main` | 2026-09-10 | [conventions.md](conventions.md) |
+| Pas de `backloop.dev` en local | 2026-09-10 | [local-dev-and-deploy.md](local-dev-and-deploy.md) |
+| Polices Cabin et Source Sans 3, hébergées sur place | 2026-09-10 | [design-system.md](design-system.md) |
+| Rouge et jaune de la charte = ceux du SVG officiel de la croix | 2026-09-12 | [design-system.md](design-system.md) |
+| Photos : celles de l'ancien site et des comptes Instagram et Facebook du mouvement ; aucune image générée par IA | 2026-09-10, 2026-09-11 | [feedback_publication.md](feedback_publication.md) |
+| Issues GitHub, une branche par issue, publication automatique, chaque contributeur décide seul | 2026-09-11 | plan 05, [conventions.md](conventions.md) |
 | Adresses françaises conservées, adresses allemandes en allemand | 2026-09-10 | [source-site.md](source-site.md) |
 | L'export de la base reste hors du dépôt (données personnelles) | 2026-09-10 | [../_migrations/README.md](../_migrations/README.md) |
-| Dépôt distant privé sur le GitHub du mouvement | 2026-09-10 | [conventions.md](conventions.md) |
+| Dépôt public (nécessaire pour GitHub Pages) | 2026-09-10 | [conventions.md](conventions.md) |
+| Traductions allemandes acceptées par défaut pendant la refonte, marquées `translated: false` | 2026-09-11 | plan 05 |
+| Siège : 1205 Genève, sans adresse de rue | 2026-09-13 | issue #36 |
+| Contacts protégés des robots, jamais en clair | 2026-09-13 | [secrets-et-configuration.md](secrets-et-configuration.md) |
 
 Voir aussi [[cahier-des-charges]], [[source-site]].

@@ -24,7 +24,7 @@ const OUT = path.join(ROOT, 'public', 'images', 'og');
 const STAMP = path.join(OUT, '.empreintes.json');
 const W = 1200, H = 630;
 const FONT = path.join(ROOT, 'node_modules', '@fontsource', 'cabin', 'files', 'cabin-latin-700-normal.woff');
-const LOGO = path.join(ROOT, 'public', 'images', 'logo-ses.svg');
+const LOGOS = { fr: path.join(ROOT, 'public', 'images', 'logo-ses.svg'), de: path.join(ROOT, 'public', 'images', 'logo-ses-de.svg') };
 const DEFAULT_PHOTO = path.join(ROOT, 'public', 'images', 'accueil-bandeau.jpg');
 
 const font = fontkit.openSync(FONT);
@@ -69,7 +69,7 @@ function frontmatter(file) {
   return out;
 }
 
-async function render(target, { title, photo, eyebrow }) {
+async function render(target, { title, photo, eyebrow, lang }) {
   const lines = textLines(title, lines_size(title), 1040).slice(0, 3);
   const size = lines_size(title);
   const lineH = size * 1.12;
@@ -83,7 +83,7 @@ async function render(target, { title, photo, eyebrow }) {
     <rect x="${W - 400}" y="48" width="320" height="94" rx="14" fill="#fff"/>
     ${eye}${paths}
   </svg>`);
-  const logo = await sharp(fs.readFileSync(LOGO), { density: 300 }).resize(280).png().toBuffer();
+  const logo = await sharp(fs.readFileSync(LOGOS[lang] ?? LOGOS.fr), { density: 300 }).resize(280).png().toBuffer();
   const base = await sharp(photo).resize(W, H, { fit: 'cover', position: 'centre' }).toBuffer();
   await sharp(base).composite([{ input: overlay }, { input: logo, left: W - 380, top: 60 }]).jpeg({ quality: 82, mozjpeg: true }).toFile(target);
 }
@@ -117,7 +117,7 @@ async function main() {
     fs.mkdirSync(dir, { recursive: true });
     const target = path.join(dir, `${j.name}.jpg`);
     const photoStat = fs.statSync(j.photo);
-    const hash = crypto.createHash('md5').update(`${j.title}|${j.eyebrow}|${j.photo}|${photoStat.size}|v2`).digest('hex');
+    const hash = crypto.createHash('md5').update(`${j.title}|${j.eyebrow}|${j.photo}|${photoStat.size}|${j.lang}|v3`).digest('hex');
     const id = `${j.lang}/${j.name}`;
     if (stamps[id] === hash && fs.existsSync(target)) continue;
     await render(target, j);
