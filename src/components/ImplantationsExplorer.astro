@@ -140,7 +140,7 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
               <div class="ses-district__head">
                 <div>
                   <p class="ses-eyebrow ses-district__eyebrow">{d.codes.length > 1 ? T.cantonsPl : T.cantons} {d.codes.join(' · ')}</p>
-                  <h3 class="ses-district__title">{d.name} <span class="ses-district__dist" data-dist hidden></span></h3>
+                  <h2 class="ses-district__title">{d.name} <span class="ses-district__dist" data-dist hidden></span></h2>
                   <p class="ses-muted">{d.cantons}</p>
                 </div>
                 <ul class="ses-district__kinds" aria-label={T.filter}>
@@ -190,7 +190,7 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
   </div>
 </section>
 
-<script is:inline>
+<script>
   (function () {
     var root = document.querySelector('[data-explorer]');
     if (!root) return;

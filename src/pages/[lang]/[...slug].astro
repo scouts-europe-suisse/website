@@ -87,7 +87,7 @@ const routeTwin =
 ---
 
 {kind === 'search' && (
-  <BaseLayout title={UI.search[lang]} lang={lang} noindex twinHref={routeTwin}>
+  <BaseLayout title={UI.search[lang]} description={UI.searchIntro[lang]} lang={lang} noindex twinHref={routeTwin}>
     <div class="ses-page-head">
       <div class="ses-col ses-col--narrow">
         <h1>{UI.search[lang]}</h1>
@@ -99,7 +99,7 @@ const routeTwin =
 )}
 
 {kind === 'news-index' && (
-  <BaseLayout title={UI.news[lang]} lang={lang} twinHref={routeTwin} ogSlug="actualites" breadcrumbs={[{ name: UI.home[lang], href: path(lang) }, { name: UI.news[lang], href: path(lang, NEWS_BASE[lang]) }]}>
+  <BaseLayout title={UI.news[lang]} description={UI.latestNews[lang] + (lang === 'fr' ? ' : pèlerinages, camps, week-ends nationaux et rencontres du Scoutisme Européen Suisse.' : ': Wallfahrten, Lager, nationale Wochenenden und Treffen der Schweizerischen Pfadfinderschaft Europas.')} lang={lang} twinHref={routeTwin} ogSlug="actualites" breadcrumbs={[{ name: UI.home[lang], href: path(lang) }, { name: UI.news[lang], href: path(lang, NEWS_BASE[lang]) }]}>
     <div class="ses-page-head">
       <div class="ses-col">
         <ol class="ses-crumbs"><li><a href={path(lang)}>{UI.home[lang]}</a></li><li>{UI.news[lang]}</li></ol>
@@ -107,7 +107,7 @@ const routeTwin =
         <p class="ses-lead mt-3">{UI.latestNews[lang]}</p>
       </div>
     </div>
-    <div class="ses-col ses-section"><NewsList lang={lang} /></div>
+    <div class="ses-col ses-section"><NewsList lang={lang} level={2} /></div>
   </BaseLayout>
 )}
 

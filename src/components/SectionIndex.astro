@@ -34,7 +34,7 @@ const meta = (key: string) => entries.find((e) => e.data.key === key && e.id.sta
                   {BRANCHES[branche].map((icon) => <BrancheIcon icon={icon} size="3rem" lang={lang} />)}
                 </div>
               )}
-              <h3 class="ses-card__title"><a href={withBase(`/${lang}/${p.slug}/`)}>{p.title}</a></h3>
+              <h2 class="ses-card__title"><a href={withBase(`/${lang}/${p.slug}/`)}>{p.title}</a></h2>
               {m?.description && <p class="ses-muted ses-small">{m.description}</p>}
             </div>
           </li>
