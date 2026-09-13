@@ -152,7 +152,7 @@ _(ajouté le 2026-09-11 : depuis le plan 05, chaque reste de ce plan est une iss
 étiquetée `plan: 04`. Cette liste est tenue à jour par Claude.)_
 
 - #6 Compléter l'allemand — **fermée** le 2026-09-13 : tout est traduit et validé par Nicolas (PR #50)
-- #7 Relecture de toutes les pages par un membre du mouvement — bloqué, attend des relecteurs
-- #8 Retrouver l'auteur du texte cité de la page européenne — bloqué, attend une personne
+- #7 Relecture — **fermée** le 2026-09-13 : tous les contributeurs peuvent relire, corrections par issues
+- #8 Auteur du texte cité — **fermée** le 2026-09-13 : on laisse la citation sans auteur, reproduite en entier (issue #58)
 - #9 Introductions des six pages de rubrique — **fermée** le 2026-09-11 (PR #26)
 - #10 Carte des implantations, compte Google — **fermée** le 2026-09-13, sans objet (la carte Google n'est plus lue)

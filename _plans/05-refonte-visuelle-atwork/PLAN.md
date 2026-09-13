@@ -160,7 +160,7 @@ _(mise à jour par Claude à chaque changement d'état)_
 Étape 0 :
 - #3 Mettre en place le fonctionnement par issues — **fermée** le 2026-09-11 (PR #12, #13)
 - #4 Publier automatiquement l'aperçu à chaque fusion sur main — **fermée** le 2026-09-13 (PR #49)
-- #5 Gestion des contributeurs — décision, prêt
+- #5 Gestion des contributeurs — **fermée** le 2026-09-13
 - #11 Mettre à jour la documentation périmée — **fermée** le 2026-09-13 (PR #50)
 - #16 Publication cassée sous Windows (npm.cmd EINVAL) — **fermée** le 2026-09-11 (PR #17)
 
@@ -192,6 +192,8 @@ sans interruption », à soumettre aux autres le soir même) :
 - #46 Premier audit SEO et application — **fermée** le 2026-09-13 (PR #48)
 - #51 Publication automatique robuste au push concurrent — **fermée** le 2026-09-13 (PR #52)
 - #53 Pied de page : droits trilingues — **fermée** le 2026-09-13 (PR #54)
+- #55 à #58 Allemand sans débordement, liens de langue page à page, légendes des photos, citation complète — **fermées** le 2026-09-13 (PR #59)
+- #5 Gestion des contributeurs — **fermée** le 2026-09-13 (règle dans conventions.md) ; #7 relecture et #8 auteur de la citation — **fermées** sur décision de Nicolas
 
 Ce qui reste avant le gel (étape 6) : relecture par les autres membres, corrections en issues,
 publication automatique (#4), audit de référencement local (plan XX), puis gel.
