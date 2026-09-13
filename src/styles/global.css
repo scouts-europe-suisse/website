@@ -343,6 +343,14 @@ html[lang='de'] :where(h1, h2, h3, h4, .ses-fbtn__label, .ses-chip, .ses-card__t
    Texte courant
    ══════════════════════════════════════════════════════════════════ */
 .ses-prose { max-width: var(--prose-max); }
+/* Les textes courants sont justifiés (décision de Nicolas, 2026-09-13), avec la césure
+   automatique pour éviter les grands blancs. Titres, cartes et boutons restent à gauche. */
+.ses-prose p, .ses-prose li, .ses-prose blockquote, .ses-lead, .ses-hero__lead {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
 .ses-prose > * + * { margin-top: var(--space-2); }
 .ses-prose h2 { margin-top: var(--space-4); font-size: clamp(1.375rem, 2.2vw, 1.75rem); }
 .ses-prose h3 { margin-top: var(--space-3); font-size: var(--text-h3); }

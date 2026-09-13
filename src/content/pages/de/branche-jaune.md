@@ -8,59 +8,61 @@ branche: jaune
 sourceModified: 2025-12-09
 ---
 
-## Koste das Leben in vollen Zügen, indem du dein Bestes gibst
+## Koste das Leben in vollen Zügen und gib dein Bestes!
 
-Spielen, mit den Händen erschaffen, Geschichten erzählen und mimen, singen, zelten, die Welt entdecken. Öffne mit dem Heiligen Franziskus deine Augen und Ohren für die Wunder der Natur. Lebe auf den Spuren von Mowgli die Geschichten des *Dschungelbuchs*, um flink, geschickt und nützlich zu werden.
+Spielen, mit den Händen erschaffen, Geschichten erzählen und mimen, singen, zelten, die Welt entdecken. Mit dem heiligen Franziskus Augen und Ohren für die Wunder der Natur öffnen. Auf den Spuren von Mowgli die Geschichten des *Dschungelbuchs* erleben, um flink, geschickt und nützlich zu werden.
 
 ![Wölflinge bei der Abendrunde am Ende des Tages](/images/img-7322.jpg)
 
 ## Konkret?
 
-Wenn du ein- oder zweimal im Monat am Samstag oder Sonntag hinaus gehst, wirst du tausend Abenteuer erleben. Ein- bis zweimal im Jahr entdeckst du mit den anderen Wölfen ein ganzes Wochenende lang die Geheimnisse der Natur! Schliesslich kommt die Zeit des Sommerlagers, in dem du mit der gesamten Einheit eine Woche lang zelten wirst!
+Bei den Ausflügen am Samstag oder Sonntag, ein- bis zweimal im Monat, erlebst du tausend Abenteuer. Ein- bis zweimal im Jahr entdeckst du mit den anderen Wölfen ein ganzes Wochenende lang die Geheimnisse der Natur! Und schliesslich kommt die Zeit des Sommerlagers, in dem du mit der ganzen Einheit eine Woche lang zeltest!
 
 ![Am Ende des Wochenendes falten die Wölflingsmädchen das Zelt zusammen](/images/dsc-8147.jpg)
 
 ## Das Wölflingstum
 
-Von 8 bis 12 Jahren treffen sich die Wölflinge in einer Meute. Sie bilden eine glückliche Familie, in der sie Fortschritte machen und gedeihen, das Gemeinschaftsleben entdecken und in einer Atmosphäre guten Willens und Freude leben.
+Von 8 bis 12 Jahren treffen sich die Wölflinge, Buben und Mädchen, in einer **Meute** oder einer **Clairière** (Mädchenmeute). Sie bilden eine glückliche Familie, in der sie Fortschritte machen und sich entfalten, das Gemeinschaftsleben entdecken und in einer Atmosphäre des guten Einvernehmens und der Freude leben.
 
-Eingetaucht in die Fantasie des *Dschungelbuchs* erleben die Wölflinge ein ihrem Alter angepasstes Spiel- und Beschäftigungsprogramm: Ratsfelsen, wo sie einer Geschichte lauschen und einen guten Vorsatz für den Tag fassen, grosse Jagden (grosse Spiele), grosse Nachtwachen und natürlich das Lagerleben mit der Zubereitung von Mahlzeiten am Feuer, Nächte in Zelten im Sommer …
+Eingetaucht in die Welt des *Dschungelbuchs* erleben die Wölflinge ein ihrem Alter angepasstes Programm aus Spielen und Aktivitäten: den **Ratsfelsen**, wo sie einer Geschichte lauschen und einen guten Vorsatz für den Tag fassen, **grosse Jagden** (grosse Geländespiele), **grosse Abendrunden** am Abend und natürlich das **Lagerleben** mit der Zubereitung der Mahlzeiten auf dem Feuer, den Nächten im Zelt im Sommer …
 
-Durch Spiele versucht das Wölflingstum, Kinder für ihre eigenen Fortschritte zu interessieren und sie zu **Akteure** zu machen. Während seines Fortschritts wird der Wölfling Folgendes erfahren:
+### Der Fortschritt
 
-- der Empfang und die Übergabe des Pelzes (Schals)
-- das Versprechen
-- der erste Stern
-- der zweite Stern
-- Abzeichen, die sich auf eine bestimmte Pfadi-Technik beziehen und den Wölfling auf das Pfadialter vorbereiten.
+Durch das Spiel will das Wölflingstum die Kinder für ihren eigenen Fortschritt interessieren und sie zu dessen Akteuren machen. Auf seinem Fortschrittsweg erlebt der Wölfling:
 
-Das Wölflingsversprechen ist eine erste Verpflichtung auf der Ebene des Kindes. Nachdem er seine Eltern um Erlaubnis gebeten hat und vom ganzen Rudel akzeptiert wurde, sagt die „zarte Pfote“:
+- **die Aufnahme** und die Übergabe des Fells (Halstuch)
+- **das Versprechen**
+- **den ersten Stern**
+- **den zweiten Stern**
+- **die Abzeichen**, die sich auf eine bestimmte Pfadfindertechnik beziehen und den Wölfling auf das Pfadfinderalter vorbereiten.
 
-> *„Ich verspreche, mein Bestes zu tun, um Gott, meinen Eltern, meinem Land und den Gesetzen des Rudels treu zu sein und jeden Tag jemandem einen Dienst zu erweisen.“*
+Das Wölflingsversprechen ist eine erste Verpflichtung, auf der Höhe des Kindes. Nachdem die „zarte Pfote“ ihre Eltern um Erlaubnis gebeten hat und von der ganzen Meute angenommen wurde, sagt sie:
+
+> Ich verspreche, mein Bestes zu tun, um Gott, meinen Eltern, meinem Vaterland und dem Gesetz der Meute treu zu sein und jeden Tag jemandem einen Dienst zu erweisen.
 
 ![Wölflinge bei einem Versprechen im Schnee](/images/dsc-2687.jpg)
 
-### Die Werkzeuge des kleinen guten Wolfes
+### Die Werkzeuge des guten kleinen Wolfes
 
-Der Wölfling hat seine fünf Gegenstände immer bei sich: Papier, Bleistift, Schnur, Schal, Zehner. Zum Singen das „*Ferao*“-Liederbuch, in dem er alle Dschungellieder und die Wolfslieder findet. Für seine Fortschritte als Wölfling dient das „*Mowgli*“-Notizbuch als Massstab.
+Der Wölfling hat seine **fünf Gegenstände** immer bei sich: Papier, Bleistift, Schnur, Halstuch, Rosenkranz-Zehner. Zum Singen das Liederbuch „**Ferao**“, in dem er alle Dschungellieder und Wölflingslieder findet. Für seinen Fortschritt als Wölfling das Heft „**Mowgli**“, das ihm als Wegweiser dient.
 
-### Die Regel des Rudellebens
+### Die Lebensregeln der Meute und der Clairière
 
-Um gut in Gemeinschaft zu leben und eine glückliche Familie zu bilden, respektieren die Wölflinge das Gesetz, die Leitsprüche, das Schlüsselwort und das Motto.
+Um gut in Gemeinschaft zu leben und die glückliche Familie zu bilden, halten sich die Wölflinge an das Gesetz, die Leitsprüche, das Schlüsselwort und das Motto.
 
-**Das Motto:** *Unsere Besten.*
+**Das Motto:** *Unser Bestes.*
 
-**Das Gesetz des Rudels:**
+**Das Gesetz der Meute:**
 
 - *Der Wölfling hört auf den alten Wolf.*
-- *Der Wölfling hört nicht auf sich.*
+- *Der Wölfling hört nicht auf sich selbst.*
 
 **Die Leitsprüche:**
 
-- *Der Wölfling denkt zuerst an andere.*
+- *Der Wölfling denkt zuerst an die anderen.*
 - *Der Wölfling ist immer sauber.*
-- *Der Wölfling öffnet seine Augen und Ohren.*
+- *Der Wölfling öffnet Augen und Ohren.*
 - *Der Wölfling sagt immer die Wahrheit.*
-- *Der Wölfling ist immer gut gelaunt.*
+- *Der Wölfling ist immer fröhlich.*
 
 **Das Schlüsselwort:** *Wir sind vom selben Blut, du und ich.*

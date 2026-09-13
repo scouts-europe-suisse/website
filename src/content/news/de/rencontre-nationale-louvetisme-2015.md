@@ -6,7 +6,7 @@ updated: 2025-12-09
 translated: true
 ---
 
-Aus Genf, Lausanne, Freiburg und Zürich kamen 200 Wölflinge, Buben und Mädchen, im Mai 2015 zu einem grossen nationalen Treffen zusammen. Welche Freude, die Wölflinge der anderen Abteilungen bei den Mahlzeiten und in den Spielteams kennenzulernen! Alle fahren mit schönen Erinnerungen nach Hause, und zwischen den Einheiten entstehen Freundschaften.
+Aus Genf, Lausanne, Freiburg und Zürich kamen **200 Wölflinge, Buben und Mädchen,** im **Mai 2015** zu einem grossen nationalen Treffen zusammen. Welche Freude, die Wölflinge der anderen Abteilungen bei den Mahlzeiten und in den Spielteams kennenzulernen! Alle fahren mit schönen Erinnerungen nach Hause, und zwischen den Einheiten entstehen Freundschaften.
 
 Die Bilanz ist einstimmig: Wann ist das nächste?
 

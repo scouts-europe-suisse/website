@@ -12,17 +12,17 @@ Au service des chefs, les cadres du mouvement ont pour mission de leur fournir l
 
 ## Le premier soutien et référent local : le chef du groupe
 
-Le référent local du mouvement est le chef de groupe : interlocuteur privilégié des parents, il est le soutien direct, de proximité, des chefs d'unité. Une formation dédiée leur permet d'être garant de la méthode scoute et de la pédagogie des Scouts d'Europe, et de s'assurer que les principes de réglementation sont suivis dans nos activités.
+Le référent local du mouvement est le chef de groupe : interlocuteur privilégié des parents, il est le soutien direct, de proximité, des chefs d'unité. Une formation dédiée lui permet d'être garant de la méthode scoute et de la pédagogie des Scouts d'Europe, et de s'assurer que les principes de réglementation sont suivis dans nos activités.
 
 ## À l'échelle du canton : le commissaire de district
 
-Les différents groupes locaux sont coordonnés, à l'échelle du canton, par le commissaire de district. Avec son équipe, il oeuvre au développement de nouveaux groupes dans le canton, et est responsable des liens avec les institutions extérieures. Il a aussi pour mission de suivre la progression et la formation des chefs de son canton.
+Les différents groupes locaux sont coordonnés, à l'échelle du canton, par le commissaire de district. Avec son équipe, il œuvre au développement de nouveaux groupes dans le canton, et est responsable des liens avec les institutions extérieures. Il a aussi pour mission de suivre la progression et la formation des chefs de son canton.
 
 ## Au service des implantations locales : l'équipe nationale
 
 Garante de la pédagogie, l'équipe nationale est responsable de la formation des chefs et de leur suivi pédagogique pendant l'année.
 
-Elus par l'ensemble des chefs formés lors de l'assemblée générale, le conseil d'administration et le bureau assurent les tâches administratives qui incombent à une association : assurances, trésorerie, réglementation...
+Élus par l'ensemble des chefs formés lors de l'assemblée générale, le conseil d'administration et le bureau assurent les tâches administratives qui incombent à une association : assurances, trésorerie, réglementation...
 
 ![Assemblée générale 2015](/images/dsc-0854.jpg)
 

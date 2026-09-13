@@ -2,12 +2,12 @@
 title: "Louveteaux et louvettes — 8-12 ans"
 urlPath: branche-jaune
 key: branche-jaune
-description: "Croque la vie à pleine dents en faisant de ton mieux ! Jouer, créer, chanter, camper et découvrir le monde sur les traces de Mowgli, de 8 à 12 ans."
+description: "Croque la vie à pleines dents en faisant de ton mieux ! Jouer, créer, chanter, camper et découvrir le monde sur les traces de Mowgli, de 8 à 12 ans."
 branche: jaune
 sourceModified: 2025-12-09
 ---
 
-## Croque la vie à pleine dents en faisant de ton mieux !
+## Croque la vie à pleines dents en faisant de ton mieux !
 
 Jouer, créer avec ses mains, raconter et mimer des histoires, chanter, camper, découvrir le monde. Avec saint François, ouvrir ses yeux et ses oreilles aux merveilles de la nature. Sur les traces de Mowgli, vivre les histoires du *Livre de la Jungle*, pour devenir agile, habile, utile.
 
@@ -27,7 +27,7 @@ Plongés dans l'imaginaire du *Livre de la Jungle*, les louveteaux et louvettes 
 
 ### La progression
 
-Grâce aux jeux, le louvetisme cherche à intéresser les enfants à leur propre progression et à les en rendre acteur. Au cours de son chemin de progression, le louveteau ou la louvette vivra :
+Grâce aux jeux, le louvetisme cherche à intéresser les enfants à leur propre progression et à les en rendre acteurs. Au cours de son chemin de progression, le louveteau ou la louvette vivra :
 
 - **l'accueil**, et la remise du pelage (foulard)
 - **la promesse**
@@ -43,7 +43,7 @@ La promesse louveteau ou louvette est un premier engagement, à hauteur de l'enf
 
 ### Les outils du bon petit loup
 
-Le louveteau ou la louvette a toujours sur soi ses **cinq objets** : papier, crayon, ficelle, foulard, dizenier. Pour chanter, le carnet de chants « **Ferao** » où il retrouve tous les chants de jungle et les chants louvetisme. Pour sa progression de louveteau ou de louvette, le carnet « **Mowgli** » qui lui sert de repère.
+Le louveteau ou la louvette a toujours sur soi ses **cinq objets** : papier, crayon, ficelle, foulard, dizenier. Pour chanter, le carnet de chants « **Ferao** » où il retrouve tous les chants de jungle et les chants de louvetisme. Pour sa progression de louveteau ou de louvette, le carnet « **Mowgli** » qui lui sert de repère.
 
 ### Les règles de vie de la meute et de la clairière
 
