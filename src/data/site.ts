@@ -41,6 +41,8 @@ export const SITE = {
   name: { fr: 'Scoutisme Européen Suisse', de: 'Schweizerische Pfadfinderschaft Europas' } as Record<Lang, string>,
   /** Le nom juridique, pour les mentions qui ne se traduisent pas. */
   legalName: 'Scoutisme Européen Suisse',
+  /** La mention de droits du pied de page, identique dans toutes les langues (Nicolas, 2026-09-13). */
+  copyrightNames: 'Scoutisme Européen Suisse | Schweizerische Pfadfinderschaft Europas | Scautismo Europe Svizzera',
   shortName: 'SES',
   domain: 'https://www.scouts-europe.ch',
   email: 'info@scouts-europe.ch',
