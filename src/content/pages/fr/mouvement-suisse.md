@@ -10,7 +10,7 @@ coverAlt: "Chapelle sur une crête"
 
 ## Les débuts des Scouts d'Europe en Suisse
 
-Le mouvement est lancé dans les années 1970 au Mont-Pèlerin dans le canton de Vaud. Il se développe ensuite rapidement sur le canton de Genève, à travers des groupes scouts de confession réformée qui seront en activité jusqu'au début des années 1990.
+Le mouvement est lancé dans les années 1970 au Mont-Pèlerin dans le canton de Vaud. Il se développe ensuite rapidement dans le canton de Genève, à travers des groupes scouts de confession réformée qui seront en activité jusqu'au début des années 1990.
 
 ## Le développement d'un groupe catholique à Genève
 
@@ -20,8 +20,8 @@ Le groupe catholique se rattache alors aux Scouts d'Europe, et ne cesse de se d�
 
 ## Un mouvement en pleine expansion
 
-En 2007, la nouvelle équipe de direction de l'association oeuvre à fonder un mouvement à dimension nationale : des groupes sont ouverts à Lausanne, à Fribourg et à Zurich.
+En 2007, la nouvelle équipe de direction de l'association œuvre à fonder un mouvement à dimension nationale : des groupes sont ouverts à Lausanne, à Fribourg et à Zurich.
 
-En 2014, un réseau de patrouilles libres scoutes se lance, avec notamment des créations en Valais, qui donnent l'impulsion pour l'ouverture de groupes à la suite.
+En 2014, un réseau de patrouilles libres scoutes se lance, avec notamment des créations en Valais, qui donnent ensuite l'impulsion à l'ouverture de nouveaux groupes.
 
 Aujourd'hui, l'association compte 800 membres en Suisse romande et à Zurich. Les groupes sont à ce jour tous francophones, mais un prochain développement en Suisse alémanique permettra de proposer notre scoutisme à des familles germanophones.

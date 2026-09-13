@@ -22,7 +22,7 @@ Loin du virtuel, le scout crée et construit. En complément de la formation sco
 
 ## La santé et le développement physique
 
-Le scoutisme se vit au grand air et permet aux enfants et aux adolescents de trouver un équilibre de vie en harmonie avec la nature et leur corps. Elle est une merveilleuse école qui développe dynamisme, endurance et souplesse, et réclame de s'approprier les règles d'hygiène fondamentales. Elle permet aux jeunes de maîtriser leur corps, et de le respecter notamment en luttant contre toute forme d'addiction (tabac, alcool, drogue, jeux vidéos...).
+Le scoutisme se vit au grand air et permet aux enfants et aux adolescents de trouver un équilibre de vie en harmonie avec la nature et leur corps. Il est une merveilleuse école qui développe dynamisme, endurance et souplesse, et réclame de s'approprier les règles d'hygiène fondamentales. Il permet aux jeunes de maîtriser leur corps, et de le respecter notamment en luttant contre toute forme d'addiction (tabac, alcool, drogue, jeux vidéo...).
 
 ![Routiers en marche lors d’une route d’été](/images/route-ete.jpg)
 

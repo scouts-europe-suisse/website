@@ -6,13 +6,13 @@ updated: 2025-12-09
 translated: true
 ---
 
-Begegnung, Ausbildung, Brüderlichkeit! Um diese drei Säulen haben sich über 200 Pfadfinderleiter, Mitglieder der Pfadfinder Europas, auf der Domaine de Monteret in Saint-Cergue versammelt. Im Waadtländer Jura empfing strahlender Sonnenschein die Teilnehmer aus allen Ecken der Schweiz und sogar aus ganz Europa zu zwei Tagen Lager, Freude, Gebet und Freundschaft.
+Begegnung, Ausbildung, Brüderlichkeit! Um diese drei Säulen haben sich über 200 Pfadfinderleiter, Mitglieder der Pfadfinder Europas, auf der **Domaine de Monteret in Saint-Cergue** versammelt. Im Waadtländer Jura empfing strahlender Sonnenschein die Teilnehmer aus allen Ecken der Schweiz und sogar aus ganz Europa zu zwei Tagen Lager, Freude, Gebet und Freundschaft.
 
 ![Versammlung unter den Bäumen, Fahnen der Länder Europas](/images/rassemblement-drapeaux.jpg)
 
 ## Begegnung
 
-Sie kamen aus den Kantonen Wallis, Zürich, Genf, Freiburg und Waadt! Die Leiter der Schweizerischen Pfadfinderschaft Europas waren am Samstag, 14., und Sonntag, 15. Oktober 2017 in Saint-Cergue zum Schweizer Wochenende des Jahresauftakts versammelt. Die Leiter der anderen Kantone treffen – jene, die das Pfadfinderhalstuch seit Jahren nicht mehr ablegen, und jene, die es zum ersten Mal trugen –, sich am Samstagabend um einen riesigen Papet vaudois wiederfinden, bei der festlichen Abendrunde über die Abenteuer eines kleinen Schutzengels lachen und sich dann alle beim Anbetungsabend Jesus Christus zuwenden … An diesem Wochenende sind im Geist pfadfinderischer Brüderlichkeit neue Freundschaften entstanden.
+Sie kamen aus den Kantonen Wallis, Zürich, Genf, Freiburg und Waadt! Die Leiter der Schweizerischen Pfadfinderschaft Europas waren am **Samstag, 14., und Sonntag, 15. Oktober 2017** in Saint-Cergue zum Schweizer Wochenende des Jahresauftakts versammelt. Die Leiter der anderen Kantone zu treffen – jene, die das Pfadfinderhalstuch seit Jahren nicht mehr ablegen, und jene, die es zum ersten Mal trugen –, sich am Samstagabend um einen riesigen Papet vaudois zu versammeln, bei der festlichen Abendrunde über die Abenteuer eines kleinen Schutzengels zu lachen und sich dann alle beim Anbetungsabend Jesus Christus zuzuwenden: An diesem Wochenende sind im Geist pfadfinderischer Brüderlichkeit neue Freundschaften entstanden.
 
 ![](/images/wekraalsesoct2017-86.jpg)
 
@@ -32,11 +32,11 @@ Die dritte Achse der Ausbildung betraf die Leiter direkt als junge Erwachsene: D
 
 ## Brüderlichkeit
 
-„Pfadfinder Europas“, sagten Sie? Der Verein der Schweizerischen Pfadfinderschaft Europas gehört nämlich zur Union Internationale des Guides et Scouts d'Europe, die über 60 000 Mitglieder auf dem ganzen europäischen Kontinent zählt, vom Vereinigten Königreich bis Russland, über Portugal und Italien … und sogar in Amerika (Mexiko, Kanada). Die Besonderheit der Pfadfinder Europas besteht nämlich darin, Verbände aus zahlreichen Ländern zu vereinen, die dasselbe Pfadfindertum leben wollen, um durch Lager und Begegnungen den Frieden und die europäische Brüderlichkeit wachsen zu lassen.
+„Pfadfinder Europas“, sagten Sie? Der Verein der Schweizerischen Pfadfinderschaft Europas gehört nämlich zur Union Internationale des Guides et Scouts d’Europe, die über 60 000 Mitglieder auf dem ganzen europäischen Kontinent zählt, vom Vereinigten Königreich bis Russland, über Portugal und Italien … und sogar in Amerika (Mexiko, Kanada). Die Besonderheit der Pfadfinder Europas besteht nämlich darin, Verbände aus zahlreichen Ländern zu vereinen, die dasselbe Pfadfindertum leben wollen, um durch Lager und Begegnungen den Frieden und die europäische Brüderlichkeit wachsen zu lassen.
 
 ![](/images/22520092-10155778720639800-1353070811912205701-o.jpg)
 
-Die Verantwortlichen jedes nationalen Verbands wurden an diesem Wochenende in der Schweiz zu ihrem jährlichen Rat empfangen, in dessen Verlauf neu gegründete Verbände offiziell der Föderation des Europäischen Pfadfindertums beigetreten sind (Mexiko, Luxemburg, Niederlande). Dieses Wochenende war für sie Gelegenheit, sich zu treffen, zu teilen, was in den verschiedenen Verbänden gelebt wird, und sich gegenseitig in ihren Projekten zu unterstützen.
+Die Verantwortlichen jedes nationalen Verbands wurden an diesem Wochenende in der Schweiz zu ihrem jährlichen Rat empfangen, in dessen Verlauf neu gegründete Verbände offiziell der Fédération du Scoutisme Européen beigetreten sind (Mexiko, Luxemburg, Niederlande). Dieses Wochenende war für sie Gelegenheit, sich zu treffen, zu teilen, was in den verschiedenen Verbänden gelebt wird, und sich gegenseitig in ihren Projekten zu unterstützen.
 
 ![](/images/wekraalsesoct2017-132.jpg)
 

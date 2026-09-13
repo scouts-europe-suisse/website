@@ -2,39 +2,39 @@
 title: "Wer sind wir?"
 urlPath: unsere-pfadfinderschaft/wer-sind-wir
 key: qui-sommes-nous
-description: "Eine Erziehungsbewegung nach der Pfadfindermethode, ergänzend zu Familie und Schule: katholisch, offen für alle und der Natur verbunden."
+description: "Eine Erziehungsbewegung nach der Pfadfindermethode, ergänzend zu Familie und Schule: katholisch, offen für alle und die Natur achtend."
 translated: true
 sourceModified: 2025-12-09
 ---
 
 ## Eine Erziehungsbewegung
 
-Der Verein der Schweizerischen Pfadfinderschaft Europas ist eine Bewegung, die sich eine von der Pfadfindermethode geprägte Erziehung vorstellt, ergänzend zu Familie und Schule. Sie zielt auf die Entfaltung der Kinder, Jugendlichen und jungen Erwachsenen ab; durch Spiel und Abenteuer in der Natur, aber auch eine altersangepasste Verantwortungsübernahme.
+Der Verein der Schweizerischen Pfadfinderschaft Europas ist eine Erziehungsbewegung nach der Pfadfindermethode, ergänzend zu Familie und Schule. Sie zielt auf die Entfaltung der Kinder, Jugendlichen und jungen Erwachsenen durch das Spiel oder das Abenteuer in der Natur und die altersgerechte Übernahme von Verantwortung.
 
 ![Wölflingsmädchen in einem Sommerlager](/images/p1140040.jpg)
 
 ## Eine Bildungsbewegung für junge Menschen
 
-Die Pfadfindermethode soll nicht lehren, sondern den Jugendlichen in die Lage versetzen, selbstständig zu handeln. So lernt der Pfadfinder, für die ausgewogene Entwicklung aller Bestandteile seiner Persönlichkeit verantwortlich zu werden. Die Jugendlichen erfahren somit ein hohes Mass an Autonomie, das praktische Lernen ihrer Wahlfreiheit, die daraus resultierende Verantwortung und gleichzeitig die Anforderungen des gemeinschaftlichen Lebens.
+Die Pfadfindermethode besteht nicht darin zu lehren, sondern den Jugendlichen in die Lage zu versetzen, selbst zu handeln. So lernt er, für die ausgewogene Entwicklung aller Bestandteile seiner Persönlichkeit verantwortlich zu werden. Er erfährt ein hohes Mass an Selbständigkeit, das konkrete Erlernen seiner Freiheit zu wählen, die daraus folgende Verantwortung und zugleich die Anforderungen des Lebens in Gemeinschaft.
 
 ## Eine Bewegung für alle
 
-Die Schweizerische Pfadfinderschaft Europas möchte für alle offen sein, die das pfadfinderische Abenteuer erleben möchten. Das schliesst auch junge Menschen mit Beeinträchtigungen ein.
+Die Bewegung der Schweizerischen Pfadfinderschaft Europas möchte offen sein für alle, die das Abenteuer des Pfadfindertums erleben wollen, auch für junge Menschen mit Behinderung, die das Pfadfinderspiel ebenfalls erleben möchten. Unser Verein glaubt an das grossartige Erziehungsmittel, das das Pfadfindertum ist, und möchte möglichst viele junge Menschen ohne Unterschied davon profitieren lassen.
 
 ## Eine christliche Bewegung
 
-Als katholischer Verein ist die Schweizerische Pfadfinderschaft Europas Mitglied der Union internationale des Guides et Scouts d’Europe (UIGSE), die vom Päpstlichen Rat für die Laien als private internationale Vereinigung von Gläubigen anerkannt ist. Sie kann ebenfalls auch evangelische und orthodoxe Abteilungen aufnehmen.
+Der Verein ist ein katholischer Verein, Mitglied der Union Internationale des Guides et Scouts d’Europe (UIGSE), die vom Päpstlichen Rat für die Laien als private internationale Vereinigung von Gläubigen anerkannt ist. Er kann ebenfalls Abteilungen protestantischer oder orthodoxer Konfession aufnehmen.
 
-Unser Verein ist der christlichen Dimension der Erziehung verbunden. Sie ist vom Evangelium durchdrungen und beruht auf der Berufung jedes Christen zur Heiligkeit.
+Unser Verein ist der christlichen Dimension der Pädagogik verbunden, die vom Evangelium durchdrungen ist und auf der Berufung jedes Christen zur Heiligkeit beruht.
 
 ![0044](/images/0044.jpg)
 
-## Eine gesellschaftlich eingesetzte Bewegung
+## Eine in der Gesellschaft engagierte Bewegung
 
-Das Pfadfindertum versucht im Herzen der heutigen Welt das Verantwortungsgefühl, den Dienst am Nächsten und die Sorge um das gemeinsame Wohl aufzuwerten. Das Leben in der Gemeinschaft erleichtert das Erlernen der Regeln der Gesellschaft und bereitet junge Menschen darauf vor, sich täglich aktiv daran zu beteiligen. Deshalb achten wir auf strikte politische Neutralität.
+Im Herzen der heutigen Welt versucht das Pfadfindertum, das Verantwortungsbewusstsein, den Dienst an den anderen und die Sorge um das Gemeinwohl zu fördern. Das Leben im Team erleichtert das Erlernen der Regeln des gesellschaftlichen Lebens und bereitet die jungen Menschen darauf vor, darin täglich eine aktive Rolle zu spielen. Wir achten auf strikte politische Neutralität.
 
-## Eine naturachtende Bewegung
+## Eine die Natur achtende Bewegung
 
-Durch das Erleben des Pfadfinderspiels in der Natur während unseren Ausflügen und Lagern lernen junge Menschen die Notwendigkeit, die Umwelt zu respektieren und die von Gott geschenkte Schöpfung besser zu verstehen und zu schützen.
+Indem sie das Pfadfinderspiel bei unseren Ausflügen und Lagern in der Natur leben, lernen die jungen Menschen, die Notwendigkeit besser zu verstehen, die Umwelt zu respektieren und die Schöpfung, Gottes Geschenk, zu schützen.
 
-![Wanderung auf einem Grat am Abend](/images/crete-montagne.jpg)
+![Wanderung auf einem Grat am Ende des Tages](/images/crete-montagne.jpg)

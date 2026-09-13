@@ -158,6 +158,10 @@ function rehypeBaseUrls() {
  * _migrations/url-map.md — c'est elle qui fait foi.
  */
 const RAW_REDIRECTS = {
+    // La page Fribourg de l'ancien site est supprimée (décision de Nicolas, 2026-09-13) :
+    // son district est décrit sur la carte des implantations.
+    '/fr/nous-rejoindre/nos-implantations/fribourg': '/fr/nous-rejoindre/nos-implantations/',
+    '/de/uns-beitreten/standorte/freiburg': '/de/uns-beitreten/standorte/',
     '/de/carrick-2': '/de/carrick/',
     '/de/category/actualites': '/de/aktuelles/',
     '/de/die-beweguni': '/de/die-bewegung/',

@@ -22,7 +22,7 @@ Le mouvement du Scoutisme Européen Suisse souhaite être ouvert à tous ceux qu
 
 ## Un mouvement chrétien
 
-L'association est une association catholique, membre de l'Union internationale des Guides et Scouts d'Europe qui est reconnue par le Conseil pontifical pour les laïcs comme association privée internationale de fidèles. Elle peut également accueillir des groupes de confession protestante ou orthodoxe.
+L'association est une association catholique, membre de l'Union Internationale des Guides et Scouts d'Europe qui est reconnue par le Conseil pontifical pour les laïcs comme association privée internationale de fidèles. Elle peut également accueillir des groupes de confession protestante ou orthodoxe.
 
 Notre association est attachée à la dimension chrétienne de la pédagogie, qui s'imprègne de l'Évangile et se base sur la vocation de tout chrétien à la sainteté.
 
@@ -30,7 +30,7 @@ Notre association est attachée à la dimension chrétienne de la pédagogie, qu
 
 ## Un mouvement engagé dans la société
 
-Au coeur du monde actuel, le scoutisme cherche à valoriser le sens des responsabilités, le service aux autres et le souci du bien commun. La vie en équipe facilite l'apprentissage des règles de la vie sociale et prépare les jeunes à y jouer un rôle actif au quotidien. Nous veillons à une stricte neutralité politique.
+Au cœur du monde actuel, le scoutisme cherche à valoriser le sens des responsabilités, le service aux autres et le souci du bien commun. La vie en équipe facilite l'apprentissage des règles de la vie sociale et prépare les jeunes à y jouer un rôle actif au quotidien. Nous veillons à une stricte neutralité politique.
 
 ## Un mouvement respectueux de la nature
 
