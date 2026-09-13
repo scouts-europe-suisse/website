@@ -187,6 +187,7 @@ sans interruption », à soumettre aux autres le soir même) :
 - #27 Logo sur la croix officielle, explorateur des implantations, icônes officielles — **fermée** le 2026-09-12 (PR #28)
 - #29 Page des implantations : carte fixe, filtres en retrait, tri par distance — **fermée** le 2026-09-12 (PR #30)
 - #31 En-tête sur téléphone, FR · DE sur une ligne — **fermée** le 2026-09-12 (PR #32)
+- #33 à #39 Actualités illustrées, districts et groupes, accents, siège, contacts protégés, logo ESPAS, SEO — **fermées** le 2026-09-13 (PR #40)
 
 Ce qui reste avant le gel (étape 6) : relecture par les autres membres, corrections en issues,
 publication automatique (#4), audit de référencement local (plan XX), puis gel.
