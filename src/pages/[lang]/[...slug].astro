@@ -99,7 +99,7 @@ const routeTwin =
 )}
 
 {kind === 'news-index' && (
-  <BaseLayout title={UI.news[lang]} lang={lang} twinHref={routeTwin}>
+  <BaseLayout title={UI.news[lang]} lang={lang} twinHref={routeTwin} ogSlug="actualites" breadcrumbs={[{ name: UI.home[lang], href: path(lang) }, { name: UI.news[lang], href: path(lang, NEWS_BASE[lang]) }]}>
     <div class="ses-page-head">
       <div class="ses-col">
         <ol class="ses-crumbs"><li><a href={path(lang)}>{UI.home[lang]}</a></li><li>{UI.news[lang]}</li></ol>
@@ -117,8 +117,10 @@ const routeTwin =
     description={entry.data.summary}
     lang={lang}
     ogType="article"
-    image={entry.data.cover}
+    ogSlug={`actualites-${entry.id.split('/')[1]}`}
     noindex={entry.data.draft}
+    article={{ published: entry.data.date, modified: entry.data.updated }}
+    breadcrumbs={[{ name: UI.home[lang], href: path(lang) }, { name: UI.news[lang], href: path(lang, NEWS_BASE[lang]) }, { name: entry.data.title, href: Astro.url.pathname }]}
   >
     <NewsArticle entry={entry} lang={lang}>
       <Content />
@@ -132,7 +134,9 @@ const routeTwin =
     description={entry.data.description}
     lang={lang}
     pageKey={entry.data.key}
+    ogSlug={entry.data.key}
     noindex={stillToWrite}
+    breadcrumbs={[...crumbs.filter((c) => c.href).map((c) => ({ name: c.label, href: c.href! })), { name: entry.data.title, href: Astro.url.pathname }]}
   >
     <article>
       <div class="ses-page-head">
@@ -159,6 +163,7 @@ const routeTwin =
             src={withBase(entry.data.cover)}
             alt={entry.data.coverAlt ?? ''}
             class:list={['ses-cover', coverEmblem && 'ses-cover--ecusson']}
+            style={entry.data.coverWidth ? `max-width: ${entry.data.coverWidth}px` : undefined}
             width={coverSize?.w}
             height={coverSize?.h}
             loading="eager"

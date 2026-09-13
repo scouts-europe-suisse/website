@@ -46,7 +46,8 @@ export const SITE = {
    * genevoise) ; la ville et le pays, si.
    */
   address: {
-    street: 'Rue Prévost-Martin 10',
+    /** Plus d'adresse de rue : décision de Nicolas, 2026-09-13 (issue #36). */
+    street: null as string | null,
     city: { fr: '1205 Genève', de: '1205 Genf' },
     country: { fr: 'Suisse', de: 'Schweiz' },
   },

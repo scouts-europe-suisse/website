@@ -3,6 +3,8 @@ title: "Weekend intermaîtrises national 19-20 mars 2022 à Hauterive"
 date: 2022-04-05
 summary: "« Cher scouts, j’ai eu le bonheur de vivre heureux et je souhaite à chacun de pouvoir en dire autant. […] Essayez de quitter cette terre après l’avoir rendue meilleure que vous ne l’avez trouvée » BP"
 updated: 2025-12-09
+cover: "/images/actualites/weekend-intermaitrises-mars-2022.jpg"
+coverCredit: "Photo : compte Instagram du Scoutisme Européen Suisse, publication du 12.03.2022"
 ---
 
 *« Cher scouts, j’ai eu le bonheur de vivre heureux et je souhaite à chacun de pouvoir en dire autant. […] Essayez de quitter cette terre après l’avoir rendue meilleure que vous ne l’avez trouvée » BP*

@@ -119,3 +119,14 @@ Si le site refuse de démarrer après une modification d'en-tête, c'est presque
 obligatoire manquant ou une faute dans son nom. Le message d'erreur nomme le fichier fautif.
 
 Voir aussi [[conventions]], [[feedback_publication]].
+
+## Ajouts du 2026-09-13
+
+- `coverWidth: 260` (en pixels) borne la largeur d'affichage d'une image à la une : pour un
+  logo, comme sur la page ESPAS.
+- **Adresses e-mail et numéros de téléphone** : écrivez-les normalement dans le texte ou en lien
+  `mailto:` / `tel:`. À la construction, ils sont automatiquement protégés des robots (issue #37) :
+  rien n'apparaît en clair dans la page, le lien se reconstitue quand le visiteur survole ou
+  clique. Ne rien faire de spécial, et ne pas essayer de les « cacher » soi-même.
+- Les images de partage (réseaux sociaux) sont fabriquées automatiquement pour chaque page à
+  partir de son titre et de sa couverture (`npm run og`, lancé avant chaque construction).

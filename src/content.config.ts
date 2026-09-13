@@ -64,6 +64,8 @@ const pages = defineCollection({
      */
     cover: z.string().optional(),
     coverAlt: z.string().optional(),
+    /** Largeur maximale d'affichage de l'image à la une, en pixels (un logo, par exemple). */
+    coverWidth: z.number().optional(),
     /** true = la page affiche la carte des implantations du mouvement. */
     map: z.boolean().default(false),
     /** Accent de couleur d'une page de branche. */

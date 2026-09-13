@@ -3,12 +3,19 @@
  * Le gabarit commun à toutes les pages : <head>, en-tête, pied de page.
  *
  * Toute page passe par ici. Ce qui est propre à une page (titre, résumé,
- * image de partage) arrive en propriété ; ce qui est commun (langue, jumelle
- * dans l'autre langue, données pour les moteurs de recherche) est calculé ici.
+ * image de partage, fil d'Ariane, dates d'un article) arrive en propriété ;
+ * ce qui est commun (langue, jumelle dans l'autre langue, données pour les
+ * moteurs de recherche et les réseaux) est calculé ici.
+ *
+ * Référencement (issue #39) : chaque page porte ses balises de partage, une
+ * image de partage qui lui est propre (fabriquée par scripts/og-images.mjs),
+ * et des données structurées schema.org : l'organisation partout, le site et
+ * sa recherche sur l'accueil, le fil d'Ariane sur les pages, l'article sur
+ * les actualités. Tout le contenu est dans le HTML : rien n'attend un script.
  */
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { IS_PRODUCTION_SITE, SITE, withBase, type Lang } from '../data/site';
+import { CROSS, IS_PRODUCTION_SITE, LOGO, SEARCH_BASE, SITE, SOCIAL, withBase, type Lang } from '../data/site';
 import { twinOf } from '../lib/pages';
 import '../styles/global.css';
 
@@ -19,34 +26,33 @@ interface Props {
   ogType?: 'website' | 'article';
   /** Image de partage propre à la page (chemin absolu du site). */
   image?: string;
-  /**
-   * true = demander aux moteurs de recherche d'ignorer la page.
-   * Mis d'office sur les ébauches.
-   */
+  /** Nom de l'image de partage générée (src/images/og/<lang>/<ogSlug>.jpg). */
+  ogSlug?: string;
   noindex?: boolean;
-  /**
-   * La clé de la page, qui permet de retrouver sa jumelle dans l'autre
-   * langue. Sans elle, le sélecteur de langue renvoie vers l'accueil.
-   */
   pageKey?: string;
-  /** Adresse de la jumelle déjà connue (pour les routes hors collection). */
   twinHref?: string | null;
+  /** Le fil d'Ariane, pour les données structurées. */
+  breadcrumbs?: { name: string; href: string }[];
+  /** Pour une actualité : ses dates. */
+  article?: { published: Date; modified?: Date };
+  /** Vrai sur l'accueil : ajoute la fiche du site et de sa recherche. */
+  isHome?: boolean;
 }
 
-const { title, description, lang, ogType = 'website', image, noindex = false, pageKey, twinHref } =
-  Astro.props;
+const {
+  title, description, lang, ogType = 'website', image, ogSlug, noindex = false, pageKey, twinHref,
+  breadcrumbs, article, isHome = false,
+} = Astro.props;
 
 // Tant que le site n'a pas remplacé le WordPress, AUCUNE page ne doit être
-// indexée. C'est ici que ça se joue, pas dans le robots.txt : servi depuis un
-// sous-dossier (github.io/website/), celui-ci n'est jamais lu par les moteurs.
+// indexée. C'est ici que ça se joue, pas dans le robots.txt.
 const hideFromSearch = noindex || !IS_PRODUCTION_SITE;
 
 const siteUrl = (Astro.site ?? new URL(SITE.domain)).origin;
+const abs = (p: string) => new URL(withBase(p), siteUrl).href;
 const canonical = new URL(Astro.url.pathname, siteUrl).href;
 
-const fullTitle = title.includes(SITE.shortName) || title.includes(SITE.name)
-  ? title
-  : `${title} · ${SITE.name}`;
+const fullTitle = title.includes(SITE.shortName) || title.includes(SITE.name) ? title : `${title} · ${SITE.name}`;
 
 const defaultDescription: Record<Lang, string> = {
   fr: `${SITE.name} — le scoutisme européen en Suisse : nos branches, notre projet éducatif, et comment nous rejoindre.`,
@@ -60,7 +66,67 @@ const alternates = [
   { lang, href: canonical },
   ...(twin ? [{ lang: otherLang, href: new URL(twin, siteUrl).href }] : []),
 ];
-const ogImage = new URL(withBase(image ?? '/images/og-image.jpg'), siteUrl).href;
+const ogImage = abs(image ?? (ogSlug ? `/images/og/${lang}/${ogSlug}.jpg` : '/images/og-image.jpg'));
+
+// ── Données structurées ────────────────────────────────────────────
+const organization = {
+  '@type': 'Organization',
+  '@id': `${siteUrl}${withBase('/')}#organisation`,
+  name: SITE.name,
+  alternateName: lang === 'de' ? 'Schweizerische Pfadfinderschaft Europas' : SITE.shortName,
+  url: abs(`/${lang}/`),
+  logo: { '@type': 'ImageObject', url: abs(LOGO) },
+  image: abs(CROSS),
+  foundingDate: '1973',
+  address: { '@type': 'PostalAddress', addressLocality: 'Genève', postalCode: '1205', addressCountry: 'CH' },
+  sameAs: SOCIAL.map((s) => s.url),
+  memberOf: { '@type': 'Organization', name: "Union internationale des Guides et Scouts d'Europe", url: 'https://uigse-fse.org/' },
+};
+const graph: any[] = [organization];
+if (isHome) {
+  graph.push({
+    '@type': 'WebSite',
+    '@id': `${siteUrl}${withBase('/')}#site`,
+    url: abs(`/${lang}/`),
+    name: SITE.name,
+    inLanguage: lang === 'fr' ? 'fr-CH' : 'de-CH',
+    publisher: { '@id': organization['@id'] },
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: { '@type': 'EntryPoint', urlTemplate: `${abs(`/${lang}/${SEARCH_BASE[lang]}/`)}?q={search_term_string}` },
+      'query-input': 'required name=search_term_string',
+    },
+  });
+}
+if (breadcrumbs && breadcrumbs.length > 1) {
+  graph.push({
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((b, i) => ({
+      '@type': 'ListItem', position: i + 1, name: b.name, item: new URL(b.href, siteUrl).href,
+    })),
+  });
+}
+graph.push({
+  '@type': article ? 'NewsArticle' : 'WebPage',
+  '@id': canonical,
+  url: canonical,
+  name: title,
+  headline: title,
+  description: desc,
+  inLanguage: lang === 'fr' ? 'fr-CH' : 'de-CH',
+  isPartOf: { '@id': `${siteUrl}${withBase('/')}#site` },
+  primaryImageOfPage: { '@type': 'ImageObject', url: ogImage },
+  image: ogImage,
+  ...(article
+    ? {
+        datePublished: article.published.toISOString(),
+        dateModified: (article.modified ?? article.published).toISOString(),
+        author: { '@id': organization['@id'] },
+        publisher: { '@id': organization['@id'] },
+      }
+    : {}),
+});
+const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
 ---
 
 <!doctype html>
@@ -71,11 +137,13 @@ const ogImage = new URL(withBase(image ?? '/images/og-image.jpg'), siteUrl).href
     <title>{fullTitle}</title>
     <meta name="description" content={desc} />
     <meta name="theme-color" content="#1c2733" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
     <link rel="canonical" href={canonical} />
-    {hideFromSearch && <meta name="robots" content="noindex, nofollow" />}
+    {hideFromSearch ? <meta name="robots" content="noindex, nofollow" /> : <meta name="robots" content="index, follow, max-image-preview:large" />}
 
     {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
     <link rel="alternate" hreflang="x-default" href={(alternates.find((a) => a.lang === 'fr') ?? alternates[0]).href} />
+    <link rel="alternate" type="application/rss+xml" title={`${SITE.name} — ${lang === 'fr' ? 'Actualités' : 'Aktuelles'}`} href={withBase(`/${lang}/rss.xml`)} />
 
     <link rel="icon" href={withBase('/favicon.ico')} sizes="any" />
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
@@ -92,11 +160,19 @@ const ogImage = new URL(withBase(image ?? '/images/og-image.jpg'), siteUrl).href
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:locale" content={lang === 'fr' ? 'fr_CH' : 'de_CH'} />
+    {twin && <meta property="og:locale:alternate" content={otherLang === 'fr' ? 'fr_CH' : 'de_CH'} />}
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={fullTitle} />
+    {article && <meta property="article:published_time" content={article.published.toISOString()} />}
+    {article && <meta property="article:modified_time" content={(article.modified ?? article.published).toISOString()} />}
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={desc} />
     <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={jsonLd} />
   </head>
 
   <body>
@@ -108,14 +184,39 @@ const ogImage = new URL(withBase(image ?? '/images/og-image.jpg'), siteUrl).href
     <Footer lang={lang} twin={twin} />
 
     <script is:inline>
-      // Apparition douce des blocs marqués .ses-reveal, si le navigateur sait
-      // observer l'écran. Sinon (ou sans JS), tout est visible d'emblée.
       (function () {
-        if (!('IntersectionObserver' in window)) { document.querySelectorAll('.ses-reveal').forEach(function (e) { e.classList.add('is-in'); }); return; }
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
-        }, { rootMargin: '0px 0px -8% 0px' });
-        document.querySelectorAll('.ses-reveal').forEach(function (e) { io.observe(e); });
+        // Apparition douce des blocs marqués .ses-reveal.
+        if (!('IntersectionObserver' in window)) { document.querySelectorAll('.ses-reveal').forEach(function (e) { e.classList.add('is-in'); }); }
+        else {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
+          }, { rootMargin: '0px 0px -8% 0px' });
+          document.querySelectorAll('.ses-reveal').forEach(function (e) { io.observe(e); });
+        }
+
+        // Adresses et téléphones protégés (issue #37) : reconstitués seulement
+        // quand la personne survole, touche, clique ou atteint le lien au clavier.
+        var KEY = 'ses-2026-croix';
+        function decode(b64) {
+          var raw = atob(b64), out = new Uint8Array(raw.length);
+          for (var i = 0; i < raw.length; i++) out[i] = raw.charCodeAt(i) ^ KEY.charCodeAt(i % KEY.length);
+          return new TextDecoder().decode(out);
+        }
+        function reveal(a) {
+          if (a.dataset.open) return;
+          var v = decode(a.dataset.obf), kind = a.dataset.kind;
+          a.dataset.open = '1';
+          a.href = (kind === 'email' ? 'mailto:' : 'tel:') + (kind === 'tel' ? v.replace(/\s+/g, '') : v);
+          a.classList.add('is-open');
+          var t = a.querySelector('.ses-obf__t');
+          if (t) { t.textContent = v; t.removeAttribute('aria-hidden'); }
+          a.removeAttribute('aria-label');
+          a.removeAttribute('rel');
+        }
+        document.querySelectorAll('a.ses-obf').forEach(function (a) {
+          ['pointerenter', 'touchstart', 'focus'].forEach(function (ev) { a.addEventListener(ev, function () { reveal(a); }, { passive: true }); });
+          a.addEventListener('click', function (e) { if (!a.dataset.open) { e.preventDefault(); reveal(a); a.click(); } });
+        });
       })();
     </script>
   </body>

@@ -64,7 +64,7 @@ Règle inchangée : aucune couleur, aucune taille de police en dur dans une page
 - Le rouge `#be0033` et le jaune `#ffed26` de la charte sont ceux de ce SVG officiel.
 - `public/images/croix-ses.svg` : la croix seule (pied de page, vignettes sans image).
 - `public/favicon.svg` et les PNG (32, 192, 512, apple-touch) : la croix sur fond blanc arrondi.
-- `public/images/og-image.jpg` : 1200×630, photo + logo, pour les partages.
+- `public/images/og-image.jpg` : l'image de partage par défaut ; `public/images/og/<langue>/` : une image par page, titre en tracés Cabin sur la couverture de la page, fabriquées par `scripts/og-images.mjs` avant chaque construction (issue #39).
 - Icônes des réseaux (`SocialIcon.astro`) : les marques officielles en tracés.
 
 ## Photos

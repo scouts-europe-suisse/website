@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import { visit } from 'unist-util-visit';
+import { protectedHtml, EMAIL_RE, PHONE_RE } from './src/lib/protect.mjs';
 import fs from 'node:fs';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
@@ -45,6 +46,50 @@ function imageSize(file) {
  * main dans le contenu : sans ce passage, toutes les images des pages
  * tombent en 404 dès que le site est servi depuis un sous-dossier.
  */
+/**
+ * Protège les adresses e-mail et les numéros de téléphone écrits dans le
+ * markdown (issue #37) : les liens mailto:/tel: et les adresses ou numéros
+ * en clair dans le texte deviennent des liens protégés (src/lib/protect.mjs),
+ * reconstitués seulement à l'interaction du visiteur.
+ */
+function rehypeProtectContacts() {
+  return (tree) => {
+    // 1. Les liens mailto: et tel:
+    visit(tree, 'element', (node, index, parent) => {
+      if (node.tagName !== 'a' || !parent) return;
+      const href = String(node.properties?.href ?? '');
+      const m = href.match(/^(mailto|tel):(.+)$/);
+      if (!m) return;
+      const kind = m[1] === 'mailto' ? 'email' : 'tel';
+      const value = decodeURIComponent(m[2]).trim();
+      const text = (node.children ?? []).map((c) => c.value ?? '').join('').trim();
+      const label = text && text !== value ? text : undefined;
+      parent.children[index] = { type: 'raw', value: protectedHtml(value, kind, { label }) };
+    });
+    // 2. Les adresses et numéros laissés en clair dans le texte
+    visit(tree, 'text', (node, index, parent) => {
+      if (!parent || parent.type !== 'element') return;
+      if (['a', 'code', 'pre', 'script', 'style'].includes(parent.tagName)) return;
+      const text = node.value;
+      const re = new RegExp(`${EMAIL_RE.source}|${PHONE_RE.source}`, 'g');
+      if (!re.test(text)) return;
+      re.lastIndex = 0;
+      const out = [];
+      let last = 0, mm;
+      while ((mm = re.exec(text))) {
+        if (mm.index > last) out.push({ type: 'text', value: text.slice(last, mm.index) });
+        const value = mm[0];
+        const kind = value.includes('@') ? 'email' : 'tel';
+        out.push({ type: 'raw', value: protectedHtml(kind === 'tel' ? value.replace(/[\s.]/g, ' ').trim() : value, kind) });
+        last = mm.index + value.length;
+      }
+      if (last < text.length) out.push({ type: 'text', value: text.slice(last) });
+      parent.children.splice(index, 1, ...out);
+      return index + out.length;
+    });
+  };
+}
+
 function rehypeBaseUrls() {
   return (tree) => {
     let seen = 0;
@@ -197,7 +242,7 @@ export default defineConfig({
   redirects: REDIRECTS,
 
   markdown: {
-    rehypePlugins: [rehypeBaseUrls],
+    rehypePlugins: [rehypeBaseUrls, rehypeProtectContacts],
   },
 
   vite: {
