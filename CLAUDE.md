@@ -209,8 +209,10 @@ seuls.
    collégialité.
 7. **Fusionner** (`gh pr merge --squash --delete-branch`). L'issue se ferme. Mettre à jour la
    section « Issues » du plan concerné dans le même mouvement.
-8. **Publier** : dès que l'issue #4 est faite, la fusion sur `main` publie l'aperçu toute
-   seule. En attendant, `npm run deploy` depuis `main` à jour, après la fusion.
+8. **Publier** : la fusion sur `main` publie l'aperçu toute seule (workflow
+   `.github/workflows/publier.yml`, issue #4), après avoir rafraîchi les photos Instagram et
+   vérifié les garde-fous. Compter deux à trois minutes ; `gh run list --limit 3` dit où ça en
+   est. `npm run deploy` reste possible en secours.
 
 ### Ce que « testé » veut dire
 
@@ -285,6 +287,9 @@ npm run dev        # http://localhost:4321
 
 Le site est publié en **aperçu public** sur GitHub Pages :
 **https://scouts-europe-suisse.github.io/website/**
+
+La publication est **automatique** à chaque fusion sur `main`, et une fois par jour pour
+rafraîchir les photos Instagram (workflow `publier.yml`). En secours, depuis `main` à jour :
 
 ```bash
 npm run deploy

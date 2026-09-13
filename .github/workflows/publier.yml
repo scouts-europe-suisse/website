@@ -1,0 +1,91 @@
+# Publication automatique de l'aperçu (issue #4).
+#
+# À chaque fusion sur main, une fois par jour, ou à la demande :
+#   1. récupère les dernières photos Instagram du mouvement avec les secrets du
+#      dépôt (jamais dans le code) et, si elles ont changé, les commite sur main ;
+#   2. construit le site pour GitHub Pages, avec les mêmes garde-fous que
+#      `npm run deploy` : préfixe des adresses, « ne pas indexer », contacts protégés ;
+#   3. publie le résultat sur la branche gh-pages.
+#
+# SES_SITE_MODE reste « preparation » : l'aperçu n'est pas le site du mouvement.
+# Le jour de la bascule (plan 01, issue #1), c'est ici que ça changera.
+name: Publier l'aperçu
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publication
+  cancel-in-progress: false
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Préparer Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Rafraîchir les photos Instagram
+        # Si Meta ne répond pas, on garde les photos précédentes et on continue.
+        continue-on-error: true
+        env:
+          META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
+          META_IG_USER_ID: ${{ vars.META_IG_USER_ID }}
+          META_GRAPH_VERSION: ${{ vars.META_GRAPH_VERSION }}
+          META_IG_KEEP: ${{ vars.META_IG_KEEP }}
+        run: npm run instagram
+
+      - name: Fabriquer les images de partage
+        run: npm run og
+
+      - name: Commiter les données mises à jour, s'il y en a
+        run: |
+          git config user.name "Publication automatique"
+          git config user.email "noreply@scouts-europe.ch"
+          git add src/data/instagram.json public/images/instagram public/images/og
+          if git diff --cached --quiet; then
+            echo "Rien de neuf côté photos."
+          else
+            git commit -m "Photos Instagram et images de partage mises à jour (automatique)"
+            git push origin HEAD:main
+          fi
+
+      - name: Construire pour GitHub Pages
+        env:
+          SITE_URL: https://scouts-europe-suisse.github.io
+          BASE_PATH: /website
+          SES_SITE_MODE: preparation
+        run: npm run build
+
+      - name: Vérifier les garde-fous
+        env:
+          SES_SITE_MODE: preparation
+        run: node scripts/verifier-build.mjs /website
+
+      - name: Publier sur gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_build
+          publish_branch: gh-pages
+          full_commit_message: "Publication automatique depuis main @ ${{ github.sha }}"
+          user_name: Publication automatique
+          user_email: noreply@scouts-europe.ch

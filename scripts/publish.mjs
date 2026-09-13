@@ -72,52 +72,16 @@ if (!fs.existsSync('_build')) {
   process.exit(1);
 }
 
-// 3. Contrôle : aucune adresse absolue ne doit avoir échappé au préfixe.
-//    Une seule oubliée met une image ou un lien mort en ligne, et ça ne se
-//    voit pas en local, où tout marche.
-console.log('→ Contrôle des adresses…');
-const leaks = new Set();
-const walk = (dir) => {
-  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-    const p = path.join(dir, e.name);
-    if (e.isDirectory()) walk(p);
-    else if (e.name.endsWith('.html')) {
-      const html = fs.readFileSync(p, 'utf8');
-      for (const m of html.matchAll(/(?:src|href)="(\/[a-zA-Z][^"]*)"/g)) {
-        if (!m[1].startsWith(`${BASE_PATH}/`)) leaks.add(m[1]);
-      }
-    }
-  }
-};
-walk('_build');
-
-// 3 bis. Contrôle : aucune page ne doit partir en ligne sans la mention
-//    « ne pas indexer ». Une seule oubliée suffit à mettre l'aperçu en
-//    concurrence avec le vrai site dans Google, et ça ne se voit pas à l'œil.
-console.log('→ Contrôle « ne pas indexer »…');
-const indexable = [];
-const walkPages = (dir) => {
-  for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-    const p = path.join(dir, e.name);
-    if (e.isDirectory()) walkPages(p);
-    else if (e.name.endsWith('.html')) {
-      const html = fs.readFileSync(p, 'utf8');
-      if (!/<meta\s+name="robots"\s+content="noindex/.test(html)) {
-        indexable.push(path.relative('_build', p));
-      }
-    }
-  }
-};
-walkPages('_build');
-if (indexable.length) {
-  console.error('✗ Pages sans « ne pas indexer » — elles concurrenceraient le vrai site :');
-  for (const l of indexable.slice(0, 20)) console.error(`   ${l}`);
-  process.exit(1);
-}
-
-if (leaks.size) {
-  console.error('✗ Adresses non préfixées — elles seraient mortes en ligne :');
-  for (const l of [...leaks].slice(0, 20)) console.error(`   ${l}`);
+// 3. Les garde-fous, partagés avec le workflow GitHub Actions (scripts/verifier-build.mjs) :
+//    préfixe des adresses, « ne pas indexer », contacts protégés. Le script s'arrête si l'un
+//    d'eux échoue : ne pas contourner.
+console.log('→ Contrôles…');
+try {
+  run(process.execPath, ['scripts/verifier-build.mjs', BASE_PATH], {
+    stdio: 'inherit',
+    env: { ...process.env, SES_SITE_MODE: 'preparation' },
+  });
+} catch {
   process.exit(1);
 }
 

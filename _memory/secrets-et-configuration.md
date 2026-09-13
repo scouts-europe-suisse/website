@@ -28,9 +28,10 @@ issue, ni dans une pull request.** L'historique garde tout, même supprimé ensu
 
 ## Pour les tâches automatiques (GitHub Actions)
 
-Les secrets se posent dans le dépôt GitHub : Settings → Secrets and variables → Actions.
-**Seul un propriétaire de l'organisation peut le faire** (au 2026-09-11 : francoisbe92 et
-perki). Les noms sont les mêmes que dans `.env`.
+Les secrets et variables sont posés dans le dépôt GitHub (Settings → Secrets and variables →
+Actions) depuis le 2026-09-13, par Nicolas : secrets `META_APP_SECRET` et `META_PAGE_TOKEN`,
+variables `META_APP_ID`, `META_PAGE_ID`, `META_IG_USER_ID`, `META_GRAPH_VERSION`,
+`META_IG_KEEP`. Les noms sont ceux de `.env`. Le workflow `publier.yml` les lit.
 
 ## Meta (Facebook, Instagram)
 
