@@ -4,7 +4,6 @@ date: 2023-04-01
 summary: "Se former pour mieux faire grandir ceux qui nous sont confiés : voilà un principe qui anime notre mouvement !"
 updated: 2025-12-09
 cover: "/images/actualites/woodbadge-days-2023-en-suisse.jpg"
-coverCredit: "Photo : compte Instagram du Scoutisme Européen Suisse, publication du 20.02.2023"
 ---
 
 Se former pour mieux faire grandir ceux qui nous sont confiés : voilà un principe qui anime notre mouvement !

@@ -8,6 +8,8 @@ WordPress actuel de [www.scouts-europe.ch](https://www.scouts-europe.ch/fr/).
 
 - [feedback_branche_par_issue.md](feedback_branche_par_issue.md) — une branche par issue
   GitHub, pull request vers `main`. Jamais de commit direct sur `main`, sauf `_plans/`.
+- [feedback_confirmation_technique.md](feedback_confirmation_technique.md) — **contenu : on
+  fait ; technique, design, structure : on demande confirmation avant** (2026-09-13).
 - [feedback_rituel_demarrage.md](feedback_rituel_demarrage.md) — montrer le site, mettre le
   dépôt à jour, regarder les issues et les plans avant toute tâche.
 - [feedback_publication.md](feedback_publication.md) — le site est publié en **aperçu public**

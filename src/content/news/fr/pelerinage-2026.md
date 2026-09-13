@@ -4,7 +4,6 @@ date: 2026-03-23
 summary: "Cette année, pour la 4e édition de ce pèlerinage, les aînés du Scoutisme Européen Suisse se rassemblent de nouveau à la Pentecôte, lors du jubilé des 800 ans de la mort de saint François d’Assise !…"
 updated: 2026-05-26
 cover: "/images/actualites/pelerinage-2026.jpg"
-coverCredit: "Photo : compte Instagram du Scoutisme Européen Suisse, publication du 10.06.2026"
 ---
 
 ![Une croix se détachant sur le ciel](/images/croix-ciel.jpg)
