@@ -189,7 +189,7 @@ sans interruption », à soumettre aux autres le soir même) :
 - #31 En-tête sur téléphone, FR · DE sur une ligne — **fermée** le 2026-09-12 (PR #32)
 - #33 à #39 Actualités illustrées, districts et groupes, accents, siège, contacts protégés, logo ESPAS, SEO — **fermées** le 2026-09-13 (PR #40)
 - #41 à #45 Logo ESPAS officiel, légendes retirées, filtres, texte UIGSE, règle de confirmation — **fermées** le 2026-09-13 (PR #47)
-- #46 Premier audit SEO et application — en cours
+- #46 Premier audit SEO et application — **fermée** le 2026-09-13 (PR #48)
 
 Ce qui reste avant le gel (étape 6) : relecture par les autres membres, corrections en issues,
 publication automatique (#4), audit de référencement local (plan XX), puis gel.
