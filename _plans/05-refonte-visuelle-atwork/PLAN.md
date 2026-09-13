@@ -159,7 +159,7 @@ _(mise à jour par Claude à chaque changement d'état)_
 
 Étape 0 :
 - #3 Mettre en place le fonctionnement par issues — **fermée** le 2026-09-11 (PR #12, #13)
-- #4 Publier automatiquement l'aperçu à chaque fusion sur main — prêt
+- #4 Publier automatiquement l'aperçu à chaque fusion sur main — **fermée** le 2026-09-13 (PR #49)
 - #5 Gestion des contributeurs — décision, prêt
 - #11 Mettre à jour la documentation périmée — prêt, priorité basse
 - #16 Publication cassée sous Windows (npm.cmd EINVAL) — **fermée** le 2026-09-11 (PR #17)
