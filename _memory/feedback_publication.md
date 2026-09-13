@@ -64,3 +64,13 @@ cd dist && git revert HEAD --no-edit && git push origin gh-pages
 ```
 
 Voir aussi [[local-dev-and-deploy]].
+
+## Depuis le 2026-09-13 : publication automatique (issue #4)
+
+Le workflow `.github/workflows/publier.yml` publie l'aperçu à chaque fusion sur `main`, une
+fois par jour (photos Instagram rafraîchies avec les secrets du dépôt, posés par Nicolas), et à
+la demande. Il applique les mêmes garde-fous que `npm run deploy`, désormais réunis dans
+`scripts/verifier-build.mjs` : préfixe des adresses, « ne pas indexer », contacts protégés. S'il
+échoue, rien n'est publié et l'onglet Actions du dépôt dit pourquoi. `npm run deploy` reste le
+secours depuis un poste. Le jour de la bascule, c'est dans ce workflow que `SES_SITE_MODE`
+passera à `production`.
