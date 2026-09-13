@@ -317,7 +317,7 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
      téléphone, quatre par rangée ; sur grand écran, tout tient sur une ligne. */
   .ses-explorer__filters {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(5.4rem, 1fr));
     gap: 0.4rem;
   }
   @media (min-width: 40rem) { .ses-explorer__filters { grid-template-columns: repeat(7, minmax(0, 1fr)); } }
@@ -332,7 +332,7 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
     cursor: pointer;
     transition: border-color var(--ease), box-shadow var(--ease), background-color var(--ease), opacity var(--ease);
   }
-  .ses-fbtn__label { font-family: var(--ses-font-heading); font-weight: 700; font-size: 0.72rem; line-height: 1.15; text-align: center; display: flex; flex-direction: column; }
+  .ses-fbtn__label { font-family: var(--ses-font-heading); font-weight: 700; font-size: 0.72rem; line-height: 1.15; text-align: center; display: flex; flex-direction: column; overflow-wrap: anywhere; hyphens: auto; max-width: 100%; }
   .ses-fbtn__label small { font-weight: 400; color: var(--ses-muted); font-size: 0.66rem; }
   .ses-fbtn__all {
     display: inline-flex; align-items: center; justify-content: center;

@@ -21,10 +21,16 @@ Die Union Internationale des Guides et Scouts d’Europe erzielt eine Zusammenf�
 
 <!-- Quelle zuzuordnen: Autor und Herkunft fehlen auf der alten Website -->
 
-> *Warum ich ein Pfadfinder Europas bin;*
+> **Warum ich Pfadfinder Europas bin;**
 >
-> *[...] Weil egal ob ein junger Franzose, ein junger Deutscher, ein junger Tscheche oder ein junger Engländer, wir wollen leben, arbeiten, bauen, lieben - nicht hassen oder zerstören.*
+> Weil sich vor 9 Jahren Jungen und Mädchen gesagt haben, dass es unmöglich sei, dass wir alle 20 Jahre von neuem gegeneinander aufstehen und dass Millionen von Waisen darauf warten, an der Reihe zu sein, in einen neuen Krieg zu ziehen…
 >
-> *Weil, wie wir in den Lagern und den gemeinsamen Treffen gesehen haben, uns absolut nichts trennt. Freundschaften entstehen zwischen Franzosen, Österreichern, Belgiern, Italienern...*
+> Weil sich angesichts der dem Erdboden gleichgemachten Städte, der vom Napalm verbrannten Kinder, derer, die nur noch ein Bein haben und hinkend zwischen zwei Krücken vorankommen, der Männer, die keine Hände, keine Augen mehr haben, etwas in uns aufgerichtet hat und rief: „Genug!“
 >
-> *Also, ob Reformierte, Katholiken oder, Orthodoxe, wir wollten uns nur daran erinnern, dass Christus für uns alle gestorben ist, und wir wollten in dem anderen einen vollkommenen Christen sehen, den Gott liebte. Und über den Trennungen der Menschen hinaus wollten wir dafür Pfadfinder Europas sein …*
+> Weil ein junger Franzose, ein junger Deutscher, ein junger Tscheche oder ein junger Engländer gleichermassen Lust haben zu leben, zu arbeiten, um aufzubauen, zu lieben, und nicht zu hassen oder zu zerstören.
+>
+> Weil wir es in den Lagern und bei den gemeinsamen Treffen gut gesehen haben: nichts, absolut nichts trennt uns, die Freundschaft entsteht zwischen Franzosen, Österreichern, Belgiern, Italienern…
+>
+> Darum haben wir uns in diesen Kampf gegen jene eingelassen, die zwischen uns Misstrauen und Hass keimen lassen wollen; darum sind wir, allein mit unserem Lächeln und unseren offenen Händen und dem Wenigen, das wir besitzen, einem Herzen als freie und treue Menschen, aufeinander zugegangen und haben dasselbe Kreuz angenommen, das die goldene Lilie trägt…
+>
+> Darum wollten wir, Reformierte, Katholiken, Orthodoxe, uns nur daran erinnern, dass Christus für alle gestorben ist, für uns wie für den letzten der Sklaven der Diamantminen von Kimberley, und wir wollten im anderen einen ganzen Christen sehen, den Gott geliebt hat. Und über die Trennungen der Menschen hinweg wollten wir deshalb Pfadfinder Europas sein…
