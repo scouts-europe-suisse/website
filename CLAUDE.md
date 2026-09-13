@@ -160,6 +160,17 @@ g. Quand l'utilisateur décide de démarrer, mettre en pause ou fermer un plan, 
 
 ## Travailler par issues
 
+**Depuis le 2026-09-13 : contenu ou technique ?** Avant d'agir, classe la demande.
+
+- **Contenu seul** (texte, image, actualité, description, traduction) : fais-le, sans
+  demander de confirmation.
+- **Technique, design ou structure** (composant, style, gabarit, mise en page, menu,
+  arborescence, script, configuration, dépendance, référencement technique) : **dis en une ou
+  deux phrases ce que tu vas changer et où, et attends la confirmation dans la conversation
+  avant d'exécuter**, même si la demande vient de l'utilisateur. En cas de doute, c'est
+  technique. Une demande qui mélange les deux : fais le contenu, demande pour le reste.
+  Détail : [`_memory/feedback_confirmation_technique.md`](_memory/feedback_confirmation_technique.md).
+
 **Toute modification, ajout, suppression, remarque ou objectif fait l'objet d'une issue
 GitHub, une par sujet.** Si l'utilisateur te demande un changement sans issue, **crée l'issue
 d'abord**, avec ses mots, puis travaille dessus. Il n'a rien à faire sur GitHub s'il ne veut pas :

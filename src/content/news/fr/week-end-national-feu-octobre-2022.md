@@ -4,7 +4,6 @@ date: 2022-10-31
 summary: "Les week-ends de feu sont toujours l’assurance de passer des moments privilégiés, que ce soit avec Jésus, dans l’intimité de nos cœurs, mais également au contact de nos sœurs guides aînées, avec leur…"
 updated: 2025-12-09
 cover: "/images/actualites/week-end-national-feu-octobre-2022.jpg"
-coverCredit: "Photo : compte Instagram du Scoutisme Européen Suisse, publication du 16.10.2022"
 ---
 
 Les week-ends de feu sont toujours l’assurance de passer des moments privilégiés, que ce soit avec Jésus, dans l’intimité de nos cœurs, mais également au contact de nos sœurs guides aînées, avec leur présence amicale et leur générosité bienveillante. L’édition du 15-16 octobre dernier n’a pas dérogé à la règle de cette précieuse tradition comme l’illustre le récit.

@@ -178,8 +178,8 @@ export const UI = {
   headOffice: { fr: 'Siège', de: 'Sitz' },
   followUs: { fr: 'Suivez-nous', de: 'Folgen Sie uns' },
   memberOf: {
-    fr: 'Association catholique, membre de l’Union internationale des Guides et Scouts d’Europe.',
-    de: 'Katholischer Verein, Mitglied der Internationalen Union der Pfadfinderinnen und Pfadfinder Europas.',
+    fr: 'Association membre de l’Union internationale des Guides et Scouts d’Europe (UIGSE).',
+    de: 'Mitgliedsverein der Internationalen Union der Pfadfinderinnen und Pfadfinder Europas (UIGSE).',
   },
   footerSite: { fr: 'Le site', de: 'Die Website' },
   footerContact: { fr: 'Contact', de: 'Kontakt' },

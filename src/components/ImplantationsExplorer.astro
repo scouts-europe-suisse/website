@@ -26,6 +26,9 @@ interface Props {
 const { lang } = Astro.props;
 const places = getPlaces();
 const kindsPresent = KIND_ORDER.filter((k) => places.some((p) => p.kinds.includes(k)));
+// Dans les fiches de district, pas de tranche d'âge pour les aînés (décision de Nicolas, 2026-09-13) ;
+// les filtres, eux, la gardent.
+const cardAge = (k: string) => (k === 'routiers' || k === 'guides-ainees' ? '' : KIND_AGES[k as keyof typeof KIND_AGES]);
 const totalGroups = DISTRICTS.reduce((s, d) => s + d.groups.filter((g) => !g.sleeping).length, 0);
 
 const T = {
@@ -80,20 +83,24 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
     </figure>
 
     <div class="ses-explorer__tools">
-      <div class="ses-explorer__filters" role="group" aria-label={T.filter}>
-        <span class="ses-explorer__filters-label">{T.filter}</span>
-        <button type="button" class="ses-fbtn ses-fbtn--text is-active" data-all aria-pressed="true">{T.all}</button>
+      <p class="ses-explorer__filters-label" id="ses-filter-label">{T.filter}</p>
+      <div class="ses-explorer__filters" role="group" aria-labelledby="ses-filter-label">
+        <button type="button" class="ses-fbtn ses-fbtn--all is-active" data-all aria-pressed="true">
+          <span class="ses-fbtn__all" aria-hidden="true">✓</span>
+          <span class="ses-fbtn__label">{T.all}</span>
+        </button>
         {kindsPresent.map((k) => (
           <button
             type="button"
             class="ses-fbtn"
             data-kind={k}
             aria-pressed="false"
-            aria-label={`${KIND_LABELS[k][lang]}, ${KIND_AGES[k]} ${T.years}`}
-            title={`${KIND_LABELS[k][lang]} · ${KIND_AGES[k]} ${T.years}`}
+            aria-label={KIND_AGES[k] ? `${KIND_LABELS[k][lang]}, ${KIND_AGES[k]} ${T.years}` : KIND_LABELS[k][lang]}
+            title={KIND_AGES[k] ? `${KIND_LABELS[k][lang]} · ${KIND_AGES[k]} ${T.years}` : KIND_LABELS[k][lang]}
             style={`--accent: var(--ses-branche-${PICTOS[k].branche})`}
           >
             <BrancheIcon icon={k} size="1.75rem" lang={lang} />
+            <span class="ses-fbtn__label">{KIND_LABELS[k][lang]}{KIND_AGES[k] && <small>{KIND_AGES[k]} {T.years}</small>}</span>
           </button>
         ))}
       </div>
@@ -138,7 +145,7 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
                 </div>
                 <ul class="ses-district__kinds" aria-label={T.filter}>
                   {kinds.map((k) => (
-                    <li title={`${KIND_LABELS[k][lang]} · ${KIND_AGES[k]} ${T.years}`}><BrancheIcon icon={k} size="1.6rem" lang={lang} decorative={false} /></li>
+                    <li title={cardAge(k) ? `${KIND_LABELS[k][lang]} · ${cardAge(k)} ${T.years}` : KIND_LABELS[k][lang]}><BrancheIcon icon={k} size="1.6rem" lang={lang} decorative={false} /></li>
                   ))}
                 </ul>
               </div>
@@ -160,13 +167,13 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
                 {d.clan && (
                   <li class="ses-group ses-group--district" data-group-kinds="routiers">
                     <span class="ses-group__icons" aria-hidden="true"><BrancheIcon icon="routiers" size="1.5rem" lang={lang} /></span>
-                    <span class="ses-group__text"><strong>{T.clan} {d.clan}</strong><small>{KIND_LABELS.routiers[lang]} · {KIND_AGES.routiers} {T.years}</small></span>
+                    <span class="ses-group__text"><strong>{T.clan} {d.clan}</strong><small>{KIND_LABELS.routiers[lang]}</small></span>
                   </li>
                 )}
                 {d.feu && (
                   <li class="ses-group ses-group--district" data-group-kinds="guides-ainees">
                     <span class="ses-group__icons" aria-hidden="true"><BrancheIcon icon="guides-ainees" size="1.5rem" lang={lang} /></span>
-                    <span class="ses-group__text"><strong>{d.feu === 'pilote' ? T.feuPilote : `${T.feu} ${d.feu}`}</strong><small>{KIND_LABELS['guides-ainees'][lang]} · {KIND_AGES['guides-ainees']} {T.years}</small></span>
+                    <span class="ses-group__text"><strong>{d.feu === 'pilote' ? T.feuPilote : `${T.feu} ${d.feu}`}</strong><small>{KIND_LABELS['guides-ainees'][lang]}</small></span>
                   </li>
                 )}
               </ul>
@@ -218,7 +225,7 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
       root.querySelector('[data-count-g]').textContent = groups;
       root.querySelector('[data-count-g-label]').textContent = groups === 1 ? T.group : T.groups;
       activeLabel.textContent = active.length
-        ? chips.filter(function (ch) { return active.indexOf(ch.dataset.kind) !== -1; }).map(function (ch) { return ch.title.split(' · ')[0]; }).join(' + ')
+        ? chips.filter(function (ch) { return active.indexOf(ch.dataset.kind) !== -1; }).map(function (ch) { return (ch.title || '').split(' · ')[0]; }).join(' + ')
         : '';
       empty.hidden = shown > 0;
     }
@@ -304,23 +311,37 @@ const i18n = JSON.stringify({ busy: T.nearBusy, done: T.nearDone, denied: T.near
     padding: var(--space-2);
     box-shadow: var(--shadow-1);
   }
-  .ses-explorer__tools { margin-top: var(--space-2); display: grid; gap: 0.4rem; }
-  .ses-explorer__filters { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
-  .ses-explorer__filters-label { font-size: var(--text-eyebrow); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ses-muted); margin-right: 0.3rem; }
+  .ses-explorer__tools { margin-top: var(--space-2); display: grid; gap: 0.5rem; }
+  .ses-explorer__filters-label { margin: 0; font-size: var(--text-eyebrow); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ses-muted); }
+  /* Les filtres : une grille de tuiles égales, icône au-dessus du nom. Sur
+     téléphone, quatre par rangée ; sur grand écran, tout tient sur une ligne. */
+  .ses-explorer__filters {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.4rem;
+  }
+  @media (min-width: 40rem) { .ses-explorer__filters { grid-template-columns: repeat(7, minmax(0, 1fr)); } }
   .ses-fbtn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
-    min-width: 2.5rem; min-height: 2.5rem;
-    padding: 0.25rem;
-    border-radius: 999px;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 0.35rem;
+    min-height: 4.6rem;
+    padding: 0.5rem 0.25rem 0.4rem;
+    border-radius: var(--radius-2);
     border: 1px solid var(--ses-border);
     background: var(--ses-surface);
     color: var(--ses-nuit);
     cursor: pointer;
     transition: border-color var(--ease), box-shadow var(--ease), background-color var(--ease), opacity var(--ease);
   }
-  .ses-fbtn--text { padding: 0.25rem 0.85rem; font-family: var(--ses-font-heading); font-weight: 700; font-size: var(--text-small); }
+  .ses-fbtn__label { font-family: var(--ses-font-heading); font-weight: 700; font-size: 0.72rem; line-height: 1.15; text-align: center; display: flex; flex-direction: column; }
+  .ses-fbtn__label small { font-weight: 400; color: var(--ses-muted); font-size: 0.66rem; }
+  .ses-fbtn__all {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 1.75rem; height: 1.75rem; border-radius: 999px;
+    border: 2px solid var(--ses-nuit); font-weight: 700; font-size: 0.9rem;
+  }
   .ses-fbtn:hover { border-color: var(--ses-nuit); }
-  .ses-fbtn.is-active { border-color: var(--accent, var(--ses-nuit)); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent, var(--ses-nuit)) 25%, transparent); background: color-mix(in srgb, var(--accent, var(--ses-nuit)) 10%, white); }
+  .ses-fbtn.is-active { border-color: var(--accent, var(--ses-nuit)); box-shadow: inset 0 0 0 1px var(--accent, var(--ses-nuit)); background: color-mix(in srgb, var(--accent, var(--ses-nuit)) 10%, white); }
+  .ses-fbtn--text { flex-direction: row; min-height: 2.5rem; padding: 0.25rem 0.85rem; border-radius: 999px; font-family: var(--ses-font-heading); font-weight: 700; font-size: var(--text-small); }
   .ses-fbtn[disabled] { opacity: 0.6; cursor: wait; }
   .ses-explorer__active { margin: 0; min-height: 1.2em; }
   .ses-explorer__meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; }

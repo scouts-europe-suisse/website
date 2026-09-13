@@ -4,9 +4,9 @@ urlPath: espas
 key: espas
 description: "Partenaire d'ESPAS depuis 2018, le Scoutisme Européen Suisse forme ses chefs et cadres à la prévention des abus et à la protection des mineurs."
 sourceModified: 2025-12-09
-cover: "/images/espas-logo.svg"
+cover: "/images/espas-logo.jpg"
 coverAlt: "Logo ESPAS"
-coverWidth: 260
+coverWidth: 320
 ---
 
 Le Scoutisme Européen Suisse est partenaire depuis 2018 de l’association [ESPAS](https://www.espas.info) - Soutien et Prévention - Abus sexuels. L'association bénéficie ainsi de son accompagnement personnalisé et de son expertise en matière de prévention des abus pour mettre en place un cadre garantissant le respect de l'intégrité physique et affective de tous ses membres, particulièrement les mineurs. Les chefs et cadres de l'association ont accès à des formations et sensibilisations spécifiques, afin d'être tous acteurs et tous responsables de la protection contre les abus.
