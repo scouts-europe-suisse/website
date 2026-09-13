@@ -36,6 +36,22 @@ modèles sont dans `.github/ISSUE_TEMPLATE/`. Le détail du cycle est dans
   issue #4). On n'y travaille jamais à la main.
 - `origin` — `https://github.com/scouts-europe-suisse/website`, **public**.
 
+### Les contributeurs
+
+Décision du 2026-09-13 (issue #5, Nicolas) :
+
+- **Tous les membres de l'organisation GitHub `scouts-europe-suisse` ont tous les droits** sur
+  le site : créer, qualifier, faire, tester, fusionner, publier, trancher.
+- **Ajouter quelqu'un** : un propriétaire de l'organisation (au 2026-09-13 : francoisbe92,
+  perki) l'invite dans l'organisation avec le droit d'écriture sur le dépôt. Il installe Claude
+  Code en suivant [`DEMARRER.md`](../DEMARRER.md) et Claude fait le reste.
+- **Retirer quelqu'un** : le propriétaire le retire de l'organisation. Ses branches `issue/…`
+  non fusionnées sont fermées par une issue.
+- La liste vivante est celle de l'organisation GitHub (`gh api orgs/scouts-europe-suisse/members`)
+  ; on ne la recopie pas ici pour qu'elle ne devienne pas fausse.
+- Si des rôles différents deviennent nécessaires un jour (contenu seul / tout), ce sera une
+  décision écrite dans une issue, et une équipe GitHub par rôle.
+
 ### Qui décide
 
 Chaque contributeur, **individuellement**. Une seule personne suffit pour qualifier une issue,

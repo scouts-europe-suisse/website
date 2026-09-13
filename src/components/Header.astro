@@ -148,22 +148,27 @@ const searchHref = path(lang, SEARCH_BASE[lang]);
   }
   .ses-header__logo { display: inline-flex; align-items: center; flex-shrink: 0; }
   .ses-header__logo img { height: 2.9rem; width: auto; }
+  /* Le logo allemand est plus large (texte plus long) : un peu moins haut. */
+  :global(html[lang='de']) .ses-header__logo img { height: 2.45rem; }
   @media (max-width: 30rem) { .ses-header__logo img { height: 2.1rem; } .ses-header__row { gap: var(--space-1); } .ses-header__tools { gap: 0; } }
 
   /* Le menu horizontal, à partir du grand écran. */
   .ses-nav { display: none; }
-  @media (min-width: 64rem) { .ses-nav { display: block; margin-left: auto; } }
-  .ses-nav__list { display: flex; align-items: stretch; gap: 0.25rem; }
+  /* Le menu horizontal n'apparaît qu'à partir de 72rem : en allemand, les libellés sont
+     longs (« Unsere Pfadfinderschaft ») et se bousculaient à 64rem (issue #55). */
+  @media (min-width: 72rem) { .ses-nav { display: block; margin-left: auto; } }
+  .ses-nav__list { display: flex; align-items: stretch; gap: 0.1rem; }
   .ses-nav__item { position: relative; }
   .ses-nav__item > a {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    padding: 0.6rem 0.85rem;
+    padding: 0.55rem 0.7rem;
     border-radius: 999px;
     font-family: var(--ses-font-heading);
     font-weight: 700;
-    font-size: 0.9875rem;
+    font-size: 0.95rem;
+    white-space: nowrap;
     color: var(--ses-nuit);
     text-decoration: none;
     transition: background-color var(--ease), color var(--ease);
@@ -220,7 +225,7 @@ const searchHref = path(lang, SEARCH_BASE[lang]);
 
   /* Le bouton et le panneau du menu replié. */
   .ses-burger { display: block; }
-  @media (min-width: 64rem) { .ses-burger { display: none; } }
+  @media (min-width: 72rem) { .ses-burger { display: none; } }
   .ses-burger summary::-webkit-details-marker { display: none; }
   .ses-burger__close { display: none; }
   .ses-burger[open] .ses-burger__open { display: none; }

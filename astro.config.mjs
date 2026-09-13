@@ -52,6 +52,32 @@ function imageSize(file) {
  * en clair dans le texte deviennent des liens protégés (src/lib/protect.mjs),
  * reconstitués seulement à l'interaction du visiteur.
  */
+/**
+ * Les légendes des photos (issue #57). L'ancien site affichait une légende sous
+ * chaque photo ; la reprise l'a gardée comme texte alternatif. Quand ce texte
+ * est une vraie phrase (et pas un nom de fichier comme « DSCF1427 »), l'image
+ * seule dans son paragraphe devient une <figure> avec sa <figcaption>.
+ */
+function rehypeFigures() {
+  const isCaption = (alt) => alt && alt.trim().length >= 8 && /\s/.test(alt.trim()) && !/^(dsc|img|p\d|\d)/i.test(alt.trim());
+  return (tree) => {
+    visit(tree, 'element', (node, index, parent) => {
+      if (node.tagName !== 'p' || !parent) return;
+      const kids = (node.children ?? []).filter((c) => !(c.type === 'text' && !c.value.trim()));
+      if (kids.length !== 1 || kids[0].type !== 'element' || kids[0].tagName !== 'img') return;
+      const img = kids[0];
+      const alt = String(img.properties?.alt ?? '');
+      if (!isCaption(alt)) return;
+      parent.children[index] = {
+        type: 'element',
+        tagName: 'figure',
+        properties: { className: ['ses-figure'] },
+        children: [img, { type: 'element', tagName: 'figcaption', properties: {}, children: [{ type: 'text', value: alt.trim() }] }],
+      };
+    });
+  };
+}
+
 function rehypeProtectContacts() {
   return (tree) => {
     // 1. Les liens mailto: et tel:
@@ -246,7 +272,7 @@ export default defineConfig({
   redirects: REDIRECTS,
 
   markdown: {
-    rehypePlugins: [rehypeBaseUrls, rehypeProtectContacts],
+    rehypePlugins: [rehypeBaseUrls, rehypeFigures, rehypeProtectContacts],
   },
 
   vite: {

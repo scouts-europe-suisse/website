@@ -82,6 +82,15 @@ if (kind === 'page') {
 // on donne leur jumelle au gabarit, pour le sélecteur de langue et le hreflang.
 const implantationsHref = kind === 'page' && entry.data.map ? await pathFor('nos-implantations', lang) : null;
 
+// Une actualité est reliée à sa traduction par son nom de fichier (issue #56) : le
+// sélecteur de langue ouvre l'article traduit, pas l'accueil.
+const newsTwin =
+  kind === 'news'
+    ? (await getCollection('news')).some((e) => e.id === `${other}/${entry.id.split('/')[1]}`)
+      ? path(other, `${NEWS_BASE[other]}/${entry.id.split('/')[1]}`)
+      : null
+    : undefined;
+
 const routeTwin =
   kind === 'news-index' ? path(other, NEWS_BASE[other]) : kind === 'search' ? path(other, SEARCH_BASE[other]) : undefined;
 ---
@@ -117,6 +126,7 @@ const routeTwin =
     description={entry.data.summary}
     lang={lang}
     ogType="article"
+    twinHref={newsTwin}
     ogSlug={`actualites-${entry.id.split('/')[1]}`}
     noindex={entry.data.draft}
     article={{ published: entry.data.date, modified: entry.data.updated }}
