@@ -193,6 +193,7 @@ sans interruption », à soumettre aux autres le soir même) :
 - #51 Publication automatique robuste au push concurrent — **fermée** le 2026-09-13 (PR #52)
 - #53 Pied de page : droits trilingues — **fermée** le 2026-09-13 (PR #54)
 - #55 à #58 Allemand sans débordement, liens de langue page à page, légendes des photos, citation complète — **fermées** le 2026-09-13 (PR #59)
+- #60 Tous les textes relus et mis en forme — **fermée** le 2026-09-13 (PR #61)
 - #5 Gestion des contributeurs — **fermée** le 2026-09-13 (règle dans conventions.md) ; #7 relecture et #8 auteur de la citation — **fermées** sur décision de Nicolas
 
 Ce qui reste avant le gel (étape 6) : relecture par les autres membres, corrections en issues,
