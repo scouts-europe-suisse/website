@@ -44,7 +44,7 @@ publiées par lot.
 | Branches | Une branche par issue, ou par groupe d'issues semblables, avec pull request vers `main`. |
 | Tests | Liste de vérification manuelle plus contrôles automatiques au build, sans alourdir. |
 | Publication | Automatique à chaque fusion sur `main` (GitHub Actions), vers `gh-pages`. |
-| Gel du design | Une fois validé, tout changement de charte demande une issue `type: charte` et l'accord écrit d'une personne. |
+| Gel du design | Une fois validé, tout changement de charte demande une issue `type: charte` et l'accord écrit d'une personne. **Depuis le 2026-09-13 : tout changement technique, de design ou de structure demande une confirmation dans la conversation ; le contenu seul, non.** |
 | Domaine et hébergeur | Deux issues ouvertes jusqu'à la mise en production (plan 01). |
 | Échéance | Aucune. |
 
@@ -188,6 +188,8 @@ sans interruption », à soumettre aux autres le soir même) :
 - #29 Page des implantations : carte fixe, filtres en retrait, tri par distance — **fermée** le 2026-09-12 (PR #30)
 - #31 En-tête sur téléphone, FR · DE sur une ligne — **fermée** le 2026-09-12 (PR #32)
 - #33 à #39 Actualités illustrées, districts et groupes, accents, siège, contacts protégés, logo ESPAS, SEO — **fermées** le 2026-09-13 (PR #40)
+- #41 à #45 Logo ESPAS officiel, légendes retirées, filtres, texte UIGSE, règle de confirmation — **fermées** le 2026-09-13 (PR #47)
+- #46 Premier audit SEO et application — en cours
 
 Ce qui reste avant le gel (étape 6) : relecture par les autres membres, corrections en issues,
 publication automatique (#4), audit de référencement local (plan XX), puis gel.
