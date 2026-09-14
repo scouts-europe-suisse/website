@@ -17,7 +17,7 @@ Au sein d'une petite bande de copains, se voir confier de vraies responsabilité
 
 Une à deux fois par mois, en petit groupe autonome de 6 à 8 (**la patrouille**), tu partiras te lancer de nouveaux défis et monter des projets. Sur des week-ends, tu prépareras le **grand camp d'été** de 15 jours qui sera ton chef-d'œuvre. Ce camp peut aussi être un **Eurocamp**, où trois à cinq unités de différents pays campent ensemble.
 
-![DSCF1427](/images/dscf1427.jpg)
+![](/images/dscf1427.jpg)
 
 ## La patrouille
 
@@ -37,4 +37,4 @@ Le jour de sa promesse, l'éclaireur ou l'éclaireuse s'engage à suivre fidèle
 
 Sur la chemise, des insignes marquent les étapes de la progression : classes, badges, brevets majeurs. Vers 17 ans, l'éclaireur et l'éclaireuse rejoignent les [routiers et guides-aînées](/fr/branche-rouge/).
 
-![DSC_3995](/images/dsc-3995.jpg)
+![](/images/dsc-3995.jpg)

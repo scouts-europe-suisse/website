@@ -19,4 +19,4 @@ Dieses Jahr hatte unser Schweizer Verein die Ehre, dieses Treffen in **Arzier, a
 
 *Théophane, ACNL*
 
-![*Die in der Schweiz versammelten Mitglieder der UIGSE für diese Ausgabe 2023*](/images/copie-de-wbd-2023-237-061a9624-1.jpg)
+![Die in der Schweiz versammelten Mitglieder der UIGSE für diese Ausgabe 2023](/images/copie-de-wbd-2023-237-061a9624-1.jpg)

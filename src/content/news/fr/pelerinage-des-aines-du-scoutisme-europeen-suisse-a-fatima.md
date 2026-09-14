@@ -4,7 +4,6 @@ date: 2018-10-07
 summary: "2101 kilomètres, 15 jours, 3 pays traversés, 9 minibus, 75 participants venus des 5 cantons de Suisse où les Scouts d'Europe sont présents, 2 prêtres, 2 familles, 1 évêque de Suisse rencontré à…"
 updated: 2025-12-09
 cover: "/images/marche-route.jpg"
-coverCredit: "Marcheurs sur une route de campagne"
 ---
 
 2101 kilomètres, 15 jours, 3 pays traversés, 9 minibus, 75 participants venus des 5 cantons de Suisse où les Scouts d'Europe sont présents, 2 prêtres, 2 familles, 1 évêque de Suisse rencontré à Fatima, 45° à l'ombre, 245 kg de pain et plus de 2 000 litres d'eau... des dizaines et des dizaines de chapelets, 1 chemin de croix, 14 heures route ou lectio, 1 nuit entière d'adoration... et bien plus encore !
@@ -15,7 +14,7 @@ coverCredit: "Marcheurs sur une route de campagne"
 
 Le thème de notre route ? Fiat Lux ! Faire la lumière sur soi et sur les désirs de son cœur, mieux se connaître afin de se dépasser et ainsi toujours grandir ! Découvrir le Cœur immaculé de Marie qu'elle révèle aux bergers de Fatima, et s'y consacrer tout entier.
 
-![Marcheurs sur une route de campagne](/images/marche-route.jpg)
+![En route sur le chemin de Saint-Jacques](/images/marche-route.jpg)
 
 ## MERCI !
 

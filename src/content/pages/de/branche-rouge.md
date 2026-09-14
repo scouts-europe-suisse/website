@@ -12,7 +12,7 @@ sourceModified: 2025-12-09
 
 Kraftvolle und technische Aktivitäten ausüben, Akteur des eigenen Lebens werden, Verantwortungsbewusstsein im Dienst neuer Formen der Solidarität entwickeln. Freiheit, Freundschaft, Freude, Begegnungen, Dienste und Projekte, bei denen deine Jugend eine Chance und unsere Ausbildung ein Trumpf ist! Entdecke und vertiefe im Alter der wichtigen Entscheidungen deinen Glauben und engagiere dich, um dein Erwachsenenleben aufzubauen.
 
-![Roveraussendung (Départ routier)](/images/18078394070-61b4000ae4-o.jpg)
+![](/images/18078394070-61b4000ae4-o.jpg)
 
 ## Konkret?
 
@@ -22,7 +22,7 @@ Alles ist möglich! Die Aktivitäten kennen nur die Grenzen, die du mit deinem T
 
 Mit etwa 17 Jahren, beim Verlassen des Trupps, treten Pfadfinder und Pfadfinderin in die grosse Bruderschaft der Rover und Ranger ein. Die Buben bilden einen **Clan** von Rovern; die Mädchen steigen ins [**Feu pilote**](/de/rote-stufe/ranger/) auf, ein kleines Team unter der Leitung einer Leiterin, in dem sie mindestens zwei Jahre bleiben. Jede und jeder erlebt dort Aktivitäten, die den eigenen Ambitionen entsprechen: echte Freundschaften aufbauen, das Abenteuer wagen und die Freude entdecken, im Dienen zu empfangen. Wer möchte, kann sich in den [nationalen technischen Einheiten](/de/die-bewegung/betreuung/) auf eine Technik spezialisieren: Topografie, „Froissartage“ (Bauen mit Holz ohne Schnur), Lagertechnik, Gesang, Fotografie …
 
-![Ranger](/images/img-0974.jpg)
+![](/images/img-0974.jpg)
 
 ## Die Route
 

@@ -11,7 +11,7 @@ sourceModified: 2025-12-09
 
 Der Verein der Schweizerischen Pfadfinderschaft Europas ist eine Erziehungsbewegung nach der Pfadfindermethode, ergänzend zu Familie und Schule. Sie zielt auf die Entfaltung der Kinder, Jugendlichen und jungen Erwachsenen durch das Spiel oder das Abenteuer in der Natur und die altersgerechte Übernahme von Verantwortung.
 
-![Wölflingsmädchen in einem Sommerlager](/images/p1140040.jpg)
+![](/images/p1140040.jpg)
 
 ## Eine Bildungsbewegung für junge Menschen
 
@@ -27,7 +27,7 @@ Der Verein ist ein katholischer Verein, Mitglied der Union Internationale des Gu
 
 Unser Verein ist der christlichen Dimension der Pädagogik verbunden, die vom Evangelium durchdrungen ist und auf der Berufung jedes Christen zur Heiligkeit beruht.
 
-![0044](/images/0044.jpg)
+![](/images/0044.jpg)
 
 ## Eine in der Gesellschaft engagierte Bewegung
 
@@ -37,4 +37,4 @@ Im Herzen der heutigen Welt versucht das Pfadfindertum, das Verantwortungsbewuss
 
 Indem sie das Pfadfinderspiel bei unseren Ausflügen und Lagern in der Natur leben, lernen die jungen Menschen, die Notwendigkeit besser zu verstehen, die Umwelt zu respektieren und die Schöpfung, Gottes Geschenk, zu schützen.
 
-![Wanderung auf einem Grat am Ende des Tages](/images/crete-montagne.jpg)
+![](/images/crete-montagne.jpg)

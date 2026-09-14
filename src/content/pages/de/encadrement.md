@@ -31,4 +31,4 @@ Der Vorstand und der Ausschuss, von allen ausgebildeten Leitern an der Mitgliede
 
 Nationale technische Einheiten (ETN) bringen Rover und Ranger, Leiter und Leiterinnen zusammen, die eine bestimmte Technik vertiefen möchten: Topografie, „Froissartage“ (Bauen mit Holz ohne Schnur), Lagertechnik, Gesang, Fotografie, Multimedia … Die Mitglieder bilden sich in ihrer Technik aus und stellen sie dann in den Dienst der Bewegung, indem sie andere ausbilden oder bei Grossveranstaltungen mitwirken.
 
-![Ein im Lager errichteter Pionierbau](/images/pionnierage.jpg)
+![](/images/pionnierage.jpg)

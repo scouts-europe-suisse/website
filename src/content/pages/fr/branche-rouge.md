@@ -11,7 +11,7 @@ sourceModified: 2025-12-09
 
 Pratiquer des activités toniques et techniques, devenir acteur de sa vie, développer son sens des responsabilités au service de solidarités nouvelles. La liberté, l'amitié, la joie, les rencontres, des services et des chantiers où ta jeunesse est une chance et notre formation un atout ! À l'âge des choix importants, découvre et approfondis ta foi et engage-toi pour bâtir ta vie d'adulte.
 
-![Départ routier](/images/18078394070-61b4000ae4-o.jpg)
+![](/images/18078394070-61b4000ae4-o.jpg)
 
 ## Concrètement ?
 
@@ -21,7 +21,7 @@ Tout est possible ! Les activités n'ont de limites que celles que tu fixeras av
 
 Vers 17 ans, à la sortie de la troupe ou de la compagnie, le scout et la guide entrent dans la grande fraternité des aînés. Les garçons forment un **clan** de routiers ; les filles montent au [**feu pilote**](/fr/branche-rouge/guides-ainees/), une petite équipe dirigée par une cheftaine, où elles restent au moins deux ans. Chacun y vit des activités à la hauteur de ses ambitions : construire de vraies amitiés, oser l'aventure et découvrir la joie de recevoir en servant. Ceux qui le souhaitent peuvent se spécialiser dans une technique au sein des [équipes techniques nationales](/fr/mouvement/encadrement/) : topographie, froissartage, campisme, chant, photographie…
 
-![Guides-aînées](/images/img-0974.jpg)
+![](/images/img-0974.jpg)
 
 ## La route
 

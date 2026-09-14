@@ -4,7 +4,6 @@ date: 2018-10-07
 summary: "2101 Kilometer, 15 Tage, 3 durchquerte Länder, 9 Kleinbusse, 75 Teilnehmende aus den 5 Schweizer Kantonen, in denen die Pfadfinder Europas präsent sind, 2 Priester, 2 Familien, 1 Schweizer Bischof, dem wir in Fatima begegnet sind…"
 updated: 2025-12-09
 cover: "/images/marche-route.jpg"
-coverCredit: "Wanderer auf einer Landstrasse"
 translated: true
 ---
 
@@ -16,7 +15,7 @@ translated: true
 
 Das Thema unserer Route? Fiat Lux! Licht machen über sich selbst und die Sehnsüchte des eigenen Herzens, sich besser kennen, um über sich hinauszuwachsen und so immer weiter zu wachsen! Das Unbefleckte Herz Mariens entdecken, das sie den Hirten von Fatima offenbart, und sich ihm ganz weihen.
 
-![Wanderer auf einer Landstrasse](/images/marche-route.jpg)
+![Unterwegs auf dem Jakobsweg](/images/marche-route.jpg)
 
 ## DANKE!
 

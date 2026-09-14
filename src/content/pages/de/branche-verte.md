@@ -18,7 +18,7 @@ In einer kleinen Bande von Freunden echte Verantwortung übertragen bekommen! Im
 
 Ein- bis zweimal im Monat brichst du in einer kleinen selbständigen Gruppe von 6 bis 8 (**die Patrouille**) auf, um dich neuen Herausforderungen zu stellen und Projekte auf die Beine zu stellen. An Wochenenden bereitest du das **grosse 15-tägige Sommerlager** vor, das dein Meisterwerk sein wird. Dieses Lager kann auch ein **Eurocamp** sein, bei dem drei bis fünf Einheiten aus verschiedenen Ländern zusammen zelten.
 
-![DSCF1427](/images/dscf1427.jpg)
+![](/images/dscf1427.jpg)
 
 ## Die Patrouille
 
@@ -38,4 +38,4 @@ Am Tag seines Versprechens verpflichtet sich der Pfadfinder oder die Pfadfinderi
 
 Auf dem Hemd markieren Abzeichen die Etappen des Fortschritts: Klassen, Abzeichen, grosse Brevets. Mit etwa 17 Jahren wechseln Pfadfinder und Pfadfinderin zu den [Rovern und Rangern](/de/rote-stufe/).
 
-![DSC_3995](/images/dsc-3995.jpg)
+![](/images/dsc-3995.jpg)

@@ -15,6 +15,8 @@ WordPress actuel de [www.scouts-europe.ch](https://www.scouts-europe.ch/fr/).
 - [feedback_publication.md](feedback_publication.md) — le site est publié en **aperçu public**
   sur GitHub Pages ; `www.scouts-europe.ch` n'est pas touché. Ce qu'il faut vérifier avant
   chaque publication.
+- [feedback_legendes.md](feedback_legendes.md) — **une légende sous une photo uniquement si
+  l'ancien site l'affichait** ; jamais de description inventée (2026-09-14).
 - [feedback_faits_du_mouvement.md](feedback_faits_du_mouvement.md) — **ne jamais inventer un
   fait sur le SES** (date, effectif, nom, adresse, montant). Les traductions sont acceptées par
   défaut pendant la refonte, mais marquées `translated: false`.

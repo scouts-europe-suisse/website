@@ -30,4 +30,4 @@ Garante de la pédagogie, l'équipe nationale est responsable de la formation de
 
 Des équipes techniques nationales (ETN) rassemblent des routiers et guides-aînées, chefs et cheftaines, qui souhaitent approfondir une technique particulière : topographie, froissartage, campisme, chant, photographie, multimédia... Les membres se forment à leur technique puis la mettent au service du mouvement, en formant les autres ou encore lors de grands événements.
 
-![Installation de pionniérage montée en camp](/images/pionnierage.jpg)
+![](/images/pionnierage.jpg)

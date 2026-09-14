@@ -17,7 +17,7 @@ Zunächst einmal ist die Wallfahrt eine Zeit des Wanderns. Zwei Tage lang sind w
 
 ![](/images/image.jpg)
 
-![Wanderung auf einem Waldweg](/images/marche-foret.jpg)
+![](/images/marche-foret.jpg)
 
 ## Das Gebet
 
@@ -27,7 +27,7 @@ Das Gebet ist in jedem Moment des Tages präsent, vor allem aber in den Messen, 
 
 Am **Sonntagabend** findet in der Abteikirche von Romainmôtier ein Anbetungsabend statt. Durch die Gesänge und die Stille, nach dem Trubel des Tages, steigen die Gebete auf, und der Friede zieht in die Herzen ein. Es ist ein Ort, der wirklich zum Gebet einlädt, und dort, alle versammelt, erleben wir etwas Starkes.
 
-![Innenraum einer Kirche](/images/eglise-interieur.jpg)
+![](/images/eglise-interieur.jpg)
 
 ## Der Dienst
 
@@ -41,7 +41,7 @@ Zum Schluss möchte ich über die Flot-Verleihungen und die RS-Verpflichtungen s
 
 ![](/images/image-6.jpg)
 
-![Fackelprozession am Abend](/images/procession-flambeaux.jpg)
+![](/images/procession-flambeaux.jpg)
 
 > *Gott ist immer derjenige, der stört. Er hat nie aufgehört, seine eigenen Ideen zu haben. Mit dem Heiligen Geist hat man nie Ruhe. Seid bereit! Wozu? – Zu allem. Und wahrscheinlich zu dem, woran ihr nicht gedacht habt, und noch weniger es gewollt hättet.* (Doncœur, CJS, Januar 1958, S. 4)
 

@@ -12,7 +12,7 @@ translated: true
 
 Eine Wallfahrt für rund 70 Leiter unseres Vereins von der Schweiz bis nach Fatima in Portugal, **Ende Juli bis Anfang August 2018**. In Demut haben unsere Leiter gewählt, in Richtung Fatima zu gehen, um über sich hinauszuwachsen, ihr Gebetsleben zu vertiefen und tragende Freundschaften zu leben.
 
-![Karte der Strecke nach Fatima](/images/fatima-carte.jpg)
+![](/images/fatima-carte.jpg)
 
 Einige konkrete Eckpunkte der Wallfahrt:
 
@@ -48,6 +48,6 @@ Unsere Spender, unsere Familien und die jungen Menschen, die uns anvertraut sind
 
 Von den 12 000 CHF, die nötig sind, damit die jungen Leiter aufbrechen können, machten Ihre Spenden zum Zeitpunkt dieses Aufrufs aus:
 
-![Aufteilung des Budgets der Route nach Fatima](/images/fatima-budget.png)
+![](/images/fatima-budget.png)
 
 *Der Bericht über diese Route ist in [Wallfahrt der Rover und Ranger nach Fatima](/de/aktuelles/pelerinage-des-aines-du-scoutisme-europeen-suisse-a-fatima/) zu lesen.*
