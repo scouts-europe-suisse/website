@@ -6,7 +6,7 @@ updated: 2026-05-26
 cover: "/images/actualites/pelerinage-2026.jpg"
 ---
 
-![Une croix se détachant sur le ciel](/images/croix-ciel.jpg)
+![](/images/croix-ciel.jpg)
 
 ## Seigneur, fais de moi un instrument de ta paix !
 

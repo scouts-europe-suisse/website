@@ -16,7 +16,7 @@ Tout d’abord, le pèlerinage est un moment de marche. Pendant deux jours, nous
 
 ![](/images/image.jpg)
 
-![Marche sur un chemin forestier](/images/marche-foret.jpg)
+![](/images/marche-foret.jpg)
 
 ## La prière
 
@@ -26,7 +26,7 @@ La prière est présente à chaque moment de la journée, mais principalement du
 
 Le **dimanche soir** se tient une veillée d’adoration dans l’abbatiale de Romainmôtier. Par les chants et le silence, et après le tumulte de la journée, les prières montent et la paix s’installe dans les cœurs. C’est un lieu vraiment propice à la prière et là, tous réunis, nous vivons quelque chose de fort.
 
-![Intérieur d’une église](/images/eglise-interieur.jpg)
+![](/images/eglise-interieur.jpg)
 
 ## Le service
 
@@ -40,7 +40,7 @@ Pour finir, j’aimerais écrire sur les prises de flot et les engagements RS. L
 
 ![](/images/image-6.jpg)
 
-![Procession aux flambeaux, le soir](/images/procession-flambeaux.jpg)
+![](/images/procession-flambeaux.jpg)
 
 > *Dieu est toujours celui qui dérange. Il n’a jamais fini d’avoir ses idées à Lui. On n’est jamais tranquille avec le Saint-Esprit. Soyez prêts ! À quoi ? — À tout. Et plus probablement à ce que vous ne pensiez pas, et encore moins le vouliez-vous.* (Doncœur, CJS, janvier 1958, p. 4)
 

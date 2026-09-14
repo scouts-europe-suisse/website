@@ -11,7 +11,7 @@ updated: 2025-12-09
 
 Un pèlerinage pour environ 70 chefs de notre association depuis la Suisse jusqu’à Fatima, au Portugal, **fin juillet – début août 2018**. Avec humilité, nos chefs ont choisi de marcher en direction de Fatima afin de se dépasser, d’approfondir leur vie de prière et de vivre des amitiés porteuses.
 
-![Carte du trajet vers Fatima](/images/fatima-carte.jpg)
+![](/images/fatima-carte.jpg)
 
 Quelques repères concrets du pèlerinage :
 
@@ -47,6 +47,6 @@ Nos donateurs, nos familles, les jeunes dont nous avons la charge seront au cœu
 
 Sur les 12 000 CHF nécessaires pour permettre aux jeunes chefs de partir, vos dons représentaient, au moment de cet appel :
 
-![Répartition du budget de la route vers Fatima](/images/fatima-budget.png)
+![](/images/fatima-budget.png)
 
 *Le récit de cette route est à lire dans [Pèlerinage des aînés à Fatima](/fr/actualites/pelerinage-des-aines-du-scoutisme-europeen-suisse-a-fatima/).*

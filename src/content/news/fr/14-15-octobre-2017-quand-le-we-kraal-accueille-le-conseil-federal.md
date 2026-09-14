@@ -7,7 +7,7 @@ updated: 2025-12-09
 
 Rencontre, formation, fraternité ! C’est autour de ces trois piliers que plus de 200 chefs scouts, membres des Scouts d’Europe, se sont réunis au **Domaine de Monteret, à Saint-Cergue**. Dans le Jura vaudois, un soleil rayonnant a accueilli les participants des quatre coins de Suisse et même de l’Europe entière pour deux jours de camp, de joie, de prière et d'amitié.
 
-![Rassemblement sous les arbres, drapeaux des pays d’Europe](/images/rassemblement-drapeaux.jpg)
+![](/images/rassemblement-drapeaux.jpg)
 
 ## Rencontre
 

@@ -70,6 +70,9 @@ toutes été écartées, même prises de loin.
 
 Aucun visage identifiable, ou aucune personne du tout.
 
+**La colonne « Ce que ça montre » est une description d'inventaire, pas une légende.** Sur le
+site, une photo ne porte de légende que si l'ancien site en affichait une (issue #73, 2026-09-14).
+
 | Fichier | Ce que ça montre |
 |---|---|
 | `rassemblement-drapeaux.jpg` | Rassemblement sous les arbres, drapeaux des pays d’Europe |

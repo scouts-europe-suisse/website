@@ -7,7 +7,7 @@ cover: "/images/actualites/pelerinage-2026.jpg"
 translated: true
 ---
 
-![Ein Kreuz, das sich vom Himmel abhebt](/images/croix-ciel.jpg)
+![](/images/croix-ciel.jpg)
 
 ## Herr, mach mich zu einem Werkzeug deines Friedens!
 

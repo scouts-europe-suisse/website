@@ -8,7 +8,7 @@ translated: true
 
 Begegnung, Ausbildung, Brüderlichkeit! Um diese drei Säulen haben sich über 200 Pfadfinderleiter, Mitglieder der Pfadfinder Europas, auf der **Domaine de Monteret in Saint-Cergue** versammelt. Im Waadtländer Jura empfing strahlender Sonnenschein die Teilnehmer aus allen Ecken der Schweiz und sogar aus ganz Europa zu zwei Tagen Lager, Freude, Gebet und Freundschaft.
 
-![Versammlung unter den Bäumen, Fahnen der Länder Europas](/images/rassemblement-drapeaux.jpg)
+![](/images/rassemblement-drapeaux.jpg)
 
 ## Begegnung
 
