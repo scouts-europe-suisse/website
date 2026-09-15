@@ -198,6 +198,7 @@ sans interruption », à soumettre aux autres le soir même) :
 - #69 README à jour : fonctionnement, publication, membres — **fermée** le 2026-09-13 (PR #70)
 - #71 Instagram : visionneuse centrée en deux volets, texte de la publication, albums — **fermée** le 2026-09-13 (PR #72)
 - #73 Légendes des photos : seulement celles de l'ancien site, « En route sur le chemin de Saint-Jacques » rétablie — **fermée** le 2026-09-14 (PR #74)
+- #75 Petits écrans : couverture et en-tête allemand ne dépassent plus — **fermée** le 2026-09-15 (PR #76)
 - #5 Gestion des contributeurs — **fermée** le 2026-09-13 (règle dans conventions.md) ; #7 relecture et #8 auteur de la citation — **fermées** sur décision de Nicolas
 
 Ce qui reste avant le gel (étape 6) : relecture par les autres membres, corrections en issues,
