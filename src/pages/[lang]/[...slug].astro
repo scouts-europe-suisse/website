@@ -173,7 +173,7 @@ const routeTwin =
             src={withBase(entry.data.cover)}
             alt={entry.data.coverAlt ?? ''}
             class:list={['ses-cover', coverEmblem && 'ses-cover--ecusson']}
-            style={entry.data.coverWidth ? `max-width: ${entry.data.coverWidth}px` : undefined}
+            style={entry.data.coverWidth ? `max-width: min(100%, ${entry.data.coverWidth}px)` : undefined}
             width={coverSize?.w}
             height={coverSize?.h}
             loading="eager"
@@ -202,5 +202,6 @@ const routeTwin =
   .ses-head-icons { display: flex; gap: 0.75rem; margin-bottom: var(--space-2); }
   .ses-cover { display: block; max-width: 100%; height: auto; border-radius: var(--radius-2); margin-bottom: var(--space-3); }
   .ses-cover--ecusson { max-width: 8rem; }
-  .ses-cover:not(.ses-cover--ecusson) { max-width: 36rem; }
+  /* Jamais plus large que l'écran (issue #75). */
+  .ses-cover:not(.ses-cover--ecusson) { max-width: min(100%, 36rem); }
 </style>

@@ -150,7 +150,17 @@ const searchHref = path(lang, SEARCH_BASE[lang]);
   .ses-header__logo img { height: 2.9rem; width: auto; }
   /* Le logo allemand est plus large (texte plus long) : un peu moins haut. */
   :global(html[lang='de']) .ses-header__logo img { height: 2.45rem; }
-  @media (max-width: 30rem) { .ses-header__logo img { height: 2.1rem; } .ses-header__row { gap: var(--space-1); } .ses-header__tools { gap: 0; } }
+  /* Petits écrans : le logo prend la place qui reste et rétrécit s'il le faut, au lieu
+     d'une hauteur fixe qui poussait les boutons hors de l'écran en allemand (issue #75). */
+  @media (max-width: 30rem) {
+    .ses-header__row { gap: var(--space-1); }
+    .ses-header__tools { gap: 0; flex-shrink: 0; }
+    /* Largeur disponible = écran − marges (2rem) − boutons (11.5rem). Le SVG n'a pas de
+       taille propre : la hauteur reste fixée, et object-fit garde les proportions quand
+       la largeur est bridée. */
+    .ses-header__logo img { height: 2.1rem; width: auto; max-width: calc(100vw - 13.5rem); object-fit: contain; object-position: left center; }
+    :global(html[lang='de']) .ses-header__logo img { height: 2.1rem; }
+  }
 
   /* Le menu horizontal, à partir du grand écran. */
   .ses-nav { display: none; }
