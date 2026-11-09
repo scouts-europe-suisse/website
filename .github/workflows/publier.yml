@@ -1,6 +1,6 @@
 # Publication automatique de l'aperçu (issue #4).
 #
-# À chaque fusion sur main, une fois par jour, ou à la demande :
+# À chaque fusion sur main, une fois par semaine (le lundi), ou à la demande :
 #   1. récupère les dernières photos Instagram du mouvement avec les secrets du
 #      dépôt (jamais dans le code) et, si elles ont changé, les commite sur main ;
 #   2. construit le site pour GitHub Pages, avec les mêmes garde-fous que
@@ -14,8 +14,11 @@ name: Publier l'aperçu
 on:
   push:
     branches: [main]
+  # Hebdomadaire depuis le 2026-11-09 (quotidien avant) : chaque passage consomme
+  # le forfait Actions de l'organisation, qui bloque à épuisement, et relance le
+  # build de GitHub Pages. Un lancement à la main rafraîchit les photos au besoin.
   schedule:
-    - cron: '17 5 * * *'
+    - cron: '17 5 * * 1'
   workflow_dispatch:
 
 permissions:
