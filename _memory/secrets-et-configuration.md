@@ -41,6 +41,18 @@ variables `META_APP_ID`, `META_PAGE_ID`, `META_IG_USER_ID`, `META_GRAPH_VERSION`
 - Le jeton de page obtenu par `scripts/meta-token.mjs` n'expire pas tant que la personne
   reste administratrice de la page. Si elle quitte ce rôle, refaire la manœuvre avec
   quelqu'un d'autre.
+- **Mais il meurt si cette personne change son mot de passe Facebook** ou si Meta réinitialise
+  ses sessions (« The session has been invalidated because the user changed their password »,
+  novembre 2026, issue #77). D'où la voie recommandée depuis : un **jeton d'utilisateur système**.
+  Dans Meta Business (business.facebook.com) → Paramètres → Utilisateurs → Utilisateurs système :
+  créer « site-web » (rôle employé), lui attribuer la page Facebook du mouvement (lecture) et
+  l'application « Scoutisme Européen Suisse », puis « Générer un jeton » : application du
+  mouvement, expiration **Jamais**, permissions `pages_show_list`, `pages_read_engagement`,
+  `instagram_basic`. Ensuite `node --env-file-if-exists=.env scripts/meta-token.mjs --systeme <jeton>`
+  donne le jeton de page, à poser dans le secret `META_PAGE_TOKEN`. Ce jeton ne dépend plus
+  d'aucun mot de passe. Condition : la page doit appartenir au portefeuille Meta Business.
+- Si Meta refuse le jeton, le workflow `publier.yml` ouvre une issue « Alerte Meta » (ou la
+  complète) : la publication continue avec les photos précédentes.
 - Le compte Instagram doit être **professionnel** et **relié à la page Facebook** du
   mouvement, sinon l'API ne le voit pas.
 - Le navigateur des visiteurs ne parle jamais à Meta : tout est récupéré à la construction.
