@@ -124,5 +124,9 @@ main()
   })
   .catch((err) => {
     console.error(`✗ ${err.message}`);
+    // Issue #77 : dans GitHub Actions, l'erreur est transmise à l'étape suivante, qui ouvre une alerte.
+    if (process.env.GITHUB_OUTPUT) {
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, `erreur=${err.message.replace(/[\r\n]+/g, ' ').slice(0, 300)}\n`);
+    }
     process.exitCode = 1;
   });

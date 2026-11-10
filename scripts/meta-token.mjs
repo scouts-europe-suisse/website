@@ -16,6 +16,12 @@
  *      compte Instagram professionnel qui lui est relié ;
  *   3. affiche les lignes à coller dans `.env`.
  *
+ * Jeton d'utilisateur système (issue #77, la voie recommandée) : un jeton généré dans Meta Business
+ * (Paramètres → Utilisateurs système → Générer un jeton, expiration « Jamais ») ne dépend d'aucun mot de
+ * passe. Avec --systeme, on saute l'échange : le jeton de page en est tiré directement et n'expire pas.
+ *
+ *   node --env-file-if-exists=.env scripts/meta-token.mjs --systeme <jeton utilisateur système>
+ *
  * Il n'écrit rien : c'est à la personne de coller les valeurs dans `.env`,
  * qui reste hors du dépôt. Il a besoin de META_APP_ID et META_APP_SECRET dans
  * `.env` (voir `.env.example`).
@@ -24,9 +30,10 @@
 const GRAPH = `https://graph.facebook.com/${process.env.META_GRAPH_VERSION ?? 'v23.0'}`;
 const APP_ID = process.env.META_APP_ID;
 const APP_SECRET = process.env.META_APP_SECRET;
-const shortToken = process.argv[2];
+const systeme = process.argv.includes('--systeme');
+const shortToken = process.argv.slice(2).find((x) => x !== '--systeme');
 
-if (!APP_ID || !APP_SECRET) {
+if (!systeme && (!APP_ID || !APP_SECRET)) {
   console.error('✗ META_APP_ID et META_APP_SECRET manquent dans .env (voir .env.example).');
   process.exit(1);
 }
@@ -47,13 +54,15 @@ async function graph(pathname, params) {
 }
 
 async function main() {
-  console.log('→ Échange du jeton court contre un jeton longue durée…');
-  const long = await graph('oauth/access_token', {
-    grant_type: 'fb_exchange_token',
-    client_id: APP_ID,
-    client_secret: APP_SECRET,
-    fb_exchange_token: shortToken,
-  });
+  const long = systeme
+    ? { access_token: shortToken }
+    : (console.log('→ Échange du jeton court contre un jeton longue durée…'),
+      await graph('oauth/access_token', {
+        grant_type: 'fb_exchange_token',
+        client_id: APP_ID,
+        client_secret: APP_SECRET,
+        fb_exchange_token: shortToken,
+      }));
 
   console.log('→ Pages administrées et comptes Instagram reliés…');
   const pages = await graph('me/accounts', {

@@ -23,6 +23,7 @@ on:
 
 permissions:
   contents: write
+  issues: write   # issue #77 : alerte quand Meta refuse le jeton
 
 concurrency:
   group: publication
@@ -48,6 +49,7 @@ jobs:
 
       - name: Rafraîchir les photos Instagram
         # Si Meta ne répond pas, on garde les photos précédentes et on continue.
+        id: instagram
         continue-on-error: true
         env:
           META_PAGE_TOKEN: ${{ secrets.META_PAGE_TOKEN }}
@@ -55,6 +57,20 @@ jobs:
           META_GRAPH_VERSION: ${{ vars.META_GRAPH_VERSION }}
           META_IG_KEEP: ${{ vars.META_IG_KEEP }}
         run: npm run instagram
+
+      - name: Prévenir si Meta refuse le jeton
+        # Issue #77 : une seule issue « Alerte Meta » ouverte à la fois ; les passages suivants la complètent.
+        if: steps.instagram.outputs.erreur != ''
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ERREUR: ${{ steps.instagram.outputs.erreur }}
+        run: |
+          titre="Alerte Meta : les photos Instagram ne se mettent plus à jour"
+          corps="Meta a refusé la récupération des photos lors du passage du $(date -u '+%d.%m.%Y %H:%M') UTC : « ${ERREUR} ».
+          La publication continue avec les photos précédentes. Marche à suivre pour un nouveau jeton (sans expiration) : _memory/secrets-et-configuration.md, section Meta."
+          num=$(gh issue list --state open --search "in:title \"$titre\"" --json number --jq '.[0].number')
+          if [ -n "$num" ]; then gh issue comment "$num" --body "$corps"; else gh issue create --title "$titre" --body "$corps"; fi
 
       - name: Fabriquer les images de partage
         run: npm run og
